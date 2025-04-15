@@ -35,8 +35,29 @@
     };
 
     function traducirAlarma() {
-      const entrada = document.getElementById("alarmaInput").value.trim();
-      const resultado = alarmas[entrada];
+      const entrada = document.getElementById("alarmaInput").value.trim().toLowerCase();
+      const keys = Object.keys(alarmas);
+      let resultado = null;
+
+      // Buscar coincidencia exacta (sin importar mayúsculas)
+      for (let key of keys) {
+        if (key.toLowerCase() === entrada) {
+          resultado = alarmas[key];
+          break;
+        }
+      }
+
+      // Si no hay coincidencia exacta, buscar coincidencia parcial
+      if (!resultado) {
+        for (let key of keys) {
+          if (key.toLowerCase().includes(entrada)) {
+            resultado = alarmas[key];
+            break;
+          }
+        }
+      }
+
+      // Mostrar resultado
       document.getElementById("resultado").innerText = resultado
         ? `Descripción: ${resultado}`
         : "No se encontró una descripción para esa alarma.";
