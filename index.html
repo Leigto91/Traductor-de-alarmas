@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Traductor de Alarmas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Traductor de Alarmas</h1>
+  <input type="text" id="alarmaInput" placeholder="Ingrese el nombre de la alarma">
+  <button onclick="traducirAlarma()">Buscar</button>
+  <div id="resultado"></div>
+
+  <script>
+    const alarmas = {
+      "etcd Backup Failed": "Falla en el respaldo de la base de datos distribuida etcd.",
+      "Disk Usage High": "El uso del disco está por encima del umbral.",
+      "CPU Load High": "Alta carga de CPU detectada.",
+      "Link Down": "Se detectó que un enlace de red está caído.",
+      "Memory Utilization Critical": "Utilización de memoria en nivel crítico.",
+      "hwIfMonitorCrcErrorRising": "Interfaz con errores."
+    };
+
+    function traducirAlarma() {
+      const entrada = document.getElementById("alarmaInput").value.trim();
+      const resultado = alarmas[entrada];
+      document.getElementById("resultado").innerText = resultado
+        ? `Descripción: ${resultado}`
+        : "No se encontró una descripción para esa alarma.";
+    }
+  </script>
+</body>
+</html>
