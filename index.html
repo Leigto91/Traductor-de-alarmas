@@ -30,13 +30,18 @@
   <textarea id="alarmaInput" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
   <select id="afectacion">
     <option value="Indisponibilidad">Indisponibilidad</option>
+    <option value="Sin Afectación">Sin Afectación</option>
     <option value="Degradación">Degradación</option>
-    <option value="Potencial">Potencial</option>
+    <option value="Afectación Potencial">Afectación Potencial</option>
   </select>
   <select id="grupo">
     <option value="VOZMOVIL">VOZMOVIL</option>
-    <option value="ROAMING">ROAMING</option>
-    <option value="VOZFIJA">VOZFIJA</option>
+    <option value="ROAMINT">ROAMINT</option>
+    <option value="VOZRESI">VOZRESI</option>
+    <option value="VIRTINFRA">VIRTINFRA</option>
+    <option value="NAVMOVIL">NAVMOVIL</option>
+    <option value="RUTA SIP">RUTA SIP</option>
+    <option value="VALORAGR">VALORAGR</option>
   </select>
   <button onclick="procesarAlarma()">Generar descripción</button>
   <div id="resultado"></div>
