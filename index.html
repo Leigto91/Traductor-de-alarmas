@@ -189,7 +189,11 @@
       actualizarHistorial();
       
       // Copiar al portapapeles
-      navigator.clipboard.writeText(descripcion).catch(err => console.error('Error al copiar al portapapeles:', err));
+      navigator.clipboard.writeText(descripcion)
+        .then(() => {
+        mostrarMensajeCopiado();
+        })
+      .catch(err => console.error('Error al copiar al portapapeles:', err));
     }
 
     function actualizarHistorial() {
@@ -206,6 +210,32 @@
       const contenedor = document.getElementById("historial-container");
       contenedor.style.display = contenedor.style.display === "none" ? "block" : "none";
     }
+
+    function mostrarMensajeCopiado() {
+  let mensaje = document.getElementById("mensajeCopiado");
+  if (!mensaje) {
+    mensaje = document.createElement("div");
+    mensaje.id = "mensajeCopiado";
+    mensaje.style.position = "fixed";
+    mensaje.style.bottom = "20px";
+    mensaje.style.left = "50%";
+    mensaje.style.transform = "translateX(-50%)";
+    mensaje.style.backgroundColor = "#28a745";
+    mensaje.style.color = "white";
+    mensaje.style.padding = "10px 20px";
+    mensaje.style.borderRadius = "8px";
+    mensaje.style.boxShadow = "0px 0px 10px rgba(0,0,0,0.2)";
+    mensaje.style.zIndex = "1000";
+    document.body.appendChild(mensaje);
+  }
+
+  mensaje.textContent = "📋 Texto copiado al portapapeles";
+  mensaje.style.display = "block";
+
+  setTimeout(() => {
+    mensaje.style.display = "none";
+  }, 2500);
+}
   </script>
 </body>
 </html>
