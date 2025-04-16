@@ -7,33 +7,126 @@
     body {
       font-family: Arial, sans-serif;
       margin: 50px;
+      position: relative;
     }
-    textarea, button, select {
+    .form-control {
       padding: 10px;
       font-size: 16px;
       width: 100%;
-      margin-top: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
     }
-    #resultado, #historial {
+    .button-principal {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .button-principal:hover {
+      background-color: #0056b3;
+    }
+    #resultado-container {
       margin-top: 20px;
+    }
+    #resultado {
       font-weight: bold;
       white-space: pre-wrap;
     }
-    #historial div {
-      border-top: 1px solid #ccc;
-      padding: 5px 0;
+    #resumenVisual {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+    #resumenVisual span {
+      display: block;
+      margin: 3px 0;
+    }
+    #historial-container {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #777;
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-top: 1px dashed #ccc;
+      display: none;
+    }
+    #historial-container h3 {
+      font-size: 14px;
+      font-weight: normal;
+      margin-bottom: 5px;
+      color: #999;
+    }
+    #listaHistorial {
+      list-style: none;
+      padding-left: 0;
+    }
+    #listaHistorial li {
+      padding: 2px 0;
+      border-bottom: 1px dotted #ccc;
+      font-size: 13px;
+    }
+    .marca {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      font-size: 12px;
+      color: #999;
+    }
+    .toggle-historial {
+      background-color: #f0f0f0;
+      border: none;
+      font-size: 13px;
+      color: #555;
+      margin-top: 20px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    h1 {
+      text-align: center;
+      text-transform: uppercase;
+    }
+    label {
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <h1>Traductor de Alarmas</h1>
+<<<<<<< HEAD
+  <textarea id="alarmaInput" class="form-control" rows="5" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
+
+  <label for="afectacion">Tipo de afectación:</label>
+  <select id="afectacion" class="form-control">
+    <option value="AFPOT">AFECTACIÓN POTENCIAL</option>
+    <option value="DEG">DEGRADACIÓN</option>
+    <option value="INDISP">INDISPONIBILIDAD</option>
+    <option value="SINAF">SIN AFECTACIÓN</option>
+=======
   <textarea id="alarmaInput" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
   <select id="afectacion">
     <option value="Indisponibilidad">Indisponibilidad</option>
     <option value="Sin Afectación">Sin Afectación</option>
     <option value="Degradación">Degradación</option>
     <option value="Afectación Potencial">Afectación Potencial</option>
+>>>>>>> a0a474ffbcc541a241f8bbdcccd9a77c6c10e866
   </select>
+<<<<<<< HEAD
+
+  <label for="grupo">Grupo asignado:</label>
+  <select id="grupo" class="form-control">
+    <option value="VOZMOVIL">PCS Voz Móvil</option>
+    <option value="VOZRESI">PCS Voz Fija</option>
+    <option value="ROAMINT">PCS Roaming Internacional</option>
+    <option value="VALORAGR">PCS Serv. Convergentes</option>
+    <option value="VIRTINFR">PCS Infra&Net</option>
+    <option value="NAVMOVIL">PCS Conectividad Afuera</option>
+    <option value="VOZMOVL">PCS Señalización y BD</option>
+=======
   <select id="grupo">
     <option value="VOZMOVIL">VOZMOVIL</option>
     <option value="ROAMINT">ROAMINT</option>
@@ -42,11 +135,22 @@
     <option value="NAVMOVIL">NAVMOVIL</option>
     <option value="RUTA SIP">RUTA SIP</option>
     <option value="VALORAGR">VALORAGR</option>
+>>>>>>> a0a474ffbcc541a241f8bbdcccd9a77c6c10e866
   </select>
-  <button onclick="procesarAlarma()">Generar descripción</button>
-  <div id="resultado"></div>
-  <h2>Historial de Consultas</h2>
-  <div id="historial"></div>
+
+  <button class="form-control button-principal" onclick="procesarAlarma()">Generar descripción</button>
+  <div id="resultado-container">
+    <span id="resultado"></span>
+  </div>
+  <div id="resumenVisual"></div>
+
+  <button class="toggle-historial" onclick="alternarHistorial()">Mostrar/Ocultar historial</button>
+  <div id="historial-container">
+    <h3>Historial de consultas anteriores</h3>
+    <ul id="listaHistorial"></ul>
+  </div>
+
+  <div class="marca">NOC-MO · 2025</div>
 
   <script>
     const alarmas = {
@@ -55,25 +159,69 @@
       "CPU Load High": "Alta carga de CPU detectada.",
       "Link Down": "Se detectó que un enlace de red está caído.",
       "Memory Utilization Critical": "Utilización de memoria en nivel crítico.",
-      "hwIfMonitorCrcErrorRising": "Interfaz con errores."
+      "hwIfMonitorCrcErrorRising": "Interfaz con errores.",
+      "CORE Delta 3G Mode Average Attached Users x USN": "Promedio de usuarios adjuntos en USN 3G fuera de valores esperados."
     };
+
+    const gruposMap = {
+      "PCS Voz Móvil": "VOZMOVIL",
+      "PCS Voz Fija": "VOZRESI",
+      "PCS Roaming Internacional": "ROAMINT",
+      "PCS Serv. Convergentes": "VALORAGR",
+      "PCS Infra&Net": "VIRTINFR",
+      "PCS Conectividad Afuera": "NAVMOVIL",
+      "PCS Señalización y BD": "VOZMOVL"
+    };
+
+    const afectacionMap = {
+      "AFECTACIÓN POTENCIAL": "AFECTACIÓN POTENCIAL",
+      "DEGRADACIÓN": "DEGRADACIÓN",
+      "INDISPONIBILIDAD": "INDISPONIBILIDAD",
+      "SIN AFECTACIÓN": "SIN AFECTACIÓN"
+    };
+
+    const historial = [];
 
     function procesarAlarma() {
       const entrada = document.getElementById("alarmaInput").value;
       const campos = entrada.split('\t');
-      const node = campos[52] || "Nodo vacío o erróneo";
-      const alarmaOriginal = campos[53] || "Alarma vacía o errónea";
-      const alerta = alarmas[alarmaOriginal] || alarmaOriginal;
-      const afectacion = document.getElementById("afectacion").value;
-      const grupo = document.getElementById("grupo").value;
 
-      const descripcion = `NOC-MO | ${node} | ${alerta} | ${afectacion} | ${grupo}`;
+      const node = campos[52] || "Nodo vacío o erróneo";
+      const alertaOriginal = campos[53] || "Alerta vacía o errónea";
+      const alertaTraducida = alarmas[alertaOriginal] || alertaOriginal;
+
+      const afectacionCode = document.getElementById("afectacion").value;
+      const grupoLabel = document.getElementById("grupo").selectedOptions[0].text;
+      const grupoCode = document.getElementById("grupo").value;
+
+      const descripcion = `NOC-MO | ${node} | ${alertaTraducida} | ${afectacionCode} | ${grupoCode}`;
       document.getElementById("resultado").innerText = descripcion;
 
-      const historial = document.getElementById("historial");
-      const entradaHistorial = document.createElement("div");
-      entradaHistorial.innerText = `Consulta: ${alarmaOriginal}\nResultado: ${descripcion}`;
-      historial.prepend(entradaHistorial);
+      const resumen = document.getElementById("resumenVisual");
+      resumen.innerHTML = `
+        <span>📍 Nodo: <strong>${node}</strong></span>
+        <span>🚨 Alarma: <strong>${alertaTraducida}</strong></span>
+        <span>⚠️ Tipo de afectación: <strong>${afectacionMap[afectacionCode]}</strong></span>
+        <span>🧩 Grupo asignado: <strong>${grupoLabel}</strong></span>
+      `;
+
+      historial.push({ entrada: alertaOriginal, resultado: descripcion });
+      actualizarHistorial();
+    }
+
+    function actualizarHistorial() {
+      const lista = document.getElementById("listaHistorial");
+      lista.innerHTML = "";
+      historial.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${index + 1}. [${item.entrada}] → ${item.resultado}`;
+        lista.appendChild(li);
+      });
+    }
+
+    function alternarHistorial() {
+      const contenedor = document.getElementById("historial-container");
+      contenedor.style.display = contenedor.style.display === "none" ? "block" : "none";
     }
   </script>
 </body>
