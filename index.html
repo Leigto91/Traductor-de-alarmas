@@ -61,7 +61,7 @@
     function procesarAlarma() {
       const entrada = document.getElementById("alarmaInput").value;
       const campos = entrada.split('\t');
-      const node = campos[52] || "Nodo vacía o errónea";
+      const node = campos[52] || "Nodo vacío o erróneo";
       const alarmaOriginal = campos[53] || "Alarma vacía o errónea";
       const alerta = alarmas[alarmaOriginal] || alarmaOriginal;
       const afectacion = document.getElementById("afectacion").value;
