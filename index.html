@@ -118,6 +118,11 @@
     <option value="VOZMOVL">PCS Señalización y BD</option>
   </select>
 
+  <label for="origen">Origen del reclamo:</label>
+  <select id="origen" class="form-control">
+    <option value="MAE_CORE">MAE Core</option>
+    </select>
+    
   <button class="form-control button-principal" onclick="procesarAlarma()">Generar descripción</button>
   <div id="resultado-container">
     <span id="resultado"></span>
@@ -172,7 +177,10 @@
 
       const afectacionCode = document.getElementById("afectacion").value;
       const grupoLabel = document.getElementById("grupo").selectedOptions[0].text;
-      const grupoCode = document.getElementById("grupo").value;
+      const grupoCode = document.getElementById("grupo").value
+      const origenCode = document.getElementById("origen").value; // Obtenemos el valor del origen del reclamo
+      const origenLabel = document.getElementById("origen").selectedOptions[0].text; // Obtenemos la etiqueta del origen
+;
 
       const descripcion = `NOC-MO | ${node} | ${alertaTraducida} | ${afectacionCode} | ${grupoCode}`;
       document.getElementById("resultado").innerText = descripcion;
@@ -183,6 +191,7 @@
         <span>🚨 Alarma: <strong>${alertaTraducida}</strong></span>
         <span>⚠️ Tipo de afectación: <strong>${afectacionMap[afectacionCode]}</strong></span>
         <span>🧩 Grupo asignado: <strong>${grupoLabel}</strong></span>
+        <span>📢 Origen del reclamo: <strong>${origenLabel}</strong></span>
       `;
 
       historial.push({ entrada: alertaOriginal, resultado: descripcion });
