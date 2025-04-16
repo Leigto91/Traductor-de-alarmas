@@ -121,6 +121,9 @@
   <label for="origen">Origen del reclamo:</label>
   <select id="origen" class="form-control">
     <option value="MAE_CORE">MAE Core</option>
+    <option value="SOLICITUD">MAE Core</option>
+    <option value="GRAFANA">MAE Core</option>
+    <option value="SMARTCARE">MAE Core</option>
     </select>
     
   <button class="form-control button-principal" onclick="procesarAlarma()">Generar descripción</button>
@@ -182,7 +185,7 @@
       const origenLabel = document.getElementById("origen").selectedOptions[0].text; // Obtenemos la etiqueta del origen
 ;
 
-      const descripcion = `NOC-MO | ${node} | ${alertaTraducida} | ${afectacionCode} | ${grupoCode}`;
+      const descripcion = `NOC-MO | ${node} | ${alertaTraducida} | ${afectacionCode} | ${grupoCode}| ${origenCode}`;
       document.getElementById("resultado").innerText = descripcion;
 
       const resumen = document.getElementById("resumenVisual");
