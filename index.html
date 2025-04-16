@@ -1,112 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8">
-    <title>Traductor de Alarmas</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: white;
-        margin: 0;
-        padding: 20px;
-      }
-      .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 20px;
-      }
-      h1 {
-        text-align: center;
-        text-transform: uppercase;
-        grid-column: span 2;
-        font-size: 20px;
-      }
-      .form-control, textarea, select {
-        padding: 8px;
-        font-size: 14px;
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 10px;
-      }
-      label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 5px;
-        font-size: 13px;
-      }
-      .form-group {
-        margin-bottom: 10px;
-      }
-      .full-width {
-        grid-column: span 2;
-      }
-      .button-principal {
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        border-radius: 6px;
-        padding: 8px;
-        font-size: 13px;
-        font-weight: bold;
-        width: 150px;
-        display: block;
-        margin: 0 auto;
-      }
-      .button-principal:hover {
-        background-color: #0056b3;
-      }
-      #resultado-container {
-        margin-top: 20px;
-        font-weight: bold;
-      }
-      #resumenVisual {
-        margin-top: 10px;
-        font-size: 13px;
-        color: #333;
-      }
-      #resumenVisual span {
-        display: block;
-        margin: 3px 0;
-      }
-      #historial-container {
-        margin-top: 30px;
-        font-size: 12px;
-        color: #777;
-        background-color: #f9f9f9;
-        padding: 10px;
-        border-top: 1px dashed #ccc;
-        display: none;
-        text-align: center;
-      }
-      #listaHistorial li {
-        padding: 2px 0;
-        border-bottom: 1px dotted #ccc;
-        font-size: 12px;
-      }
-      .toggle-historial {
-        background-color: #f0f0f0;
-        border: none;
-        font-size: 12px;
-        color: #555;
-        margin-top: 20px;
-        cursor: pointer;
-        text-decoration: underline;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .marca {
-        text-align: center;
-        margin-top: 40px;
-        font-size: 12px;
-        color: #999;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>Traductor de Alarmas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+    h1 {
+      text-align: center;
+      text-transform: uppercase;
+      grid-column: span 2;
+      font-size: 20px;
+    }
+    .form-control, textarea, select {
+      padding: 8px;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .full-width {
+      grid-column: span 2;
+    }
+    .button-principal {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 13px;
+      font-weight: bold;
+      width: 150px;
+      display: block;
+      margin: 0 auto;
+    }
+    .button-principal:hover {
+      background-color: #0056b3;
+    }
+    #resultado-container {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    #resumenVisual {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #333;
+    }
+    #resumenVisual span {
+      display: block;
+      margin: 3px 0;
+    }
+    #historial-container {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #777;
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-top: 1px dashed #ccc;
+      display: none;
+      text-align: center;
+    }
+    #listaHistorial li {
+      padding: 2px 0;
+      border-bottom: 1px dotted #ccc;
+      font-size: 12px;
+    }
+    .toggle-historial {
+      background-color: #f0f0f0;
+      border: none;
+      font-size: 12px;
+      color: #555;
+      margin-top: 20px;
+      cursor: pointer;
+      text-decoration: underline;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .marca {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
 <body>
   <h1>Traductor de Alarmas</h1>
   <textarea id="alarmaInput" class="form-control" rows="5" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
