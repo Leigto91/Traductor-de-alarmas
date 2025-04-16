@@ -187,6 +187,9 @@
 
       historial.push({ entrada: alertaOriginal, resultado: descripcion });
       actualizarHistorial();
+      
+      // Copiar al portapapeles
+      navigator.clipboard.writeText(descripcion).catch(err => console.error('Error al copiar al portapapeles:', err));
     }
 
     function actualizarHistorial() {
