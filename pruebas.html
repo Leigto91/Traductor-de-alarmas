@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Traductor de Alarmas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+    h1 {
+      text-align: center;
+      text-transform: uppercase;
+      grid-column: span 2;
+      font-size: 20px;
+    }
+    .form-control, textarea, select {
+      padding: 8px;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .full-width {
+      grid-column: span 2;
+    }
+    .button-principal {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 13px;
+      font-weight: bold;
+      width: 150px;
+      display: block;
+      margin: 0 auto;
+    }
+    .button-principal:hover {
+      background-color: #0056b3;
+    }
+    #resultado-container {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    #resumenVisual {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #333;
+    }
+    #resumenVisual span {
+      display: block;
+      margin: 3px 0;
+    }
+    #historial-container {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #777;
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-top: 1px dashed #ccc;
+      display: none;
+      text-align: center;
+    }
+    #listaHistorial li {
+      padding: 2px 0;
+      border-bottom: 1px dotted #ccc;
+      font-size: 12px;
+    }
+    .toggle-historial {
+      background-color: #f0f0f0;
+      border: none;
+      font-size: 12px;
+      color: #555;
+      margin-top: 20px;
+      cursor: pointer;
+      text-decoration: underline;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .marca {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 12px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Traductor de Alarmas</h1>
+
+    <div class="form-group">
+      <label for="alarmaInput">Alarma FMC:</label>
+      <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
+    </div>
+
+    <div>
+      <label for="afectacion">Tipo de afectación:</label>
+      <select id="afectacion" class="form-control">
+        <option value="AFPOT">AFECTACIÓN POTENCIAL</option>
+        <option value="DEG">DEGRADACIÓN</option>
+        <option value="INDISP">INDISPONIBILIDAD</option>
+        <option value="SINAF">SIN AFECTACIÓN</option>
+      </select>
+
+      <label for="grupo">Grupo asignado:</label>
+      <select id="grupo" class="form-control">
+        <option value="VOZMOVIL">PCS Voz Móvil</option>
+        <option value="VOZRESI">PCS Voz Fija</option>
+        <option value="ROAMINT">PCS Roaming Internacional</option>
+        <option value="VALORAGR">PCS Serv. Convergentes</option>
+        <option value="VIRTINFR">PCS Infra&Net</option>
+        <option value="NAVMOVIL">PCS Conectividad Afuera</option>
+        <option value="VOZMOVL">PCS Señalización y BD</option>
+      </select>
+
+      <label for="origen">Origen del reclamo:</label>
+      <select id="origen" class="form-control">
+        <option value="MAE Core">MAE Core</option>
+        <option value="GRAFANA">GRAFANA</option>
+        <option value="SOLICITUD">SOLICITUD</option>
+        <option value="SMARTCARE">SMARTCARE</option>
+      </select>
+    </div>
+
+    <div class="full-width">
+      <button class="button-principal" onclick="procesarAlarma()">Generar descripción</button>
+    </div>
+
+    <div id="resultado-container" class="full-width">
+      <div id="resultado"></div>
+      <div id="resumenVisual"></div>
+    </div>
+
+    <div class="full-width">
+      <button class="toggle-historial" onclick="alternarHistorial()">Mostrar/Ocultar historial</button>
+      <div id="historial-container">
+        <ul id="listaHistorial"></ul>
+      </div>
+    </div>
+
+    <div class="marca full-width">NOC-MO · 2025</div>
+  </div>
+
+  <script>
+    const alarmas = {
+      "etcd Backup Failed": "Falla en el respaldo de la base de datos distribuida etcd.",
+      "Disk Usage High": "El uso del disco está por encima del umbral.",
+      "CPU Load High": "Alta carga de CPU detectada.",
+      "Link Down": "Se detectó que un enlace de red está caído.",
+      "Memory Utilization Critical": "Utilización de memoria en nivel crítico.",
+      "hwIfMonitorCrcErrorRising": "Interfaz con errores.",
+      "CORE Delta 3G Mode Average Attached Users x USN": "Promedio de usuarios adjuntos en USN 3G fuera de valores esperados."
+    };
+
+    function procesarAlarma() {
+      const entrada = document.getElementById("alarmaInput").value;
+      const campos = entrada.split('\t');
+      const node = campos[52] || "Nodo vacío o erróneo";
+      const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
+      const alerta = alarmas[alarmaOriginal] || alarmaOriginal;
+      const afectacion = document.getElementById("afectacion").value;
+      const grupo = document.getElementById("grupo").value;
+      const origen = document.getElementById("origen").value || "-";
+
+      const descripcion = `NOC-MO | ${node} | ${alerta} | ${afectacion} | ${grupo} | ${origen}`;
+      document.getElementById("resultado").innerText = descripcion;
+
+      document.getElementById("resumenVisual").innerHTML = `
+        <span>📍 Nodo: <strong>${node}</strong></span>
+        <span>🚨 Alarma: <strong>${alerta}</strong></span>
+        <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
+        <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
+        <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
+      `;
+
+      navigator.clipboard.writeText(descripcion).then(() => {
+        let mensaje = document.getElementById("mensajeCopiado");
+        if (!mensaje) {
+          mensaje = document.createElement("div");
+          mensaje.id = "mensajeCopiado";
+          mensaje.style.color = "green";
+          mensaje.style.marginTop = "10px";
+          document.getElementById("resultado-container").appendChild(mensaje);
+        }
+        mensaje.textContent = "✅ Copiado al portapapeles";
+        setTimeout(() => mensaje.textContent = "", 3000);
+      });
+    }
+
+    function alternarHistorial() {
+      const contenedor = document.getElementById("historial-container");
+      contenedor.style.display = contenedor.style.display === "none" ? "block" : "none";
+    }
+  </script>
+</body>
+</html>
