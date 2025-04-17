@@ -168,7 +168,7 @@
       </div>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.5</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.5.3</div>
   </div>
 
   <script>
@@ -178,7 +178,9 @@
         fetch('traduccion_alarmas.json')
           .then(response => response.json())
           .then(data => {
-            alarmas = data;
+            alarmas = data
+            TítuloCorto = data
+            InterpretaciónDetallada = data;
           })
           .catch(error => {
             console.error('Error al cargar el archivo JSON:', error);
