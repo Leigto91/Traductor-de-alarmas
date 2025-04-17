@@ -11,7 +11,7 @@
       padding: 20px;
     }
     .container {
-      max-width: 1000px;
+      max-width: 95%;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -108,56 +108,76 @@
   </style>
 </head>
 <body>
-  <h1>Traductor de Alarmas</h1>
-  <textarea id="alarmaInput" class="form-control" rows="5" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
+  <div class="container">
+    <h1>Traductor de Alarmas</h1>
 
-  <label for="afectacion">Tipo de afectación:</label>
-  <select id="afectacion" class="form-control">
-    <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
-    <option value="DEGRADACIÓN">DEGRADACIÓN</option>
-    <option value="INDISPONIBILIDAD">INDISPONIBILIDAD</option>
-    <option value="SIN AFECTACIÓN">SIN AFECTACIÓN</option>
-  </select>
+    <div class="form-group">
+      <label for="alarmaInput">Alarma FMC:</label>
+      <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
+    </div>
 
-  <label for="grupo">Grupo asignado:</label>
-  <select id="grupo" class="form-control">
-    <option value="VOZMOVIL">PCS Voz Móvil</option>
-    <option value="VOZRESI">PCS Voz Fija</option>
-    <option value="ROAMINT">PCS Roaming Internacional</option>
-    <option value="VALORAGR">PCS Serv. Convergentes</option>
-    <option value="VIRTINFR">PCS Infra&Net</option>
-    <option value="NAVMOVIL">PCS Conectividad Afuera</option>
-    <option value="VOZMOVL">PCS Señalización y BD</option>
-    <option value="NOC-AC">NOC-AC</option>
-    <option value="NOC-MO">NOC-MO</option>
-    <option value="NOC-TR">NOC-TR</option>
-    <option value="NCSN-CAO">CSOT</option>
-  </select>
+    <div>
+      <label for="afectacion">Tipo de afectación:</label>
+      <select id="afectacion" class="form-control">
+        <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
+        <option value="DEGRADACIÓN">DEGRADACIÓN</option>
+        <option value="INDISPONIBILIDAD">INDISPONIBILIDAD</option>
+        <option value="SIN AFECTACIÓN">SIN AFECTACIÓN</option>
+      </select>
 
-  <label for="origen">Origen del reclamo:</label>
-  <select id="origen" class="form-control">
-    <option value="MAE_CORE">MAE Core</option>
-    <option value="SOLICITUD">SOLICITUD</option>
-    <option value="GRAFANA">GRAFANA</option>
-    <option value="SMARTCARE">SMARTCARE</option>
-    </select>
-    
-  <button class="form-control button-principal" onclick="procesarAlarma()">Generar descripción</button>
-  <div id="resultado-container">
-    <span id="resultado"></span>
+      <label for="grupo">Grupo asignado:</label>
+      <select id="grupo" class="form-control">
+        <option value="VOZMOVIL">PCS Voz Móvil</option>
+        <option value="VOZRESI">PCS Voz Fija</option>
+        <option value="ROAMINT">PCS Roaming Internacional</option>
+        <option value="VALORAGR">PCS Serv. Convergentes</option>
+        <option value="VIRTINFR">PCS Infra&Net</option>
+        <option value="NAVMOVIL">PCS Conectividad Afuera</option>
+        <option value="VOZMOVL">PCS Señalización y BD</option>
+        <option value="NOC-AC">NOC-AC</option>
+        <option value="NOC-TR">NOC-TR</option>
+        <option value="NOC-MO">NOC-MO</option>
+        <option value="NCSN-CAO">CSOT</option>
+      </select>
+
+      <label for="origen">Origen del reclamo:</label>
+      <select id="origen" class="form-control">
+        <option value="MAE Core">MAE Core</option>
+        <option value="GRAFANA">GRAFANA</option>
+        <option value="SOLICITUD">SOLICITUD</option>
+        <option value="SMARTCARE">SMARTCARE</option>
+        <option value="DIGITAL VIEW">DIGITAL VIEW</option>
+        <option value="TEKELEC">TEKELEC</option>
+        <option value="OPENXPAND">OPENXPAND</option>
+      </select>
+    </div>
+
+    <div class="full-width">
+      <button class="button-principal" onclick="procesarAlarma()">Generar descripción</button>
+    </div>
+
+    <div id="resultado-container" class="full-width">
+      <div id="resultado"></div>
+      <div id="resumenVisual"></div>
+    </div>
+
+    <div class="full-width">
+      <button class="toggle-historial" onclick="alternarHistorial()">Mostrar/Ocultar historial</button>
+      <div id="historial-container">
+        <ul id="listaHistorial"></ul>
+      </div>
+    </div>
+
+    <div class="marca full-width">NOC-MO · 2025</div>
   </div>
-  <div id="resumenVisual"></div>
-
-  <button class="toggle-historial" onclick="alternarHistorial()">Mostrar/Ocultar historial</button>
-  <div id="historial-container">
-    <h3>Historial de consultas anteriores</h3>
-    <ul id="listaHistorial"></ul>
-  </div>
-
-  <div class="marca">NOC-MO · 2025</div>
 
   <script>
-    const alarmas = {
+
+    function procesarAlarma() {
+      const entrada = document.getElementById("alarmaInput").value;
+      const campos = entrada.split('\t');
+      
+      const alarmas = {
       "etcd Backup Failed": "Falla en el respaldo de la base de datos distribuida etcd.",
       "Disk Usage High": "El uso del disco está por encima del umbral.",
       "CPU Load High": "Alta carga de CPU detectada.",
@@ -167,108 +187,52 @@
       "CORE Delta 3G Mode Average Attached Users x USN": "Promedio de usuarios adjuntos en USN 3G fuera de valores esperados."
     };
 
-    const gruposMap = {
-      "PCS Voz Móvil": "VOZMOVIL",
-      "PCS Voz Fija": "VOZRESI",
-      "PCS Roaming Internacional": "ROAMINT",
-      "PCS Serv. Convergentes": "VALORAGR",
-      "PCS Infra&Net": "VIRTINFR",
-      "PCS Conectividad Afuera": "NAVMOVIL",
-      "PCS Señalización y BD": "VOZMOVL",
-      "NOC-MO": "NOC-MO",
-      "NOC-AC": "NOC-AC",
-      "NOC-TR": "NOC-TR",
-      "CSOT": "NCSN-CAO"
-    };
-
-    const afectacionMap = {
-      "AFECTACIÓN POTENCIAL": "AFECTACIÓN POTENCIAL",
-      "DEGRADACIÓN": "DEGRADACIÓN",
-      "INDISPONIBILIDAD": "INDISPONIBILIDAD",
-      "SIN AFECTACIÓN": "SIN AFECTACIÓN"
-    };
-
-    const historial = [];
-
-    function procesarAlarma() {
-      const entrada = document.getElementById("alarmaInput").value;
-      const campos = entrada.split('\t');
+      if (campos.length < 96) {
+        alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones.");
+        return;
+      }
 
       const node = campos[52] || "Nodo vacío o erróneo";
-      const alertaOriginal = campos[53] || "Alerta vacía o errónea";
-      const alertaTraducida = alarmas[alertaOriginal] || alertaOriginal;
+      const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
+      const alerta = alarmas[alarmaOriginal] || alarmaOriginal;
+      const afectacion = document.getElementById("afectacion").value;
+      const grupo = document.getElementById("grupo").value;
+      const origen = document.getElementById("origen").value || "-";
+      const info = campos[54] || "Info vacía o errónea";
+      const info_adicional_alerta = campos[55] || "Info vacía o errónea";
 
-      const afectacionCode = document.getElementById("afectacion").value;
-      const grupoLabel = document.getElementById("grupo").selectedOptions[0].text;
-      const grupoCode = document.getElementById("grupo").value
-      const origenCode = document.getElementById("origen").value; // Obtenemos el valor del origen del reclamo
-      const origenLabel = document.getElementById("origen").selectedOptions[0].text; // Obtenemos la etiqueta del origen
-;
-
-      const descripcion = `NOC-MO | ${node} | ${alertaTraducida} | ${afectacionCode} | ${grupoCode} | ${origenCode}`;
+      const descripcion = `NOC-MO | ${node} | ${alerta} | ${afectacion} | ${grupo} | ${origen}`;
       document.getElementById("resultado").innerText = descripcion;
 
-      const resumen = document.getElementById("resumenVisual");
-      resumen.innerHTML = `
+      document.getElementById("resumenVisual").innerHTML = `
         <span>📍 Nodo: <strong>${node}</strong></span>
-        <span>🚨 Alarma: <strong>${alertaTraducida}</strong></span>
-        <span>⚠️ Tipo de afectación: <strong>${afectacionMap[afectacionCode]}</strong></span>
-        <span>🧩 Grupo asignado: <strong>${grupoLabel}</strong></span>
-        <span>📢 Origen del reclamo: <strong>${origenLabel}</strong></span>
+        <span>🚨 Alarma: <strong>${alarmaOriginal}</strong></span>
+        <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
+        <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
+        <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
+        <span>📝 Info: <strong>${info}</strong></span>
+        <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
       `;
 
-      historial.push({ entrada: alertaOriginal, resultado: descripcion });
-      actualizarHistorial();
-      
-      // Copiar al portapapeles
-      navigator.clipboard.writeText(descripcion)
-        .then(() => {
-        mostrarMensajeCopiado();
-        })
-      .catch(err => console.error('Error al copiar al portapapeles:', err));
-    }
-
-    function actualizarHistorial() {
-      const lista = document.getElementById("listaHistorial");
-      lista.innerHTML = "";
-      historial.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.textContent = `${index + 1}. [${item.entrada}] → ${item.resultado}`;
-        lista.appendChild(li);
+      navigator.clipboard.writeText(descripcion).then(() => {
+        let mensaje = document.getElementById("mensajeCopiado");
+        if (!mensaje) {
+          mensaje = document.createElement("div");
+          mensaje.id = "mensajeCopiado";
+          mensaje.style.color = "green";
+          mensaje.style.marginTop = "10px";
+          document.getElementById("resultado-container").appendChild(mensaje);
+        }
+        mensaje.textContent = "✅ Copiado al portapapeles";
+        setTimeout(() => mensaje.textContent = "", 3000);
       });
+
+      // Añadir al historial
+      const historialItem = document.createElement("li");
+      historialItem.textContent = descripcion;
+      document.getElementById("listaHistorial").appendChild(historialItem);
     }
 
-    function alternarHistorial() {
-      const contenedor = document.getElementById("historial-container");
-      contenedor.style.display = contenedor.style.display === "none" ? "block" : "none";
-    }
-
-    function mostrarMensajeCopiado() {
-  let mensaje = document.getElementById("mensajeCopiado");
-  if (!mensaje) {
-    mensaje = document.createElement("div");
-    mensaje.id = "mensajeCopiado";
-    mensaje.style.position = "fixed";
-    mensaje.style.bottom = "20px";
-    mensaje.style.left = "50%";
-    mensaje.style.transform = "translateX(-50%)";
-    mensaje.style.backgroundColor = "#28a745";
-    mensaje.style.color = "white";
-    mensaje.style.padding = "10px 20px";
-    mensaje.style.borderRadius = "8px";
-    mensaje.style.boxShadow = "0px 0px 10px rgba(0,0,0,0.2)";
-    mensaje.style.zIndex = "1000";
-    document.body.appendChild(mensaje);
-  }
-
-  mensaje.textContent = "📋 Texto copiado al portapapeles";
-  mensaje.style.display = "block";
-
-  setTimeout(() => {
-    mensaje.style.display = "none";
-  }, 2500);
-}
   </script>
-  <a href="pruebas.html">Pruebas</a>
 </body>
 </html>

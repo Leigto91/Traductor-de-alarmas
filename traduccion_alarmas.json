@@ -1,0 +1,3502 @@
+[
+    {
+        "AlarmaOriginal": "System Flowctrl Startup",
+        "TítuloCorto": "Inicio FlowCtrl",
+        "InterpretaciónDetallada": "El sistema de control de flujo ha iniciado correctamente."
+    },
+    {
+        "AlarmaOriginal": "M3UA SCTP Path Alarm",
+        "TítuloCorto": "Alarma en M3UA SCTP",
+        "InterpretaciónDetallada": "\"Se ha detectado una alarma en la ruta SCTP del protocolo M3UA"
+    },
+    {
+        "AlarmaOriginal": "Diameter Link Fault",
+        "TítuloCorto": "Falla de Enlace Diameter",
+        "InterpretaciónDetallada": "\"Se detectó un problema en el enlace del protocolo Diameter"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0084",
+        "TítuloCorto": "IP Connection Unavailable\"",
+        "InterpretaciónDetallada": "Conexión IP no disponible"
+    },
+    {
+        "AlarmaOriginal": "Incorrect OSPF Interface Configuration",
+        "TítuloCorto": "Configuración OSPF incorrecta",
+        "InterpretaciónDetallada": "\"Una interfaz de red tiene mal configurado el protocolo OSPF"
+    },
+    {
+        "AlarmaOriginal": "linkDown",
+        "TítuloCorto": "Enlace Caído",
+        "InterpretaciónDetallada": "\"Se ha detectado que un enlace de red ha caído"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0236",
+        "TítuloCorto": "REPT-LKF: not aligned\"",
+        "InterpretaciónDetallada": "Desalineación REPT-LKF"
+    },
+    {
+        "AlarmaOriginal": "SIP office heart beat is fault",
+        "TítuloCorto": "Falla de latido SIP",
+        "InterpretaciónDetallada": "\"El latido de vida del SIP Office no está respondiendo"
+    },
+    {
+        "AlarmaOriginal": "New NETCONF Server Session",
+        "TítuloCorto": "Nueva sesión NETCONF",
+        "InterpretaciónDetallada": "Se ha iniciado una nueva sesión de administración remota NETCONF en un equipo."
+    },
+    {
+        "AlarmaOriginal": "ntpd服务未启动",
+        "TítuloCorto": "NTP no iniciado",
+        "InterpretaciónDetallada": "El servicio de sincronización horaria NTP no está iniciado. Afecta la precisión horaria del sistema."
+    },
+    {
+        "AlarmaOriginal": "Se ha detectado afectación o degradación en la frontera SIGTRAN con Jasper...",
+        "TítuloCorto": "Degradación SIGTRAN con Jasper",
+        "InterpretaciónDetallada": "\"Se detecta afectación o degradación en la frontera SIGTRAN entre redes"
+    },
+    {
+        "AlarmaOriginal": "SCTP association retransmission above the threshold",
+        "TítuloCorto": "Retransmisiones SCTP altas",
+        "InterpretaciónDetallada": "\"El sistema SCTP está retransmitiendo más de lo esperado"
+    },
+    {
+        "AlarmaOriginal": "Control Plane Packet Error and Loss",
+        "TítuloCorto": "Errores de plano de control",
+        "InterpretaciónDetallada": "\"Hay pérdida o errores en paquetes de señalización"
+    },
+    {
+        "AlarmaOriginal": "High file system usage on Linux-based server",
+        "TítuloCorto": "Uso alto del sistema de archivos",
+        "InterpretaciónDetallada": "\"Un servidor Linux tiene su almacenamiento casi lleno"
+    },
+    {
+        "AlarmaOriginal": "Management Plane Packet Error and Loss",
+        "TítuloCorto": "Pérdida en plano de gestión",
+        "InterpretaciónDetallada": "\"Se detectan errores y pérdida de paquetes en el plano de gestión"
+    },
+    {
+        "AlarmaOriginal": "Se ha detectado afectación o degradación en la frontera DIAMETER con BICS. Revisar el dashboard...",
+        "TítuloCorto": "Degradación DIAMETER con BICS",
+        "InterpretaciónDetallada": "Se detectaron problemas de rendimiento o conexión en el enlace DIAMETER con el carrier BICS. Se recomienda consultar el dashboard para más detalles."
+    },
+    {
+        "AlarmaOriginal": "BFD session went Down",
+        "TítuloCorto": "Caída de sesión BFD",
+        "InterpretaciónDetallada": "\"El protocolo BFD"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0313",
+        "TítuloCorto": "DPC is prohibited\"",
+        "InterpretaciónDetallada": "DPC prohibido"
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se incremente la Temperatura en sitio Munro",
+        "TítuloCorto": "Alerta por temperatura en Munro",
+        "InterpretaciónDetallada": "Es necesario informar a soporte físico (PCS) si se detecta un aumento de temperatura en el sitio Munro."
+    },
+    {
+        "AlarmaOriginal": "Alerta por disminución/incremento de tráfico en la interconexión de GRX con BICS en Miami...",
+        "TítuloCorto": "Variación de tráfico GRX con BICS",
+        "InterpretaciónDetallada": "Se detectó una fluctuación importante en el tráfico del enlace GRX con BICS en Miami. Ver dashboard para más detalles."
+    },
+    {
+        "AlarmaOriginal": "Diameter LinkSet Fault",
+        "TítuloCorto": "Falla en enlace DIAMETER",
+        "InterpretaciónDetallada": "\"Hay una falla en el conjunto de enlaces DIAMETER"
+    },
+    {
+        "AlarmaOriginal": "Diameter Peer Device Fault",
+        "TítuloCorto": "Falla en equipo remoto DIAMETER",
+        "InterpretaciónDetallada": "Se detectó una falla en el equipo remoto asociado a la señalización DIAMETER."
+    },
+    {
+        "AlarmaOriginal": "Faulty VM OS",
+        "TítuloCorto": "Falla en sistema operativo de VM",
+        "InterpretaciónDetallada": "El sistema operativo de una máquina virtual está presentando fallas que pueden afectar sus servicios."
+    },
+    {
+        "AlarmaOriginal": "Mensajes enviados Interfaz Gy entre DRAs y OCS alert",
+        "TítuloCorto": "Alerta en interfaz Gy",
+        "InterpretaciónDetallada": "\"Se ha generado una alerta por el tráfico de mensajes entre los elementos DRA y OCS en la interfaz Gy"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0217",
+        "TítuloCorto": "REPT-LKF: excess acknowledge delay\"",
+        "InterpretaciónDetallada": "Retraso en acuse de recibo"
+    },
+    {
+        "AlarmaOriginal": "RAN IP/ATM Bearer Status Fault",
+        "TítuloCorto": "Falla en portadora RAN",
+        "InterpretaciónDetallada": "Se detecta un error en el estado del canal portador IP/ATM usado en el acceso por radio."
+    },
+    {
+        "AlarmaOriginal": "Fabric Link Goes Subhealthy",
+        "TítuloCorto": "Enlace de red degradado",
+        "InterpretaciónDetallada": "\"Un enlace de interconexión dentro del equipo presenta un estado de salud inferior al óptimo"
+    },
+    {
+        "AlarmaOriginal": "Rate of packets to cpu exceeded the CPCAR limit",
+        "TítuloCorto": "Exceso de paquetes a CPU",
+        "InterpretaciónDetallada": "\"El volumen de paquetes enviados al CPU supera el límite permitido"
+    },
+    {
+        "AlarmaOriginal": "Se ha detectado afectación o degradación en la frontera SIGTRAN con BICS...",
+        "TítuloCorto": "Degradación SIGTRAN con BICS",
+        "InterpretaciónDetallada": "\"Se identificaron problemas en la interfaz SIGTRAN hacia BICS"
+    },
+    {
+        "AlarmaOriginal": "Se detecta una caída del éxito de respuesta por debajo del umbral para las rutas correspondientes al trafico fijo",
+        "TítuloCorto": "Caída en respuesta de tráfico fijo",
+        "InterpretaciónDetallada": "\"Las rutas de tráfico fijo muestran un éxito de respuesta por debajo del umbral esperado"
+    },
+    {
+        "AlarmaOriginal": "Alerta por disminución/incremento de tráfico en la interconexión de GRX con Comfone en Miami...",
+        "TítuloCorto": "Variación de tráfico GRX con Comfone",
+        "InterpretaciónDetallada": "Se detectaron variaciones relevantes en el tráfico GRX con Comfone en Miami. Requiere análisis de tendencia o fallo."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0318",
+        "TítuloCorto": "REPT-LKSTO: link set prohibited\"",
+        "InterpretaciónDetallada": "Conjunto de enlaces prohibido"
+    },
+    {
+        "AlarmaOriginal": "Se ha detectado afectación o degradación en la frontera SIGTRAN con COMFONE...",
+        "TítuloCorto": "Degradación SIGTRAN con COMFONE",
+        "InterpretaciónDetallada": "Se identificaron fallos o baja performance en la interfaz SIGTRAN con el carrier COMFONE."
+    },
+    {
+        "AlarmaOriginal": "CSCF RDB Module: % Memory Usage > 90%",
+        "TítuloCorto": "Uso elevado de memoria en módulo CSCF",
+        "InterpretaciónDetallada": "\"El módulo RDB del CSCF está utilizando más del 90% de su memoria"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0312",
+        "TítuloCorto": "DPC is restricted\"",
+        "InterpretaciónDetallada": "DPC restringido"
+    },
+    {
+        "AlarmaOriginal": "Module Fault",
+        "TítuloCorto": "Falla en módulo",
+        "InterpretaciónDetallada": "Un módulo funcional del sistema ha fallado. Se requiere revisión técnica para aislar la causa."
+    },
+    {
+        "AlarmaOriginal": "Network.Protocol.UDP.SNMP.SNMPTD:Trap",
+        "TítuloCorto": "Alerta SNMP UDP",
+        "InterpretaciónDetallada": "\"Se recibió una trampa (trap) SNMP por UDP"
+    },
+    {
+        "AlarmaOriginal": "Automatic CRC Error of Data Tables",
+        "TítuloCorto": "Error de CRC en tablas de datos",
+        "InterpretaciónDetallada": "\"Se detectaron errores de verificación de integridad (CRC) en las tablas de datos"
+    },
+    {
+        "AlarmaOriginal": "BFD Session Down",
+        "TítuloCorto": "Caída de sesión BFD",
+        "InterpretaciónDetallada": "\"Repetida: El protocolo BFD ha detectado pérdida de sesión"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0326",
+        "TítuloCorto": "DPC subsystem is prohibited\"",
+        "InterpretaciónDetallada": "Subsistema DPC prohibido"
+    },
+    {
+        "AlarmaOriginal": "System Used Resource Will Overrun License",
+        "TítuloCorto": "Exceso de uso sobre licencia",
+        "InterpretaciónDetallada": "\"El sistema está por superar los límites de licencia contratados"
+    },
+    {
+        "AlarmaOriginal": "Ruta SIP Caída",
+        "TítuloCorto": "Caída de ruta SIP",
+        "InterpretaciónDetallada": "\"Se ha detectado la caída de una ruta SIP"
+    },
+    {
+        "AlarmaOriginal": "Link Down",
+        "TítuloCorto": "Enlace caído",
+        "InterpretaciónDetallada": "Un enlace de red ha dejado de estar operativo. Puede afectar tráfico de voz o datos."
+    },
+    {
+        "AlarmaOriginal": "3G Original Call Connect Rate < 85%",
+        "TítuloCorto": "Bajo porcentaje de conexión en 3G",
+        "InterpretaciónDetallada": "\"La tasa de conexión de llamadas en red 3G es menor al 85%"
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se invremente la Temperatura en sitio San Lorenzo",
+        "TítuloCorto": "Alerta de temperatura en San Lorenzo",
+        "InterpretaciónDetallada": "Se debe notificar al soporte físico si la temperatura sube en ese sitio."
+    },
+    {
+        "AlarmaOriginal": "Threshold-Controlled Conditions Met (Minor)",
+        "TítuloCorto": "Condición menor superada",
+        "InterpretaciónDetallada": "\"Se ha superado un umbral predefinido. Por ahora es menor"
+    },
+    {
+        "AlarmaOriginal": "Interface Down",
+        "TítuloCorto": "Interfaz caída",
+        "InterpretaciónDetallada": "\"Una interfaz de red dejó de estar disponible"
+    },
+    {
+        "AlarmaOriginal": "Configuration Changed",
+        "TítuloCorto": "Cambio de configuración",
+        "InterpretaciónDetallada": "Se detectó un cambio en la configuración de un equipo o sistema. Puede ser programado o inesperado."
+    },
+    {
+        "AlarmaOriginal": "Sin tráfico SMS-MT de Claro",
+        "TítuloCorto": "Sin SMS-MT de Claro",
+        "InterpretaciónDetallada": "No se está recibiendo tráfico de SMS móviles terminados desde Claro. Puede ser una falla o desvío."
+    },
+    {
+        "AlarmaOriginal": "Diameter SCTP Path Fault",
+        "TítuloCorto": "Falla SCTP en Diameter",
+        "InterpretaciónDetallada": "El canal SCTP usado para señalización Diameter está fallando."
+    },
+    {
+        "AlarmaOriginal": "Tráfico recibido por los DRA a los SAE-HSS alert",
+        "TítuloCorto": "Tráfico SAE-HSS entrante a DRA",
+        "InterpretaciónDetallada": "Se recibe tráfico desde SAE-HSS hacia los DRA. Requiere validación del volumen o comportamiento."
+    },
+    {
+        "AlarmaOriginal": "Tráfico enviado a los DRA de los SAE-HSS alert",
+        "TítuloCorto": "Tráfico SAE-HSS saliente a DRA",
+        "InterpretaciónDetallada": "Se detecta tráfico desde los DRA hacia SAE-HSS. Validar si está dentro del patrón esperado."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0373",
+        "TítuloCorto": "Major Application Failure(s)\"",
+        "InterpretaciónDetallada": "Falla grave de aplicación"
+    },
+    {
+        "AlarmaOriginal": "Success Rate of SGs Update Location < 95%",
+        "TítuloCorto": "Baja tasa de actualización SGs",
+        "InterpretaciónDetallada": "La tasa de éxito al actualizar ubicación vía SGs está por debajo del 95%."
+    },
+    {
+        "AlarmaOriginal": "Database.Oracle.DynamicCheckpoint:User Defined",
+        "TítuloCorto": "Evento en checkpoint Oracle",
+        "InterpretaciónDetallada": "Se detectó una condición en la base Oracle definida por el usuario en los checkpoints dinámicos."
+    },
+    {
+        "AlarmaOriginal": "Tráfico recibido por los DRA de los IMS-HSS alert",
+        "TítuloCorto": "Tráfico IMS-HSS entrante a DRA",
+        "InterpretaciónDetallada": "Tráfico que proviene del IMS-HSS hacia los DRA. Puede indicar sobrecarga o mal direccionamiento."
+    },
+    {
+        "AlarmaOriginal": "Tráfico enviado por los DRA a los IMS-HSS",
+        "TítuloCorto": "Tráfico DRA hacia IMS-HSS",
+        "InterpretaciónDetallada": "Tráfico saliente desde DRA hacia IMS-HSS. Verificar si se corresponde con demanda esperada."
+    },
+    {
+        "AlarmaOriginal": "Detected Base Plane Goes Subhealthy",
+        "TítuloCorto": "Base plane degradado",
+        "InterpretaciónDetallada": "Parte de la infraestructura base del sistema muestra estado degradado. No es una falla completa aún."
+    },
+    {
+        "AlarmaOriginal": "M3UA link fault",
+        "TítuloCorto": "Falla en enlace M3UA",
+        "InterpretaciónDetallada": "El enlace de señalización M3UA presenta errores o se ha caído."
+    },
+    {
+        "AlarmaOriginal": "MME Exito de attach 4G combined",
+        "TítuloCorto": "Tasa de éxito attach 4G",
+        "InterpretaciónDetallada": "Métrica que indica la tasa combinada de éxito al conectar en red 4G (attach)."
+    },
+    {
+        "AlarmaOriginal": "Alerta Linkset por disminución/incremento mayor al 80% respecto al histórico",
+        "TítuloCorto": "Variación excesiva en Linkset",
+        "InterpretaciónDetallada": "Se detectó una variación mayor al 80% respecto al histórico en un conjunto de enlaces."
+    },
+    {
+        "AlarmaOriginal": "Sin tráfico SMS-MT de Movistar",
+        "TítuloCorto": "Sin SMS-MT de Movistar",
+        "InterpretaciónDetallada": "No hay tráfico de SMS móviles terminados provenientes de Movistar."
+    },
+    {
+        "AlarmaOriginal": "SCTP path failure",
+        "TítuloCorto": "Falla en camino SCTP",
+        "InterpretaciónDetallada": "Falla en el canal SCTP utilizado para comunicación entre nodos."
+    },
+    {
+        "AlarmaOriginal": "Tráfico enviado en los DEA a CONFONE alert",
+        "TítuloCorto": "Tráfico DEA hacia CONFONE",
+        "InterpretaciónDetallada": "Se ha detectado tráfico desde los DEA hacia el carrier CONFONE. Revisar si es normal."
+    },
+    {
+        "AlarmaOriginal": "Trafico recibido en los DEA de CONFONE alert",
+        "TítuloCorto": "Tráfico de CONFONE hacia DEA",
+        "InterpretaciónDetallada": "CONFONE está enviando tráfico hacia los DEA. Evaluar si es excesivo o fuera de horario."
+    },
+    {
+        "AlarmaOriginal": "IP Unreachable Alarm",
+        "TítuloCorto": "IP inalcanzable",
+        "InterpretaciónDetallada": "\"Una dirección IP crítica no responde"
+    },
+    {
+        "AlarmaOriginal": "hwIfMonitorCrcErrorRising",
+        "TítuloCorto": "Aumento de errores CRC",
+        "InterpretaciónDetallada": "Se detecta un incremento de errores de integridad (CRC) en una interfaz física."
+    },
+    {
+        "AlarmaOriginal": "UGW Delta throughput x UGW",
+        "TítuloCorto": "Diferencia de throughput en UGW",
+        "InterpretaciónDetallada": "Variación entre flujos de tráfico de entrada y salida en un gateway de red (UGW)."
+    },
+    {
+        "AlarmaOriginal": "Se detecta una caída del éxito de respuesta por debajo del umbral para el trafico fijo",
+        "TítuloCorto": "Baja respuesta en tráfico fijo",
+        "InterpretaciónDetallada": "La respuesta de las rutas de tráfico fijo está por debajo del umbral esperado."
+    },
+    {
+        "AlarmaOriginal": "Service overload",
+        "TítuloCorto": "Sobrecarga de servicio",
+        "InterpretaciónDetallada": "El sistema o nodo está recibiendo más tráfico del que puede manejar."
+    },
+    {
+        "AlarmaOriginal": "Configuration Inconsistency in TAIs on the MME and eNodeB",
+        "TítuloCorto": "Inconsistencia de TAI",
+        "InterpretaciónDetallada": "Se detecta una inconsistencia en los identificadores de área de rastreo (TAI) entre el MME y el eNodeB."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0241",
+        "TítuloCorto": "REPT-LKF: rcvd remote out of service\"",
+        "InterpretaciónDetallada": "Nodo remoto fuera de servicio"
+    },
+    {
+        "AlarmaOriginal": "AGCF User Register Failure",
+        "TítuloCorto": "Falla de registro en AGCF",
+        "InterpretaciónDetallada": "Fallo al registrar un usuario en el controlador de acceso de red fija."
+    },
+    {
+        "AlarmaOriginal": "H.248 SCTP link failure",
+        "TítuloCorto": "Falla SCTP en H.248",
+        "InterpretaciónDetallada": "El canal SCTP que transporta protocolo H.248 ha fallado. Impacta señalización de voz."
+    },
+    {
+        "AlarmaOriginal": "BGP Status Changed",
+        "TítuloCorto": "Cambio en estado BGP",
+        "InterpretaciónDetallada": "\"El protocolo de enrutamiento BGP ha cambiado de estado"
+    },
+    {
+        "AlarmaOriginal": "Link Bear Quality",
+        "TítuloCorto": "Calidad de enlace de portadora",
+        "InterpretaciónDetallada": "Se evalúa la calidad del canal de transporte usado por portadoras."
+    },
+    {
+        "AlarmaOriginal": "I layer CPU Usage Exceeds the Threshold",
+        "TítuloCorto": "CPU capa I sobre umbral",
+        "InterpretaciónDetallada": "La capa I de la arquitectura está usando CPU por encima del umbral definido."
+    },
+    {
+        "AlarmaOriginal": "IP NS-VC Link Fault",
+        "TítuloCorto": "Falla de enlace NS-VC",
+        "InterpretaciónDetallada": "Falla en un canal virtual de señalización IP (NS-VC). Puede impactar la transmisión."
+    },
+    {
+        "AlarmaOriginal": "Process Fault",
+        "TítuloCorto": "Falla de proceso",
+        "InterpretaciónDetallada": "Un proceso interno de un equipo ha fallado. Puede reiniciarse o escalarse."
+    },
+    {
+        "AlarmaOriginal": "LSW port link down",
+        "TítuloCorto": "Puerto LSW caído",
+        "InterpretaciónDetallada": "Un puerto de switch (LSW) ha perdido conectividad."
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se incremente la Temperatura en Sitio Belgrano 2 Piso",
+        "TítuloCorto": "Alerta de temperatura en Belgrano",
+        "InterpretaciónDetallada": "Notificar a PCS si sube la temperatura en el segundo piso del sitio Belgrano."
+    },
+    {
+        "AlarmaOriginal": "P2P QoS Abnormity",
+        "TítuloCorto": "Anormalidad QoS P2P",
+        "InterpretaciónDetallada": "Calidad de servicio entre pares está fuera de los valores normales."
+    },
+    {
+        "AlarmaOriginal": "MGW Registration Flow Control",
+        "TítuloCorto": "Control de flujo en registro MGW",
+        "InterpretaciónDetallada": "\"Se activa control de flujo en registros del Media Gateway"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0220",
+        "TítuloCorto": "REPT-LKF: MTP link restart delayed\"",
+        "InterpretaciónDetallada": "Reinicio de enlace MTP demorado"
+    },
+    {
+        "AlarmaOriginal": "Bytes of error packets exceeded the threshold",
+        "TítuloCorto": "Paquetes erróneos sobre umbral",
+        "InterpretaciónDetallada": "Se superó el límite permitido de paquetes con errores."
+    },
+    {
+        "AlarmaOriginal": "No response from the RADIUS authentication server",
+        "TítuloCorto": "Sin respuesta del servidor RADIUS",
+        "InterpretaciónDetallada": "El servidor que valida usuarios no responde. Puede bloquear nuevos accesos."
+    },
+    {
+        "AlarmaOriginal": "Tráfico recibido por los DRA de los ATS alert",
+        "TítuloCorto": "Tráfico ATS entrante a DRA",
+        "InterpretaciónDetallada": "Recepción de tráfico desde los ATS a los DRA. Monitorear si es normal."
+    },
+    {
+        "AlarmaOriginal": "Tráfico enviado por los DRA a los ATS alert",
+        "TítuloCorto": "Tráfico DRA hacia ATS",
+        "InterpretaciónDetallada": "Envío de tráfico desde DRA hacia ATS. Evaluar si sigue el patrón habitual."
+    },
+    {
+        "AlarmaOriginal": "Realm not reachable",
+        "TítuloCorto": "Dominio no alcanzable",
+        "InterpretaciónDetallada": "El “realm” (dominio lógico de red) no es accesible desde el nodo origen."
+    },
+    {
+        "AlarmaOriginal": "H.248 signaling link fault",
+        "TítuloCorto": "Falla en enlace de señalización H.248",
+        "InterpretaciónDetallada": "El enlace encargado de la señalización H.248 presenta fallas."
+    },
+    {
+        "AlarmaOriginal": "Alerta Linkset con diferencia mayor al 65% entre TX y RX",
+        "TítuloCorto": "Desbalance TX/RX > 65%",
+        "InterpretaciónDetallada": "Se detecta un desbalance significativo entre lo enviado y recibido en un linkset."
+    },
+    {
+        "AlarmaOriginal": "Paging Success Rate por debajo del umbral de 80%",
+        "TítuloCorto": "Éxito de paging bajo",
+        "InterpretaciónDetallada": "La tasa de éxito para localizar equipos en red móvil es menor al 80%."
+    },
+    {
+        "AlarmaOriginal": "Data path disconnected",
+        "TítuloCorto": "Camino de datos desconectado",
+        "InterpretaciónDetallada": "Un canal de transmisión de datos se encuentra interrumpido."
+    },
+    {
+        "AlarmaOriginal": "Sin tráfico SMS-MO hacia Claro",
+        "TítuloCorto": "Sin SMS-MO hacia Claro",
+        "InterpretaciónDetallada": "No se están generando SMS móviles originados hacia la red Claro."
+    },
+    {
+        "AlarmaOriginal": "All operations abort",
+        "TítuloCorto": "Operaciones abortadas",
+        "InterpretaciónDetallada": "El sistema abortó todas sus operaciones. Puede ser fallo crítico."
+    },
+    {
+        "AlarmaOriginal": "Se reinició servicio en DNSDIST. Dar aviso por mail a AE-PBA.",
+        "TítuloCorto": "Reinicio de DNSDIST",
+        "InterpretaciónDetallada": "Se reinició el servicio DNSDIST. Avisar al equipo de Buenos Aires."
+    },
+    {
+        "AlarmaOriginal": "Mensajes enviados Interfaz Gy entre DRAs y UGW/CGW alert",
+        "TítuloCorto": "Alerta interfaz Gy entre DRAs y UGW",
+        "InterpretaciónDetallada": "Se detecta actividad o problemas en el canal Gy entre componentes centrales."
+    },
+    {
+        "AlarmaOriginal": "Alerta Linkset con diferencia mayor al 25% entre TX y RX",
+        "TítuloCorto": "Desbalance TX/RX > 25%",
+        "InterpretaciónDetallada": "Diferencia moderada en tráfico transmitido y recibido en un conjunto de enlaces."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0261",
+        "TítuloCorto": "MPS unavailable\"",
+        "InterpretaciónDetallada": "MPS no disponible"
+    },
+    {
+        "AlarmaOriginal": "Failure to Detect SCF Heartbeats",
+        "TítuloCorto": "No se detectan latidos SCF",
+        "InterpretaciónDetallada": "No se reciben señales de vida del componente SCF. Puede estar caído o fuera de servicio."
+    },
+    {
+        "AlarmaOriginal": "RU Fault Alarm",
+        "TítuloCorto": "Falla en Unidad de Radio",
+        "InterpretaciónDetallada": "\"Indica una falla en la Unidad de Radio"
+    },
+    {
+        "AlarmaOriginal": "M3UA route is unavailable",
+        "TítuloCorto": "Ruta M3UA no disponible",
+        "InterpretaciónDetallada": "\"El enlace de señalización M3UA (SCTP sobre IP) no está disponible"
+    },
+    {
+        "AlarmaOriginal": "OS User Password Expires",
+        "TítuloCorto": "Expiración de Contraseña de Usuario OS",
+        "InterpretaciónDetallada": "La contraseña de un usuario del sistema operativo está por expirar o ya expiró."
+    },
+    {
+        "AlarmaOriginal": "SCCP SSN Paused",
+        "TítuloCorto": "Subsistema SCCP Pausado",
+        "InterpretaciónDetallada": "\"El subsistema de señalización SCCP (por ejemplo"
+    },
+    {
+        "AlarmaOriginal": "The local fault alarm has occurred",
+        "TítuloCorto": "Alarma de Falla Local",
+        "InterpretaciónDetallada": "Se ha detectado una falla en el equipo local."
+    },
+    {
+        "AlarmaOriginal": "Nominatividad - Incremento de errores Noket por encima del umbral",
+        "TítuloCorto": "Errores Noket en Nominatividad",
+        "InterpretaciónDetallada": "\"Se han registrado errores tipo \"\"Noket\"\" (posible error de socket) por encima del umbral aceptable en el sitio Nominatividad.\""
+    },
+    {
+        "AlarmaOriginal": "M3UA Destination IP Address Inaccessible",
+        "TítuloCorto": "IP de Destino M3UA Inaccesible",
+        "InterpretaciónDetallada": "La dirección IP de destino en una conexión M3UA no es alcanzable. Puede deberse a fallas de red o de configuración."
+    },
+    {
+        "AlarmaOriginal": "Tráfico recibido por los DRA de OCS alert",
+        "TítuloCorto": "Alerta de Tráfico Entrante en DRA desde OCS",
+        "InterpretaciónDetallada": "Se ha detectado una condición anómala en el tráfico recibido por el DRA desde el OCS."
+    },
+    {
+        "AlarmaOriginal": "Replacing Huawei Default Certificates",
+        "TítuloCorto": "Reemplazo de Certificados Huawei",
+        "InterpretaciónDetallada": "Se están reemplazando certificados digitales predeterminados en un equipo Huawei por seguridad."
+    },
+    {
+        "AlarmaOriginal": "Failed to Schedule Pod",
+        "TítuloCorto": "Error al Programar Contenedor (Pod)",
+        "InterpretaciónDetallada": "\"Un contenedor no pudo ser programado en un clúster (por ejemplo"
+    },
+    {
+        "AlarmaOriginal": "Board Port Detection Abnormal",
+        "TítuloCorto": "Detección Anormal en Puerto de Placa",
+        "InterpretaciónDetallada": "El puerto de una tarjeta de red presenta un comportamiento fuera de lo normal."
+    },
+    {
+        "AlarmaOriginal": "Detected RU Base Plane Goes Subhealthy",
+        "TítuloCorto": "Plano Base de RU Degradado",
+        "InterpretaciónDetallada": "\"El plano base de la Unidad de Radio está en estado degradado"
+    },
+    {
+        "AlarmaOriginal": "M3UA destination entity is inaccessible",
+        "TítuloCorto": "Entidad de Destino M3UA Inaccesible",
+        "InterpretaciónDetallada": "\"No se puede alcanzar la entidad final (por ejemplo"
+    },
+    {
+        "AlarmaOriginal": "Link Between BCF and DNS Disconnected",
+        "TítuloCorto": "Enlace BCF-DNS Desconectado",
+        "InterpretaciónDetallada": "Se perdió la conectividad entre el BCF (Base Control Function) y el DNS."
+    },
+    {
+        "AlarmaOriginal": "Tráfico enviado por los DRA a OCS alert",
+        "TítuloCorto": "Alerta de Tráfico Saliente de DRA a OCS",
+        "InterpretaciónDetallada": "Se ha detectado una condición inusual en el tráfico que el DRA envía al OCS."
+    },
+    {
+        "AlarmaOriginal": "No Alarms received from MC_BWTECH-NETCHART_SNMP for the last 1200 seconds",
+        "TítuloCorto": "Sin Alarmas Recibidas por SNMP",
+        "InterpretaciónDetallada": "\"No se han recibido alarmas por SNMP desde el sistema de monitoreo en los últimos 1200 segundos"
+    },
+    {
+        "AlarmaOriginal": "Failed to Restart Containerized Application",
+        "TítuloCorto": "Falla al Reiniciar Aplicación en Contenedor",
+        "InterpretaciónDetallada": "La aplicación en contenedor no logró reiniciarse correctamente."
+    },
+    {
+        "AlarmaOriginal": "The OMU Failed to Communicate with the NTP Server",
+        "TítuloCorto": "OMU sin Comunicación con Servidor NTP",
+        "InterpretaciónDetallada": "La Unidad de Gestión (OMU) no puede sincronizar su hora con el servidor NTP."
+    },
+    {
+        "AlarmaOriginal": "Verificar Interconexion con Movistar",
+        "TítuloCorto": "Verificar Enlace con Movistar",
+        "InterpretaciónDetallada": "Se requiere revisar la interconexión entre redes para asegurar conectividad con Movistar."
+    },
+    {
+        "AlarmaOriginal": "Revisar éxito de activación.",
+        "TítuloCorto": "Verificar Activación",
+        "InterpretaciónDetallada": "Se solicita comprobar que el proceso de activación de un servicio o elemento fue exitoso."
+    },
+    {
+        "AlarmaOriginal": "C/D interface location update flux over load",
+        "TítuloCorto": "Sobrecarga en actualización de ubicación",
+        "InterpretaciónDetallada": "\"La interfaz C/D presenta un exceso de actualizaciones de ubicación"
+    },
+    {
+        "AlarmaOriginal": "Diameter Link Pre-Flow Control",
+        "TítuloCorto": "Control de Flujo Preliminar en Enlace Diameter",
+        "InterpretaciónDetallada": "\"Se está aplicando control de flujo anticipado en un enlace Diameter"
+    },
+    {
+        "AlarmaOriginal": "Pod Is Abnormal",
+        "TítuloCorto": "Contenedor Anómalo",
+        "InterpretaciónDetallada": "Un contenedor o microservicio presenta un estado anómalo."
+    },
+    {
+        "AlarmaOriginal": "DRA not reachable",
+        "TítuloCorto": "DRA Inaccesible",
+        "InterpretaciónDetallada": "El DRA (Diameter Routing Agent) no responde o no está disponible."
+    },
+    {
+        "AlarmaOriginal": "Alarm of failed LAG negotiation",
+        "TítuloCorto": "Falla en Negociación de LAG",
+        "InterpretaciónDetallada": "La negociación de un grupo de enlaces agregados (LAG) ha fallado."
+    },
+    {
+        "AlarmaOriginal": "Board fault",
+        "TítuloCorto": "Falla en Tarjeta",
+        "InterpretaciónDetallada": "Una tarjeta de hardware presenta un fallo funcional."
+    },
+    {
+        "AlarmaOriginal": "IPv6 Interface State Change",
+        "TítuloCorto": "Cambio de Estado en Interfaz IPv6",
+        "InterpretaciónDetallada": "\"La interfaz IPv6 ha cambiado de estado (por ejemplo"
+    },
+    {
+        "AlarmaOriginal": "\"Consultar con guardia pasiva de PCS_Voz_Adentro",
+        "TítuloCorto": "afectacion Voz Fija Internacional (Sharepoint de Guardias PCS).\"",
+        "InterpretaciónDetallada": "Afectación Voz Fija Internacional"
+    },
+    {
+        "AlarmaOriginal": "System.CPU:load average 15 min",
+        "TítuloCorto": "Carga Promedio de CPU en 15 min",
+        "InterpretaciónDetallada": "Monitoreo del promedio de carga del CPU en los últimos 15 minutos."
+    },
+    {
+        "AlarmaOriginal": "System.Disk:Disk Free pct",
+        "TítuloCorto": "Porcentaje de Espacio Libre en Disco",
+        "InterpretaciónDetallada": "\"Alerta sobre el espacio libre restante en disco"
+    },
+    {
+        "AlarmaOriginal": "M3UA Signaling Link Failed",
+        "TítuloCorto": "Falla en Enlace de Señalización M3UA",
+        "InterpretaciónDetallada": "\"El enlace de señalización M3UA ha fallado"
+    },
+    {
+        "AlarmaOriginal": "\"Alerta de Temperatura en Añasco",
+        "TítuloCorto": "dar aviso a PCS\"",
+        "InterpretaciónDetallada": "Alerta de Temperatura en Sitio Añasco"
+    },
+    {
+        "AlarmaOriginal": "SCCP Subsystem Prohibited",
+        "TítuloCorto": "Subsistema SCCP Prohibido",
+        "InterpretaciónDetallada": "\"Un subsistema SCCP está en estado prohibido"
+    },
+    {
+        "AlarmaOriginal": "Se ha detectado al menos una interfaz física en el Core 4G User Plane BHB1LSUP contra el Backbone IP. Revisar interfaces físicas y convergencia del servicio. Se envía vía correo al NOC y al FMC (dominio 2000 Mobile-Core)",
+        "TítuloCorto": "Falla en Interfaz Física en Core 4G",
+        "InterpretaciónDetallada": "Se detectó al menos una interfaz defectuosa en el plano de usuario del Core 4G; puede afectar servicios de datos."
+    },
+    {
+        "AlarmaOriginal": "Signaling packet length exceeds limitation",
+        "TítuloCorto": "Paquete de Señalización Excede Longitud",
+        "InterpretaciónDetallada": "\"Un paquete de señalización sobrepasa el tamaño permitido"
+    },
+    {
+        "AlarmaOriginal": "Sin trafico SMS-MO hacia Movistar",
+        "TítuloCorto": "Sin Tráfico SMS Saliente a Movistar",
+        "InterpretaciónDetallada": "\"No se están enviando mensajes SMS-MO hacia la red de Movistar"
+    },
+    {
+        "AlarmaOriginal": "NE Is Disconnected",
+        "TítuloCorto": "Elemento de Red Desconectado",
+        "InterpretaciónDetallada": "Un nodo o elemento de red está desconectado del sistema de gestión."
+    },
+    {
+        "AlarmaOriginal": "Scaling threshold is reached",
+        "TítuloCorto": "Umbral de Escalado Alcanzado",
+        "InterpretaciónDetallada": "\"Se ha alcanzado el umbral para escalar recursos"
+    },
+    {
+        "AlarmaOriginal": "Eth-Trunk Member Down",
+        "TítuloCorto": "Miembro de Eth-Trunk Caído",
+        "InterpretaciónDetallada": "Uno de los enlaces en un grupo Eth-Trunk está inactivo."
+    },
+    {
+        "AlarmaOriginal": "Trunk Group Fault",
+        "TítuloCorto": "Falla en Grupo de Troncales",
+        "InterpretaciónDetallada": "Se ha detectado una falla en un grupo de enlaces troncales."
+    },
+    {
+        "AlarmaOriginal": "Desvío de Usuarios en UPCF. Dar aviso a PCS-CA.",
+        "TítuloCorto": "Desvío de Usuarios en UPCF",
+        "InterpretaciónDetallada": "\"Se ha activado un desvío de tráfico o usuarios en el componente UPCF"
+    },
+    {
+        "AlarmaOriginal": "SR del canal de Nominatividad por debajo del umbral promedio",
+        "TítuloCorto": "Bajo SR en Canal Nominatividad",
+        "InterpretaciónDetallada": "El Success Rate del canal en el sitio Nominatividad está por debajo del umbral esperado."
+    },
+    {
+        "AlarmaOriginal": "The GSN Does not Respond to the vCG",
+        "TítuloCorto": "GSN No Responde al vCG",
+        "InterpretaciónDetallada": "\"El nodo GSN no está respondiendo al Gateway Virtualizado (vCG)"
+    },
+    {
+        "AlarmaOriginal": "All LAG Bandwidth Loss",
+        "TítuloCorto": "Pérdida Total de Ancho de Banda en LAG",
+        "InterpretaciónDetallada": "Todos los enlaces del LAG han perdido conectividad o están caídos."
+    },
+    {
+        "AlarmaOriginal": "SCCP DSP Inaccessible",
+        "TítuloCorto": "DSP SCCP Inaccesible",
+        "InterpretaciónDetallada": "El punto de señalización SCCP (DSP) no es alcanzable."
+    },
+    {
+        "AlarmaOriginal": "Inter-MME Access Flow Control",
+        "TítuloCorto": "Control de Flujo entre MMEs",
+        "InterpretaciónDetallada": "\"Se está aplicando control de flujo entre MMEs"
+    },
+    {
+        "AlarmaOriginal": "The board voltage is not within the fatal threshold range",
+        "TítuloCorto": "Voltaje de Placa Fuera de Rango Crítico",
+        "InterpretaciónDetallada": "El voltaje medido en una tarjeta está fuera del umbral crítico de seguridad."
+    },
+    {
+        "AlarmaOriginal": "IP interface failure",
+        "TítuloCorto": "Falla de Interfaz IP",
+        "InterpretaciónDetallada": "Una interfaz IP ha fallado o está inactiva."
+    },
+    {
+        "AlarmaOriginal": "Node Fault",
+        "TítuloCorto": "Falla de Nodo",
+        "InterpretaciónDetallada": "Se ha producido una falla general en un nodo de red."
+    },
+    {
+        "AlarmaOriginal": "SCCP SSN paused",
+        "TítuloCorto": "Subsistema SCCP Pausado",
+        "InterpretaciónDetallada": "\"Ya traducida anteriormente: el subsistema SCCP está en pausa"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0218",
+        "TítuloCorto": "REPT-LKF: COO - rcvd changeover order\"",
+        "InterpretaciónDetallada": "Orden de Cambio de Enlace Recibida"
+    },
+    {
+        "AlarmaOriginal": "Board clock abnormality",
+        "TítuloCorto": "Reloj de Tarjeta Anormal",
+        "InterpretaciónDetallada": "Se detectó un comportamiento anómalo en el reloj interno de una tarjeta."
+    },
+    {
+        "AlarmaOriginal": "NTP Server Abnormal",
+        "TítuloCorto": "Servidor NTP Anómalo",
+        "InterpretaciónDetallada": "El servidor NTP presenta fallos o está fuera de servicio."
+    },
+    {
+        "AlarmaOriginal": "Trace forbidding in heavy load",
+        "TítuloCorto": "Rastreo Inhabilitado por Carga Alta",
+        "InterpretaciónDetallada": "El sistema ha deshabilitado funciones de rastreo por alta carga de procesamiento."
+    },
+    {
+        "AlarmaOriginal": "Faulty Host",
+        "TítuloCorto": "Host Defectuoso",
+        "InterpretaciónDetallada": "El host presenta una falla que puede afectar la ejecución de servicios."
+    },
+    {
+        "AlarmaOriginal": "Server Is Offline",
+        "TítuloCorto": "Servidor Fuera de Línea",
+        "InterpretaciónDetallada": "Un servidor no está accesible o se ha desconectado."
+    },
+    {
+        "AlarmaOriginal": "NTP Synchronization Failure",
+        "TítuloCorto": "Falla de Sincronización NTP",
+        "InterpretaciónDetallada": "Fallo en la sincronización horaria mediante el protocolo NTP."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0539",
+        "TítuloCorto": "Ethernet Interface Down\"",
+        "InterpretaciónDetallada": "Interfaz Ethernet Caída"
+    },
+    {
+        "AlarmaOriginal": "CORE 2G PS Paging Success Rate x USN",
+        "TítuloCorto": "Tasa de Éxito de Paging PS 2G Baja",
+        "InterpretaciónDetallada": "Se está monitoreando una baja tasa de éxito de paging PS en el Core 2G a través del nodo USN."
+    },
+    {
+        "AlarmaOriginal": "CSCF VM BSU Modules: % CPU Load Maximum > 50%",
+        "TítuloCorto": "CPU Alta en Módulos BSU CSCF",
+        "InterpretaciónDetallada": "\"Los módulos BSU de la VM CSCF superan el 50% de uso de CPU"
+    },
+    {
+        "AlarmaOriginal": "Tensión en fuente < 45v",
+        "TítuloCorto": "Baja Tensión en Fuente",
+        "InterpretaciónDetallada": "\"La fuente de poder tiene una tensión inferior a 45V"
+    },
+    {
+        "AlarmaOriginal": "Alerta por disminución/incremento de tráfico en la interconexión de GRX con Movistar en Clínicas. Consultar el siguiente Dashboard para obtener mayor detalle: http://10.172.4.22:3000/d/B4Mg1YzSz/roaming-internacional-servicio-grx?orgId=2. Se envía la",
+        "TítuloCorto": "Variación de Tráfico GRX con Movistar",
+        "InterpretaciónDetallada": "Se detectó una fluctuación inusual en el tráfico GRX hacia Movistar en el sitio Clínicas. Requiere análisis mediante dashboard."
+    },
+    {
+        "AlarmaOriginal": "Mlag port down",
+        "TítuloCorto": "Puerto MLAG Caído",
+        "InterpretaciónDetallada": "Un puerto que participa en MLAG (Multi-Chassis Link Aggregation) se encuentra caído."
+    },
+    {
+        "AlarmaOriginal": "DLB SCTP Path Failure",
+        "TítuloCorto": "Falla en Ruta SCTP DLB",
+        "InterpretaciónDetallada": "Se ha detectado una falla en una ruta SCTP utilizada por DLB (Dynamic Load Balancing)."
+    },
+    {
+        "AlarmaOriginal": "NTP connection failed",
+        "TítuloCorto": "Falla de Conexión NTP",
+        "InterpretaciónDetallada": "El sistema no puede conectarse al servidor NTP para sincronización horaria."
+    },
+    {
+        "AlarmaOriginal": "Succes Rate of Location Update < 60 %",
+        "TítuloCorto": "Éxito en Actualización de Ubicación < 60%",
+        "InterpretaciónDetallada": "El porcentaje de éxito en las actualizaciones de ubicación está por debajo del umbral del 60%."
+    },
+    {
+        "AlarmaOriginal": "APN IMS IP pool alert",
+        "TítuloCorto": "Alerta de Pool IP en APN IMS",
+        "InterpretaciónDetallada": "Se ha detectado una condición crítica en el pool de direcciones IP del APN IMS."
+    },
+    {
+        "AlarmaOriginal": "H.248 SCTP Path Alarm",
+        "TítuloCorto": "Alarma en Ruta SCTP H.248",
+        "InterpretaciónDetallada": "\"Se presenta una falla en la ruta SCTP que utiliza el protocolo H.248"
+    },
+    {
+        "AlarmaOriginal": "Diameter message route fail",
+        "TítuloCorto": "Falla en Ruta de Mensaje Diameter",
+        "InterpretaciónDetallada": "\"Una ruta para mensajes Diameter ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Succes Rate of Location Update < 45 %",
+        "TítuloCorto": "Éxito en Actualización de Ubicación < 45%",
+        "InterpretaciónDetallada": "\"Similar a la anterior"
+    },
+    {
+        "AlarmaOriginal": "Optical Module Fault",
+        "TítuloCorto": "Falla en Módulo Óptico",
+        "InterpretaciónDetallada": "\"Se detectó un problema en un módulo óptico"
+    },
+    {
+        "AlarmaOriginal": "Volte SRVCC errors",
+        "TítuloCorto": "Errores SRVCC en VoLTE",
+        "InterpretaciónDetallada": "Se presentan errores en la transferencia de VoLTE a CS (SRVCC)."
+    },
+    {
+        "AlarmaOriginal": "Caída de QPS de trafico Anycast. Dar aviso a PCS_DNS y PCS_CA.",
+        "TítuloCorto": "Caída de QPS en Tráfico Anycast",
+        "InterpretaciónDetallada": "\"Se detecta disminución en el tráfico Anycast"
+    },
+    {
+        "AlarmaOriginal": "Media Plane Packet Error and Loss",
+        "TítuloCorto": "Pérdida/Error en Plano de Medios",
+        "InterpretaciónDetallada": "Se presentan errores o pérdidas en los paquetes del plano de medios."
+    },
+    {
+        "AlarmaOriginal": "Master Remote Authentication Server Connection Failed",
+        "TítuloCorto": "Falla de Conexión con Servidor de Autenticación",
+        "InterpretaciónDetallada": "No se puede establecer conexión con el servidor principal de autenticación remota."
+    },
+    {
+        "AlarmaOriginal": "CPU port link down on the MESH card",
+        "TítuloCorto": "Puerto CPU Caído en Tarjeta MESH",
+        "InterpretaciónDetallada": "El puerto CPU de una tarjeta MESH se encuentra inactivo."
+    },
+    {
+        "AlarmaOriginal": "hwOpticalRemove",
+        "TítuloCorto": "Retiro de Módulo Óptico",
+        "InterpretaciónDetallada": "Se ha retirado un módulo óptico del equipo."
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se incremente la Temperatura en sitio Clínicas",
+        "TítuloCorto": "Alerta de Temperatura en Clínicas",
+        "InterpretaciónDetallada": "Se requiere notificar al equipo PCS por incremento de temperatura en el sitio Clínicas."
+    },
+    {
+        "AlarmaOriginal": "No Available NS-VC in NSE",
+        "TítuloCorto": "No hay NS-VC Disponible en NSE",
+        "InterpretaciónDetallada": "\"No hay canales virtuales disponibles en el NSE"
+    },
+    {
+        "AlarmaOriginal": "Disminución de tráfico de qps de instancia TP. Avisar a PCS_Conectividad_Afuera.",
+        "TítuloCorto": "Caída de QPS en TP",
+        "InterpretaciónDetallada": "Se detecta una baja en el tráfico de consultas por segundo (QPS) en una instancia TP."
+    },
+    {
+        "AlarmaOriginal": "Abnormal Replication",
+        "TítuloCorto": "Replicación Anormal",
+        "InterpretaciónDetallada": "Se ha detectado un comportamiento inesperado en la replicación de datos o servicios."
+    },
+    {
+        "AlarmaOriginal": "TDM high-speed link abnormal",
+        "TítuloCorto": "Anomalía en Enlace TDM de Alta Velocidad",
+        "InterpretaciónDetallada": "Se detectó un comportamiento anormal en un enlace TDM de alta velocidad."
+    },
+    {
+        "AlarmaOriginal": "Board Port Fault",
+        "TítuloCorto": "Falla en Puerto de Tarjeta",
+        "InterpretaciónDetallada": "Un puerto físico en una tarjeta está fallando."
+    },
+    {
+        "AlarmaOriginal": "CSCF VM IRU Modules: % CPU Load Maximum > 50%",
+        "TítuloCorto": "Alta Carga CPU en Módulos IRU CSCF",
+        "InterpretaciónDetallada": "Los módulos IRU de la VM del CSCF están sobrecargados de CPU."
+    },
+    {
+        "AlarmaOriginal": "Redundancy Group fault",
+        "TítuloCorto": "Falla en Grupo de Redundancia",
+        "InterpretaciónDetallada": "\"Un grupo configurado para redundancia presenta fallas"
+    },
+    {
+        "AlarmaOriginal": "Tráfico enviado por los DRA a los EIR alert",
+        "TítuloCorto": "Alerta de Tráfico de DRA a EIR",
+        "InterpretaciónDetallada": "Se detecta una condición anormal en el tráfico que el DRA envía hacia el EIR."
+    },
+    {
+        "AlarmaOriginal": "GGSN_Ericsson Exito PDP",
+        "TítuloCorto": "Éxito PDP en GGSN Ericsson",
+        "InterpretaciónDetallada": "Confirmación de éxito en la activación de sesiones PDP en un GGSN Ericsson."
+    },
+    {
+        "AlarmaOriginal": "Tráfico recibido en los DRA de los EIR alert",
+        "TítuloCorto": "Alerta de Tráfico desde EIR a DRA",
+        "InterpretaciónDetallada": "Condición anómala en el tráfico que llega al DRA desde el EIR."
+    },
+    {
+        "AlarmaOriginal": "Virtual Machine Fault",
+        "TítuloCorto": "Falla en Máquina Virtual",
+        "InterpretaciónDetallada": "Una VM presenta una falla que puede afectar sus servicios."
+    },
+    {
+        "AlarmaOriginal": "Abnormal OMU Resources",
+        "TítuloCorto": "Recursos OMU Anómalos",
+        "InterpretaciónDetallada": "Se detecta un uso anómalo de recursos en la Unidad de Gestión (OMU)."
+    },
+    {
+        "AlarmaOriginal": "M3UA Route Unavailable",
+        "TítuloCorto": "Ruta M3UA No Disponible",
+        "InterpretaciónDetallada": "Ya interpretada antes: indica que una ruta M3UA no está operativa."
+    },
+    {
+        "AlarmaOriginal": "SCCP DPC Prohibited",
+        "TítuloCorto": "DPC SCCP Prohibido",
+        "InterpretaciónDetallada": "\"El punto de destino SCCP (DPC) está en estado prohibido"
+    },
+    {
+        "AlarmaOriginal": "M3UA Destination Entity Inaccessible",
+        "TítuloCorto": "Entidad de Destino M3UA Inaccesible",
+        "InterpretaciónDetallada": "Ya interpretada anteriormente."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0375",
+        "TítuloCorto": "Minor Application Failure(s)\"",
+        "InterpretaciónDetallada": "Falla Menor de Aplicación"
+    },
+    {
+        "AlarmaOriginal": "Remote Address Unreachable",
+        "TítuloCorto": "Dirección Remota Inaccesible",
+        "InterpretaciónDetallada": "\"Una IP o nodo remoto no responde"
+    },
+    {
+        "AlarmaOriginal": "Diameter link fault",
+        "TítuloCorto": "Falla en Enlace Diameter",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en un enlace Diameter"
+    },
+    {
+        "AlarmaOriginal": "License Resource Number Reaching/Beyond Pre-Alarm Threshold",
+        "TítuloCorto": "Licencias Alcanzando Umbral",
+        "InterpretaciónDetallada": "El número de recursos licenciados se acerca o supera el umbral de advertencia."
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se incremente la Temperatura en Clínicas Piso 2",
+        "TítuloCorto": "Alerta de Temperatura en Clínicas Piso 2",
+        "InterpretaciónDetallada": "Se debe notificar a PCS por incremento de temperatura en Piso 2 del sitio Clínicas."
+    },
+    {
+        "AlarmaOriginal": "Communication Path Is Abnormal",
+        "TítuloCorto": "Ruta de Comunicación Anómala",
+        "InterpretaciónDetallada": "Se detecta una anomalía en la ruta de comunicación de red."
+    },
+    {
+        "AlarmaOriginal": "Dar Aviso a PCS cuando se incremente la Temperatura en sitio Hornos",
+        "TítuloCorto": "Alerta de Temperatura en Hornos",
+        "InterpretaciónDetallada": "Se requiere escalar a PCS por aumento de temperatura en el sitio Hornos."
+    },
+    {
+        "AlarmaOriginal": "EPDG dedicated bearer alert",
+        "TítuloCorto": "Alerta de Bearer Dedicado en ePDG",
+        "InterpretaciónDetallada": "\"Se detecta una condición relacionada a portadoras dedicadas en el ePDG"
+    },
+    {
+        "AlarmaOriginal": "H.248 SCTP link transmission quality failure",
+        "TítuloCorto": "Falla de Calidad en Enlace H.248 SCTP",
+        "InterpretaciónDetallada": "Se detectan problemas de calidad de transmisión en el enlace SCTP que transporta señalización H.248."
+    },
+    {
+        "AlarmaOriginal": "\"Alarma Preventiva de Temperatura - A los 36° se activará \"\"Redes Autonomas\"\".\"",
+        "TítuloCorto": "Alerta Preventiva de Temperatura",
+        "InterpretaciónDetallada": "Advertencia de que la temperatura se acerca al umbral que activa protocolos de emergencia de redes autónomas."
+    },
+    {
+        "AlarmaOriginal": "Mensajes recibidos Interfaz Gy entre DRAs y OCS alert",
+        "TítuloCorto": "Alerta de Mensajes Gy DRA–OCS",
+        "InterpretaciónDetallada": "Se detecta una condición anómala en los mensajes recibidos por la interfaz Gy entre DRA y OCS."
+    },
+    {
+        "AlarmaOriginal": "Alerta de Temperatura RHEV Bel",
+        "TítuloCorto": "Alerta de Temperatura en RHEV Bel",
+        "InterpretaciónDetallada": "Incremento de temperatura en el entorno de virtualización RHEV en el nodo Bel."
+    },
+    {
+        "AlarmaOriginal": "Revisar capacidad del nodo",
+        "TítuloCorto": "Capacidad del Nodo a Verificar",
+        "InterpretaciónDetallada": "Indicación de que el nodo podría estar llegando a su límite de capacidad."
+    },
+    {
+        "AlarmaOriginal": "DBS SCTP Link Fault",
+        "TítuloCorto": "Falla de Enlace SCTP en DBS",
+        "InterpretaciónDetallada": "El sistema ha detectado una falla en el enlace SCTP del nodo DBS (Distributed Base Station)."
+    },
+    {
+        "AlarmaOriginal": "Disconnection Between the RedisProxy and RedisServer",
+        "TítuloCorto": "Desconexión entre RedisProxy y RedisServer",
+        "InterpretaciónDetallada": "\"Se perdió la conexión entre el proxy Redis y el servidor Redis"
+    },
+    {
+        "AlarmaOriginal": "Cantidad de consultas externas supera umbral de 12000",
+        "TítuloCorto": "Consultas Externas Exceden Umbral",
+        "InterpretaciónDetallada": "\"Se ha superado el umbral de 12000 consultas externas"
+    },
+    {
+        "AlarmaOriginal": "Component Fault",
+        "TítuloCorto": "Falla de Componente",
+        "InterpretaciónDetallada": "Un componente del sistema presenta una falla."
+    },
+    {
+        "AlarmaOriginal": "The Disk Usage Is Too High",
+        "TítuloCorto": "Uso de Disco Elevado",
+        "InterpretaciónDetallada": "El uso del disco ha alcanzado un nivel crítico."
+    },
+    {
+        "AlarmaOriginal": "Communication Error Between VNF LCM and IaaS",
+        "TítuloCorto": "Error de Comunicación VNF–IaaS",
+        "InterpretaciónDetallada": "Fallo en la comunicación entre el gestor de ciclo de vida VNF y la infraestructura IaaS."
+    },
+    {
+        "AlarmaOriginal": "2G Original Call Connect Rate < 65%",
+        "TítuloCorto": "Tasa de Conexión 2G < 65%",
+        "InterpretaciónDetallada": "El porcentaje de llamadas conectadas en 2G está por debajo del umbral esperado."
+    },
+    {
+        "AlarmaOriginal": "kube-agent Service Is Abnormal",
+        "TítuloCorto": "Servicio kube-agent Anómalo",
+        "InterpretaciónDetallada": "El servicio del agente Kubernetes presenta comportamiento anormal."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=",
+        "TítuloCorto": "Link Data Parsing failed for EAGLE 'alvp' due to incomplete rept-stat-iptps data",
+        "InterpretaciónDetallada": "run polling again\""
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=",
+        "TítuloCorto": "Link Data Parsing failed for EAGLE 'glfp' due to incomplete rept-stat-iptps data",
+        "InterpretaciónDetallada": "run polling again\""
+    },
+    {
+        "AlarmaOriginal": "Revisar temperatura placas",
+        "TítuloCorto": "Verificar Temperatura de Placas",
+        "InterpretaciónDetallada": "Se requiere revisar el estado térmico de las placas electrónicas."
+    },
+    {
+        "AlarmaOriginal": "WAG con desvío de Volumen de Subscribers. Llamar a la GP de PCS_CAf.",
+        "TítuloCorto": "Desvío de Volumen en WAG",
+        "InterpretaciónDetallada": "\"El WAG detecta desvío de tráfico de usuarios"
+    },
+    {
+        "AlarmaOriginal": "Lost synchronization of a TDM high-speed link",
+        "TítuloCorto": "Pérdida de Sincronización TDM",
+        "InterpretaciónDetallada": "Un enlace TDM de alta velocidad ha perdido sincronización."
+    },
+    {
+        "AlarmaOriginal": "Se alcanzo el 90% de llamadas simultaneas licenciadas.",
+        "TítuloCorto": "Límite de Licencias de Llamadas",
+        "InterpretaciónDetallada": "El sistema alcanzó el 90% del número máximo de llamadas simultáneas permitidas."
+    },
+    {
+        "AlarmaOriginal": "Frequent Intermittence of Links in Batches",
+        "TítuloCorto": "Intermitencia Frecuente en Lotes",
+        "InterpretaciónDetallada": "\"Varios enlaces presentan cortes frecuentes"
+    },
+    {
+        "AlarmaOriginal": "Fault in the control network interface of the board",
+        "TítuloCorto": "Falla en Interfaz de Control",
+        "InterpretaciónDetallada": "Falla en la interfaz de red que controla una tarjeta del equipo."
+    },
+    {
+        "AlarmaOriginal": "El aumento de estos errores pueden indicar problemas en la base de datos del tasador OCS y las llamadas no progresan...",
+        "TítuloCorto": "Posible Falla en Base de Datos del OCS",
+        "InterpretaciónDetallada": "\"Errores crecientes indican problemas con la base de datos del tasador"
+    },
+    {
+        "AlarmaOriginal": "Variación de tráfico en la ultima hora",
+        "TítuloCorto": "Variación de Tráfico Reciente",
+        "InterpretaciónDetallada": "Se detecta un cambio abrupto en el tráfico durante la última hora."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0242",
+        "TítuloCorto": "REPT-LKF: rcvd remote protocol error\"",
+        "InterpretaciónDetallada": "Error de Protocolo Remoto"
+    },
+    {
+        "AlarmaOriginal": "DNSDIST Cache hit",
+        "TítuloCorto": "Cache Hit en DNSDIST",
+        "InterpretaciónDetallada": "Información sobre el uso de caché exitoso en el servidor DNSDIST."
+    },
+    {
+        "AlarmaOriginal": "Severe bit error of the TDM switching network board",
+        "TítuloCorto": "Errores Graves de Bits en TDM",
+        "InterpretaciónDetallada": "La tarjeta de conmutación TDM presenta errores severos de bits."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=",
+        "TítuloCorto": "Link Data Parsing failed for EAGLE 'darwin' due to incomplete rept-stat-iptps data",
+        "InterpretaciónDetallada": "run polling again\""
+    },
+    {
+        "AlarmaOriginal": "Disponibilidad opengateway HOR - capa Norte Indisponible",
+        "TítuloCorto": "Capa Norte de OpenGateway No Disponible",
+        "InterpretaciónDetallada": "La capa Norte del entorno OpenGateway no está operativa."
+    },
+    {
+        "AlarmaOriginal": "Result of the auto PING when MGC is disconnected",
+        "TítuloCorto": "Resultado de PING con MGC Caído",
+        "InterpretaciónDetallada": "Resultado automático del PING ante la desconexión del MGC."
+    },
+    {
+        "AlarmaOriginal": "Interface IPv6 status changed",
+        "TítuloCorto": "Cambio de Estado en Interfaz IPv6",
+        "InterpretaciónDetallada": "El estado de una interfaz de red IPv6 ha cambiado."
+    },
+    {
+        "AlarmaOriginal": "Caída de QPS de tráfico Anycast IPv6. Dar aviso a PCS_DNS y PCS_CA.",
+        "TítuloCorto": "Caída de QPS Anycast IPv6",
+        "InterpretaciónDetallada": "Disminución del tráfico de consultas por segundo (QPS) en infraestructura Anycast IPv6."
+    },
+    {
+        "AlarmaOriginal": "Roaming LTE revisar!!!!",
+        "TítuloCorto": "Revisar Roaming LTE",
+        "InterpretaciónDetallada": "Advertencia urgente de revisión del servicio de roaming LTE."
+    },
+    {
+        "AlarmaOriginal": "\"Esta alerta está generada como Warning",
+        "TítuloCorto": "ya que uno de los UMG está caído...\"",
+        "InterpretaciónDetallada": "UMG Caído - Acción Requerida"
+    },
+    {
+        "AlarmaOriginal": "The signal lose of optical module",
+        "TítuloCorto": "Pérdida de Señal Óptica",
+        "InterpretaciónDetallada": "Se ha perdido la señal en un módulo óptico."
+    },
+    {
+        "AlarmaOriginal": "The Redis Server is invalid",
+        "TítuloCorto": "Redis Server Inválido",
+        "InterpretaciónDetallada": "El servidor Redis presenta errores o está fuera de servicio."
+    },
+    {
+        "AlarmaOriginal": "License Feature Expired",
+        "TítuloCorto": "Licencia Expirada",
+        "InterpretaciónDetallada": "Alguna característica licenciada ha expirado."
+    },
+    {
+        "AlarmaOriginal": "linkdown",
+        "TítuloCorto": "Enlace Caído",
+        "InterpretaciónDetallada": "Se ha perdido un enlace físico o lógico."
+    },
+    {
+        "AlarmaOriginal": "Data Inconsistency Between Active and Standby GaussDB Databases",
+        "TítuloCorto": "Inconsistencia de Datos en GaussDB",
+        "InterpretaciónDetallada": "Desincronización entre bases de datos activa y de respaldo."
+    },
+    {
+        "AlarmaOriginal": "Node Communication Failure",
+        "TítuloCorto": "Falla de Comunicación de Nodo",
+        "InterpretaciónDetallada": "El nodo no puede comunicarse con otros elementos de la red."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0013",
+        "TítuloCorto": "Card is isolated from the system\"",
+        "InterpretaciónDetallada": "Tarjeta Aislada del Sistema"
+    },
+    {
+        "AlarmaOriginal": "Application Apperceive Drop Packet Exceeding Threshold",
+        "TítuloCorto": "Pérdida de Paquetes en Aplicación",
+        "InterpretaciónDetallada": "Se excedió el umbral de paquetes perdidos en una aplicación."
+    },
+    {
+        "AlarmaOriginal": "M3UA route is unavailable",
+        "TítuloCorto": "Ruta M3UA No Disponible",
+        "InterpretaciónDetallada": "La ruta de señalización M3UA no está disponible."
+    },
+    {
+        "AlarmaOriginal": "BGP Connection Interrupted",
+        "TítuloCorto": "Conexión BGP Interrumpida",
+        "InterpretaciónDetallada": "Fallo en la sesión del protocolo de enrutamiento BGP."
+    },
+    {
+        "AlarmaOriginal": "Mensajes recibidos Interfaz S13 entre DRAs y FEs EIR alert",
+        "TítuloCorto": "Alerta de Mensajes S13 (Entrada)",
+        "InterpretaciónDetallada": "Recepción de mensajes S13 entre DRA y EIR detectada como anómala."
+    },
+    {
+        "AlarmaOriginal": "Mensajes enviados Interfaz S13 entre DRAs y FEs EIR alert",
+        "TítuloCorto": "Alerta de Mensajes S13 (Salida)",
+        "InterpretaciónDetallada": "Envío de mensajes S13 entre DRA y EIR detectado como anómalo."
+    },
+    {
+        "AlarmaOriginal": "SBC AMBA: % Uso CPU x modulo > 45%",
+        "TítuloCorto": "Uso de CPU Alto en SBC AMBA",
+        "InterpretaciónDetallada": "El uso de CPU en un módulo del SBC AMBA supera el 45%."
+    },
+    {
+        "AlarmaOriginal": "NA",
+        "TítuloCorto": "No Aplica",
+        "InterpretaciónDetallada": "Información no disponible o inválida."
+    },
+    {
+        "AlarmaOriginal": "Linkset STP por disminución/incremento",
+        "TítuloCorto": "Variación en Tráfico STP Linkset",
+        "InterpretaciónDetallada": "El linkset STP presenta cambios significativos en el tráfico."
+    },
+    {
+        "AlarmaOriginal": "OSPFv2 Neighbor State Change",
+        "TítuloCorto": "Cambio de Estado en Vecino OSPFv2",
+        "InterpretaciónDetallada": "Cambió el estado de vecindad con un router OSPFv2."
+    },
+    {
+        "AlarmaOriginal": "OS User Password About to Expire",
+        "TítuloCorto": "Contraseña de Usuario por Expirar",
+        "InterpretaciónDetallada": "La contraseña de un usuario del sistema está próxima a vencer."
+    },
+    {
+        "AlarmaOriginal": "Compute Node or Switch Module Restart",
+        "TítuloCorto": "Reinicio de Nodo o Módulo de Red",
+        "InterpretaciónDetallada": "Se reinició un nodo de cómputo o un módulo de switch."
+    },
+    {
+        "AlarmaOriginal": "Esta alerta muestra el máximo valor de sesiones en Sy...",
+        "TítuloCorto": "Máximo de Sesiones en Sy",
+        "InterpretaciónDetallada": "\"Se detecta un pico en sesiones Sy"
+    },
+    {
+        "AlarmaOriginal": "System Connect Rate < 75%",
+        "TítuloCorto": "Tasa de Conexión del Sistema < 75%",
+        "InterpretaciónDetallada": "El sistema está conectando menos del 75% de los intentos."
+    },
+    {
+        "AlarmaOriginal": "Alarma por baja en el éxito de respuesta de instancia del trafico fijo",
+        "TítuloCorto": "Éxito Bajo en Tráfico Fijo",
+        "InterpretaciónDetallada": "Disminución en el porcentaje de éxito de respuestas en tráfico fijo."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0374",
+        "TítuloCorto": "Minor Platform Failure(s)\"",
+        "InterpretaciónDetallada": "Falla Menor de Plataforma"
+    },
+    {
+        "AlarmaOriginal": "GGSN_Ericsson Velocidad fans",
+        "TítuloCorto": "Velocidad de Fans en GGSN Ericsson",
+        "InterpretaciónDetallada": "Información o advertencia sobre la velocidad de los ventiladores en un GGSN."
+    },
+    {
+        "AlarmaOriginal": "CORE Delta Gn Downlink Throughput GSM-WCDMA x USN",
+        "TítuloCorto": "Variación de Throughput en Gn",
+        "InterpretaciónDetallada": "Cambios en el throughput bajada en la interfaz Gn para GSM/WCDMA."
+    },
+    {
+        "AlarmaOriginal": "Disconnection to the MGC",
+        "TítuloCorto": "Desconexión del MGC",
+        "InterpretaciónDetallada": "El Media Gateway Controller está desconectado."
+    },
+    {
+        "AlarmaOriginal": "Switchover Between Active and Standby Nodes",
+        "TítuloCorto": "Conmutación de Nodo Activo/Respaldo",
+        "InterpretaciónDetallada": "Cambio de rol entre nodos activo y de respaldo."
+    },
+    {
+        "AlarmaOriginal": "Number of Resources Will Exceed License Limit",
+        "TítuloCorto": "Límite de Licencia por Superarse",
+        "InterpretaciónDetallada": "Uso de recursos está por exceder el límite licenciado."
+    },
+    {
+        "AlarmaOriginal": "Alerta Linkset superado 50% de capacidad",
+        "TítuloCorto": "Linkset al 50% de Capacidad",
+        "InterpretaciónDetallada": "Un linkset ha alcanzado más del 50% de su capacidad."
+    },
+    {
+        "AlarmaOriginal": "Archivos subidos a GCP nulos",
+        "TítuloCorto": "Archivos Nulos en GCP",
+        "InterpretaciónDetallada": "Se detectaron archivos vacíos o nulos en la carga hacia GCP."
+    },
+    {
+        "AlarmaOriginal": "Alerta Linkset con diferencia mayor al 50% entre TX y RX",
+        "TítuloCorto": "Diferencia TX/RX en Linkset",
+        "InterpretaciónDetallada": "Hay una diferencia significativa entre lo transmitido y recibido."
+    },
+    {
+        "AlarmaOriginal": "MGW Out of Service",
+        "TítuloCorto": "MGW Fuera de Servicio",
+        "InterpretaciónDetallada": "El Media Gateway se encuentra fuera de operación."
+    },
+    {
+        "AlarmaOriginal": "Desvío de Usuarios en PCRF. Dar aviso a AE-PBA.",
+        "TítuloCorto": "Desvío de Usuarios en PCRF",
+        "InterpretaciónDetallada": "Los usuarios están siendo redireccionados en el PCRF."
+    },
+    {
+        "AlarmaOriginal": "Device Was Unreachable Through Discovery Protocol",
+        "TítuloCorto": "Dispositivo Inalcanzable por Descubrimiento",
+        "InterpretaciónDetallada": "No se puede detectar el equipo mediante protocolo de descubrimiento."
+    },
+    {
+        "AlarmaOriginal": "No response from the RADIUS accounting server",
+        "TítuloCorto": "Sin Respuesta del RADIUS Accounting",
+        "InterpretaciónDetallada": "El servidor RADIUS no responde solicitudes de contabilidad."
+    },
+    {
+        "AlarmaOriginal": "Component Fault",
+        "TítuloCorto": "Falla de Componente",
+        "InterpretaciónDetallada": "Uno de los componentes del sistema está fallando."
+    },
+    {
+        "AlarmaOriginal": "IPFarm Server No Response",
+        "TítuloCorto": "IPFarm Sin Respuesta",
+        "InterpretaciónDetallada": "El servidor IPFarm no está respondiendo."
+    },
+    {
+        "AlarmaOriginal": "MME Exito de activación 3G",
+        "TítuloCorto": "Activación 3G Exitosa (MME)",
+        "InterpretaciónDetallada": "Activaciones exitosas de sesiones 3G reportadas por el MME."
+    },
+    {
+        "AlarmaOriginal": "Baja de tráfico en interfaz interna entre DNSDIST y pool de DNSINTs.",
+        "TítuloCorto": "Baja de Tráfico DNS Interno",
+        "InterpretaciónDetallada": "Caída en el tráfico entre el balanceador DNSDIST y servidores DNS internos."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0449",
+        "TítuloCorto": "RTDB resynchronization in progress\"",
+        "InterpretaciónDetallada": "Resincronización RTDB en Curso"
+    },
+    {
+        "AlarmaOriginal": "Gateway resolution failed",
+        "TítuloCorto": "Falla en Resolución de Gateway",
+        "InterpretaciónDetallada": "No se logró resolver el gateway configurado."
+    },
+    {
+        "AlarmaOriginal": "Renovar Licencia",
+        "TítuloCorto": "Licencia por Renovar",
+        "InterpretaciónDetallada": "Acción requerida para renovar licencia de software."
+    },
+    {
+        "AlarmaOriginal": "Tensión fuera de rango normal.",
+        "TítuloCorto": "Tensión Eléctrica Anómala",
+        "InterpretaciónDetallada": "Voltaje fuera del rango operativo esperado."
+    },
+    {
+        "AlarmaOriginal": "Failure of a TDM cascading optical interface",
+        "TítuloCorto": "Falla en Interfaz Óptica TDM",
+        "InterpretaciónDetallada": "Problema en una interfaz óptica de red TDM en cascada."
+    },
+    {
+        "AlarmaOriginal": "Casa HA Is Unavailable Alarm notification",
+        "TítuloCorto": "Alarma Casa HA No Disponible",
+        "InterpretaciónDetallada": "La solución Casa HA no está operativa."
+    },
+    {
+        "AlarmaOriginal": "RU CPUOverload",
+        "TítuloCorto": "Sobreuso de CPU en RU",
+        "InterpretaciónDetallada": "La unidad de radio (RU) presenta uso excesivo de CPU."
+    },
+    {
+        "AlarmaOriginal": "Physical Port Down (Entity)",
+        "TítuloCorto": "Puerto Físico Caído",
+        "InterpretaciónDetallada": "Un puerto físico ha perdido conectividad."
+    },
+    {
+        "AlarmaOriginal": "The CPU Usage Is High",
+        "TítuloCorto": "Uso de CPU Alto",
+        "InterpretaciónDetallada": "Se detecta un alto uso de CPU en el sistema."
+    },
+    {
+        "AlarmaOriginal": "Diameter(SCTP) link path fault",
+        "TítuloCorto": "Falla en Enlace Diameter SCTP",
+        "InterpretaciónDetallada": "Error en la ruta SCTP para la señalización Diameter."
+    },
+    {
+        "AlarmaOriginal": "Link entre DEA y WING sin tráfico Rx",
+        "TítuloCorto": "Sin Tráfico Rx entre DEA y WING",
+        "InterpretaciónDetallada": "No se recibe tráfico entre estos dos componentes."
+    },
+    {
+        "AlarmaOriginal": "Alerta SBC por baja de usuarios < 50k",
+        "TítuloCorto": "Baja de Usuarios en SBC",
+        "InterpretaciónDetallada": "Se detecta que hay menos de 50 mil usuarios conectados en el SBC."
+    },
+    {
+        "AlarmaOriginal": "CPU Major Overloaded",
+        "TítuloCorto": "Sobrecarga Grave de CPU",
+        "InterpretaciónDetallada": "El CPU está operando por encima de su límite tolerable."
+    },
+    {
+        "AlarmaOriginal": "Active Microservice Instance Is Missing",
+        "TítuloCorto": "Microservicio Activo No Disponible",
+        "InterpretaciónDetallada": "Falta al menos una instancia activa de un microservicio."
+    },
+    {
+        "AlarmaOriginal": "Exito de activación APN wing",
+        "TítuloCorto": "Activación Exitosa APN wing",
+        "InterpretaciónDetallada": "Se reporta éxito en la activación de sesiones vía el APN wing."
+    },
+    {
+        "AlarmaOriginal": "UGW Exito CCR-I contra OCS",
+        "TítuloCorto": "CCR-I Exitosa desde UGW a OCS",
+        "InterpretaciónDetallada": "La petición inicial de crédito (CCR-I) fue exitosa."
+    },
+    {
+        "AlarmaOriginal": "Fault in the FE cascading network interface",
+        "TítuloCorto": "Falla en Interfaz de Cascada FE",
+        "InterpretaciónDetallada": "Error en la red de interconexión entre FEs (Front End)."
+    },
+    {
+        "AlarmaOriginal": "The remote fault alarm has occurred",
+        "TítuloCorto": "Alarma de Falla Remota",
+        "InterpretaciónDetallada": "Se detectó una falla en un equipo remoto."
+    },
+    {
+        "AlarmaOriginal": "Result of the auto TRACERT when MGC is disconnected",
+        "TítuloCorto": "Resultado TRACERT con MGC Caído",
+        "InterpretaciónDetallada": "Resultado automático de un TRACERT tras perder conexión con MGC."
+    },
+    {
+        "AlarmaOriginal": "Disponibilidad opengateway HOR - capa Sur Indisponible",
+        "TítuloCorto": "Capa Sur de OpenGateway No Disponible",
+        "InterpretaciónDetallada": "La capa sur de OpenGateway está fuera de servicio."
+    },
+    {
+        "AlarmaOriginal": "SCCP DPC paused",
+        "TítuloCorto": "Punto DPC de SCCP en Pausa",
+        "InterpretaciónDetallada": "El punto de señalización SCCP está en estado pausado."
+    },
+    {
+        "AlarmaOriginal": "Baja check imei 4g",
+        "TítuloCorto": "Baja en Validación IMEI 4G",
+        "InterpretaciónDetallada": "Se detecta disminución en validaciones IMEI sobre 4G."
+    },
+    {
+        "AlarmaOriginal": "Revisar USCDB - Exito Query Messages alert.",
+        "TítuloCorto": "Éxito de Consultas en USCDB",
+        "InterpretaciónDetallada": "Verificación del éxito de mensajes de consulta en USCDB."
+    },
+    {
+        "AlarmaOriginal": "Linkset STP por diferencia",
+        "TítuloCorto": "Diferencia en Tráfico STP",
+        "InterpretaciónDetallada": "Diferencia notable en tráfico dentro de un linkset STP."
+    },
+    {
+        "AlarmaOriginal": "Annual License Fee Unpaid After the Due Date",
+        "TítuloCorto": "Licencia Anual no Pagada",
+        "InterpretaciónDetallada": "El pago de la licencia anual no se ha realizado a tiempo."
+    },
+    {
+        "AlarmaOriginal": "There are CDRs in hard disk",
+        "TítuloCorto": "CDRs en Disco Duro",
+        "InterpretaciónDetallada": "Existen registros de llamadas (CDRs) almacenados en disco."
+    },
+    {
+        "AlarmaOriginal": "hwLacpNegotiateFailed",
+        "TítuloCorto": "Fallo de Negociación LACP",
+        "InterpretaciónDetallada": "No se pudo negociar correctamente el protocolo LACP."
+    },
+    {
+        "AlarmaOriginal": "Revisar éxito de conexión al Core IMS",
+        "TítuloCorto": "Verificar Conectividad IMS",
+        "InterpretaciónDetallada": "Se debe revisar si se están conectando correctamente al Core IMS."
+    },
+    {
+        "AlarmaOriginal": "Revisar uso de root filesystem en servidor DNSDIST.",
+        "TítuloCorto": "Uso alto de filesystem en DNSDIST",
+        "InterpretaciónDetallada": "\"Verificar espacio en disco en el servidor DNSDIST"
+    },
+    {
+        "AlarmaOriginal": "Usage of internal resources exceeds the threshold",
+        "TítuloCorto": "Recursos internos excedidos",
+        "InterpretaciónDetallada": "\"Algún recurso (CPU"
+    },
+    {
+        "AlarmaOriginal": "Communication Sub-health Between VNF LCM and IaaS",
+        "TítuloCorto": "Comunicación débil VNF-IaaS",
+        "InterpretaciónDetallada": "Problemas de conexión o latencia entre el gestor de ciclo de vida VNF y la infraestructura."
+    },
+    {
+        "AlarmaOriginal": "PFCP Link Down",
+        "TítuloCorto": "Enlace PFCP caído",
+        "InterpretaciónDetallada": "El canal de señalización PFCP está inactivo o desconectado."
+    },
+    {
+        "AlarmaOriginal": "Overhigh Board Temperature",
+        "TítuloCorto": "Temperatura alta en placa",
+        "InterpretaciónDetallada": "Se detecta sobrecalentamiento en un componente físico."
+    },
+    {
+        "AlarmaOriginal": "PFCP Peer Node Unreachable",
+        "TítuloCorto": "Nodo PFCP inaccesible",
+        "InterpretaciónDetallada": "No se puede alcanzar al nodo remoto que usa el protocolo PFCP."
+    },
+    {
+        "AlarmaOriginal": "Module Not Ready",
+        "TítuloCorto": "Módulo no listo",
+        "InterpretaciónDetallada": "Un componente de red aún no está disponible para operar."
+    },
+    {
+        "AlarmaOriginal": "DMU Disconnected from a Device",
+        "TítuloCorto": "Desconexión de DMU",
+        "InterpretaciónDetallada": "Un módulo de administración quedó sin conexión a un equipo."
+    },
+    {
+        "AlarmaOriginal": "PDF abnormality",
+        "TítuloCorto": "Anomalía en PDF",
+        "InterpretaciónDetallada": "\"Falla en el componente PDF (Policy Decision Function)"
+    },
+    {
+        "AlarmaOriginal": "Master Key Expired Early",
+        "TítuloCorto": "Clave maestra expirada",
+        "InterpretaciónDetallada": "Una clave crítica de seguridad caducó antes del tiempo esperado."
+    },
+    {
+        "AlarmaOriginal": "Faulty Host",
+        "TítuloCorto": "Host con fallas",
+        "InterpretaciónDetallada": "Nodo físico o virtual presenta fallas operativas."
+    },
+    {
+        "AlarmaOriginal": "Host Storage Link Failure",
+        "TítuloCorto": "Falla en enlace de almacenamiento",
+        "InterpretaciónDetallada": "La conexión entre el host y su sistema de almacenamiento ha fallado."
+    },
+    {
+        "AlarmaOriginal": "Desvío de cantidad de Usuarios HLR Nokia activos en VLR",
+        "TítuloCorto": "Desvío usuarios activos HLR Nokia",
+        "InterpretaciónDetallada": "\"Cambio inesperado en el número de usuarios registrados del HLR al VLR"
+    },
+    {
+        "AlarmaOriginal": "VM State Error",
+        "TítuloCorto": "Error de estado en VM",
+        "InterpretaciónDetallada": "Una máquina virtual se encuentra en estado no operativo o erróneo."
+    },
+    {
+        "AlarmaOriginal": "SRVCC HO success alert",
+        "TítuloCorto": "Alerta éxito SRVCC HO",
+        "InterpretaciónDetallada": "Notificación de que la transferencia de llamada entre LTE y 2G/3G fue exitosa."
+    },
+    {
+        "AlarmaOriginal": "Stack Running Is Abnormal",
+        "TítuloCorto": "Stack anormal",
+        "InterpretaciónDetallada": "El conjunto de servicios de una pila no se está ejecutando correctamente."
+    },
+    {
+        "AlarmaOriginal": "Revisar uso de pool de IPs del APN.",
+        "TítuloCorto": "Revisión de IPs asignadas",
+        "InterpretaciónDetallada": "Verificar disponibilidad de direcciones IP para un APN específico."
+    },
+    {
+        "AlarmaOriginal": "Mensajes enviados Interfaz Gx entre DRAs y CGW alert",
+        "TítuloCorto": "Tráfico Gx enviado DRAs a CGW",
+        "InterpretaciónDetallada": "\"Alerta sobre la cantidad de mensajes enviados en la interfaz Gx"
+    },
+    {
+        "AlarmaOriginal": "Connection Failure in the OMU HA System",
+        "TítuloCorto": "Falla conexión OMU HA",
+        "InterpretaciónDetallada": "Error en el enlace de alta disponibilidad entre módulos de gestión (OMU)."
+    },
+    {
+        "AlarmaOriginal": "UGW Desvio de sesiones",
+        "TítuloCorto": "Desvío sesiones UGW",
+        "InterpretaciónDetallada": "Cambios no esperados en la cantidad de sesiones en el gateway UGW."
+    },
+    {
+        "AlarmaOriginal": "Communication Between NMS And NE Is Abnormal",
+        "TítuloCorto": "Falla entre NMS y NE",
+        "InterpretaciónDetallada": "La comunicación entre el sistema de gestión de red y el equipo de red presenta fallas."
+    },
+    {
+        "AlarmaOriginal": "Revisar trafico downlink en UGWMUNCORP.",
+        "TítuloCorto": "Downlink bajo en UGWMUNCORP",
+        "InterpretaciónDetallada": "Verificar caudal descendente de datos en gateway UGW correspondiente a MUNCORP."
+    },
+    {
+        "AlarmaOriginal": "Revisar exito CCR-I",
+        "TítuloCorto": "Éxito bajo en CCR-I",
+        "InterpretaciónDetallada": "Evaluar la tasa de éxito de las peticiones iniciales de crédito (CCR-I) hacia OCS."
+    },
+    {
+        "AlarmaOriginal": "Export Task Export Failed",
+        "TítuloCorto": "Falla en exportación",
+        "InterpretaciónDetallada": "No se logró completar una tarea de exportación de datos o configuraciones."
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se incremente la Temperatura en sitio Bahía Blanca",
+        "TítuloCorto": "Aviso por temperatura Bahía Blanca",
+        "InterpretaciónDetallada": "Notificación de que debe alertarse al equipo ante aumento térmico en ese sitio."
+    },
+    {
+        "AlarmaOriginal": "Number Analize failure",
+        "TítuloCorto": "Falla en análisis de número",
+        "InterpretaciónDetallada": "Error en la validación o procesamiento de números telefónicos."
+    },
+    {
+        "AlarmaOriginal": "OSPF LSA Will Age Out",
+        "TítuloCorto": "OSPF LSA expirando",
+        "InterpretaciónDetallada": "Las actualizaciones de estado de enlace (LSA) están por expirar; puede afectar la topología OSPF."
+    },
+    {
+        "AlarmaOriginal": "Revisar cant de CDRs enviados por el Charging GW hacia el Bill Center",
+        "TítuloCorto": "Revisión de CDRs enviados a Billing",
+        "InterpretaciónDetallada": "Verificar si los registros de cobro están llegando correctamente al sistema de facturación."
+    },
+    {
+        "AlarmaOriginal": "Disconnection Between the DiamAdapter and Peer Device",
+        "TítuloCorto": "Desconexión de adaptador Diameter",
+        "InterpretaciónDetallada": "El componente Diameter perdió conexión con su par."
+    },
+    {
+        "AlarmaOriginal": "Revisar éxito de activación 4G por debajo de 80% en UGWCORP.",
+        "TítuloCorto": "Éxito activación bajo en UGWCORP",
+        "InterpretaciónDetallada": "\"Tasa de activación de sesiones 4G está por debajo del umbral esperado"
+    },
+    {
+        "AlarmaOriginal": "All Connections in a Group Disconnected",
+        "TítuloCorto": "Desconexión de grupo completo",
+        "InterpretaciónDetallada": "Todos los enlaces de un grupo de conexiones se han caído."
+    },
+    {
+        "AlarmaOriginal": "Failure to Send Messages to the Peer Device",
+        "TítuloCorto": "Falla en envío de mensajes a dispositivo remoto",
+        "InterpretaciónDetallada": "No se lograron enviar mensajes al dispositivo par; puede ser un problema de conectividad."
+    },
+    {
+        "AlarmaOriginal": "Performance threshold alarm",
+        "TítuloCorto": "Alerta de umbral de rendimiento",
+        "InterpretaciónDetallada": "\"El rendimiento del sistema ha alcanzado un límite preestablecido"
+    },
+    {
+        "AlarmaOriginal": "M3UA route transmission is prohibited",
+        "TítuloCorto": "Ruta M3UA prohibida",
+        "InterpretaciónDetallada": "La transmisión de datos a través de la ruta M3UA está bloqueada o fallida."
+    },
+    {
+        "AlarmaOriginal": "Abnormal NTP Connection Status",
+        "TítuloCorto": "Estado anormal de la conexión NTP",
+        "InterpretaciónDetallada": "La sincronización de hora (NTP) presenta problemas de conexión."
+    },
+    {
+        "AlarmaOriginal": "Alerta de consultas internas",
+        "TítuloCorto": "Alerta por consultas internas",
+        "InterpretaciónDetallada": "\"Se han detectado consultas internas anómalas"
+    },
+    {
+        "AlarmaOriginal": "Revisar USCDB - Exito Update Messages.",
+        "TítuloCorto": "Revisión de actualizaciones USCDB",
+        "InterpretaciónDetallada": "Verificar el éxito de las actualizaciones de mensajes en la base de datos USCDB."
+    },
+    {
+        "AlarmaOriginal": "Baja de usuarios HLR Nokia registrados en VLR",
+        "TítuloCorto": "Disminución de usuarios en VLR",
+        "InterpretaciónDetallada": "Se ha detectado una reducción en los usuarios registrados del HLR Nokia en el VLR."
+    },
+    {
+        "AlarmaOriginal": "Mensajes recibidos Interfaz s6a entre DRAs y MMEs alert",
+        "TítuloCorto": "Tráfico s6a recibido DRAs a MMEs",
+        "InterpretaciónDetallada": "\"Alerta sobre mensajes entrantes en la interfaz s6a entre DRAs y MMEs"
+    },
+    {
+        "AlarmaOriginal": "System Backup Failed",
+        "TítuloCorto": "Falla en copia de seguridad del sistema",
+        "InterpretaciónDetallada": "\"El proceso de respaldo del sistema ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Jasper Delta registrados HLR Jasper",
+        "TítuloCorto": "Delta de usuarios HLR Jasper",
+        "InterpretaciónDetallada": "\"Cambios en los usuarios registrados en el HLR Jasper"
+    },
+    {
+        "AlarmaOriginal": "Communication Failure Between the OMU and Service Management Unit",
+        "TítuloCorto": "Falla comunicación OMU-SMU",
+        "InterpretaciónDetallada": "Error de comunicación entre la unidad de gestión de operaciones (OMU) y la unidad de gestión de servicios (SMU)."
+    },
+    {
+        "AlarmaOriginal": "Verificar Delta en bearers de señalización de Volte",
+        "TítuloCorto": "Delta en bearers VoLTE",
+        "InterpretaciónDetallada": "\"Variaciones en los bearers de señalización de VoLTE"
+    },
+    {
+        "AlarmaOriginal": "Baja en éxito de activación en UGW",
+        "TítuloCorto": "Éxito bajo de activación en UGW",
+        "InterpretaciónDetallada": "\"La tasa de éxito de activación en el UGW es baja"
+    },
+    {
+        "AlarmaOriginal": "\"Revisar alarma de hardware (discos",
+        "TítuloCorto": "fans",
+        "InterpretaciónDetallada": "fuente"
+    },
+    {
+        "AlarmaOriginal": "Delta enodeb conectados",
+        "TítuloCorto": "Cambio en número de eNodeBs conectados",
+        "InterpretaciónDetallada": "\"Variación en la cantidad de eNodeBs conectados a la red"
+    },
+    {
+        "AlarmaOriginal": "Mensajes enviados Interfaz s6a entre DRAs y MMEs alert",
+        "TítuloCorto": "Tráfico s6a enviado DRAs a MMEs",
+        "InterpretaciónDetallada": "Alerta por cantidad de mensajes enviados en la interfaz s6a entre DRAs y MMEs."
+    },
+    {
+        "AlarmaOriginal": "Service unit is locked",
+        "TítuloCorto": "Unidad de servicio bloqueada",
+        "InterpretaciónDetallada": "Un componente de servicio está bloqueado o no puede ser accedido."
+    },
+    {
+        "AlarmaOriginal": "GE channel fault",
+        "TítuloCorto": "Falla en canal GE",
+        "InterpretaciónDetallada": "\"Error en el canal de Ethernet (GE)"
+    },
+    {
+        "AlarmaOriginal": "SCCP SSN Paused",
+        "TítuloCorto": "SSN SCCP en pausa",
+        "InterpretaciónDetallada": "\"La subred SCCP (SSN) está detenida temporalmente"
+    },
+    {
+        "AlarmaOriginal": "Baja de Usuarios APN Wing en MME",
+        "TítuloCorto": "Disminución de usuarios en APN Wing",
+        "InterpretaciónDetallada": "Reducción en la cantidad de usuarios del APN Wing conectados al MME."
+    },
+    {
+        "AlarmaOriginal": "Third-Party App VM Detected Abnormal",
+        "TítuloCorto": "Aplicación de terceros VM anómala",
+        "InterpretaciónDetallada": "Se detectó un problema en una máquina virtual que ejecuta una aplicación de terceros."
+    },
+    {
+        "AlarmaOriginal": "EPSN PDN Session activation SR",
+        "TítuloCorto": "Alerta sobre activación de sesión EPSN PDN",
+        "InterpretaciónDetallada": "Error en la activación de sesiones de red de datos (PDN) para usuarios EPSN."
+    },
+    {
+        "AlarmaOriginal": "AllLinks Between DIAMRMandpeerdevice Disconnected",
+        "TítuloCorto": "Desconexión de todos los enlaces Diameter",
+        "InterpretaciónDetallada": "Todos los enlaces entre el adaptador Diameter y su dispositivo par están desconectados."
+    },
+    {
+        "AlarmaOriginal": "RBI failed to connect to the external entity.",
+        "TítuloCorto": "RBI no conecta con entidad externa",
+        "InterpretaciónDetallada": "El sistema RBI no pudo establecer conexión con la entidad externa correspondiente."
+    },
+    {
+        "AlarmaOriginal": "Caída en el éxito de Registración ToIP HFC por debajo del 50%. Consultar a PCS Voz Adentro.",
+        "TítuloCorto": "Baja en éxito de Registración ToIP HFC",
+        "InterpretaciónDetallada": "El éxito de las registraciones ToIP HFC es bajo; requiere revisión con PCS Voz Adentro."
+    },
+    {
+        "AlarmaOriginal": "GGSN_Ericsson Radius Authentication Fails",
+        "TítuloCorto": "Fallo de autenticación Radius GGSN_Ericsson",
+        "InterpretaciónDetallada": "Error en el proceso de autenticación mediante Radius en el GGSN Ericsson."
+    },
+    {
+        "AlarmaOriginal": "GGSN_Ericsson Nuevas alarmas activas",
+        "TítuloCorto": "Nuevas alarmas GGSN_Ericsson",
+        "InterpretaciónDetallada": "\"Se han generado nuevas alarmas en el GGSN de Ericsson"
+    },
+    {
+        "AlarmaOriginal": "Revisar cantidad de CDRs recibidos por el Charging GW desde los PGW.",
+        "TítuloCorto": "Revisión de CDRs desde PGW",
+        "InterpretaciónDetallada": "Verificar la cantidad de registros de cargos (CDRs) recibidos desde el PGW hacia el gateway de carga."
+    },
+    {
+        "AlarmaOriginal": "Heartbeat with the Base plane abnormal",
+        "TítuloCorto": "Heartbeat anómalo con el plano base",
+        "InterpretaciónDetallada": "La señal de latido (heartbeat) entre el sistema y el plano base ha fallado o es irregular."
+    },
+    {
+        "AlarmaOriginal": "NE Mediation Layer Version Unmatched",
+        "TítuloCorto": "Versión incompatible de capa de mediación",
+        "InterpretaciónDetallada": "Las versiones de la capa de mediación entre el equipo de red (NE) y el sistema de gestión no coinciden."
+    },
+    {
+        "AlarmaOriginal": "Diameter Link Overload",
+        "TítuloCorto": "Sobrecarga de enlace Diameter",
+        "InterpretaciónDetallada": "\"El enlace Diameter está sobrecargado"
+    },
+    {
+        "AlarmaOriginal": "CORE Delta 2G Mode Average Attached Users x USN",
+        "TítuloCorto": "Cambio en usuarios 2G en CORE",
+        "InterpretaciónDetallada": "\"Variación en el número de usuarios 2G conectados al núcleo"
+    },
+    {
+        "AlarmaOriginal": "Se ha detectado afectación o degradación en la frontera SIGTRAN con Movistar. Revisar el dashboard...",
+        "TítuloCorto": "Degradación en frontera SIGTRAN",
+        "InterpretaciónDetallada": "\"Se ha detectado un problema en la frontera SIGTRAN con Movistar"
+    },
+    {
+        "AlarmaOriginal": "Deteriorating MOS",
+        "TítuloCorto": "Deterioro en MOS",
+        "InterpretaciónDetallada": "La calidad de la señal de voz medida por el MOS (Mean Opinion Score) ha disminuido."
+    },
+    {
+        "AlarmaOriginal": "All Links Between BCF and DNS Disconnected",
+        "TítuloCorto": "Desconexión entre BCF y DNS",
+        "InterpretaciónDetallada": "Todos los enlaces entre el BCF (Broadband Connectivity Function) y el servidor DNS están caídos."
+    },
+    {
+        "AlarmaOriginal": "WAG con desvío de THR. Llamar a la GP de PCS_CAf.",
+        "TítuloCorto": "Desvío THR en WAG",
+        "InterpretaciónDetallada": "\"El gateway de acceso (WAG) ha experimentado una variación en el THR (throughput)"
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se incremente la Temperatura en sitio Golf Piso 3",
+        "TítuloCorto": "Aviso de aumento de temperatura Golf Piso 3",
+        "InterpretaciónDetallada": "\"Alerta de aumento de temperatura en el sitio"
+    },
+    {
+        "AlarmaOriginal": "Application Server Heart-beat Failed",
+        "TítuloCorto": "Falla en heart-beat del servidor de aplicaciones",
+        "InterpretaciónDetallada": "El servidor de aplicaciones no respondió al latido de salud esperado."
+    },
+    {
+        "AlarmaOriginal": "E1/T1 channel fault",
+        "TítuloCorto": "Falla en canal E1/T1",
+        "InterpretaciónDetallada": "\"El enlace de datos en protocolo E1/T1 ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Diameter Link Congestion",
+        "TítuloCorto": "Congestión en enlace Diameter",
+        "InterpretaciónDetallada": "\"El enlace Diameter está congestionado"
+    },
+    {
+        "AlarmaOriginal": "System.Process:State",
+        "TítuloCorto": "Estado del proceso del sistema",
+        "InterpretaciónDetallada": "El estado de algún proceso crítico del sistema está anómalo o detenido."
+    },
+    {
+        "AlarmaOriginal": "Casa NFV Interface Down Alarm notification",
+        "TítuloCorto": "Alerta de interfaz NFV caída",
+        "InterpretaciónDetallada": "La interfaz de la arquitectura NFV (Network Function Virtualization) está caída."
+    },
+    {
+        "AlarmaOriginal": "Disponibilidad Opengateway/OpenXpand HOR - Capa Norte Indisponible",
+        "TítuloCorto": "Indisponibilidad Opengateway Capa Norte",
+        "InterpretaciónDetallada": "El gateway Opengateway en la capa norte está fuera de servicio."
+    },
+    {
+        "AlarmaOriginal": "Decline of KPI Entity Exceeds Threshold",
+        "TítuloCorto": "KPI excede umbral",
+        "InterpretaciónDetallada": "El rendimiento de un indicador clave de rendimiento (KPI) ha caído por debajo del umbral permitido."
+    },
+    {
+        "AlarmaOriginal": "Se detecta una caída del éxito de respuesta por debajo del umbral para las rutas correspondientes al tráfico móvil",
+        "TítuloCorto": "Caída de éxito en rutas móviles",
+        "InterpretaciónDetallada": "El éxito de las respuestas en las rutas de tráfico móvil ha disminuido por debajo del umbral establecido."
+    },
+    {
+        "AlarmaOriginal": "Ipmi watchdog of the host is faulty",
+        "TítuloCorto": "Watchdog IPMI defectuoso",
+        "InterpretaciónDetallada": "El sistema de monitoreo de hardware IPMI (Intelligent Platform Management Interface) está fallando."
+    },
+    {
+        "AlarmaOriginal": "License Is About to Enter Grace Period",
+        "TítuloCorto": "Licencia próxima a entrar en período de gracia",
+        "InterpretaciónDetallada": "\"La licencia de un sistema está próxima a entrar en su período de gracia"
+    },
+    {
+        "AlarmaOriginal": "System.CPU:Processor Queue Length",
+        "TítuloCorto": "Longitud de cola de procesador",
+        "InterpretaciónDetallada": "\"El procesador está experimentando una larga cola de tareas"
+    },
+    {
+        "AlarmaOriginal": "Infrastructure.Robot:Robot up/down",
+        "TítuloCorto": "Robot de infraestructura arriba/abajo",
+        "InterpretaciónDetallada": "El robot que gestiona la infraestructura está en un estado no operativo."
+    },
+    {
+        "AlarmaOriginal": "GGSN_Ericsson Uptime",
+        "TítuloCorto": "Tiempo de actividad de GGSN_Ericsson",
+        "InterpretaciónDetallada": "El tiempo de actividad del GGSN de Ericsson debe ser monitoreado para verificar posibles caídas."
+    },
+    {
+        "AlarmaOriginal": "I layer Memory Usage Exceeds the Threshold",
+        "TítuloCorto": "Uso de memoria en capa I excede umbral",
+        "InterpretaciónDetallada": "El uso de memoria en la capa I de la infraestructura está por encima del límite configurado."
+    },
+    {
+        "AlarmaOriginal": "Temperatura Cordoba Centro 1ª Piso ( Sala CENT2 - Sala FOU ) - SBC CEN6350 - SBC CEN4600",
+        "TítuloCorto": "Temperatura elevada en Córdoba Centro",
+        "InterpretaciónDetallada": "\"Aumento de temperatura en el primer piso en Córdoba"
+    },
+    {
+        "AlarmaOriginal": "Uplink data forward ratio",
+        "TítuloCorto": "Relación de avance de datos en uplink",
+        "InterpretaciónDetallada": "La relación de datos enviados en uplink está fuera de lo esperado."
+    },
+    {
+        "AlarmaOriginal": "Swap Failure of the OMU HA System",
+        "TítuloCorto": "Falla en el Swap del sistema OMU HA",
+        "InterpretaciónDetallada": "El proceso de conmutación por error del sistema OMU HA ha fallado."
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0086",
+        "TítuloCorto": "IP Connection Congested\"",
+        "InterpretaciónDetallada": "Congestión de conexión IP"
+    },
+    {
+        "AlarmaOriginal": "Alerta por ocupación superior al 85% en los filesystem de la VM cli-vas-ora-1",
+        "TítuloCorto": "Uso de disco en VM cli-vas-ora-1",
+        "InterpretaciónDetallada": "\"El uso de disco de la máquina virtual cli-vas-ora-1 ha superado el 85%"
+    },
+    {
+        "AlarmaOriginal": "WAG con porcentaje de uso del Pool CGNAT superior al 70%. Llamar a la GP de PCS_CAf.",
+        "TítuloCorto": "Uso alto de pool CGNAT",
+        "InterpretaciónDetallada": "\"El porcentaje de direcciones IP utilizadas en el pool CGNAT ha superado el 70%"
+    },
+    {
+        "AlarmaOriginal": "No response from the CG",
+        "TítuloCorto": "Sin respuesta del CG",
+        "InterpretaciónDetallada": "No se obtuvo respuesta del gateway de carga (Charging Gateway)."
+    },
+    {
+        "AlarmaOriginal": "Inconsistent Files on the Active Node And Standby Node",
+        "TítuloCorto": "Archivos inconsistentes entre nodos activos y en espera",
+        "InterpretaciónDetallada": "\"Los archivos entre los nodos activos y en espera no coinciden"
+    },
+    {
+        "AlarmaOriginal": "License File Expired",
+        "TítuloCorto": "Archivo de licencia caducado",
+        "InterpretaciónDetallada": "El archivo de licencia del sistema ha expirado y requiere renovación."
+    },
+    {
+        "AlarmaOriginal": "Volte IMS voice bearer",
+        "TítuloCorto": "Bearer IMS VoLTE",
+        "InterpretaciónDetallada": "Problema con la ruta de señalización de llamadas VoLTE en la red IMS."
+    },
+    {
+        "AlarmaOriginal": "Optical Removed",
+        "TítuloCorto": "Óptico removido",
+        "InterpretaciónDetallada": "\"Se ha removido un componente óptico"
+    },
+    {
+        "AlarmaOriginal": "MME Exito de attach 3G",
+        "TítuloCorto": "Éxito bajo de attach 3G",
+        "InterpretaciónDetallada": "La tasa de éxito en la conexión de usuarios 3G a la red MME es baja."
+    },
+    {
+        "AlarmaOriginal": "Communication Error Between VNF LCM and NE",
+        "TítuloCorto": "Error de comunicación VNF-LCM-NE",
+        "InterpretaciónDetallada": "Se ha producido un error de comunicación entre el ciclo de vida del VNF y el equipo de red (NE)."
+    },
+    {
+        "AlarmaOriginal": "Clock synchronization abnormity on Linux-based server",
+        "TítuloCorto": "Anomalía en sincronización de reloj",
+        "InterpretaciónDetallada": "El servidor basado en Linux tiene un problema con la sincronización del reloj."
+    },
+    {
+        "AlarmaOriginal": "SIP Trunk Group heart beat is fault",
+        "TítuloCorto": "Falla en heart-beat SIP Trunk",
+        "InterpretaciónDetallada": "El sistema SIP Trunk no ha respondido correctamente al heart-beat de salud."
+    },
+    {
+        "AlarmaOriginal": "hwLocalFaultAlarm",
+        "TítuloCorto": "Alarma de falla de hardware local",
+        "InterpretaciónDetallada": "Se ha detectado una falla en un componente local de hardware."
+    },
+    {
+        "AlarmaOriginal": "Physical Network Unhealthy",
+        "TítuloCorto": "Red física no saludable",
+        "InterpretaciónDetallada": "La infraestructura física de la red no está operando correctamente."
+    },
+    {
+        "AlarmaOriginal": "Communication failure of the slave FE plane",
+        "TítuloCorto": "Falla en comunicación del plano FE esclavo",
+        "InterpretaciónDetallada": "El plano esclavo de la red de acceso (FE) no está comunicándose correctamente con el sistema principal."
+    },
+    {
+        "AlarmaOriginal": "Baja en cantidad de usuarios del apn wingtp en los MMEs",
+        "TítuloCorto": "Disminución de usuarios en APN wingtp",
+        "InterpretaciónDetallada": "Se ha reducido la cantidad de usuarios registrados en el APN wingtp en los MMEs."
+    },
+    {
+        "AlarmaOriginal": "System.Performance.WinNT:Alarm On Value",
+        "TítuloCorto": "Alarma de rendimiento de sistema Windows NT",
+        "InterpretaciónDetallada": "Se ha activado una alarma por un valor fuera de los límites establecidos en el sistema WinNT."
+    },
+    {
+        "AlarmaOriginal": "Frame Resource Disable",
+        "TítuloCorto": "Deshabilitación de recursos de frame",
+        "InterpretaciónDetallada": "Los recursos de frame necesarios para la operación han sido deshabilitados."
+    },
+    {
+        "AlarmaOriginal": "Loss of the reference source",
+        "TítuloCorto": "Pérdida de la fuente de referencia",
+        "InterpretaciónDetallada": "Se ha perdido la fuente de referencia para la sincronización de tiempos o datos."
+    },
+    {
+        "AlarmaOriginal": "HACS resource(s) stopped running",
+        "TítuloCorto": "Recursos HACS detenidos",
+        "InterpretaciónDetallada": "\"Los recursos del sistema HACS han dejado de funcionar"
+    },
+    {
+        "AlarmaOriginal": "Resource switch",
+        "TítuloCorto": "Cambio de recursos",
+        "InterpretaciónDetallada": "\"Ha habido un cambio de recursos en el sistema"
+    },
+    {
+        "AlarmaOriginal": "Communication Failure Between the OMU and Switch Boards",
+        "TítuloCorto": "Falla de comunicación OMU - Switch Boards",
+        "InterpretaciónDetallada": "No se logró la comunicación entre la unidad OMU y las tarjetas de conmutación."
+    },
+    {
+        "AlarmaOriginal": "Notificacion de sitio disponible",
+        "TítuloCorto": "Notificación de disponibilidad de sitio",
+        "InterpretaciónDetallada": "El sitio está disponible y en condiciones operativas para su uso."
+    },
+    {
+        "AlarmaOriginal": "Desvío de IP-Can Session Establishment SR en PCRF. Dar aviso a AE-PBA",
+        "TítuloCorto": "Desvío IP-Can en PCRF",
+        "InterpretaciónDetallada": "\"Se ha producido un desvío en la sesión de establecimiento IP-Can en PCRF"
+    },
+    {
+        "AlarmaOriginal": "OS Scheduled Backup Failure",
+        "TítuloCorto": "Falla en respaldo programado del sistema",
+        "InterpretaciónDetallada": "El proceso de respaldo programado del sistema ha fallado."
+    },
+    {
+        "AlarmaOriginal": "Unified HTR Flow Control Started",
+        "TítuloCorto": "Control de flujo HTR unificado iniciado",
+        "InterpretaciónDetallada": "Se ha iniciado el control de flujo para el sistema HTR unificado."
+    },
+    {
+        "AlarmaOriginal": "Alarma Tablero EPSN - Bytes Subidos",
+        "TítuloCorto": "Alerta de bytes subidos EPSN",
+        "InterpretaciónDetallada": "Se ha detectado un número elevado de bytes subidos en la red EPSN."
+    },
+    {
+        "AlarmaOriginal": "Epdg user access alert",
+        "TítuloCorto": "Alerta de acceso de usuario EPdg",
+        "InterpretaciónDetallada": "Alerta relacionada con el acceso de usuario a través de EPdg."
+    },
+    {
+        "AlarmaOriginal": "Desvío de IP-Can Session Establishment SR en UPCF. Dar aviso a AE-PBA",
+        "TítuloCorto": "Desvío IP-Can en UPCF",
+        "InterpretaciónDetallada": "\"Se ha detectado un desvío en la sesión de establecimiento IP-Can en UPCF"
+    },
+    {
+        "AlarmaOriginal": "Communication Between NMS and NE Is Abnormal",
+        "TítuloCorto": "Comunicación anómala entre NMS y NE",
+        "InterpretaciónDetallada": "Se detectó una anomalía en la comunicación entre el sistema de gestión de red (NMS) y el equipo de red (NE)."
+    },
+    {
+        "AlarmaOriginal": "Se ha detectado afectación o degradación en la frontera SIGTRAN con Nucleo. Revisar el dashboard",
+        "TítuloCorto": "Degradación en frontera SIGTRAN con Nucleo",
+        "InterpretaciónDetallada": "\"Se ha detectado un problema en la frontera SIGTRAN con el núcleo"
+    },
+    {
+        "AlarmaOriginal": "linkdown",
+        "TítuloCorto": "Enlace caído",
+        "InterpretaciónDetallada": "\"Se ha caído un enlace de comunicación"
+    },
+    {
+        "AlarmaOriginal": "License File Expiring Precaution",
+        "TítuloCorto": "Precaución por expiración de licencia",
+        "InterpretaciónDetallada": "\"La licencia del sistema está próxima a vencer"
+    },
+    {
+        "AlarmaOriginal": "Mensajes enviados Interfaz Sh/Dh entre DRAs y IMSHSS alert",
+        "TítuloCorto": "Tráfico enviado en interfaz Sh/Dh DRAs-IMSHSS",
+        "InterpretaciónDetallada": "\"Se ha detectado tráfico en la interfaz Sh/Dh entre DRAs y IMSHSS"
+    },
+    {
+        "AlarmaOriginal": "System.Memory:Paging KB/s",
+        "TítuloCorto": "Uso de memoria paginada",
+        "InterpretaciónDetallada": "\"El sistema está utilizando memoria paginada a una velocidad elevada"
+    },
+    {
+        "AlarmaOriginal": "IPFarm Server no response",
+        "TítuloCorto": "No respuesta del servidor IPFarm",
+        "InterpretaciónDetallada": "\"El servidor IPFarm no está respondiendo"
+    },
+    {
+        "AlarmaOriginal": "Mensajes recibidos Interfaz Sh/Dh entre DRAs y ATS SCCAS alert",
+        "TítuloCorto": "Tráfico recibido en interfaz Sh/Dh DRAs-ATS SCCAS",
+        "InterpretaciónDetallada": "\"Alerta de tráfico recibido en la interfaz Sh/Dh entre DRAs y ATS SCCAS"
+    },
+    {
+        "AlarmaOriginal": "CORE Delta 2G Activation PDP Context x USN",
+        "TítuloCorto": "Cambio en contexto PDP 2G",
+        "InterpretaciónDetallada": "\"Se ha detectado una variación en el contexto PDP 2G"
+    },
+    {
+        "AlarmaOriginal": "PFCP Path Disconnections",
+        "TítuloCorto": "Desconexiones en ruta PFCP",
+        "InterpretaciónDetallada": "\"Se ha producido una desconexión en las rutas PFCP"
+    },
+    {
+        "AlarmaOriginal": "Mensajes enviados Interfaz Sh/Dh entre DRAs y ATS SCCAS alert",
+        "TítuloCorto": "Tráfico enviado en interfaz Sh/Dh DRAs-ATS SCCAS",
+        "InterpretaciónDetallada": "\"Se ha detectado tráfico enviado en la interfaz Sh/Dh entre DRAs y ATS SCCAS"
+    },
+    {
+        "AlarmaOriginal": "CSCF VM RDB Module: % Memory Usage > 75%",
+        "TítuloCorto": "Uso de memoria en módulo CSCF > 75%",
+        "InterpretaciónDetallada": "\"El módulo RDB de la VM CSCF está utilizando más del 75% de su memoria"
+    },
+    {
+        "AlarmaOriginal": "Downlink data forward ratio",
+        "TítuloCorto": "Relación de avance de datos en downlink",
+        "InterpretaciónDetallada": "La relación de datos avanzados en downlink está por debajo de lo esperado."
+    },
+    {
+        "AlarmaOriginal": "DNSDIST Status DNS-INTs",
+        "TítuloCorto": "Estado de DNS-INTs",
+        "InterpretaciónDetallada": "\"Se ha detectado un problema en el estado de los servicios DNS-INTs"
+    },
+    {
+        "AlarmaOriginal": "Aumento de trafico enviado a Sgate por encima del trafico promedio mensual",
+        "TítuloCorto": "Aumento de tráfico a Sgate",
+        "InterpretaciónDetallada": "Se ha detectado un incremento en el tráfico enviado a Sgate por encima del promedio mensual."
+    },
+    {
+        "AlarmaOriginal": "Mensajes enviados Interfaz Cx/Dx entre DRAs y IMSHSS alert",
+        "TítuloCorto": "Tráfico enviado interfaz Cx/Dx DRAs-IMSHSS",
+        "InterpretaciónDetallada": "Alerta de tráfico enviado en la interfaz Cx/Dx entre DRAs y IMSHSS."
+    },
+    {
+        "AlarmaOriginal": "IPFarm No Available Server",
+        "TítuloCorto": "Sin servidores disponibles en IPFarm",
+        "InterpretaciónDetallada": "\"No hay servidores disponibles en el IPFarm"
+    },
+    {
+        "AlarmaOriginal": "Board Temperature Exceeds Level 1 Threshold",
+        "TítuloCorto": "Temperatura de placa > umbral nivel 1",
+        "InterpretaciónDetallada": "\"La temperatura de una de las placas ha superado el umbral de nivel 1"
+    },
+    {
+        "AlarmaOriginal": "Cpu Overloaded(level 2)",
+        "TítuloCorto": "Sobrecarga de CPU nivel 2",
+        "InterpretaciónDetallada": "\"La CPU está sobrecargada en un nivel crítico 2"
+    },
+    {
+        "AlarmaOriginal": "MEM Connection Break",
+        "TítuloCorto": "Corte en conexión de memoria",
+        "InterpretaciónDetallada": "\"Se ha producido una ruptura en la conexión de memoria"
+    },
+    {
+        "AlarmaOriginal": "System.Memory:Swap Memory Usage pct",
+        "TítuloCorto": "Uso de memoria swap",
+        "InterpretaciónDetallada": "\"El uso de memoria swap ha aumentado"
+    },
+    {
+        "AlarmaOriginal": "SFIP VM Detected Abnormal",
+        "TítuloCorto": "Anomalía detectada en VM SFIP",
+        "InterpretaciónDetallada": "\"Se ha detectado una anomalía en la máquina virtual SFIP"
+    },
+    {
+        "AlarmaOriginal": "Se observa una variación con respecto al comportamiento histórico para el trafico en los links directos de señalización hacia Ancel para TX",
+        "TítuloCorto": "Variación en tráfico de señalización hacia Ancel",
+        "InterpretaciónDetallada": "Se ha detectado una variación en el tráfico histórico de señalización hacia Ancel en TX."
+    },
+    {
+        "AlarmaOriginal": "Users Having Not Logged In for an Excessively Long Time",
+        "TítuloCorto": "Usuarios no logueados por largo tiempo",
+        "InterpretaciónDetallada": "Se ha identificado que algunos usuarios no han iniciado sesión por un tiempo excesivo."
+    },
+    {
+        "AlarmaOriginal": "VNF And VNFM Connection Fault",
+        "TítuloCorto": "Falla en conexión VNF y VNFM",
+        "InterpretaciónDetallada": "\"Se ha producido una falla en la conexión entre el VNF y el VNFM"
+    },
+    {
+        "AlarmaOriginal": "Mensajes recibidos Interfaz Sh/Dh entre DRAs y IMSHSS alert",
+        "TítuloCorto": "Tráfico recibido interfaz Sh/Dh DRAs-IMSHSS",
+        "InterpretaciónDetallada": "Alerta de tráfico recibido en la interfaz Sh/Dh entre DRAs y IMSHSS."
+    },
+    {
+        "AlarmaOriginal": "Mensajes recibidos Interfaz Cx/Dx entre DRAs y IMSHSS alert",
+        "TítuloCorto": "Tráfico recibido interfaz Cx/Dx DRAs-IMSHSS",
+        "InterpretaciónDetallada": "Alerta de tráfico recibido en la interfaz Cx/Dx entre DRAs y IMSHSS."
+    },
+    {
+        "AlarmaOriginal": "Volume Audit Failure",
+        "TítuloCorto": "Falla de auditoría de volumen",
+        "InterpretaciónDetallada": "\"La auditoría del volumen de datos ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Exito de MO",
+        "TítuloCorto": "Éxito de MO",
+        "InterpretaciónDetallada": "El proceso de salida del móvil (MO) ha sido exitoso."
+    },
+    {
+        "AlarmaOriginal": "Aumento de trafico recibido en Sgate por encima del trafico promedio mensual",
+        "TítuloCorto": "Aumento de tráfico recibido en Sgate",
+        "InterpretaciónDetallada": "\"Se ha detectado un aumento en el tráfico recibido en Sgate"
+    },
+    {
+        "AlarmaOriginal": "Alerta por uso de memoria superior al 85% en la VM ani-vas-ora-1",
+        "TítuloCorto": "Alerta por alto uso de memoria en VM",
+        "InterpretaciónDetallada": "El uso de memoria en la máquina virtual ani-vas-ora-1 ha superado el 85%."
+    },
+    {
+        "AlarmaOriginal": "Cpu Overloaded(level 1)",
+        "TítuloCorto": "Sobrecarga de CPU nivel 1",
+        "InterpretaciónDetallada": "\"La CPU ha superado su capacidad operativa en un nivel 1"
+    },
+    {
+        "AlarmaOriginal": "One HACS ring for communication is FAULTY",
+        "TítuloCorto": "Anillo HACS defectuoso",
+        "InterpretaciónDetallada": "\"Uno de los anillos HACS para la comunicación está defectuoso"
+    },
+    {
+        "AlarmaOriginal": "Alerta por uso de memoria superior al 70% en la VM ani-vas-glrvhe-1",
+        "TítuloCorto": "Alerta por alto uso de memoria en VM",
+        "InterpretaciónDetallada": "El uso de memoria en la máquina virtual ani-vas-glrvhe-1 ha superado el 70%."
+    },
+    {
+        "AlarmaOriginal": "Cpu Overloaded(level 3)",
+        "TítuloCorto": "Sobrecarga de CPU nivel 3",
+        "InterpretaciónDetallada": "\"La CPU está sobrecargada en un nivel crítico 3"
+    },
+    {
+        "AlarmaOriginal": "System.Process:CPU Usage",
+        "TítuloCorto": "Uso de CPU del proceso del sistema",
+        "InterpretaciónDetallada": "\"El proceso del sistema está utilizando un nivel elevado de CPU"
+    },
+    {
+        "AlarmaOriginal": "Baja de check imei 2g/3g",
+        "TítuloCorto": "Baja en verificación de IMEI 2G/3G",
+        "InterpretaciónDetallada": "Se ha detectado una baja en el proceso de verificación de IMEI en redes 2G/3G."
+    },
+    {
+        "AlarmaOriginal": "IP Traffic Overload",
+        "TítuloCorto": "Sobrecarga de tráfico IP",
+        "InterpretaciónDetallada": "\"El tráfico IP ha excedido los límites establecidos"
+    },
+    {
+        "AlarmaOriginal": "WAG con desvío de volumen de UE en estado UnAuth o AAA_Auth. Llamar a la GP de PCS_CAf.",
+        "TítuloCorto": "Desvío de volumen de UE",
+        "InterpretaciónDetallada": "\"Se ha detectado un desvío de volumen de UE en estado UnAuth o AAA_Auth"
+    },
+    {
+        "AlarmaOriginal": "Clock config Abnormal",
+        "TítuloCorto": "Configuración anómala de reloj",
+        "InterpretaciónDetallada": "\"Se ha detectado una anomalía en la configuración del reloj"
+    },
+    {
+        "AlarmaOriginal": "Revisar",
+        "TítuloCorto": "Revisión",
+        "InterpretaciónDetallada": "Se requiere revisar el sistema o servicio debido a una alerta general."
+    },
+    {
+        "AlarmaOriginal": "prueba",
+        "TítuloCorto": "Prueba",
+        "InterpretaciónDetallada": "Alerta generada por una prueba o verificación en el sistema."
+    },
+    {
+        "AlarmaOriginal": "MRFC : Percentage of Mrfc Answered Announcement Requests < 95%",
+        "TítuloCorto": "Porcentaje bajo de solicitudes respondidas por MRFC",
+        "InterpretaciónDetallada": "El MRFC ha respondido menos del 95% de las solicitudes de anuncio."
+    },
+    {
+        "AlarmaOriginal": "CORE Delta Gb Downlink Throughput x USN",
+        "TítuloCorto": "Cambio en el rendimiento de Gb downlink",
+        "InterpretaciónDetallada": "Variación en el rendimiento del throughput de la red Gb en downlink."
+    },
+    {
+        "AlarmaOriginal": "Link down EPDG-DRA /SWm",
+        "TítuloCorto": "Enlace caído entre EPDG-DRA",
+        "InterpretaciónDetallada": "\"El enlace entre EPDG y DRA ha caído"
+    },
+    {
+        "AlarmaOriginal": "Temperatura > 40",
+        "TítuloCorto": "Temperatura alta",
+        "InterpretaciónDetallada": "\"La temperatura del equipo ha superado los 40°C"
+    },
+    {
+        "AlarmaOriginal": "Esta alarma indica que el archivo de clientes no llego al NTR. Desestimar la alarma",
+        "TítuloCorto": "Archivo no llegado al NTR",
+        "InterpretaciónDetallada": "\"Se ha detectado que el archivo de clientes no ha llegado al NTR"
+    },
+    {
+        "AlarmaOriginal": "PRA Signaling Link fail",
+        "TítuloCorto": "Falla en enlace de señalización PRA",
+        "InterpretaciónDetallada": "\"El enlace de señalización PRA ha fallado"
+    },
+    {
+        "AlarmaOriginal": "No response from the DNS server",
+        "TítuloCorto": "Sin respuesta del servidor DNS",
+        "InterpretaciónDetallada": "\"El servidor DNS no respondió"
+    },
+    {
+        "AlarmaOriginal": "IMS VoLTE - Total Registered Users < 7900000",
+        "TítuloCorto": "\"Usuarios registrados en IMS VoLTE < 7",
+        "InterpretaciónDetallada": "900"
+    },
+    {
+        "AlarmaOriginal": "Module Overload",
+        "TítuloCorto": "Sobrecarga de módulo",
+        "InterpretaciónDetallada": "\"Un módulo del sistema está sobrecargado"
+    },
+    {
+        "AlarmaOriginal": "Devices Heart-beat Failed",
+        "TítuloCorto": "Falla en heart-beat de dispositivos",
+        "InterpretaciónDetallada": "Se ha detectado una falla en el heart-beat de los dispositivos monitoreados."
+    },
+    {
+        "AlarmaOriginal": "The OMU Failed to Synchronize Time with the NTP Server",
+        "TítuloCorto": "Falla de sincronización OMU con NTP",
+        "InterpretaciónDetallada": "El OMU no pudo sincronizar el tiempo con el servidor NTP."
+    },
+    {
+        "AlarmaOriginal": "KPI Change Exceeding Threshold",
+        "TítuloCorto": "Cambio de KPI excede umbral",
+        "InterpretaciónDetallada": "\"El cambio en el KPI ha superado el umbral establecido"
+    },
+    {
+        "AlarmaOriginal": "Module Congested",
+        "TítuloCorto": "Módulo congestionado",
+        "InterpretaciónDetallada": "\"El módulo está congestionado"
+    },
+    {
+        "AlarmaOriginal": "Image Audit Alarm",
+        "TítuloCorto": "Alarma de auditoría de imagen",
+        "InterpretaciónDetallada": "\"Se ha generado una alarma de auditoría de imagen"
+    },
+    {
+        "AlarmaOriginal": "Management Storage Link Failure",
+        "TítuloCorto": "Falla en el enlace de almacenamiento de gestión",
+        "InterpretaciónDetallada": "El enlace entre el almacenamiento de gestión y el sistema ha fallado."
+    },
+    {
+        "AlarmaOriginal": "VNF LCM Remote Disaster Recovery System Node Fault at Standby Site",
+        "TítuloCorto": "Falla de nodo en sistema de recuperación remota VNF LCM",
+        "InterpretaciónDetallada": "El nodo de recuperación remota en el sitio de respaldo del sistema VNF LCM ha fallado."
+    },
+    {
+        "AlarmaOriginal": "Casa NFV License Usage No License Alarm notification for total number of session-tunnel",
+        "TítuloCorto": "Alerta por falta de licencia en NFV",
+        "InterpretaciónDetallada": "El sistema NFV ha generado una alarma debido a la falta de licencias disponibles para el número total de sesiones-túneles."
+    },
+    {
+        "AlarmaOriginal": "Receive Signal Loss",
+        "TítuloCorto": "Pérdida de señal recibida",
+        "InterpretaciónDetallada": "\"Se ha detectado la pérdida de la señal recibida"
+    },
+    {
+        "AlarmaOriginal": "Disponibilidad Opengateway/OpenXpand HOR - Capa SUR Indisponible",
+        "TítuloCorto": "Indisponibilidad Capa SUR OpenGateway",
+        "InterpretaciónDetallada": "La capa SUR de Opengateway/OpenXpand está fuera de servicio."
+    },
+    {
+        "AlarmaOriginal": "Flow Control of User Data Query",
+        "TítuloCorto": "Control de flujo de consulta de datos de usuario",
+        "InterpretaciónDetallada": "\"Se ha iniciado un control de flujo para las consultas de datos de usuario"
+    },
+    {
+        "AlarmaOriginal": "Alarm of failed EDR ratio",
+        "TítuloCorto": "Alarma de falla en ratio EDR",
+        "InterpretaciónDetallada": "El ratio de fallas de EDR (registros de datos de eventos) está por encima de los niveles esperados."
+    },
+    {
+        "AlarmaOriginal": "S1 Interface Payload Protocol ID Error",
+        "TítuloCorto": "Error en protocolo ID en interfaz S1",
+        "InterpretaciónDetallada": "\"Se ha detectado un error en el protocolo ID de la interfaz S1"
+    },
+    {
+        "AlarmaOriginal": "Service filter rule is not effective",
+        "TítuloCorto": "Regla de filtro de servicio no efectiva",
+        "InterpretaciónDetallada": "\"La regla de filtro de servicio no está siendo efectiva"
+    },
+    {
+        "AlarmaOriginal": "Alarm Box Offline",
+        "TítuloCorto": "Caja de alarmas fuera de línea",
+        "InterpretaciónDetallada": "La caja de alarmas ha perdido la conectividad y no está operativa."
+    },
+    {
+        "AlarmaOriginal": "Mensajes enviados Interfaz Cx/Dx entre DRAs y I-CSCF alert",
+        "TítuloCorto": "Tráfico enviado interfaz Cx/Dx DRAs-I-CSCF",
+        "InterpretaciónDetallada": "Alerta de tráfico enviado en la interfaz Cx/Dx entre DRAs e I-CSCF."
+    },
+    {
+        "AlarmaOriginal": "Optical Invalid",
+        "TítuloCorto": "Componente óptico inválido",
+        "InterpretaciónDetallada": "\"Se ha detectado un componente óptico inválido"
+    },
+    {
+        "AlarmaOriginal": "Valores de energía < 46v o Valores de energía > 56v",
+        "TítuloCorto": "Anomalía en valores de energía",
+        "InterpretaciónDetallada": "\"Los valores de energía están fuera de rango"
+    },
+    {
+        "AlarmaOriginal": "UI Operation Failed",
+        "TítuloCorto": "Falla en operación de la interfaz de usuario",
+        "InterpretaciónDetallada": "\"La operación de la interfaz de usuario ha fallado"
+    },
+    {
+        "AlarmaOriginal": "BGP Connection Interruption",
+        "TítuloCorto": "Interrupción de conexión BGP",
+        "InterpretaciónDetallada": "\"La conexión BGP ha sido interrumpida"
+    },
+    {
+        "AlarmaOriginal": "Bill files were missing or duplicated.",
+        "TítuloCorto": "Archivos de facturación faltantes o duplicados",
+        "InterpretaciónDetallada": "\"Se ha detectado que los archivos de facturación están faltando o se han duplicado"
+    },
+    {
+        "AlarmaOriginal": "Alarma por desbalanceo de trafico entre los planos de los USSDGW",
+        "TítuloCorto": "Desbalanceo de tráfico en USSDGW",
+        "InterpretaciónDetallada": "\"Se ha detectado un desbalanceo de tráfico entre los planos de los USSDGW"
+    },
+    {
+        "AlarmaOriginal": "ZooKeeper Health Check Alarm",
+        "TítuloCorto": "Alarma de salud de ZooKeeper",
+        "InterpretaciónDetallada": "\"Se ha detectado un problema en el servicio de ZooKeeper"
+    },
+    {
+        "AlarmaOriginal": "M3UA link overload",
+        "TítuloCorto": "Sobrecarga en enlace M3UA",
+        "InterpretaciónDetallada": "\"El enlace M3UA está sobrecargado"
+    },
+    {
+        "AlarmaOriginal": "Management Storage Link or Authentication Failure",
+        "TítuloCorto": "Falla en enlace de almacenamiento o autenticación",
+        "InterpretaciónDetallada": "Se ha producido una falla en el enlace de almacenamiento de gestión o en el proceso de autenticación."
+    },
+    {
+        "AlarmaOriginal": "SIP Call Abnormal Alarm",
+        "TítuloCorto": "Alarma de llamada SIP anormal",
+        "InterpretaciónDetallada": "Se ha detectado un comportamiento anómalo en las llamadas SIP."
+    },
+    {
+        "AlarmaOriginal": "HAProxy Backend Services Fault",
+        "TítuloCorto": "Falla en servicios backend de HAProxy",
+        "InterpretaciónDetallada": "Los servicios backend de HAProxy no están funcionando correctamente."
+    },
+    {
+        "AlarmaOriginal": "Alerta por ocupación superior al 90% en los filesystem de la VM cli-vas-ntr-1",
+        "TítuloCorto": "Alerta por alta ocupación de disco en VM",
+        "InterpretaciónDetallada": "El uso del disco en la máquina virtual cli-vas-ntr-1 ha superado el 90%."
+    },
+    {
+        "AlarmaOriginal": "High CPU Usage of IaaS",
+        "TítuloCorto": "Alto uso de CPU de IaaS",
+        "InterpretaciónDetallada": "El uso de CPU en la infraestructura como servicio (IaaS) ha alcanzado niveles elevados."
+    },
+    {
+        "AlarmaOriginal": "vCPU Core Binding Conflict",
+        "TítuloCorto": "Conflicto de vinculación de núcleos vCPU",
+        "InterpretaciónDetallada": "\"Se ha detectado un conflicto en la vinculación de núcleos vCPU"
+    },
+    {
+        "AlarmaOriginal": "Metadata Service Connection Failure",
+        "TítuloCorto": "Falla en conexión de servicio de metadatos",
+        "InterpretaciónDetallada": "\"La conexión al servicio de metadatos ha fallado"
+    },
+    {
+        "AlarmaOriginal": "\"Esta alerta esta generada como Warning",
+        "TítuloCorto": "ya que uno de los UMG está caído. Acción a realizar: Avisar al equipo PCS_Voz_Afuera por mail que uno de los UMG está caído.\"",
+        "InterpretaciónDetallada": "UMG caído"
+    },
+    {
+        "AlarmaOriginal": "Failed to Send the Remote Notification",
+        "TítuloCorto": "Falla en envío de notificación remota",
+        "InterpretaciónDetallada": "\"No se pudo enviar la notificación remota"
+    },
+    {
+        "AlarmaOriginal": "DMU Disconnected from Agent",
+        "TítuloCorto": "DMU desconectado del agente",
+        "InterpretaciónDetallada": "\"La unidad DMU ha sido desconectada del agente"
+    },
+    {
+        "AlarmaOriginal": "Exceptions in the sysrq File",
+        "TítuloCorto": "Excepciones en archivo sysrq",
+        "InterpretaciónDetallada": "\"Se han detectado excepciones en el archivo sysrq"
+    },
+    {
+        "AlarmaOriginal": "Automatic Service Backup Failure",
+        "TítuloCorto": "Falla en respaldo automático del servicio",
+        "InterpretaciónDetallada": "\"No se ha podido realizar el respaldo automático del servicio"
+    },
+    {
+        "AlarmaOriginal": "Inconsistent RAT-Type associated with the same TAI",
+        "TítuloCorto": "Inconsistencia en RAT-Type con el mismo TAI",
+        "InterpretaciónDetallada": "Se ha detectado una inconsistencia en el tipo de acceso radio (RAT) asociado con el mismo identificador TAI."
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se incremente la Temperatura en sitio Iriondo",
+        "TítuloCorto": "Alerta por temperatura en sitio Iriondo",
+        "InterpretaciónDetallada": "Se debe avisar a PCS si la temperatura en el sitio Iriondo supera los límites establecidos."
+    },
+    {
+        "AlarmaOriginal": "Board Temperature Exceeds Level 2 Threshold",
+        "TítuloCorto": "Temperatura de la placa excede el umbral 2",
+        "InterpretaciónDetallada": "\"La temperatura de la placa ha superado el umbral de nivel 2"
+    },
+    {
+        "AlarmaOriginal": "Number of trunk groups fault circuits exceed threshold",
+        "TítuloCorto": "Exceso de fallos en circuitos de troncal",
+        "InterpretaciónDetallada": "El número de fallos en los circuitos de troncal ha superado el umbral establecido."
+    },
+    {
+        "AlarmaOriginal": "Failure to synchronize data from the ConfigCenter to an agent node",
+        "TítuloCorto": "Falla en la sincronización de datos del ConfigCenter a nodo agente",
+        "InterpretaciónDetallada": "\"No se pudo sincronizar la información entre el ConfigCenter y el nodo agente"
+    },
+    {
+        "AlarmaOriginal": "Mensajes recibidos Interfaz Cx/Dx entre DRAs y I-CSCF alert",
+        "TítuloCorto": "Tráfico recibido interfaz Cx/Dx DRAs-I-CSCF",
+        "InterpretaciónDetallada": "\"Se ha recibido tráfico en la interfaz Cx/Dx entre los DRAs y I-CSCF"
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se incremente la Temperatura en sitio Mendoza",
+        "TítuloCorto": "Alerta por temperatura en sitio Mendoza",
+        "InterpretaciónDetallada": "Se debe avisar a PCS si la temperatura en el sitio Mendoza supera los límites establecidos."
+    },
+    {
+        "AlarmaOriginal": "SIWF fault",
+        "TítuloCorto": "Falla SIWF",
+        "InterpretaciónDetallada": "Se ha detectado una falla en el sistema de flujo de trabajo inteligente (SIWF)."
+    },
+    {
+        "AlarmaOriginal": "Automatic Installation Failure of Patch",
+        "TítuloCorto": "Falla en instalación automática de parche",
+        "InterpretaciónDetallada": "No se ha podido realizar la instalación automática del parche requerido en el sistema."
+    },
+    {
+        "AlarmaOriginal": "Caída en cantidad de clientes ToIP FTTH Registrados por encima del 5% sobre el valor histórico del parque de clientes",
+        "TítuloCorto": "Caída en clientes ToIP FTTH",
+        "InterpretaciónDetallada": "Se ha detectado una caída de más del 5% en la cantidad de clientes registrados en ToIP FTTH."
+    },
+    {
+        "AlarmaOriginal": "DRService was disconnected",
+        "TítuloCorto": "Desconexión del servicio DR",
+        "InterpretaciónDetallada": "\"El servicio DR ha sido desconectado"
+    },
+    {
+        "AlarmaOriginal": "Bond Status Abnormal",
+        "TítuloCorto": "Estado anómalo en vínculo",
+        "InterpretaciónDetallada": "\"Se ha detectado un estado anómalo en el vínculo de agregación"
+    },
+    {
+        "AlarmaOriginal": "Low SAUAdapter Performance",
+        "TítuloCorto": "Bajo rendimiento del adaptador SAU",
+        "InterpretaciónDetallada": "El adaptador SAU está funcionando por debajo de su capacidad óptima."
+    },
+    {
+        "AlarmaOriginal": "Front board removed",
+        "TítuloCorto": "Placa frontal retirada",
+        "InterpretaciónDetallada": "\"Se ha retirado la placa frontal del equipo"
+    },
+    {
+        "AlarmaOriginal": "C/D interface Congestion",
+        "TítuloCorto": "Congestión en la interfaz C/D",
+        "InterpretaciónDetallada": "\"Se ha detectado congestión en la interfaz C/D"
+    },
+    {
+        "AlarmaOriginal": "Device Is Offline",
+        "TítuloCorto": "Dispositivo fuera de línea",
+        "InterpretaciónDetallada": "\"El dispositivo está fuera de línea"
+    },
+    {
+        "AlarmaOriginal": "VM Audit Failure",
+        "TítuloCorto": "Falla en auditoría de la VM",
+        "InterpretaciónDetallada": "\"La auditoría de la máquina virtual ha fallado"
+    },
+    {
+        "AlarmaOriginal": "\"Estimados",
+        "TítuloCorto": "Se ha generado un Alerta en Grafana – Dashboard PPS NGIN CONVERGENTE. Algún error superó la cantidad de 100. Estos son errores que devuelve OCS. Verificar con GDA-Tasación si no están realizando tareas del lado tasador OCS o si no tienen\"",
+        "InterpretaciónDetallada": "Alerta en Dashboard PPS NGIN CONVERGENTE"
+    },
+    {
+        "AlarmaOriginal": "VM Rebuilding Failure",
+        "TítuloCorto": "Falla en reconstrucción de la VM",
+        "InterpretaciónDetallada": "\"Ha fallado el proceso de reconstrucción de la máquina virtual"
+    },
+    {
+        "AlarmaOriginal": "FE LAN Switch abnormality",
+        "TítuloCorto": "Anomalía en el switch LAN FE",
+        "InterpretaciónDetallada": "\"Se ha detectado una anomalía en el switch LAN FE"
+    },
+    {
+        "AlarmaOriginal": "Time difference is big between nodes",
+        "TítuloCorto": "Gran diferencia de tiempo entre nodos",
+        "InterpretaciónDetallada": "\"Se ha detectado una gran diferencia de tiempo entre los nodos"
+    },
+    {
+        "AlarmaOriginal": "GGSN_Ericsson Cant de APNs activos",
+        "TítuloCorto": "Número de APNs activos en GGSN Ericsson",
+        "InterpretaciónDetallada": "\"Se ha excedido el número de APNs activos en el GGSN Ericsson"
+    },
+    {
+        "AlarmaOriginal": "Device Unreachable Through SNMP",
+        "TítuloCorto": "Dispositivo inaccesible por SNMP",
+        "InterpretaciónDetallada": "\"El dispositivo no puede ser alcanzado a través de SNMP"
+    },
+    {
+        "AlarmaOriginal": "The iGWB CDR Synchronization is Abnormal",
+        "TítuloCorto": "Sincronización CDR del iGWB anómala",
+        "InterpretaciónDetallada": "\"La sincronización de los registros de llamadas (CDR) del iGWB está fallando"
+    },
+    {
+        "AlarmaOriginal": "Diameter LinkSet Congestion",
+        "TítuloCorto": "Congestión en enlace Diameter",
+        "InterpretaciónDetallada": "\"El enlace Diameter está congestionado"
+    },
+    {
+        "AlarmaOriginal": "CORE PGW Modification Success Ratio x UGW",
+        "TítuloCorto": "Ratio de éxito de modificación PGW CORE x UGW",
+        "InterpretaciónDetallada": "El ratio de éxito en la modificación de PGW CORE con UGW no está dentro de los límites establecidos."
+    },
+    {
+        "AlarmaOriginal": "Failure to Connect to the Database",
+        "TítuloCorto": "Falla en la conexión a la base de datos",
+        "InterpretaciónDetallada": "\"No se ha podido establecer la conexión con la base de datos"
+    },
+    {
+        "AlarmaOriginal": "Cascading interface failure",
+        "TítuloCorto": "Falla en interfaz en cascada",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en una interfaz en cascada"
+    },
+    {
+        "AlarmaOriginal": "M3UA destination entity is inaccessible",
+        "TítuloCorto": "Entidad de destino M3UA inaccesible",
+        "InterpretaciónDetallada": "\"La entidad de destino M3UA no es accesible"
+    },
+    {
+        "AlarmaOriginal": "SIP Parlay Call Delay Alarm",
+        "TítuloCorto": "Alarma de retraso en llamada SIP Parlay",
+        "InterpretaciónDetallada": "\"Se ha detectado un retraso en las llamadas SIP Parlay"
+    },
+    {
+        "AlarmaOriginal": "Insecure Configuration Exists",
+        "TítuloCorto": "Configuración insegura",
+        "InterpretaciónDetallada": "Se ha detectado una configuración insegura en el sistema que puede comprometer la seguridad."
+    },
+    {
+        "AlarmaOriginal": "SDH/STM-1 fault",
+        "TítuloCorto": "Falla en SDH/STM-1",
+        "InterpretaciónDetallada": "\"Se ha producido una falla en el sistema SDH/STM-1"
+    },
+    {
+        "AlarmaOriginal": "CPU Overloaded",
+        "TítuloCorto": "Sobrecarga de CPU",
+        "InterpretaciónDetallada": "\"La CPU está sobrecargada"
+    },
+    {
+        "AlarmaOriginal": "Failure to Synchronize Files",
+        "TítuloCorto": "Falla en la sincronización de archivos",
+        "InterpretaciónDetallada": "\"No se ha podido sincronizar correctamente los archivos"
+    },
+    {
+        "AlarmaOriginal": "The User in the SMManagers Group Changes a User's Password",
+        "TítuloCorto": "Cambio de contraseña por usuario del grupo SMManagers",
+        "InterpretaciónDetallada": "\"Un usuario del grupo SMManagers ha cambiado la contraseña de otro usuario"
+    },
+    {
+        "AlarmaOriginal": "Alerta por baja en el éxito de respuesta de instancias para el trafico móvil",
+        "TítuloCorto": "Baja en éxito de respuesta de instancias móviles",
+        "InterpretaciónDetallada": "\"Se ha detectado una baja en el éxito de respuesta de instancias móviles"
+    },
+    {
+        "AlarmaOriginal": "High Memory Usage of IaaS",
+        "TítuloCorto": "Alto uso de memoria en IaaS",
+        "InterpretaciónDetallada": "El uso de memoria en la infraestructura como servicio (IaaS) ha superado los límites establecidos."
+    },
+    {
+        "AlarmaOriginal": "MME Delta Attached Users",
+        "TítuloCorto": "MME Delta usuarios conectados",
+        "InterpretaciónDetallada": "\"Se ha producido un cambio en la cantidad de usuarios conectados al MME"
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se incremente la Temperatura en sitio Tucuman (MUS)",
+        "TítuloCorto": "Alerta por temperatura en sitio Tucumán",
+        "InterpretaciónDetallada": "Se debe avisar a PCS si la temperatura en el sitio Tucumán (MUS) supera los límites establecidos."
+    },
+    {
+        "AlarmaOriginal": "CSCF VM DPU Modules: % CPU Load Maximum > 30%",
+        "TítuloCorto": "Carga de CPU > 30% en módulos DPU CSCF",
+        "InterpretaciónDetallada": "\"El uso de CPU en los módulos DPU de CSCF ha superado el 30%"
+    },
+    {
+        "AlarmaOriginal": "Ocupación del AMS Storage superior al 70% en el NMM Añasco",
+        "TítuloCorto": "Alta ocupación de almacenamiento AMS",
+        "InterpretaciónDetallada": "\"La ocupación del almacenamiento AMS ha superado el 70% en el NMM Añasco"
+    },
+    {
+        "AlarmaOriginal": "SCCP DPC Paused",
+        "TítuloCorto": "Pausa de DPC SCCP",
+        "InterpretaciónDetallada": "\"El SCCP DPC ha sido pausado"
+    },
+    {
+        "AlarmaOriginal": "All HACS rings for communication are FAULTY",
+        "TítuloCorto": "Todos los anillos HACS fallaron",
+        "InterpretaciónDetallada": "\"Todos los anillos HACS utilizados para la comunicación están fallando"
+    },
+    {
+        "AlarmaOriginal": "El cluster DB de los IMGW no dispone de los 4 nodos",
+        "TítuloCorto": "Cluster DB IMGW incompleto",
+        "InterpretaciónDetallada": "\"El cluster de base de datos de los IMGW no cuenta con los 4 nodos requeridos"
+    },
+    {
+        "AlarmaOriginal": "Power Entry Module Voltage Exceeds Level 1 Threshold",
+        "TítuloCorto": "Voltaje del módulo de entrada excede umbral nivel 1",
+        "InterpretaciónDetallada": "\"El voltaje en el módulo de entrada ha excedido el umbral de nivel 1"
+    },
+    {
+        "AlarmaOriginal": "The usage of local address pool exceeds alarm threshold",
+        "TítuloCorto": "Uso de la piscina de direcciones local excede umbral",
+        "InterpretaciónDetallada": "\"El uso de la piscina de direcciones local ha superado el umbral establecido"
+    },
+    {
+        "AlarmaOriginal": "AvgDelayfromSipDisptoIMS exceeds threshold",
+        "TítuloCorto": "Retraso promedio SIP-IMS excede umbral",
+        "InterpretaciónDetallada": "\"El retraso promedio entre el sistema SIP y IMS ha superado el umbral permitido"
+    },
+    {
+        "AlarmaOriginal": "Trunk Congestion Alarm",
+        "TítuloCorto": "Alarma por congestión de troncal",
+        "InterpretaciónDetallada": "\"Se ha detectado congestión en un troncal"
+    },
+    {
+        "AlarmaOriginal": "System cold start",
+        "TítuloCorto": "Inicio en frío del sistema",
+        "InterpretaciónDetallada": "\"El sistema se ha reiniciado completamente"
+    },
+    {
+        "AlarmaOriginal": "Media Forwarding Fault",
+        "TítuloCorto": "Falla en reenvío de medios",
+        "InterpretaciónDetallada": "\"Se ha producido una falla en el reenvío de los medios de comunicación"
+    },
+    {
+        "AlarmaOriginal": "WAG con desvío de volumen de mensajes de RADIUS del tipo Authentication Response Failed",
+        "TítuloCorto": "Desvío de volumen de mensajes RADIUS",
+        "InterpretaciónDetallada": "\"El WAG está desviando un volumen de mensajes RADIUS de tipo \"\"Authentication Response Failed\"\""
+    },
+    {
+        "AlarmaOriginal": "Alerta por uso de memoria superior al 70% en la VM ani-vas-ntr-2",
+        "TítuloCorto": "Alerta por alto uso de memoria en VM ani-vas-ntr-2",
+        "InterpretaciónDetallada": "\"El uso de memoria de la máquina virtual ani-vas-ntr-2 ha superado el 70%"
+    },
+    {
+        "AlarmaOriginal": "Abnormal Heartbeat",
+        "TítuloCorto": "Latido anómalo",
+        "InterpretaciónDetallada": "\"Se ha detectado un latido anómalo en el sistema"
+    },
+    {
+        "AlarmaOriginal": "CSCF VM CDB Modules: % CPU Load Maximum > 50%",
+        "TítuloCorto": "Carga de CPU > 50% en módulos CDB CSCF",
+        "InterpretaciónDetallada": "\"El uso de CPU en los módulos CDB de CSCF ha superado el 50%"
+    },
+    {
+        "AlarmaOriginal": "Insufficiency of bearer bandwidth resources in the domain",
+        "TítuloCorto": "Insuficiencia de recursos de ancho de banda",
+        "InterpretaciónDetallada": "No hay suficientes recursos de ancho de banda para soportar la carga de tráfico en el dominio."
+    },
+    {
+        "AlarmaOriginal": "Temperatura UMG > 40°C",
+        "TítuloCorto": "Temperatura UMG superior a 40°C",
+        "InterpretaciónDetallada": "\"La temperatura de la UMG ha superado los 40°C"
+    },
+    {
+        "AlarmaOriginal": "Service Access Point Disconnected",
+        "TítuloCorto": "Punto de acceso de servicio desconectado",
+        "InterpretaciónDetallada": "\"Se ha perdido la conexión con el punto de acceso de servicio"
+    },
+    {
+        "AlarmaOriginal": "DB Failure",
+        "TítuloCorto": "Falla en la base de datos",
+        "InterpretaciónDetallada": "\"La base de datos ha fallado"
+    },
+    {
+        "AlarmaOriginal": "CSCF VM ISU Modules: % CPU Load Maximum > 30%",
+        "TítuloCorto": "Carga de CPU > 30% en módulos ISU CSCF",
+        "InterpretaciónDetallada": "\"El uso de CPU en los módulos ISU de CSCF ha superado el 30%"
+    },
+    {
+        "AlarmaOriginal": "Se detecta una caída del éxito de respuesta por debajo del umbral para el trafico móvil",
+        "TítuloCorto": "Caída en éxito de respuesta tráfico móvil",
+        "InterpretaciónDetallada": "\"Se ha detectado una caída en la tasa de éxito de respuesta para el tráfico móvil"
+    },
+    {
+        "AlarmaOriginal": "Alerta por uso de memoria superior al 80% en la VM cli-vas-ora-1",
+        "TítuloCorto": "Alerta por alto uso de memoria en VM cli-vas-ora-1",
+        "InterpretaciónDetallada": "\"El uso de memoria en la máquina virtual cli-vas-ora-1 ha superado el 80%"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0174",
+        "TítuloCorto": "%-Full level reached-upload required\"",
+        "InterpretaciónDetallada": "Alerta UAM/UIM 0174"
+    },
+    {
+        "AlarmaOriginal": "Casa NFV System Usage High Alarm notification",
+        "TítuloCorto": "Alerta de uso alto del sistema NFV",
+        "InterpretaciónDetallada": "\"Se ha alcanzado un uso alto del sistema NFV"
+    },
+    {
+        "AlarmaOriginal": "System.CPU:Aggregate CPU Usage pct",
+        "TítuloCorto": "Uso agregado de CPU",
+        "InterpretaciónDetallada": "\"El uso agregado de la CPU ha superado el umbral permitido"
+    },
+    {
+        "AlarmaOriginal": "El servicio que monitorea la redundancia geográfica se encuentra fuera de servicio",
+        "TítuloCorto": "Servicio de redundancia geográfica fuera de servicio",
+        "InterpretaciónDetallada": "\"El servicio de monitoreo de redundancia geográfica está inactivo"
+    },
+    {
+        "AlarmaOriginal": "Codec Resource Subcard Fault",
+        "TítuloCorto": "Falla en subcard de recurso de códec",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en la subcard de los recursos de códec"
+    },
+    {
+        "AlarmaOriginal": "Communication Failure Between VNFMAdaptor and VNFM",
+        "TítuloCorto": "Falla de comunicación entre VNFMAdaptor y VNFM",
+        "InterpretaciónDetallada": "\"Se ha interrumpido la comunicación entre VNFMAdaptor y VNFM"
+    },
+    {
+        "AlarmaOriginal": "Maintenance links broken",
+        "TítuloCorto": "Enlaces de mantenimiento rotos",
+        "InterpretaciónDetallada": "\"Los enlaces de mantenimiento se han roto"
+    },
+    {
+        "AlarmaOriginal": "El servicio conmutó al otro sitio.",
+        "TítuloCorto": "Conmutación de servicio a otro sitio",
+        "InterpretaciónDetallada": "El servicio ha conmutado correctamente al sitio alternativo debido a problemas en el sitio original."
+    },
+    {
+        "AlarmaOriginal": "VM OS Faulty",
+        "TítuloCorto": "Falla en el sistema operativo de la VM",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en el sistema operativo de la máquina virtual"
+    },
+    {
+        "AlarmaOriginal": "Problemas de Mi Cuenta USSD Vemos un incremento de NOKET por encima de umbral",
+        "TítuloCorto": "Incremento de NOKET en Mi Cuenta USSD",
+        "InterpretaciónDetallada": "\"Se ha detectado un incremento en los errores NOKET más allá del umbral"
+    },
+    {
+        "AlarmaOriginal": "Charging GW Disk Usage",
+        "TítuloCorto": "Uso de disco en GW de facturación",
+        "InterpretaciónDetallada": "\"El uso de disco en el gateway de facturación ha superado los límites establecidos"
+    },
+    {
+        "AlarmaOriginal": "Alta Temperatura de sala",
+        "TítuloCorto": "Temperatura alta en la sala",
+        "InterpretaciónDetallada": "\"La temperatura de la sala ha alcanzado niveles peligrosos"
+    },
+    {
+        "AlarmaOriginal": "Power Entry Module Voltage Exceeds Level 2 Threshold",
+        "TítuloCorto": "Voltaje del módulo de entrada excede umbral nivel 2",
+        "InterpretaciónDetallada": "\"El voltaje del módulo de entrada ha superado el umbral de nivel 2"
+    },
+    {
+        "AlarmaOriginal": "Parts of the Board Fault",
+        "TítuloCorto": "Falla en partes de la placa",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en componentes internos de la placa"
+    },
+    {
+        "AlarmaOriginal": "DR Site Switchover",
+        "TítuloCorto": "Conmutación del sitio DR",
+        "InterpretaciónDetallada": "\"El sitio de recuperación ante desastres ha conmutado correctamente"
+    },
+    {
+        "AlarmaOriginal": "NTP synchronization failed",
+        "TítuloCorto": "Falla en la sincronización NTP",
+        "InterpretaciónDetallada": "\"No se ha podido sincronizar correctamente con el servidor NTP"
+    },
+    {
+        "AlarmaOriginal": "Boards no response by detection",
+        "TítuloCorto": "Sin respuesta de las placas al ser detectadas",
+        "InterpretaciónDetallada": "\"Las placas no están respondiendo durante el proceso de detección"
+    },
+    {
+        "AlarmaOriginal": "DISKn Hard Disk Drive Fault",
+        "TítuloCorto": "Falla en disco duro",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en uno de los discos duros"
+    },
+    {
+        "AlarmaOriginal": "Abnormality of the master/slave status of the board/module",
+        "TítuloCorto": "Anomalía en el estado master/slave de la placa/módulo",
+        "InterpretaciónDetallada": "\"Se ha detectado una anomalía en la configuración de master/slave de una placa o módulo"
+    },
+    {
+        "AlarmaOriginal": "Insecure Protocols Or Algorithms Is Enabled",
+        "TítuloCorto": "Protocolos o algoritmos inseguros habilitados",
+        "InterpretaciónDetallada": "\"Se ha detectado que se están utilizando protocolos o algoritmos inseguros en la configuración"
+    },
+    {
+        "AlarmaOriginal": "Alerta por disminución/incremento de tráfico en la interconexión de GRX con Nucleo Paraguay en Frontera Encarnación - Posadas",
+        "TítuloCorto": "Variación de tráfico en interconexión GRX",
+        "InterpretaciónDetallada": "\"Se ha detectado un aumento o disminución significativa en el tráfico entre la frontera Encarnación - Posadas"
+    },
+    {
+        "AlarmaOriginal": "Drive status abnormal",
+        "TítuloCorto": "Estado anómalo del disco",
+        "InterpretaciónDetallada": "\"Se ha detectado un estado anómalo en uno de los discos del sistema"
+    },
+    {
+        "AlarmaOriginal": "Bajo TTR en Tráfico Clientes Uruguay hacia PIC",
+        "TítuloCorto": "Bajo TTR en tráfico de clientes Uruguay",
+        "InterpretaciónDetallada": "\"Se ha detectado un bajo tiempo de respuesta (TTR) en el tráfico de clientes desde Uruguay hacia el PIC"
+    },
+    {
+        "AlarmaOriginal": "System.Log.File:Expression Match",
+        "TítuloCorto": "Coincidencia de expresión en archivo de log",
+        "InterpretaciónDetallada": "\"Se ha encontrado una coincidencia de expresión en el archivo de registro"
+    },
+    {
+        "AlarmaOriginal": "CORE Delta Gn Uplink Throughput GSM-WCDMA x USN",
+        "TítuloCorto": "Variación en el rendimiento de uplink Gn CORE",
+        "InterpretaciónDetallada": "Se ha detectado una variación significativa en el rendimiento de uplink Gn en la red CORE entre GSM y WCDMA."
+    },
+    {
+        "AlarmaOriginal": "Failed to Synchronize Time with the NTP Server",
+        "TítuloCorto": "Fallo al sincronizar el tiempo con el servidor NTP",
+        "InterpretaciónDetallada": "\"El sistema no pudo sincronizar su hora con el servidor NTP"
+    },
+    {
+        "AlarmaOriginal": "SipServer Call Success Rate",
+        "TítuloCorto": "Tasa de éxito de llamadas en SipServer",
+        "InterpretaciónDetallada": "\"La tasa de éxito de las llamadas en el servidor SIP ha disminuido"
+    },
+    {
+        "AlarmaOriginal": "EPDG Delta PDPs S2b",
+        "TítuloCorto": "Variación en PDPs S2b en EPDG",
+        "InterpretaciónDetallada": "\"Se ha detectado una variación en la cantidad de PDPs S2b en el EPDG"
+    },
+    {
+        "AlarmaOriginal": "AGCF User Subscribe Failure",
+        "TítuloCorto": "Fallo de suscripción de usuario AGCF",
+        "InterpretaciónDetallada": "\"Ha fallado el proceso de suscripción de un usuario en AGCF"
+    },
+    {
+        "AlarmaOriginal": "Ocupación elevada en las Queue del SMSC",
+        "TítuloCorto": "Alta ocupación en colas del SMSC",
+        "InterpretaciónDetallada": "\"Se ha detectado una alta ocupación en las colas del SMSC"
+    },
+    {
+        "AlarmaOriginal": "Diameter Peer Device Congestion",
+        "TítuloCorto": "Congestión en el dispositivo par Diameter",
+        "InterpretaciónDetallada": "\"El dispositivo par Diameter experimenta congestión"
+    },
+    {
+        "AlarmaOriginal": "Communication Failure Between the OMU and the Subrack Management Unit",
+        "TítuloCorto": "Falla de comunicación entre OMU y Subrack",
+        "InterpretaciónDetallada": "\"Ha fallado la comunicación entre el OMU y la unidad de gestión del subrack"
+    },
+    {
+        "AlarmaOriginal": "Fan Speed Exceeds Threshold",
+        "TítuloCorto": "Velocidad del ventilador excede el umbral",
+        "InterpretaciónDetallada": "\"La velocidad del ventilador ha superado el umbral recomendado"
+    },
+    {
+        "AlarmaOriginal": "CORE Delta Gb Uplink Throughput x USN",
+        "TítuloCorto": "Variación en el rendimiento de uplink Gb CORE",
+        "InterpretaciónDetallada": "Se ha detectado una variación en el rendimiento de uplink de la red CORE en el tráfico de datos entre las interfaces Gb."
+    },
+    {
+        "AlarmaOriginal": "Pool Load Imbalance",
+        "TítuloCorto": "Desbalance de carga en el pool",
+        "InterpretaciónDetallada": "\"Se ha detectado un desbalance en la carga del pool de recursos"
+    },
+    {
+        "AlarmaOriginal": "Resource Software Fault",
+        "TítuloCorto": "Falla de software de recursos",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en el software de gestión de recursos"
+    },
+    {
+        "AlarmaOriginal": "User Password Has Expired",
+        "TítuloCorto": "La contraseña del usuario ha caducado",
+        "InterpretaciónDetallada": "\"La contraseña de un usuario ha expirado"
+    },
+    {
+        "AlarmaOriginal": "Two-Node Cluster Switchover",
+        "TítuloCorto": "Conmutación de clúster de dos nodos",
+        "InterpretaciónDetallada": "\"El clúster de dos nodos ha conmutado correctamente"
+    },
+    {
+        "AlarmaOriginal": "DNS-APN query failure above threshold",
+        "TítuloCorto": "Falla de consulta DNS-APN sobre umbral",
+        "InterpretaciónDetallada": "\"Las consultas DNS-APN han fallado por encima del umbral permitido"
+    },
+    {
+        "AlarmaOriginal": "Power Module Is Faulty",
+        "TítuloCorto": "Módulo de alimentación defectuoso",
+        "InterpretaciónDetallada": "\"Se ha detectado un fallo en el módulo de alimentación"
+    },
+    {
+        "AlarmaOriginal": "Capacity Is About to Reach the Threshold",
+        "TítuloCorto": "La capacidad está a punto de alcanzar el umbral",
+        "InterpretaciónDetallada": "\"La capacidad del sistema está cerca de alcanzar el umbral crítico"
+    },
+    {
+        "AlarmaOriginal": "The non-huawei-ethernet-switch-certified optical module was plugged in",
+        "TítuloCorto": "Módulo óptico no certificado de Huawei conectado",
+        "InterpretaciónDetallada": "\"Se ha conectado un módulo óptico no certificado de Huawei"
+    },
+    {
+        "AlarmaOriginal": "Container CPU Overload",
+        "TítuloCorto": "Sobrecarga de CPU en el contenedor",
+        "InterpretaciónDetallada": "\"Se ha detectado una sobrecarga de CPU en el contenedor"
+    },
+    {
+        "AlarmaOriginal": "The network port on the front panel of the board fails",
+        "TítuloCorto": "Falla en el puerto de red del panel frontal",
+        "InterpretaciónDetallada": "\"El puerto de red del panel frontal ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Abnormal Call Rate",
+        "TítuloCorto": "Tasa de llamadas anómala",
+        "InterpretaciónDetallada": "\"Se ha detectado una tasa anómala de llamadas"
+    },
+    {
+        "AlarmaOriginal": "Diameter Link Flow Control",
+        "TítuloCorto": "Control de flujo del enlace Diameter",
+        "InterpretaciónDetallada": "\"Se ha activado el control de flujo en el enlace Diameter"
+    },
+    {
+        "AlarmaOriginal": "Dar aviso a PCS cuando se incremente la Temperatura en sitio Resistencia",
+        "TítuloCorto": "Aumento de temperatura en el sitio Resistencia",
+        "InterpretaciónDetallada": "\"Se ha detectado un incremento en la temperatura en el sitio Resistencia"
+    },
+    {
+        "AlarmaOriginal": "Input to the Power Module Is Abnormal",
+        "TítuloCorto": "Entrada al módulo de alimentación anómala",
+        "InterpretaciónDetallada": "\"Se ha detectado una entrada anómala al módulo de alimentación"
+    },
+    {
+        "AlarmaOriginal": "Failed to Mount Volume",
+        "TítuloCorto": "Fallo al montar volumen",
+        "InterpretaciónDetallada": "\"Se ha producido un fallo al intentar montar un volumen"
+    },
+    {
+        "AlarmaOriginal": "El proceso Web está caído",
+        "TítuloCorto": "Falla del proceso web",
+        "InterpretaciónDetallada": "\"El proceso que gestiona las interacciones web ha fallado"
+    },
+    {
+        "AlarmaOriginal": "File Synchronization Failure Between Two OpenStack OM Nodes",
+        "TítuloCorto": "Falla en la sincronización de archivos entre dos nodos OpenStack OM",
+        "InterpretaciónDetallada": "\"Ha fallado la sincronización de archivos entre dos nodos de OpenStack OM"
+    },
+    {
+        "AlarmaOriginal": "Casa HA Peer Down Alarm notification",
+        "TítuloCorto": "Notificación de caída del peer HA",
+        "InterpretaciónDetallada": "\"El nodo peer en la configuración de alta disponibilidad (HA) ha caído"
+    },
+    {
+        "AlarmaOriginal": "Caída de Salud en un SBC Oracle",
+        "TítuloCorto": "Falla de salud en un SBC Oracle",
+        "InterpretaciónDetallada": "\"Se ha detectado un fallo en la salud de un SBC (Session Border Controller) de Oracle"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0175",
+        "TítuloCorto": "LOGBUFROVFL-SECULOG - upload required\"",
+        "InterpretaciónDetallada": "Alerta LOGBUFROVFL-SECULOG"
+    },
+    {
+        "AlarmaOriginal": "CSLB and VNRS Control Plane Goes Subhealthy",
+        "TítuloCorto": "El plano de control CSLB y VNRS está sub-saludable",
+        "InterpretaciónDetallada": "\"El plano de control CSLB y VNRS ha entrado en un estado sub-saludable"
+    },
+    {
+        "AlarmaOriginal": "Certificate Expiration Early Warning",
+        "TítuloCorto": "Advertencia temprana de expiración de certificado",
+        "InterpretaciónDetallada": "\"El certificado de seguridad está cerca de su fecha de expiración"
+    },
+    {
+        "AlarmaOriginal": "Data Distribution Reliability Alarm",
+        "TítuloCorto": "Alarma de confiabilidad en la distribución de datos",
+        "InterpretaciónDetallada": "\"Se ha detectado un problema en la distribución de datos"
+    },
+    {
+        "AlarmaOriginal": "Synchronization failure",
+        "TítuloCorto": "Falla de sincronización",
+        "InterpretaciónDetallada": "\"Se ha producido una falla en el proceso de sincronización"
+    },
+    {
+        "AlarmaOriginal": "Data written into NAND flash memory exceeds threshold",
+        "TítuloCorto": "Exceso de datos escritos en memoria NAND flash",
+        "InterpretaciónDetallada": "\"Se ha superado el umbral de datos escritos en la memoria NAND flash"
+    },
+    {
+        "AlarmaOriginal": "Storage Device Drive Fault",
+        "TítuloCorto": "Falla en el disco del dispositivo de almacenamiento",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en el disco del dispositivo de almacenamiento"
+    },
+    {
+        "AlarmaOriginal": "CSCF VM RDB Module: % Memory Usage > 77%",
+        "TítuloCorto": "Uso de memoria en el módulo RDB de CSCF > 77%",
+        "InterpretaciónDetallada": "\"El módulo RDB de la máquina virtual CSCF está utilizando más del 77% de la memoria"
+    },
+    {
+        "AlarmaOriginal": "Swap of the SPG HA System",
+        "TítuloCorto": "Intercambio del sistema HA de SPG",
+        "InterpretaciónDetallada": "\"El sistema HA de SPG ha experimentado un intercambio"
+    },
+    {
+        "AlarmaOriginal": "Abnormal changes in the frame number and slot number",
+        "TítuloCorto": "Cambios anormales en el número de marco y ranura",
+        "InterpretaciónDetallada": "\"Se han detectado cambios inusuales en el número de marco y ranura"
+    },
+    {
+        "AlarmaOriginal": "Negotiation Failure Due to Packet Changes on Member Links",
+        "TítuloCorto": "Falla de negociación por cambios en los paquetes en enlaces miembros",
+        "InterpretaciónDetallada": "\"Ha fallado la negociación debido a cambios inesperados en los paquetes de los enlaces miembros"
+    },
+    {
+        "AlarmaOriginal": "License Has Expired",
+        "TítuloCorto": "La licencia ha expirado",
+        "InterpretaciónDetallada": "\"La licencia del software o hardware ha expirado"
+    },
+    {
+        "AlarmaOriginal": "Data Store Usage Exceeds the Threshold",
+        "TítuloCorto": "El uso de la tienda de datos supera el umbral",
+        "InterpretaciónDetallada": "\"El uso de la tienda de datos ha superado el umbral establecido"
+    },
+    {
+        "AlarmaOriginal": "ConfigDaemon cannot register to leading CC.",
+        "TítuloCorto": "ConfigDaemon no puede registrarse en el CC principal",
+        "InterpretaciónDetallada": "\"El proceso ConfigDaemon no ha podido registrarse correctamente en el CC principal"
+    },
+    {
+        "AlarmaOriginal": "Disconnection Between the SIPDispatcher and LicenseService",
+        "TítuloCorto": "Desconexión entre SIPDispatcher y LicenseService",
+        "InterpretaciónDetallada": "\"Se ha perdido la conexión entre el SIPDispatcher y el servicio de licencias"
+    },
+    {
+        "AlarmaOriginal": "Disk Is About To Fail",
+        "TítuloCorto": "El disco está a punto de fallar",
+        "InterpretaciónDetallada": "\"Se ha detectado que el disco está cerca de fallar"
+    },
+    {
+        "AlarmaOriginal": "The license is invalid",
+        "TítuloCorto": "La licencia no es válida",
+        "InterpretaciónDetallada": "\"Se ha detectado que la licencia del sistema es inválida"
+    },
+    {
+        "AlarmaOriginal": "M3UA SCTP path Faulty",
+        "TítuloCorto": "Ruta SCTP de M3UA defectuosa",
+        "InterpretaciónDetallada": "\"La ruta SCTP utilizada por M3UA ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Data Inconsistency",
+        "TítuloCorto": "Inconsistencia de datos",
+        "InterpretaciónDetallada": "\"Se ha detectado una inconsistencia en los datos"
+    },
+    {
+        "AlarmaOriginal": "MME Exito de activacion 4G",
+        "TítuloCorto": "Éxito en la activación 4G en MME",
+        "InterpretaciónDetallada": "\"La activación de un servicio 4G en el MME (Mobility Management Entity) se ha realizado correctamente"
+    },
+    {
+        "AlarmaOriginal": "User Password Has Expired",
+        "TítuloCorto": "La contraseña del usuario ha caducado",
+        "InterpretaciónDetallada": "\"La contraseña de un usuario ha caducado"
+    },
+    {
+        "AlarmaOriginal": "OSPF Generated New LSA",
+        "TítuloCorto": "OSPF generó una nueva LSA",
+        "InterpretaciónDetallada": "\"El protocolo OSPF ha generado una nueva LSA (Link-State Advertisement)"
+    },
+    {
+        "AlarmaOriginal": "Failure to Synchronize Data to the CC Table",
+        "TítuloCorto": "Fallo al sincronizar datos con la tabla CC",
+        "InterpretaciónDetallada": "\"No se ha podido sincronizar correctamente los datos con la tabla CC (Control Center)"
+    },
+    {
+        "AlarmaOriginal": "Remote Synchronization Fail",
+        "TítuloCorto": "Fallo de sincronización remota",
+        "InterpretaciónDetallada": "\"La sincronización remota ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Fan frame abnormality",
+        "TítuloCorto": "Anomalía en el marco del ventilador",
+        "InterpretaciónDetallada": "\"Se ha detectado una anomalía en el marco del ventilador"
+    },
+    {
+        "AlarmaOriginal": "Backplane version change",
+        "TítuloCorto": "Cambio en la versión del backplane",
+        "InterpretaciónDetallada": "\"Ha habido un cambio en la versión del backplane"
+    },
+    {
+        "AlarmaOriginal": "Account Locked",
+        "TítuloCorto": "Cuenta bloqueada",
+        "InterpretaciónDetallada": "Se ha bloqueado una cuenta de usuario debido a múltiples intentos fallidos de inicio de sesión o por otros motivos de seguridad."
+    },
+    {
+        "AlarmaOriginal": "Poor system reliability",
+        "TítuloCorto": "Baja confiabilidad del sistema",
+        "InterpretaciónDetallada": "\"Se ha detectado una baja confiabilidad en el sistema"
+    },
+    {
+        "AlarmaOriginal": "UGW Exito CCR-I contra PCRF",
+        "TítuloCorto": "Éxito CCR-I en UGW contra PCRF",
+        "InterpretaciónDetallada": "\"El sistema de gestión de usuarios (UGW) ha procesado correctamente una solicitud CCR-I con el PCRF"
+    },
+    {
+        "AlarmaOriginal": "Faulty Synchronization Link Between the Active and Standby OMCache Nodes",
+        "TítuloCorto": "Falla en el enlace de sincronización entre nodos activos y de reserva de OMCache",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en el enlace de sincronización entre los nodos activos y de reserva del sistema OMCache"
+    },
+    {
+        "AlarmaOriginal": "The User in the SMManagers Group Changes a User's Password",
+        "TítuloCorto": "Cambio de contraseña por usuario en grupo SMManagers",
+        "InterpretaciónDetallada": "\"Un usuario dentro del grupo SMManagers ha cambiado la contraseña de otro usuario"
+    },
+    {
+        "AlarmaOriginal": "hwBoardInvalid",
+        "TítuloCorto": "Placa de hardware inválida",
+        "InterpretaciónDetallada": "\"Se ha detectado una placa de hardware inválida"
+    },
+    {
+        "AlarmaOriginal": "Failed to Create Pod",
+        "TítuloCorto": "Error al crear el Pod",
+        "InterpretaciónDetallada": "\"Ha fallado la creación de un Pod en un entorno de contenedores"
+    },
+    {
+        "AlarmaOriginal": "DISKn In Failed Array",
+        "TítuloCorto": "Disco en arreglo fallido",
+        "InterpretaciónDetallada": "\"Se ha identificado un disco dentro de un arreglo de discos fallido"
+    },
+    {
+        "AlarmaOriginal": "Board Fault",
+        "TítuloCorto": "Falla de la placa",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en una placa del sistema"
+    },
+    {
+        "AlarmaOriginal": "Se ha detectado un problema de conectividad con elemento remoto",
+        "TítuloCorto": "Problema de conectividad con elemento remoto",
+        "InterpretaciónDetallada": "\"Hay un problema de conectividad entre el sistema y un elemento remoto"
+    },
+    {
+        "AlarmaOriginal": "hwSysSlaveSwitchFailNotification",
+        "TítuloCorto": "Falla de conmutación del sistema esclavo",
+        "InterpretaciónDetallada": "\"El sistema esclavo ha fallado al intentar realizar una conmutación"
+    },
+    {
+        "AlarmaOriginal": "System.Process:Instances",
+        "TítuloCorto": "Instancias de procesos del sistema",
+        "InterpretaciónDetallada": "\"El sistema ha detectado un problema relacionado con las instancias de los procesos"
+    },
+    {
+        "AlarmaOriginal": "MME Exito Paging",
+        "TítuloCorto": "Éxito en el proceso de Paging del MME",
+        "InterpretaciónDetallada": "\"El proceso de Paging en el MME (Mobility Management Entity) se ha completado exitosamente"
+    },
+    {
+        "AlarmaOriginal": "The Number of Current Alarms Reaches the Threshold",
+        "TítuloCorto": "El número de alarmas actuales alcanza el umbral",
+        "InterpretaciónDetallada": "\"El sistema ha alcanzado un número crítico de alarmas activas"
+    },
+    {
+        "AlarmaOriginal": "BBU Module Is Faulty",
+        "TítuloCorto": "Módulo BBU defectuoso",
+        "InterpretaciónDetallada": "\"El módulo BBU (Battery Backup Unit) ha fallado"
+    },
+    {
+        "AlarmaOriginal": "M3UA link fault",
+        "TítuloCorto": "Falla de enlace M3UA",
+        "InterpretaciónDetallada": "\"Se ha producido una falla en el enlace M3UA"
+    },
+    {
+        "AlarmaOriginal": "Abnormal Replication",
+        "TítuloCorto": "Replicación anormal",
+        "InterpretaciónDetallada": "\"Se ha detectado un problema en el proceso de replicación de datos"
+    },
+    {
+        "AlarmaOriginal": "Host Network Port Fault",
+        "TítuloCorto": "Falla en el puerto de red del host",
+        "InterpretaciónDetallada": "\"El puerto de red del host ha fallado"
+    },
+    {
+        "AlarmaOriginal": "The number of call loss exceeds the threshold",
+        "TítuloCorto": "El número de llamadas perdidas supera el umbral",
+        "InterpretaciónDetallada": "\"Se ha registrado un número de llamadas perdidas superior al umbral permitido"
+    },
+    {
+        "AlarmaOriginal": "Abnormal Data Synchronization Between Active and Standby GaussDB Nodes",
+        "TítuloCorto": "Sincronización anormal de datos entre nodos activos y de reserva de GaussDB",
+        "InterpretaciónDetallada": "\"La sincronización de datos entre los nodos activos y de reserva de GaussDB ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Office MSRN Resource Overload",
+        "TítuloCorto": "Sobrecarga de recursos MSRN de la oficina",
+        "InterpretaciónDetallada": "\"Los recursos del MSRN (Mobile Switching Roaming Number) en la oficina han superado su capacidad"
+    },
+    {
+        "AlarmaOriginal": "Faulty NRS Component",
+        "TítuloCorto": "Componente NRS defectuoso",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en un componente del sistema NRS (Network Resource Scheduler)"
+    },
+    {
+        "AlarmaOriginal": "Subscription and Support Service Has Expired",
+        "TítuloCorto": "El servicio de suscripción y soporte ha expirado",
+        "InterpretaciónDetallada": "\"La suscripción o soporte técnico del servicio ha expirado"
+    },
+    {
+        "AlarmaOriginal": "DIMM MCE error",
+        "TítuloCorto": "Error MCE en DIMM",
+        "InterpretaciónDetallada": "\"Se ha producido un error MCE (Machine Check Exception) en el módulo DIMM de la memoria"
+    },
+    {
+        "AlarmaOriginal": "HTTP Connection Between FusionSphere Neutron and Huawei SDN Controller Is Faulty",
+        "TítuloCorto": "Falla de conexión HTTP entre FusionSphere Neutron y Huawei SDN Controller",
+        "InterpretaciónDetallada": "\"Se ha perdido la conexión HTTP entre FusionSphere Neutron y el controlador SDN de Huawei"
+    },
+    {
+        "AlarmaOriginal": "The Number of Login Attempts Reaches the Maximum",
+        "TítuloCorto": "El número de intentos de inicio de sesión alcanza el máximo",
+        "InterpretaciónDetallada": "\"El número de intentos de inicio de sesión fallidos ha alcanzado el límite"
+    },
+    {
+        "AlarmaOriginal": "MME1MN session limit alert",
+        "TítuloCorto": "Alerta de límite de sesiones MME1MN",
+        "InterpretaciónDetallada": "\"Se ha alcanzado el límite de sesiones permitidas en el MME1MN (Mobility Management Entity)"
+    },
+    {
+        "AlarmaOriginal": "BFD session disconnected",
+        "TítuloCorto": "Sesión BFD desconectada",
+        "InterpretaciónDetallada": "\"Se ha desconectado una sesión BFD (Bidirectional Forwarding Detection)"
+    },
+    {
+        "AlarmaOriginal": "Disk Is Faulty",
+        "TítuloCorto": "El disco está defectuoso",
+        "InterpretaciónDetallada": "\"El disco del sistema ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Queue Flow Control",
+        "TítuloCorto": "Control de flujo de la cola",
+        "InterpretaciónDetallada": "\"Se ha activado el control de flujo de la cola"
+    },
+    {
+        "AlarmaOriginal": "Subscription and Support Service Has Expired",
+        "TítuloCorto": "El servicio de suscripción y soporte ha expirado",
+        "InterpretaciónDetallada": "\"Similar a la alarma anterior"
+    },
+    {
+        "AlarmaOriginal": "Peer link of the LACP member interface might be incorrectly connected",
+        "TítuloCorto": "El enlace entre interfaces miembro de LACP puede estar conectado incorrectamente",
+        "InterpretaciónDetallada": "\"Existe la posibilidad de que el enlace entre las interfaces miembro de LACP (Link Aggregation Control Protocol) esté mal conectado"
+    },
+    {
+        "AlarmaOriginal": "Infrastructure.Robot:Spooling",
+        "TítuloCorto": "Robot de infraestructura: Spooling",
+        "InterpretaciónDetallada": "\"Se ha activado un proceso de spooling (almacenamiento temporal de datos) en el robot de infraestructura"
+    },
+    {
+        "AlarmaOriginal": "Hard disk fault",
+        "TítuloCorto": "Falla del disco duro",
+        "InterpretaciónDetallada": "\"El disco duro ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Failed to Attach Dynamic Volume",
+        "TítuloCorto": "No se pudo adjuntar volumen dinámico",
+        "InterpretaciónDetallada": "\"El intento de adjuntar un volumen dinámico al sistema ha fallado"
+    },
+    {
+        "AlarmaOriginal": "\"UAM/UIM=0372",
+        "TítuloCorto": "Major Platform Failure(s)\"",
+        "InterpretaciónDetallada": "\"UAM/UIM=0372"
+    },
+    {
+        "AlarmaOriginal": "System.Log.WindowsEvents:Event",
+        "TítuloCorto": "Evento del sistema: Windows",
+        "InterpretaciónDetallada": "\"Se ha generado un evento en los registros del sistema Windows"
+    },
+    {
+        "AlarmaOriginal": "Faulty VM Directory File",
+        "TítuloCorto": "Archivo de directorio de VM defectuoso",
+        "InterpretaciónDetallada": "\"El archivo de directorio de una máquina virtual está defectuoso"
+    },
+    {
+        "AlarmaOriginal": "GDR healthy abnormal alarm",
+        "TítuloCorto": "Alerta de anormalidad en la salud de GDR",
+        "InterpretaciónDetallada": "\"Se ha detectado un problema de salud en el sistema de recuperación ante desastres (GDR)"
+    },
+    {
+        "AlarmaOriginal": "Abnormal Deployment of the Primary and Secondary Sites",
+        "TítuloCorto": "Despliegue anormal de sitios primarios y secundarios",
+        "InterpretaciónDetallada": "\"El despliegue de los sitios primario y secundario ha fallado o no se ha realizado correctamente"
+    },
+    {
+        "AlarmaOriginal": "Host Status Abnormal",
+        "TítuloCorto": "Estado anormal del host",
+        "InterpretaciónDetallada": "\"El estado del host se encuentra anormal"
+    },
+    {
+        "AlarmaOriginal": "Faulty Power Supply",
+        "TítuloCorto": "Fuente de alimentación defectuosa",
+        "InterpretaciónDetallada": "\"La fuente de alimentación del sistema ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Storage Device Fault",
+        "TítuloCorto": "Falla en el dispositivo de almacenamiento",
+        "InterpretaciónDetallada": "\"Se ha detectado una falla en el dispositivo de almacenamiento"
+    },
+    {
+        "AlarmaOriginal": "Network Bandwidth Usage Exceeds Threshold",
+        "TítuloCorto": "El uso de ancho de banda de red supera el umbral",
+        "InterpretaciónDetallada": "\"El tráfico de la red ha superado los límites de ancho de banda establecidos"
+    },
+    {
+        "AlarmaOriginal": "Power Module Fault",
+        "TítuloCorto": "Falla en el módulo de energía",
+        "InterpretaciónDetallada": "\"El módulo de energía ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Service Timeout",
+        "TítuloCorto": "Tiempo de espera del servicio",
+        "InterpretaciónDetallada": "\"Se ha producido un tiempo de espera en un servicio"
+    },
+    {
+        "AlarmaOriginal": "Memory Allocation Failure",
+        "TítuloCorto": "Falla en la asignación de memoria",
+        "InterpretaciónDetallada": "\"El sistema ha tenido dificultades para asignar memoria"
+    },
+    {
+        "AlarmaOriginal": "High Temperature Alarm",
+        "TítuloCorto": "Alerta por alta temperatura",
+        "InterpretaciónDetallada": "\"Se ha alcanzado un nivel de temperatura crítico en el equipo"
+    },
+    {
+        "AlarmaOriginal": "Unexpected Reboot",
+        "TítuloCorto": "Reinicio inesperado",
+        "InterpretaciónDetallada": "\"El sistema ha experimentado un reinicio inesperado"
+    },
+    {
+        "AlarmaOriginal": "High Network Latency",
+        "TítuloCorto": "Alta latencia de red",
+        "InterpretaciónDetallada": "\"La latencia de la red ha superado los niveles normales"
+    },
+    {
+        "AlarmaOriginal": "Server Crash",
+        "TítuloCorto": "Caída del servidor",
+        "InterpretaciónDetallada": "\"El servidor ha sufrido un fallo grave"
+    },
+    {
+        "AlarmaOriginal": "Disk Space Warning",
+        "TítuloCorto": "Advertencia de espacio en disco",
+        "InterpretaciónDetallada": "\"El espacio disponible en el disco ha alcanzado niveles críticos"
+    },
+    {
+        "AlarmaOriginal": "Unresponsive Application",
+        "TítuloCorto": "Aplicación no responde",
+        "InterpretaciónDetallada": "\"La aplicación no está respondiendo correctamente"
+    },
+    {
+        "AlarmaOriginal": "Database Connection Failure",
+        "TítuloCorto": "Falla en la conexión de base de datos",
+        "InterpretaciónDetallada": "\"No se puede establecer la conexión con la base de datos"
+    },
+    {
+        "AlarmaOriginal": "System Upgrade Failed",
+        "TítuloCorto": "Fallo en la actualización del sistema",
+        "InterpretaciónDetallada": "\"La actualización del sistema ha fallado"
+    },
+    {
+        "AlarmaOriginal": "CPU Overload",
+        "TítuloCorto": "Sobrecarga de CPU",
+        "InterpretaciónDetallada": "\"La CPU está trabajando a su máxima capacidad"
+    },
+    {
+        "AlarmaOriginal": "Memory Leak Detected",
+        "TítuloCorto": "Fuga de memoria detectada",
+        "InterpretaciónDetallada": "\"El sistema ha detectado una fuga de memoria"
+    },
+    {
+        "AlarmaOriginal": "Backup Failure",
+        "TítuloCorto": "Fallo en el respaldo",
+        "InterpretaciónDetallada": "\"El proceso de respaldo de datos ha fallado"
+    },
+    {
+        "AlarmaOriginal": "Authentication Failure",
+        "TítuloCorto": "Falla de autenticación",
+        "InterpretaciónDetallada": "\"El sistema ha fallado al intentar autenticar un usuario o servicio"
+    }
+]
