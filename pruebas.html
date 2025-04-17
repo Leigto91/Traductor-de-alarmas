@@ -172,67 +172,67 @@
   </div>
 
   <script>
+    let alarmas = {};
 
-    function procesarAlarma() {
-      const entrada = document.getElementById("alarmaInput").value;
-      const campos = entrada.split('\t');
-      
-      const alarmas = {
-      "etcd Backup Failed": "Falla en el respaldo de la base de datos distribuida etcd.",
-      "Disk Usage High": "El uso del disco está por encima del umbral.",
-      "CPU Load High": "Alta carga de CPU detectada.",
-      "Link Down": "Se detectó que un enlace de red está caído.",
-      "Memory Utilization Critical": "Utilización de memoria en nivel crítico.",
-      "hwIfMonitorCrcErrorRising": "Interfaz con errores.",
-      "CORE Delta 3G Mode Average Attached Users x USN": "Promedio de usuarios adjuntos en USN 3G fuera de valores esperados."
-    };
+        // Cargar las alarmas desde el archivo JSON
+        fetch('traduccion_alarmas.json')
+          .then(response => response.json())
+          .then(data => {
+            alarmas = data;
+          })
+          .catch(error => {
+            console.error('Error al cargar el archivo JSON:', error);
+          });
 
-      if (campos.length < 96) {
-        alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones.");
-        return;
-      }
+        function procesarAlarma() {
+          const entrada = document.getElementById("alarmaInput").value;
+          const campos = entrada.split('\t');
+          
+          if (campos.length < 96) {
+            alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones.");
+            return;
+          }
 
-      const node = campos[52] || "Nodo vacío o erróneo";
-      const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
-      const alerta = alarmas[alarmaOriginal] || alarmaOriginal;
-      const afectacion = document.getElementById("afectacion").value;
-      const grupo = document.getElementById("grupo").value;
-      const origen = document.getElementById("origen").value || "-";
-      const info = campos[54] || "Info vacía o errónea";
-      const info_adicional_alerta = campos[55] || "Info vacía o errónea";
+          const node = campos[52] || "Nodo vacío o erróneo";
+          const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
+          const alerta = alarmas[alarmaOriginal] || alarmaOriginal;
+          const afectacion = document.getElementById("afectacion").value;
+          const grupo = document.getElementById("grupo").value;
+          const origen = document.getElementById("origen").value || "-";
+          const info = campos[54] || "Info vacía o errónea";
+          const info_adicional_alerta = campos[55] || "Info vacía o errónea";
 
-      const descripcion = `NOC-MO | ${node} | ${alerta} | ${afectacion} | ${grupo} | ${origen}`;
-      document.getElementById("resultado").innerText = descripcion;
+          const descripcion = `NOC-MO | ${node} | ${alerta} | ${afectacion} | ${grupo} | ${origen}`;
+          document.getElementById("resultado").innerText = descripcion;
 
-      document.getElementById("resumenVisual").innerHTML = `
-        <span>📍 Nodo: <strong>${node}</strong></span>
-        <span>🚨 Alarma: <strong>${alarmaOriginal}</strong></span>
-        <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
-        <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
-        <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
-        <span>📝 Info: <strong>${info}</strong></span>
-        <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
-      `;
+          document.getElementById("resumenVisual").innerHTML = `
+            <span>📍 Nodo: <strong>${node}</strong></span>
+            <span>🚨 Alarma: <strong>${alarmaOriginal}</strong></span>
+            <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
+            <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
+            <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
+            <span>📝 Info: <strong>${info}</strong></span>
+            <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
+          `;
 
-      navigator.clipboard.writeText(descripcion).then(() => {
-        let mensaje = document.getElementById("mensajeCopiado");
-        if (!mensaje) {
-          mensaje = document.createElement("div");
-          mensaje.id = "mensajeCopiado";
-          mensaje.style.color = "green";
-          mensaje.style.marginTop = "10px";
-          document.getElementById("resultado-container").appendChild(mensaje);
+          navigator.clipboard.writeText(descripcion).then(() => {
+            let mensaje = document.getElementById("mensajeCopiado");
+            if (!mensaje) {
+              mensaje = document.createElement("div");
+              mensaje.id = "mensajeCopiado";
+              mensaje.style.color = "green";
+              mensaje.style.marginTop = "10px";
+              document.getElementById("resultado-container").appendChild(mensaje);
+            }
+            mensaje.textContent = "✅ Copiado al portapapeles";
+            setTimeout(() => mensaje.textContent = "", 3000);
+          });
+
+          // Añadir al historial
+          const historialItem = document.createElement("li");
+          historialItem.textContent = descripcion;
+          document.getElementById("listaHistorial").appendChild(historialItem);
         }
-        mensaje.textContent = "✅ Copiado al portapapeles";
-        setTimeout(() => mensaje.textContent = "", 3000);
-      });
-
-      // Añadir al historial
-      const historialItem = document.createElement("li");
-      historialItem.textContent = descripcion;
-      document.getElementById("listaHistorial").appendChild(historialItem);
-    }
-
   </script>
   <a href="index.html">Pagina de index</a>
 </body>
