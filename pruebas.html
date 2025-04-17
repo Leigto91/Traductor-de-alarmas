@@ -212,7 +212,7 @@ fetch('traduccion_alarmas.json')
     const alerta_titulo_corto = alerta ? alerta.TítuloCorto : "⚠️ No encontrado";
     const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ No disponible";
   
-    const descripcion = `NOC-MO | ${node} | ${alarmaOriginal} | ${afectacion} | ${grupo} | ${origen}`;
+    const descripcion = `NOC-MO | ${node} | ${alerta_titulo_corto} | ${afectacion} | ${grupo} | ${origen}`;
     document.getElementById("resultado").innerText = descripcion;
   
     document.getElementById("resumenVisual").innerHTML = `
