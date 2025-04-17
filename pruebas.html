@@ -201,6 +201,8 @@
           const origen = document.getElementById("origen").value || "-";
           const info = campos[54] || "Info vacía o errónea";
           const info_adicional_alerta = campos[55] || "Info vacía o errónea";
+          const alerta_titulo_corto = alarmas[TítuloCorto] || "fallo tilulo corto";
+          const alerta_Interpretacion_Detallada = alarmas[InterpretaciónDetallada] || "fallo Interpretación Detallada";
 
           const descripcion = `NOC-MO | ${node} | ${alerta} | ${afectacion} | ${grupo} | ${origen}`;
           document.getElementById("resultado").innerText = descripcion;
@@ -213,6 +215,12 @@
             <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
             <span>📝 Info: <strong>${info}</strong></span>
             <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
+            <span><br></span>
+            <span><br></span>
+            <span><traduccion de alarmas prueba></span>
+            <span><br></span>
+            <span>📝 TítuloCorto: <strong>${alerta_titulo_corto}</strong></span>
+            <span>📝 InterpretaciónDetallada: <strong>${alerta_Interpretacion_Detallada}</strong></span>
           `;
 
           navigator.clipboard.writeText(descripcion).then(() => {
