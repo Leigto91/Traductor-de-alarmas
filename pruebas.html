@@ -168,7 +168,7 @@
       </div>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.5.4 json chatgpt</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.5.4 json chatgpt 👈</div>
   </div>
 
   <script>
@@ -179,12 +179,15 @@
 fetch('traduccion_alarmas.json')
   .then(response => response.json())
   .then(data => {
-                  // Asignar el objeto completo de alarmas a la variable 'alarmas'
-    alarmas = data;
+    alarmas = {};
+    data.forEach(item => {
+      alarmas[item.AlarmaOriginal] = {
+        TítuloCorto: item.TítuloCorto,
+        InterpretaciónDetallada: item.InterpretaciónDetallada
+      };
+    });
+    console.log("Alarmas indexadas:", alarmas); // consola 👈
   })
-  .catch(error => {
-    console.error('Error al cargar el archivo JSON:', error);
-  });
 
     function procesarAlarma() {
     const entrada = document.getElementById("alarmaInput").value;
