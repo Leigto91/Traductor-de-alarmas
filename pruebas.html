@@ -11,7 +11,7 @@
       padding: 20px;
     }
     .container {
-      max-width: 1000px;
+      max-width: 95%;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -188,6 +188,8 @@
       const afectacion = document.getElementById("afectacion").value;
       const grupo = document.getElementById("grupo").value;
       const origen = document.getElementById("origen").value || "-";
+      const info = campos[54] || "Info vacía o errónea"
+      const info_adicional_alerta = campos[55]
 
       const descripcion = `NOC-MO | ${node} | ${alerta} | ${afectacion} | ${grupo} | ${origen}`;
       document.getElementById("resultado").innerText = descripcion;
@@ -198,6 +200,8 @@
         <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
         <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
         <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
+        <span>📝 Info: <strong>${info}</strong></span>
+        <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
       `;
 
       navigator.clipboard.writeText(descripcion).then(() => {
