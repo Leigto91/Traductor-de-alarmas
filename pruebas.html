@@ -173,6 +173,19 @@
 
   <script>
   
+  let alarmas = {};
+
+// Cargar las alarmas desde el archivo JSON
+fetch('traduccion_alarmas.json')
+  .then(response => response.json())
+  .then(data => {
+                  // Asignar el objeto completo de alarmas a la variable 'alarmas'
+    alarmas = data;
+  })
+  .catch(error => {
+    console.error('Error al cargar el archivo JSON:', error);
+  });
+
     function procesarAlarma() {
     const entrada = document.getElementById("alarmaInput").value;
     const campos = entrada.split('\t');
