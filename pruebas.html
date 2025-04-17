@@ -105,18 +105,26 @@
       font-size: 12px;
       color: #999;
     }
+    .entrada_datos{
+      display: flex;
+      align-items: stretch;
+    }
+    .entrada_datos > div {
+     margin: 10px;
+     text-align: center;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Traductor de Alarmas</h1>
-
-    <div class="form-group">
+    <div class="entrada_datos"></div>>
+    <div style="flex-grow: 7" class="form-group">
       <label for="alarmaInput">Alarma FMC:</label>
       <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
     </div>
 
-    <div>
+    <div style="flex-grow: 3" class="datos_desplegables">
       <label for="afectacion">Tipo de afectación:</label>
       <select id="afectacion" class="form-control">
         <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
@@ -148,7 +156,7 @@
         <option value="SMARTCARE">SMARTCARE</option>
       </select>
     </div>
-
+  </div>
     <div class="full-width">
       <button class="button-principal" onclick="procesarAlarma()">Generar descripción</button>
     </div>
