@@ -168,88 +168,69 @@
       </div>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.5.3</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.5.4 json chatgpt</div>
   </div>
 
   <script>
-    let alarmas = {};
-
-        // Cargar las alarmas desde el archivo JSON
-        fetch('traduccion_alarmas.json')
-          .then(response => response.json())
-          .then(data => {
-                          // Asignar el objeto completo de alarmas a la variable 'alarmas'
-            alarmas = data;
-
-            // Acceder a una alarma específica
-            const alarma = data[alarmaOriginal];  // Cambia "etcd Backup Failed" por la alarma que necesites
-
-            // Asignar los campos específicos
-            const TítuloCorto = alarma ? alarma.TítuloCorto : "Alarma no encontrada";
-            const InterpretaciónDetallada = alarma ? alarma.InterpretaciónDetallada : "Interpretación no disponible";
-
-          })
-          .catch(error => {
-            console.error('Error al cargar el archivo JSON:', error);
-          });
-
-        function procesarAlarma() {
-          const entrada = document.getElementById("alarmaInput").value;
-          const campos = entrada.split('\t');
-          
-          if (campos.length < 96) {
-            alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones.");
-            return;
-          }
-
-          const node = campos[52] || "Nodo vacío o erróneo";
-          const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
-          const alerta = alarmas[alarmaOriginal] || alarmaOriginal;
-          const afectacion = document.getElementById("afectacion").value;
-          const grupo = document.getElementById("grupo").value;
-          const origen = document.getElementById("origen").value || "-";
-          const info = campos[54] || "Info vacía o errónea";
-          const info_adicional_alerta = campos[55] || "Info vacía o errónea";
-          const alerta_titulo_corto = alarmas[TítuloCorto] || "fallo tilulo corto";
-          const alerta_Interpretacion_Detallada = alarmas[InterpretaciónDetallada] || "fallo Interpretación Detallada";
-
-          const descripcion = `NOC-MO | ${node} | ${alerta} | ${afectacion} | ${grupo} | ${origen}`;
-          document.getElementById("resultado").innerText = descripcion;
-
-          document.getElementById("resumenVisual").innerHTML = `
-            <span>📍 Nodo: <strong>${node}</strong></span>
-            <span>🚨 Alarma: <strong>${alarmaOriginal}</strong></span>
-            <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
-            <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
-            <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
-            <span>📝 Info: <strong>${info}</strong></span>
-            <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
-            <span><br></span>
-            <span><br></span>
-            <span><traduccion de alarmas prueba></span>
-            <span><br></span>
-            <span>📝 TítuloCorto: <strong>${alerta_titulo_corto}</strong></span>
-            <span>📝 InterpretaciónDetallada: <strong>${alerta_Interpretacion_Detallada}</strong></span>
-          `;
-
-          navigator.clipboard.writeText(descripcion).then(() => {
-            let mensaje = document.getElementById("mensajeCopiado");
-            if (!mensaje) {
-              mensaje = document.createElement("div");
-              mensaje.id = "mensajeCopiado";
-              mensaje.style.color = "green";
-              mensaje.style.marginTop = "10px";
-              document.getElementById("resultado-container").appendChild(mensaje);
-            }
-            mensaje.textContent = "✅ Copiado al portapapeles";
-            setTimeout(() => mensaje.textContent = "", 3000);
-          });
-
-          // Añadir al historial
-          const historialItem = document.createElement("li");
-          historialItem.textContent = descripcion;
-          document.getElementById("listaHistorial").appendChild(historialItem);
-        }
+  
+    function procesarAlarma() {
+    const entrada = document.getElementById("alarmaInput").value;
+    const campos = entrada.split('\t');
+    
+    if (campos.length < 96) {
+      alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones.");
+      return;
+    }
+  
+    const node = campos[52] || "Nodo vacío o erróneo";
+    const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
+    const info = campos[54] || "Info vacía o errónea";
+    const info_adicional_alerta = campos[55] || "Info vacía o errónea";
+  
+    const afectacion = document.getElementById("afectacion").value;
+    const grupo = document.getElementById("grupo").value;
+    const origen = document.getElementById("origen").value || "-";
+  
+    // Buscar traducción en el JSON cargado
+    const alerta = alarmas[alarmaOriginal];
+    const alerta_titulo_corto = alerta ? alerta.TítuloCorto : "⚠️ No encontrado";
+    const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ No disponible";
+  
+    const descripcion = `NOC-MO | ${node} | ${alarmaOriginal} | ${afectacion} | ${grupo} | ${origen}`;
+    document.getElementById("resultado").innerText = descripcion;
+  
+    document.getElementById("resumenVisual").innerHTML = `
+      <span>📍 Nodo: <strong>${node}</strong></span>
+      <span>🚨 Alarma: <strong>${alarmaOriginal}</strong></span>
+      <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
+      <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
+      <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
+      <span>📝 Info: <strong>${info}</strong></span>
+      <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
+      <hr>
+      <span>📝 Título Corto: <strong>${alerta_titulo_corto}</strong></span>
+      <span>📝 Interpretación Detallada: <strong>${alerta_Interpretacion_Detallada}</strong></span>
+    `;
+  
+    // Copiar al portapapeles
+    navigator.clipboard.writeText(descripcion).then(() => {
+      let mensaje = document.getElementById("mensajeCopiado");
+      if (!mensaje) {
+        mensaje = document.createElement("div");
+        mensaje.id = "mensajeCopiado";
+        mensaje.style.color = "green";
+        mensaje.style.marginTop = "10px";
+        document.getElementById("resultado-container").appendChild(mensaje);
+      }
+      mensaje.textContent = "✅ Copiado al portapapeles";
+      setTimeout(() => mensaje.textContent = "", 3000);
+    });
+  
+    // Añadir al historial
+    const historialItem = document.createElement("li");
+    historialItem.textContent = descripcion;
+    document.getElementById("listaHistorial").appendChild(historialItem);
+  }
   </script>
   <a href="index.html">Pagina de index</a>
 </body>
