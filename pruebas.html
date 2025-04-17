@@ -38,6 +38,7 @@
     }
     .form-group {
       margin-bottom: 10px;
+      max-width: 70%;
     }
     .full-width {
       grid-column: span 2;
@@ -106,25 +107,23 @@
       color: #999;
     }
     .entrada_datos{
-      display: flex;
-      align-items: stretch;
+      max-width: 100%;
     }
-    .entrada_datos > div {
-     margin: 10px;
-     text-align: center;
+    .datos_desplegables{
+      max-width: 30%;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Traductor de Alarmas</h1>
-    <div style="flex-grow: 7" class="entrada_datos">
+    <div class="entrada_datos">
       <div class="form-group">
         <label for="alarmaInput">Alarma FMC:</label>
         <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
       </div>
 
-      <div style="flex-grow: 3" class="datos_desplegables">
+      <div class="datos_desplegables">
         <label for="afectacion">Tipo de afectación:</label>
         <select id="afectacion" class="form-control">
           <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
