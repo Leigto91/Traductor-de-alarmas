@@ -178,9 +178,16 @@
         fetch('traduccion_alarmas.json')
           .then(response => response.json())
           .then(data => {
-            alarmas = data
-            TítuloCorto = data
-            InterpretaciónDetallada = data;
+                          // Asignar el objeto completo de alarmas a la variable 'alarmas'
+            alarmas = data;
+
+            // Acceder a una alarma específica
+            const alarma = data[alarmaOriginal];  // Cambia "etcd Backup Failed" por la alarma que necesites
+
+            // Asignar los campos específicos
+            const TítuloCorto = alarma ? alarma.TítuloCorto : "Alarma no encontrada";
+            const InterpretaciónDetallada = alarma ? alarma.InterpretaciónDetallada : "Interpretación no disponible";
+
           })
           .catch(error => {
             console.error('Error al cargar el archivo JSON:', error);
