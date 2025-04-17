@@ -189,7 +189,7 @@
       const grupo = document.getElementById("grupo").value;
       const origen = document.getElementById("origen").value || "-";
       const info = campos[54] || "Info vacía o errónea"
-      const info_adicional_alerta = campos[55]
+      const info_adicional_alerta = campos[55] || "Info vacía o errónea"
 
       const descripcion = `NOC-MO | ${node} | ${alerta} | ${afectacion} | ${grupo} | ${origen}`;
       document.getElementById("resultado").innerText = descripcion;
