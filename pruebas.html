@@ -146,6 +146,9 @@
         <option value="GRAFANA">GRAFANA</option>
         <option value="SOLICITUD">SOLICITUD</option>
         <option value="SMARTCARE">SMARTCARE</option>
+        <option value="DIGITAL VIEW">DIGITAL VIEW</option>
+        <option value="TEKELEC">TEKELEC</option>
+        <option value="OPENXPAND">OPENXPAND</option>
       </select>
     </div>
 
@@ -203,7 +206,7 @@
 
       document.getElementById("resumenVisual").innerHTML = `
         <span>📍 Nodo: <strong>${node}</strong></span>
-        <span>🚨 Alarma: <strong>${alerta}</strong></span>
+        <span>🚨 Alarma: <strong>${alarmaOriginal}</strong></span>
         <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
         <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
         <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
