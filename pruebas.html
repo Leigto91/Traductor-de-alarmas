@@ -38,7 +38,6 @@
     }
     .form-group {
       margin-bottom: 10px;
-      max-width: 70%;
     }
     .full-width {
       grid-column: span 2;
@@ -106,57 +105,50 @@
       font-size: 12px;
       color: #999;
     }
-    .entrada_datos{
-      max-width: 100%;
-    }
-    .datos_desplegables{
-      max-width: 30%;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Traductor de Alarmas</h1>
-    <div class="entrada_datos">
-      <div class="form-group">
-        <label for="alarmaInput">Alarma FMC:</label>
-        <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
-      </div>
 
-      <div class="datos_desplegables">
-        <label for="afectacion">Tipo de afectación:</label>
-        <select id="afectacion" class="form-control">
-          <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
-          <option value="DEGRADACIÓN">DEGRADACIÓN</option>
-          <option value="INDISPONIBILIDAD">INDISPONIBILIDAD</option>
-          <option value="SIN AFECTACIÓN">SIN AFECTACIÓN</option>
-        </select>
-
-        <label for="grupo">Grupo asignado:</label>
-        <select id="grupo" class="form-control">
-          <option value="VOZMOVIL">PCS Voz Móvil</option>
-          <option value="VOZRESI">PCS Voz Fija</option>
-          <option value="ROAMINT">PCS Roaming Internacional</option>
-          <option value="VALORAGR">PCS Serv. Convergentes</option>
-          <option value="VIRTINFR">PCS Infra&Net</option>
-          <option value="NAVMOVIL">PCS Conectividad Afuera</option>
-          <option value="VOZMOVL">PCS Señalización y BD</option>
-          <option value="NOC-AC">NOC-AC</option>
-          <option value="NOC-TR">NOC-TR</option>
-          <option value="NOC-MO">NOC-MO</option>
-          <option value="NCSN-CAO">CSOT</option>
-        </select>
-
-        <label for="origen">Origen del reclamo:</label>
-        <select id="origen" class="form-control">
-          <option value="MAE Core">MAE Core</option>
-          <option value="GRAFANA">GRAFANA</option>
-          <option value="SOLICITUD">SOLICITUD</option>
-          <option value="SMARTCARE">SMARTCARE</option>
-        </select>
-      </div>
+    <div class="form-group">
+      <label for="alarmaInput">Alarma FMC:</label>
+      <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
     </div>
-  </div>
+
+    <div>
+      <label for="afectacion">Tipo de afectación:</label>
+      <select id="afectacion" class="form-control">
+        <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
+        <option value="DEGRADACIÓN">DEGRADACIÓN</option>
+        <option value="INDISPONIBILIDAD">INDISPONIBILIDAD</option>
+        <option value="SIN AFECTACIÓN">SIN AFECTACIÓN</option>
+      </select>
+
+      <label for="grupo">Grupo asignado:</label>
+      <select id="grupo" class="form-control">
+        <option value="VOZMOVIL">PCS Voz Móvil</option>
+        <option value="VOZRESI">PCS Voz Fija</option>
+        <option value="ROAMINT">PCS Roaming Internacional</option>
+        <option value="VALORAGR">PCS Serv. Convergentes</option>
+        <option value="VIRTINFR">PCS Infra&Net</option>
+        <option value="NAVMOVIL">PCS Conectividad Afuera</option>
+        <option value="VOZMOVL">PCS Señalización y BD</option>
+        <option value="NOC-AC">NOC-AC</option>
+        <option value="NOC-TR">NOC-TR</option>
+        <option value="NOC-MO">NOC-MO</option>
+        <option value="NCSN-CAO">CSOT</option>
+      </select>
+
+      <label for="origen">Origen del reclamo:</label>
+      <select id="origen" class="form-control">
+        <option value="MAE Core">MAE Core</option>
+        <option value="GRAFANA">GRAFANA</option>
+        <option value="SOLICITUD">SOLICITUD</option>
+        <option value="SMARTCARE">SMARTCARE</option>
+      </select>
+    </div>
+
     <div class="full-width">
       <button class="button-principal" onclick="procesarAlarma()">Generar descripción</button>
     </div>
