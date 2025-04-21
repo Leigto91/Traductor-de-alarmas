@@ -168,7 +168,7 @@
       </div>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.5.6 json chatgpt 👈</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.5.7 json chatgpt 👈</div>
   </div>
 
   <script>
@@ -209,7 +209,7 @@ fetch('traduccion_alarmas.json')
   
     // Buscar traducción en el JSON cargado
     const alerta = alarmas[alarmaOriginal];
-    const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alarmaOriginal;
+    const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alarmaOriginal +"---> Nombre original, traducción no disponible, informar";
     const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ No disponible";
   
     const descripcion = `NOC-MO | ${node} | ${alerta_titulo_corto} | ${afectacion} | ${grupo} | ${origen}`;
