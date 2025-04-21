@@ -211,7 +211,7 @@ fetch('traduccion_alarmas.json')
     const alerta = alarmas[alarmaOriginal];
     const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alarmaOriginal;
     // se agrega una variable para diferenciar si la alarma se traduce o no, la descripcion se mantiene
-    const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alarmaOriginal +'<span style="color: red;"> ---> Nombre original, traducción no disponible, informar</span>';
+    const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alarmaOriginal +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
     const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ No disponible";
   
     const descripcion = `NOC-MO | ${node} | ${alerta_titulo_corto} | ${afectacion} | ${grupo} | ${origen}`;
