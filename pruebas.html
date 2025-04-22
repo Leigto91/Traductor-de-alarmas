@@ -258,8 +258,9 @@
     const historialItem = document.createElement("li");
     historialItem.textContent = descripcion;
     document.getElementById("listaHistorial").appendChild(historialItem);
+}
 
-    function alternarHistorial() {
+function alternarHistorial() {
       const contenedor = document.getElementById("historial-container");
       const boton = document.querySelector(".toggle-historial");
       const visible = contenedor.style.display === "block";
@@ -272,7 +273,6 @@
     function limpiarHistorial() {
       document.getElementById("listaHistorial").innerHTML = '';
   }
-}
   </script>
   <a href="index.html">Pagina de index</a>
 </body>
