@@ -254,7 +254,7 @@
       mensaje.textContent = "✅ Copiado al portapapeles";
       setTimeout(() => mensaje.textContent = "", 10000);
     });
-  
+  }
     // Añadir al historial
     const historialItem = document.createElement("li");
     historialItem.textContent = descripcion;
@@ -273,7 +273,6 @@
     function limpiarHistorial() {
       document.getElementById("listaHistorial").innerHTML = '';
 }
-  }
   </script>
   <a href="index.html">Pagina de index</a>
 </body>
