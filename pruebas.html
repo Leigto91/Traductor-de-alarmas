@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Traductor de Alarmas</title>
+  <title>Traductor de Alarmas (Prueba)</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -109,7 +109,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Traductor de Alarmas</h1>
+    <h1>Traductor de Alarmas(Prueba)</h1>
     <div id="contadorAlarmas" class="full-width" style="text-align:center; font-size:12px; color:#555;">⏳ Cargando alarmas...</div>
 
     <div class="form-group">
@@ -191,7 +191,7 @@
     const total_JSON = Object.keys(alarmas).length;
     document.getElementById("contadorAlarmas").textContent = `✅ ${total_JSON} alarmas cargadas desde la DB`;
     document.getElementById("btnGenerar").disabled = false;
-    console.log("Alarmas indexadas:${total_JSON}", alarmas);
+    console.log("Alarmas indexadas:", total_JSON, alarmas);
   })
   .catch(error => {
     console.error("❌ Error al cargar el archivo JSON:", error);
