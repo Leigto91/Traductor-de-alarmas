@@ -170,7 +170,7 @@
       <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.5.9.3 json chatgpt 👈</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.5.9.4 json chatgpt 👈</div>
   </div>
 
   <script>
@@ -210,6 +210,7 @@
     const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
     const info = campos[54] || "Info vacía o errónea";
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
+    const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
   
     const afectacion = document.getElementById("afectacion").value;
     const grupo = document.getElementById("grupo").value;
@@ -230,13 +231,16 @@
     //armado del "ResumenVisual", se agrega del JS al HTML
     document.getElementById("resumenVisual").innerHTML = `
       <span>📍 Nodo: <strong>${node}</strong></span>
-      <span>🚨 Alarma: <strong>${alarmaOriginal}</strong></span>
+      <span>🚨 Alerta: <strong>${alarmaOriginal}</strong></span>
+      <span>🚨 Alerta_Norm: <strong>${alerta_norm}</strong></span>
       <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
       <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
       <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
+      
       <span>📝 Info: <strong>${info}</strong></span>
       <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
       <hr>
+      <span><strong>Traducción de alarma:</strong></span>
       <span>📝 Título Corto: <strong>${alerta_titulo_corto_resumen}</strong></span>
       <span>📝 Interpretación Detallada: <strong>${alerta_Interpretacion_Detallada}</strong></span>
     `;
