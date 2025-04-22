@@ -110,6 +110,7 @@
 <body>
   <div class="container">
     <h1>Traductor de Alarmas</h1>
+    <div id="contadorAlarmas" class="full-width" style="text-align:center; font-size:12px; color:#555;">⏳ Cargando alarmas...</div>
 
     <div class="form-group">
       <label for="alarmaInput">Alarma FMC:</label>
@@ -166,6 +167,7 @@
       <div id="historial-container">
         <ul id="listaHistorial"></ul>
       </div>
+      <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
     </div>
 
     <div class="marca full-width">NOC-MO · 2025 · v1.5.7 json chatgpt 👈</div>
@@ -186,9 +188,15 @@
         InterpretaciónDetallada: item.InterpretaciónDetallada
       };
     });
-    console.log("Alarmas indexadas:", alarmas); // consola 👈
+    const total = Object.keys(alarmas).length;
+    document.getElementById("contadorAlarmas").textContent = `✅ ${total} alarmas cargadas desde JSON`;
+    document.getElementById("btnGenerar").disabled = false;
+    console.log("Alarmas indexadas:", alarmas);
   })
-
+  .catch(error => {
+    console.error("❌ Error al cargar el archivo JSON:", error);
+    document.getElementById("contadorAlarmas").textContent = "❌ Error al cargar las alarmas. Verifique el archivo JSON.";
+  });
     function procesarAlarma() {
     const entrada = document.getElementById("alarmaInput").value;
     const campos = entrada.split('\t');
@@ -251,6 +259,11 @@
     const historialItem = document.createElement("li");
     historialItem.textContent = descripcion;
     document.getElementById("listaHistorial").appendChild(historialItem);
+    
+    //Lipiar historial
+    function limpiarHistorial() {
+      document.getElementById("listaHistorial").innerHTML = '';
+}
   }
   </script>
   <a href="index.html">Pagina de index</a>
