@@ -28,7 +28,7 @@
       font-size: 14px;
       width: 100%;
       box-sizing: border-box;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     label {
       font-weight: bold;
@@ -37,7 +37,7 @@
       font-size: 13px;
     }
     .form-group {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     .full-width {
       grid-column: span 2;
@@ -60,11 +60,11 @@
       background-color: #0056b3;
     }
     #resultado-container {
-      margin-top: 20px;
+      margin-top: 5px;
       font-weight: bold;
     }
     #resumenVisual {
-      margin-top: 10px;
+      margin-top: 5px;
       font-size: 13px;
       color: #333;
     }
@@ -79,7 +79,7 @@
       background-color: #f9f9f9;
       padding: 10px;
       border-top: 1px dashed #ccc;
-      display: none;
+      display:none;
       text-align: center;
     }
     #listaHistorial li {
@@ -115,7 +115,7 @@
       <label for="alarmaInput">Alarma FMC:</label>
       <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
     </div>
-
+    
     <div>
       <label for="afectacion">Tipo de afectación:</label>
       <select id="afectacion" class="form-control">
@@ -175,8 +175,8 @@
   
   let alarmas = {};
 
-// Cargar las alarmas desde el archivo JSON
-fetch('traduccion_alarmas.json')
+  // Cargar las alarmas desde el archivo JSON
+  fetch('traduccion_alarmas.json')
   .then(response => response.json())
   .then(data => {
     alarmas = {};
@@ -194,7 +194,7 @@ fetch('traduccion_alarmas.json')
     const campos = entrada.split('\t');
     
     if (campos.length < 96) {
-      alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones.");
+      alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones. Favor de copiar alarmas con la vista de FMC NOC-MO_CORE");
       return;
     }
   
@@ -209,14 +209,16 @@ fetch('traduccion_alarmas.json')
   
     // Buscar traducción en el JSON cargado
     const alerta = alarmas[alarmaOriginal];
-    const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alarmaOriginal;
+
     // se agrega una variable para diferenciar si la alarma se traduce o no, la descripcion se mantiene
+    const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alarmaOriginal;
     const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alarmaOriginal +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
+    
     const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ No disponible";
-  
     const descripcion = `NOC-MO | ${node} | ${alerta_titulo_corto} | ${afectacion} | ${grupo} | ${origen}`;
     document.getElementById("resultado").innerText = descripcion;
-  
+
+    //armado del "ResumenVisual", se agrega del JS al HTML
     document.getElementById("resumenVisual").innerHTML = `
       <span>📍 Nodo: <strong>${node}</strong></span>
       <span>🚨 Alarma: <strong>${alarmaOriginal}</strong></span>
@@ -241,7 +243,7 @@ fetch('traduccion_alarmas.json')
         document.getElementById("resultado-container").appendChild(mensaje);
       }
       mensaje.textContent = "✅ Copiado al portapapeles";
-      setTimeout(() => mensaje.textContent = "", 3000);
+      setTimeout(() => mensaje.textContent = "", 10000);
     });
   
     // Añadir al historial
