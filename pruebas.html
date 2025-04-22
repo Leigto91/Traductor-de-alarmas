@@ -95,7 +95,7 @@
       margin-top: 20px;
       cursor: pointer;
       text-decoration: underline;
-      display: block;
+      display: auto;
       margin-left: auto;
       margin-right: auto;
     }
@@ -116,7 +116,7 @@
       <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
     </div>
     
-    <div>
+    <div class="selectores">
       <label for="afectacion">Tipo de afectación:</label>
       <select id="afectacion" class="form-control">
         <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
@@ -213,8 +213,9 @@
     // se agrega una variable para diferenciar si la alarma se traduce o no, la descripcion se mantiene
     const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alarmaOriginal;
     const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alarmaOriginal +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
-    
     const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ No disponible";
+    
+    //armado de la descripción
     const descripcion = `NOC-MO | ${node} | ${alerta_titulo_corto} | ${afectacion} | ${grupo} | ${origen}`;
     document.getElementById("resultado").innerText = descripcion;
 
