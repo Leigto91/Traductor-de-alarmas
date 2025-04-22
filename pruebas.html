@@ -259,6 +259,15 @@
     const historialItem = document.createElement("li");
     historialItem.textContent = descripcion;
     document.getElementById("listaHistorial").appendChild(historialItem);
+
+    function alternarHistorial() {
+      const contenedor = document.getElementById("historial-container");
+      const boton = document.querySelector(".toggle-historial");
+      const visible = contenedor.style.display === "block";
+  
+      contenedor.style.display = visible ? "none" : "block";
+      boton.textContent = visible ? "Mostrar historial" : "Ocultar historial";
+    }
     
     //Lipiar historial
     function limpiarHistorial() {
