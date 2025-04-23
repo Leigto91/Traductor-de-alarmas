@@ -235,9 +235,10 @@
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
   
-    const afectacion = document.getElementById("afectacion").value;
-    const grupo = document.getElementById("grupo").value;
-    const origen = document.getElementById("origen").value || "-";
+    const afectacion = document.getElementById("afectacion").value || "Grupo Vacío o en falla";
+    const grupo = document.getElementById("grupo").value || "Grupo Vacío o en falla";
+    const origen = document.getElementById("origen").value || "Origen Vacío o en falla";
+    const tipo_nodo = document.getElementById("tipo_nodo").value || "Origen Vacío o en falla";
   
     // Buscar traducción en el JSON cargado
     const alerta = alarmas[alarmaOriginal];
@@ -248,7 +249,7 @@
     const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ No disponible";
     
     //armado de la descripción
-    const descripcion = `NOC-MO | ${node} | ${alerta_titulo_corto} | ${afectacion} | ${grupo} | ${origen}`;
+    const descripcion = `NOC-MO | ${node} | ${alerta_titulo_corto} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
     document.getElementById("resultado").innerText = descripcion;
 
     //armado del "ResumenVisual", se agrega del JS al HTML
