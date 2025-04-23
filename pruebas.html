@@ -198,13 +198,13 @@
     console.error("❌ Error al cargar el archivo JSON:", error);
     document.getElementById("contadorAlarmas").textContent = "❌ Error al cargar las alarmas. Recargue la pagina o verifique el archivo JSON.";
   });
-    // Para quitar los "_esight21 y _esight10"
+    // Saca los "_esightR21 y _esightR10"
      function limpiarNombreNodo(nodoCrudo) {
      if (!nodoCrudo) return "Nodo vacío o erróneo";
      if (nodoCrudo.includes("_eSightR21")) {
      return nodoCrudo.split("_eSightR21")[0];
-  } else if (nodoCrudo.includes("_eSightR22")) {
-     return nodoCrudo.split("_eSightR22")[0];
+  } else if (nodoCrudo.includes("_eSightR10")) {
+     return nodoCrudo.split("_eSightR10")[0];
   }
      return nodoCrudo;
 }
