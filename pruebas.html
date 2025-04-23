@@ -198,6 +198,16 @@
     console.error("❌ Error al cargar el archivo JSON:", error);
     document.getElementById("contadorAlarmas").textContent = "❌ Error al cargar las alarmas. Recargue la pagina o verifique el archivo JSON.";
   });
+    // Para quitar los "_esight21 y _esight10"
+     function limpiarNombreNodo(nodoCrudo) {
+     if (!nodoCrudo) return "Nodo vacío o erróneo";
+     if (nodoCrudo.includes("_eSightR21")) {
+     return nodoCrudo.split("_eSightR21")[0];
+  } else if (nodoCrudo.includes("_eSightR22")) {
+     return nodoCrudo.split("_eSightR22")[0];
+  }
+     return nodoCrudo;
+}
     function procesarAlarma() {
     const entrada = document.getElementById("alarmaInput").value;
     const campos = entrada.split('\t');
@@ -207,7 +217,7 @@
       return;
     }
   
-    const node = campos[52] || "Nodo vacío o erróneo";
+    const node = limpiarNombreNodo(campos[52]) || "Nodo vacío o erróneo";
     const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
     const info = campos[54] || "Info vacía o errónea";
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
