@@ -182,17 +182,19 @@
         <div id="links-utiles" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
           <h3 style="font-size: 14px; margin-top: 0;">🔗 Links útiles</h3>
           <ul style="padding-left: 18px; margin: 0;">
+            <li><a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6" target="_blank">Grafana de Despliegue CORE 5GC</a></li>
+            <li><a href="http://grafana-teco.telecom.com.ar:3000/d/b5d6d2e9-3b48-4613-b1fe-56dae6eb2e82/estado-de-servicio-noc-mo?orgId=6&refresh=1m" target="_blank">Grafana de temperaturas</a></li>
             <li><a href="https://pwin0616/consulta_por_CGI.asp" target="_blank">Búsqueda por TAC</a></li>
             <li><a href="https://automation.telecom.com.ar" target="_blank">TAMBO</a></li>
             <li><a href="https://pwhgmweb1/HGM/Webs/csr2_new.php" target="_blank">HGM</a></li>
             <li><a href="http://10.24.1.150/ingenier@/#/" target="_blank">Ingenier@</a></li>
-            <li><a href="----" target="_blank">Rutas SIP</a></li>
+            <li><a href="https://cablevisionfibertel.sharepoint.com/:x:/r/teams/PCS-Equipo/_layouts/15/doc2.aspx?sourcedoc=%7BEE0B7FCD-14F2-4430-955D-209270FD5AA5%7D&file=InterconexionOperadores%20VPN%20SIP_3.xlsx&fromShare=true&action=default&mobileredirect=true" target="_blank">Rutas SIP</a></li>
             <!-- Agregá más si querés -->
           </ul>
         </div>
     
         <div id="contactos-pcs" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px;">
-          <h3 style="font-size: 14px; margin-top: 0;">📞 Contactos PCS</h3>
+          <h3 style="font-size: 14px; margin-top: 0;">📧 Mails de Contactos principales</h3>
           <ul style="padding-left: 18px; margin: 0;">
             <li>Conectividad Afuera: pcs_conectividad_afuera@teco.com.ar</li>
             <li>Infra&Net: PCS_InfrayNet@teco.com.ar</li>
@@ -201,6 +203,7 @@
             <li>Voz Adentro: PCS_Voz_Adentro@teco.com.ar</li>
             <li>Voz Afuera: PCS_Voz_Afuera@teco.com.ar</li>
             <li>SdB: Pcs_sdb@teco.com.ar</li>
+            <li>CSOT/CAO: csot_oyp@teco.com.ar</li>
             <!-- Agregá más si querés -->
           </ul>
         </div>
@@ -281,7 +284,7 @@
     const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ No disponible";
     
     //armado de la descripción
-    const descripcion = `NOC-MO | ${node} | ${alerta_titulo_corto} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
+    const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
     document.getElementById("resultado").innerText = descripcion;
 
     //armado del "ResumenVisual", se agrega del JS al HTML
