@@ -170,9 +170,35 @@
       <button class="button-principal" id="btnGenerar" onclick="procesarAlarma()" disabled>Generar descripción</button>
     </div>
 
-    <div id="resultado-container" class="full-width">
-      <div id="resultado"></div>
-      <div id="resumenVisual"></div>
+    <div class="full-width" style="display: flex; gap: 20px;">
+      <!-- Contenedor resultado y resumen -->
+      <div id="resultado-container" style="flex: 2;">
+        <div id="resultado"></div>
+        <div id="resumenVisual"></div>
+      </div>
+    
+      <!-- Contenedor info adicional -->
+      <div id="info-adicional" style="flex: 1; font-size: 12px;">
+        <div id="links-utiles" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+          <h3 style="font-size: 14px; margin-top: 0;">🔗 Links útiles</h3>
+          <ul style="padding-left: 18px; margin: 0;">
+            <li><a href="https://grafana.movistar.com" target="_blank">Grafana</a></li>
+            <li><a href="https://openxpand.movistar.com" target="_blank">OpenXpand</a></li>
+            <li><a href="https://smartcare.movistar.com" target="_blank">SmartCare</a></li>
+            <!-- Agregá más si querés -->
+          </ul>
+        </div>
+    
+        <div id="contactos-pcs" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px;">
+          <h3 style="font-size: 14px; margin-top: 0;">📞 Contactos PCS</h3>
+          <ul style="padding-left: 18px; margin: 0;">
+            <li>PCS Voz Móvil: pcsvozm@telefonica.com</li>
+            <li>Infra&Net: pcsinfra@telefonica.com</li>
+            <li>Convergentes: pcsvaloragr@telefonica.com</li>
+            <!-- Agregá más si querés -->
+          </ul>
+        </div>
+      </div>
     </div>
 
     <div class="full-width">
