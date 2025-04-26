@@ -231,7 +231,7 @@
   .then(data => {
     alarmas = {};
     data.forEach(item => {
-      alarmas[item.AlarmaOriginal] = {
+      alarmas[item.alerta_norm] = {
         TítuloCorto: item.TítuloCorto,
         InterpretaciónDetallada: item.InterpretaciónDetallada
       };
@@ -276,12 +276,12 @@
     const tipo_nodo = document.getElementById("tipo_nodo").value || "Origen Vacío o en falla";
   
     // Buscar traducción en el JSON cargado
-    const alerta = alarmas[alarmaOriginal];
+    const alerta = alarmas[alerta_norm];
 
     // se agrega una variable para diferenciar si la alarma se traduce o no, la descripcion se mantiene
-    const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alarmaOriginal;
-    const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alarmaOriginal +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
-    const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ No disponible";
+    const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alerta_norm;
+    const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alerta_norm +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
+    const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ Interpretación no disponible";
     
     //armado de la descripción
     const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
