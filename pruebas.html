@@ -218,7 +218,7 @@
       <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.5.9.5 json chatgpt 👈</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.5.9.8 json chatgpt 👈</div>
   </div>
 
   <script>
@@ -231,7 +231,7 @@
   .then(data => {
     alarmas = {};
     data.forEach(item => {
-      alarmas[item.alerta_norm] = {
+      alarmas[item.AlarmaOriginal] = {
         TítuloCorto: item.TítuloCorto,
         InterpretaciónDetallada: item.InterpretaciónDetallada
       };
@@ -281,7 +281,7 @@
     // se agrega una variable para diferenciar si la alarma se traduce o no, la descripcion se mantiene
     const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alerta_norm;
     const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alerta_norm +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
-    const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : "⚠️ Interpretación no disponible";
+    const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : '<span style="color: red;"> ⚠️ Interpretación no disponible</span>';
     
     //armado de la descripción
     const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
