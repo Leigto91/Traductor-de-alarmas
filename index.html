@@ -8,14 +8,14 @@
       font-family: Arial, sans-serif;
       background-color: white;
       margin: 0;
-      padding: 20px;
+      padding: 2px;
     }
     .container {
       max-width: 95%;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
+      grid-template-columns: 7fr 3fr;
+      gap: 5px;
     }
     h1 {
       text-align: center;
@@ -28,7 +28,7 @@
       font-size: 14px;
       width: 100%;
       box-sizing: border-box;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     label {
       font-weight: bold;
@@ -37,7 +37,7 @@
       font-size: 13px;
     }
     .form-group {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     .full-width {
       grid-column: span 2;
@@ -60,11 +60,11 @@
       background-color: #0056b3;
     }
     #resultado-container {
-      margin-top: 20px;
+      margin: auto;
       font-weight: bold;
     }
     #resumenVisual {
-      margin-top: 10px;
+      margin: auto;
       font-size: 13px;
       color: #333;
     }
@@ -79,7 +79,7 @@
       background-color: #f9f9f9;
       padding: 10px;
       border-top: 1px dashed #ccc;
-      display: none;
+      display:none;
       text-align: center;
     }
     #listaHistorial li {
@@ -95,7 +95,7 @@
       margin-top: 20px;
       cursor: pointer;
       text-decoration: underline;
-      display: block;
+      display: auto;
       margin-left: auto;
       margin-right: auto;
     }
@@ -110,13 +110,14 @@
 <body>
   <div class="container">
     <h1>Traductor de Alarmas</h1>
+    <div id="contadorAlarmas" class="full-width" style="text-align:center; font-size:12px; color:#555;">⏳ Cargando alarmas...</div>
 
     <div class="form-group">
       <label for="alarmaInput">Alarma FMC:</label>
       <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
     </div>
-
-    <div>
+    
+    <div class="selectores">
       <label for="afectacion">Tipo de afectación:</label>
       <select id="afectacion" class="form-control">
         <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
@@ -152,15 +153,61 @@
         <option value="TEKELEC">TEKELEC</option>        
         <option value="UIM">UIM</option>
       </select>
+      <label for="tipo_nodo">Tipo de Nodo:</label>
+      <select id="tipo_nodo" class="form-control">
+        <option value="MSC">MSC</option>
+        <option value="MME/AMF">MME/AMF</option>
+        <option value="UGW/DGW/UPF">UGW/DGW/UPF</option>
+        <option value="DNS/DEA">DNS/DEA</option>
+        <option value="UMG">UMG</option>
+        <option value="EDC/CDC">EDC/CDC</option>
+        <option value="USSD">USSD</option>        
+        <option value="VOICEMAIL">VOICEMAIL</option>
+      </select>
     </div>
 
     <div class="full-width">
-      <button class="button-principal" onclick="procesarAlarma()">Generar descripción</button>
+      <button class="button-principal" id="btnGenerar" onclick="procesarAlarma()" disabled>Generar descripción</button>
     </div>
 
-    <div id="resultado-container" class="full-width">
-      <div id="resultado"></div>
-      <div id="resumenVisual"></div>
+    <div class="full-width" style="display: flex; gap: 20px;">
+      <!-- Contenedor resultado y resumen -->
+      <div id="resultado-container" style="flex: 2;">
+        <div id="resultado"></div>
+        <div id="resumenVisual"></div>
+      </div>
+    
+      <!-- Contenedor info adicional -->
+      <div id="info-adicional" style="flex: 1; font-size: 12px;">
+        <div id="links-utiles" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+          <h3 style="font-size: 14px; margin-top: 0;">🔗 Links útiles</h3>
+          <ul style="padding-left: 18px; margin: 0;">
+            <li><a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6" target="_blank">Grafana de Despliegue CORE 5GC</a></li>
+            <li><a href="http://grafana-teco.telecom.com.ar:3000/d/b5d6d2e9-3b48-4613-b1fe-56dae6eb2e82/estado-de-servicio-noc-mo?orgId=6&refresh=1m" target="_blank">Grafana de temperaturas</a></li>
+            <li><a href="https://pwin0616/consulta_por_CGI.asp" target="_blank">Búsqueda por TAC</a></li>
+            <li><a href="https://automation.telecom.com.ar" target="_blank">TAMBO</a></li>
+            <li><a href="https://pwhgmweb1/HGM/Webs/csr2_new.php" target="_blank">HGM</a></li>
+            <li><a href="http://10.24.1.150/ingenier@/#/" target="_blank">Ingenier@</a></li>
+            <li><a href="https://cablevisionfibertel.sharepoint.com/:x:/r/teams/PCS-Equipo/_layouts/15/doc2.aspx?sourcedoc=%7BEE0B7FCD-14F2-4430-955D-209270FD5AA5%7D&file=InterconexionOperadores%20VPN%20SIP_3.xlsx&fromShare=true&action=default&mobileredirect=true" target="_blank">Rutas SIP</a></li>
+            <!-- Agregá más si querés -->
+          </ul>
+        </div>
+    
+        <div id="contactos-pcs" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px;">
+          <h3 style="font-size: 14px; margin-top: 0;">📧 Mails de Contactos principales</h3>
+          <ul style="padding-left: 18px; margin: 0;">
+            <li>Conectividad Afuera: pcs_conectividad_afuera@teco.com.ar</li>
+            <li>Infra&Net: PCS_InfrayNet@teco.com.ar</li>
+            <li>Servicios Convergentes: PCSServiciosConvergentes@teco.com.ar</li>
+            <li>Servicios Internacionales: PCS_Servicios_Internacionales@teco.com.ar</li>
+            <li>Voz Adentro: PCS_Voz_Adentro@teco.com.ar</li>
+            <li>Voz Afuera: PCS_Voz_Afuera@teco.com.ar</li>
+            <li>SdB: Pcs_sdb@teco.com.ar</li>
+            <li>CSOT/CAO: csot_oyp@teco.com.ar</li>
+            <!-- Agregá más si querés -->
+          </ul>
+        </div>
+      </div>
     </div>
 
     <div class="full-width">
@@ -168,74 +215,128 @@
       <div id="historial-container">
         <ul id="listaHistorial"></ul>
       </div>
+      <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.5</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.6 👈</div>
   </div>
 
   <script>
+  
+  let alarmas = {};
 
+  // Cargar las alarmas desde el archivo JSON
+  fetch('traduccion_alarmas.json')
+  .then(response => response.json())
+  .then(data => {
+    alarmas = {};
+    data.forEach(item => {
+      alarmas[item.AlarmaOriginal] = {
+        TítuloCorto: item.TítuloCorto,
+        InterpretaciónDetallada: item.InterpretaciónDetallada
+      };
+    });
+    const total_JSON = Object.keys(alarmas).length;
+    document.getElementById("contadorAlarmas").textContent = `✅ ${total_JSON} alarmas cargadas desde la DB`;
+    document.getElementById("btnGenerar").disabled = false;
+    console.log("Alarmas indexadas:", total_JSON, alarmas);
+  })
+  .catch(error => {
+    console.error("❌ Error al cargar el archivo JSON:", error);
+    document.getElementById("contadorAlarmas").textContent = "❌ Error al cargar las alarmas. Recargue la pagina o verifique el archivo JSON.";
+  });
+    // Saca los "_esightR21 y _esightR10"
+     function limpiarNombreNodo(nodoCrudo) {
+     if (!nodoCrudo) return "Nodo vacío o erróneo";
+     if (nodoCrudo.includes("_eSightR21")) {
+     return nodoCrudo.split("_eSightR21")[0];
+  } else if (nodoCrudo.includes("_eSightR10")) {
+     return nodoCrudo.split("_eSightR10")[0];
+  }
+     return nodoCrudo;
+}
     function procesarAlarma() {
-      const entrada = document.getElementById("alarmaInput").value;
-      const campos = entrada.split('\t');
-      
-      const alarmas = {
-      "etcd Backup Failed": "Falla en el respaldo de la base de datos distribuida etcd.",
-      "Disk Usage High": "El uso del disco está por encima del umbral.",
-      "CPU Load High": "Alta carga de CPU detectada.",
-      "Link Down": "Se detectó que un enlace de red está caído.",
-      "Memory Utilization Critical": "Utilización de memoria en nivel crítico.",
-      "hwIfMonitorCrcErrorRising": "Interfaz con errores.",
-      "CORE Delta 3G Mode Average Attached Users x USN": "Promedio de usuarios adjuntos en USN 3G fuera de valores esperados."
-    };
-
-      if (campos.length < 96) {
-        alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones.");
-        return;
-      }
-
-      const node = campos[52] || "Nodo vacío o erróneo";
-      const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
-      const alerta = alarmas[alarmaOriginal] || alarmaOriginal;
-      const afectacion = document.getElementById("afectacion").value;
-      const grupo = document.getElementById("grupo").value;
-      const origen = document.getElementById("origen").value || "-";
-      const info = campos[54] || "Info vacía o errónea";
-      const info_adicional_alerta = campos[55] || "Info vacía o errónea";
-
-      const descripcion = `NOC-MO | ${node} | ${alerta} | ${afectacion} | ${grupo} | ${origen}`;
-      document.getElementById("resultado").innerText = descripcion;
-
-      document.getElementById("resumenVisual").innerHTML = `
-        <span>📍 Nodo: <strong>${node}</strong></span>
-        <span>🚨 Alarma: <strong>${alarmaOriginal}</strong></span>
-        <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
-        <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
-        <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
-        <span>📝 Info: <strong>${info}</strong></span>
-        <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
-      `;
-
-      navigator.clipboard.writeText(descripcion).then(() => {
-        let mensaje = document.getElementById("mensajeCopiado");
-        if (!mensaje) {
-          mensaje = document.createElement("div");
-          mensaje.id = "mensajeCopiado";
-          mensaje.style.color = "green";
-          mensaje.style.marginTop = "10px";
-          document.getElementById("resultado-container").appendChild(mensaje);
-        }
-        mensaje.textContent = "✅ Copiado al portapapeles";
-        setTimeout(() => mensaje.textContent = "", 3000);
-      });
-
-      // Añadir al historial
-      const historialItem = document.createElement("li");
-      historialItem.textContent = descripcion;
-      document.getElementById("listaHistorial").appendChild(historialItem);
+    const entrada = document.getElementById("alarmaInput").value;
+    const campos = entrada.split('\t');
+    
+    if (campos.length < 96) {
+      alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones. Favor de copiar alarmas con la vista de FMC NOC-MO_CORE");
+      return;
     }
+  
+    const node = limpiarNombreNodo(campos[52]) || "Nodo vacío o erróneo";
+    const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
+    const info = campos[54] || "Info vacía o errónea";
+    const info_adicional_alerta = campos[55] || "Info vacía o errónea";
+    const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
+  
+    const afectacion = document.getElementById("afectacion").value || "Grupo Vacío o en falla";
+    const grupo = document.getElementById("grupo").value || "Grupo Vacío o en falla";
+    const origen = document.getElementById("origen").value || "Origen Vacío o en falla";
+    const tipo_nodo = document.getElementById("tipo_nodo").value || "Origen Vacío o en falla";
+  
+    // Buscar traducción en el JSON cargado
+    const alerta = alarmas[alerta_norm];
 
+    // se agrega una variable para diferenciar si la alarma se traduce o no, la descripcion se mantiene
+    const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alerta_norm;
+    const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alerta_norm +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
+    const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : '<span style="color: red;"> ⚠️ Interpretación no disponible</span>';
+    
+    //armado de la descripción
+    const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
+    document.getElementById("resultado").innerText = descripcion;
+
+    //armado del "ResumenVisual", se agrega del JS al HTML
+    document.getElementById("resumenVisual").innerHTML = `
+      <span>📍 Nodo: <strong>${node}</strong></span>
+      <span>🚨 Alerta: <strong>${alarmaOriginal}</strong></span>
+      <span>🚨 Alerta_Norm: <strong>${alerta_norm}</strong></span>
+      <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
+      <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
+      <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
+      
+      <span>📝 Info: <strong>${info}</strong></span>
+      <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
+      <hr>
+      <span><strong>Traducción de alarma:</strong></span>
+      <span>📝 Título Corto: <strong>${alerta_titulo_corto_resumen}</strong></span>
+      <span>📝 Interpretación Detallada: <strong>${alerta_Interpretacion_Detallada}</strong></span>
+    `;
+  
+    // Copiar al portapapeles
+    navigator.clipboard.writeText(descripcion).then(() => {
+      let mensaje = document.getElementById("mensajeCopiado");
+      if (!mensaje) {
+        mensaje = document.createElement("div");
+        mensaje.id = "mensajeCopiado";
+        mensaje.style.color = "green";
+        mensaje.style.marginTop = "10px";
+        document.getElementById("resultado-container").appendChild(mensaje);
+      }
+      mensaje.textContent = "✅ Copiado al portapapeles";
+      setTimeout(() => mensaje.textContent = "", 10000);
+    });
+    // Añadir al historial
+    const historialItem = document.createElement("li");
+    historialItem.textContent = descripcion;
+    document.getElementById("listaHistorial").appendChild(historialItem);
+}
+
+function alternarHistorial() {
+      const contenedor = document.getElementById("historial-container");
+      const boton = document.querySelector(".toggle-historial");
+      const visible = contenedor.style.display === "block";
+  
+      contenedor.style.display = visible ? "none" : "block";
+      boton.textContent = visible ? "Mostrar historial" : "Ocultar historial";
+    }
+    
+    //Lipiar historial
+    function limpiarHistorial() {
+      document.getElementById("listaHistorial").innerHTML = '';
+  }
   </script>
-  <a href="pruebas.html">Pagina de pruebas</a>
+  <a href="index.html">Pagina de index</a>
 </body>
 </html>
