@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Buscador de Rutas SIP</title>
-  <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/xlsx.mjs" type="module"></script>
+  <title>Buscador de Rutas SIP (Google Sheets)</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -30,61 +29,75 @@
 </head>
 <body>
 
-<h2>🔎 Buscador de Rutas SIP desde Excel</h2>
+<h2>🔎 Buscador de Rutas SIP desde Google Sheets</h2>
 
-<label>URL del Excel:</label><br>
-<input type="text" id="urlExcel" placeholder="https://cablevisionfibertel.sharepoint.com/:x:/r/teams/PCS-Equipo/_layouts/15/doc2.aspx?sourcedoc=%7BEE0B7FCD-14F2-4430-955D-209270FD5AA5%7D&file=InterconexionOperadores%20VPN%20SIP_3.xlsx&fromShare=true&action=default&mobileredirect=true" size="80"><br><br>
+<label>URL pública del Google Sheet (en formato CSV):</label><br>
+<input type="text" id="urlCsv" placeholder="https://docs.google.com/spreadsheets/d/1bE_Ozvob2p1hdYi9yuyi1ijkBmwsZxETdzhASQtQnoI/gviz/tq?tqx=out:csv" size="80"><br><br>
 
 <label>Nombre(s) de Ruta SIP (separados por coma):</label><br>
 <input type="text" id="nombresRuta" placeholder="Ruta1, Ruta2, Ruta3" size="80"><br><br>
 
-<button onclick="buscar()">Buscar</button>
+<button id="botonBuscar">Buscar</button>
 
 <div id="resultadoTabla"></div>
 
-<script type="module">
+<script>
+/**
+ * Función principal para buscar rutas SIP en un Google Sheets publicado como CSV.
+ */
+async function buscar() {
+  const urlCsv = document.getElementById('urlCsv').value.trim();
+  const nombresTexto = document.getElementById('nombresRuta').value.trim();
 
-import * as XLSX from 'https://cdn.sheetjs.com/xlsx-0.20.2/package/xlsx.mjs';
+  if (!urlCsv || !nombresTexto) {
+    alert('Por favor, completa la URL del CSV y los nombres de las rutas.');
+    return;
+  }
+
+  const nombresArray = nombresTexto.split(',').map(nombre => nombre.trim()).filter(nombre => nombre !== '');
+
+  const resultados = await buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresArray);
+  mostrarResultadosEnTabla(resultados, 'resultadoTabla');
+}
 
 /**
- * Descarga y busca rutas SIP en un archivo Excel desde una URL.
+ * Descarga y busca rutas SIP en un archivo CSV de Google Sheets.
  */
-async function buscarRutasSIPDesdeURL(url, nombresRutaSIP) {
+async function buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresRutaSIP) {
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Error al descargar el archivo: ${response.statusText}`);
+    const response = await fetch(urlCsv);
+    if (!response.ok) throw new Error('No se pudo descargar el archivo.');
 
-    const arrayBuffer = await response.arrayBuffer();
-    const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
-    const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+    const textoCsv = await response.text();
+    const filas = textoCsv.split('\n').map(fila => fila.split(','));
+
+    // Limpiar encabezados y quitar comillas
+    const encabezados = filas[0].map(h => h.trim().replace(/^"|"$/g, ''));
+    const data = filas.slice(1).map(fila => {
+      const objeto = {};
+      fila.forEach((valor, idx) => {
+        objeto[encabezados[idx]] = valor.trim().replace(/^"|"$/g, '');
+      });
+      return objeto;
+    });
 
     const nombres = Array.isArray(nombresRutaSIP) ? nombresRutaSIP : [nombresRutaSIP];
 
-    const resultados = jsonData.filter(row => {
-      const nombreRuta = row['NOMBRE DE RUTA SIP']?.toLowerCase() || '';
+    const resultados = data.filter(row => {
+      const nombreRuta = (row['NOMBRE DE RUTA SIP'] || '').toLowerCase();
       return nombres.some(nombre => nombreRuta.includes(nombre.toLowerCase()));
     });
 
-    if (resultados.length > 0) {
-      return resultados.map(resultado => ({
-        nombreRutaSIP: resultado['NOMBRE DE RUTA SIP'],
-        operador: resultado['OPERADOR'],
-        areaInterconexionFisica: resultado['AREA DE INTERCONEXION FISICA'],
-        areaInterconexion: resultado['AREA DE INTERCONEXION']
-      }));
-    } else {
-      return [];
-    }
+    return resultados;
+
   } catch (error) {
-    console.error('Error al procesar el archivo:', error);
-    return null;
+    console.error('Error:', error);
+    return [];
   }
 }
 
 /**
- * Muestra resultados en una tabla HTML.
+ * Muestra los resultados en una tabla HTML.
  */
 function mostrarResultadosEnTabla(resultados, contenedorId) {
   const contenedor = document.getElementById(contenedorId);
@@ -111,33 +124,18 @@ function mostrarResultadosEnTabla(resultados, contenedorId) {
   const tbody = tabla.createTBody();
   resultados.forEach(resultado => {
     const fila = tbody.insertRow();
-    fila.insertCell().textContent = resultado.nombreRutaSIP || '';
-    fila.insertCell().textContent = resultado.operador || '';
-    fila.insertCell().textContent = resultado.areaInterconexionFisica || '';
-    fila.insertCell().textContent = resultado.areaInterconexion || '';
+    fila.insertCell().textContent = resultado['NOMBRE DE RUTA SIP'] || '';
+    fila.insertCell().textContent = resultado['OPERADOR'] || '';
+    fila.insertCell().textContent = resultado['AREA DE INTERCONEXION FISICA'] || '';
+    fila.insertCell().textContent = resultado['AREA DE INTERCONEXION'] || '';
   });
 
   contenedor.innerHTML = '';
   contenedor.appendChild(tabla);
 }
 
-/**
- * Función principal que se ejecuta al hacer clic en "Buscar".
- */
-async function buscar() {
-  const url = document.getElementById('urlExcel').value.trim();
-  const nombresTexto = document.getElementById('nombresRuta').value.trim();
-  if (!url || !nombresTexto) {
-    alert('Por favor, completa la URL del Excel y los nombres de las rutas.');
-    return;
-  }
-
-  const nombresArray = nombresTexto.split(',').map(nombre => nombre.trim()).filter(nombre => nombre !== '');
-
-  const resultados = await buscarRutasSIPDesdeURL(url, nombresArray);
-  mostrarResultadosEnTabla(resultados, 'resultadoTabla');
-}
-window.buscar = buscar;
+// Conectar el botón al evento de búsqueda
+document.getElementById('botonBuscar').addEventListener('click', buscar);
 </script>
 
 </body>
