@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscador de Rutas SIP</title>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/xlsx.mjs" type="module"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f4f4f4;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🔎 Buscador de Rutas SIP desde Excel</h2>
+
+<label>URL del Excel:</label><br>
+<input type="text" id="urlExcel" placeholder="https://cablevisionfibertel.sharepoint.com/:x:/r/teams/PCS-Equipo/_layouts/15/doc2.aspx?sourcedoc=%7BEE0B7FCD-14F2-4430-955D-209270FD5AA5%7D&file=InterconexionOperadores%20VPN%20SIP_3.xlsx&fromShare=true&action=default&mobileredirect=true" size="80"><br><br>
+
+<label>Nombre(s) de Ruta SIP (separados por coma):</label><br>
+<input type="text" id="nombresRuta" placeholder="Ruta1, Ruta2, Ruta3" size="80"><br><br>
+
+<button onclick="buscar()">Buscar</button>
+
+<div id="resultadoTabla"></div>
+
+<script type="module">
+import * as XLSX from 'https://cdn.sheetjs.com/xlsx-0.20.2/package/xlsx.mjs';
+
+/**
+ * Descarga y busca rutas SIP en un archivo Excel desde una URL.
+ */
+async function buscarRutasSIPDesdeURL(url, nombresRutaSIP) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Error al descargar el archivo: ${response.statusText}`);
+
+    const arrayBuffer = await response.arrayBuffer();
+    const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+    const jsonData = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+
+    const nombres = Array.isArray(nombresRutaSIP) ? nombresRutaSIP : [nombresRutaSIP];
+
+    const resultados = jsonData.filter(row => {
+      const nombreRuta = row['NOMBRE DE RUTA SIP']?.toLowerCase() || '';
+      return nombres.some(nombre => nombreRuta.includes(nombre.toLowerCase()));
+    });
+
+    if (resultados.length > 0) {
+      return resultados.map(resultado => ({
+        nombreRutaSIP: resultado['NOMBRE DE RUTA SIP'],
+        operador: resultado['OPERADOR'],
+        areaInterconexionFisica: resultado['AREA DE INTERCONEXION FISICA'],
+        areaInterconexion: resultado['AREA DE INTERCONEXION']
+      }));
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.error('Error al procesar el archivo:', error);
+    return null;
+  }
+}
+
+/**
+ * Muestra resultados en una tabla HTML.
+ */
+function mostrarResultadosEnTabla(resultados, contenedorId) {
+  const contenedor = document.getElementById(contenedorId);
+  if (!contenedor) {
+    console.error(`Contenedor con ID "${contenedorId}" no encontrado.`);
+    return;
+  }
+
+  if (!resultados || resultados.length === 0) {
+    contenedor.innerHTML = '<p>No se encontraron resultados.</p>';
+    return;
+  }
+
+  const tabla = document.createElement('table');
+  const thead = tabla.createTHead();
+  const encabezados = ['NOMBRE DE RUTA SIP', 'OPERADOR', 'AREA DE INTERCONEXION FISICA', 'AREA DE INTERCONEXION'];
+  const filaEncabezado = thead.insertRow();
+  encabezados.forEach(texto => {
+    const th = document.createElement('th');
+    th.textContent = texto;
+    filaEncabezado.appendChild(th);
+  });
+
+  const tbody = tabla.createTBody();
+  resultados.forEach(resultado => {
+    const fila = tbody.insertRow();
+    fila.insertCell().textContent = resultado.nombreRutaSIP || '';
+    fila.insertCell().textContent = resultado.operador || '';
+    fila.insertCell().textContent = resultado.areaInterconexionFisica || '';
+    fila.insertCell().textContent = resultado.areaInterconexion || '';
+  });
+
+  contenedor.innerHTML = '';
+  contenedor.appendChild(tabla);
+}
+
+/**
+ * Función principal que se ejecuta al hacer clic en "Buscar".
+ */
+async function buscar() {
+  const url = document.getElementById('urlExcel').value.trim();
+  const nombresTexto = document.getElementById('nombresRuta').value.trim();
+  if (!url || !nombresTexto) {
+    alert('Por favor, completa la URL del Excel y los nombres de las rutas.');
+    return;
+  }
+
+  const nombresArray = nombresTexto.split(',').map(nombre => nombre.trim()).filter(nombre => nombre !== '');
+
+  const resultados = await buscarRutasSIPDesdeURL(url, nombresArray);
+  mostrarResultadosEnTabla(resultados, 'resultadoTabla');
+}
+</script>
+
+</body>
+</html>
