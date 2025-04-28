@@ -43,7 +43,7 @@
 <div id="resultadoTabla"></div>
 
 <script type="module">
-    window.buscar = buscar;
+
 import * as XLSX from 'https://cdn.sheetjs.com/xlsx-0.20.2/package/xlsx.mjs';
 
 /**
@@ -137,6 +137,7 @@ async function buscar() {
   const resultados = await buscarRutasSIPDesdeURL(url, nombresArray);
   mostrarResultadosEnTabla(resultados, 'resultadoTabla');
 }
+window.buscar = buscar;
 </script>
 
 </body>
