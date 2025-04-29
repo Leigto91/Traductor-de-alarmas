@@ -4,107 +4,132 @@
   <meta charset="UTF-8">
   <title>Traductor de Alarmas (Prueba)</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: white;
-      margin: 0;
-      padding: 2px;
-    }
-    .container {
-      max-width: 95%;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 7fr 3fr;
-      gap: 5px;
-    }
-    h1 {
-      text-align: center;
-      text-transform: uppercase;
-      grid-column: span 2;
-      font-size: 20px;
-    }
-    .form-control, textarea, select {
-      padding: 8px;
-      font-size: 14px;
-      width: 100%;
-      box-sizing: border-box;
-      margin-bottom: 5px;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-    }
-    .form-group {
-      margin-bottom: 5px;
-    }
-    .full-width {
-      grid-column: span 2;
-    }
-    .button-principal {
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      border-radius: 6px;
-      padding: 8px;
-      font-size: 13px;
-      font-weight: bold;
-      width: 150px;
-      display: block;
-      margin: 0 auto;
-    }
-    .button-principal:hover {
-      background-color: #0056b3;
-    }
-    #resultado-container {
-      margin: auto;
-      font-weight: bold;
-    }
-    #resumenVisual {
-      margin: auto;
-      font-size: 13px;
-      color: #333;
-    }
-    #resumenVisual span {
-      display: block;
-      margin: 3px 0;
-    }
-    #historial-container {
-      margin-top: 30px;
-      font-size: 12px;
-      color: #777;
-      background-color: #f9f9f9;
-      padding: 10px;
-      border-top: 1px dashed #ccc;
-      display:none;
-      text-align: center;
-    }
-    #listaHistorial li {
-      padding: 2px 0;
-      border-bottom: 1px dotted #ccc;
-      font-size: 12px;
-    }
-    .toggle-historial {
-      background-color: #f0f0f0;
-      border: none;
-      font-size: 12px;
-      color: #555;
-      margin-top: 20px;
-      cursor: pointer;
-      text-decoration: underline;
-      display: auto;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .marca {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 12px;
-      color: #999;
-    }
+    /* General */
+  body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f8f9fa;
+}
+
+/* Contenedor principal */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+/* Títulos */
+header h1, #resultado h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Secciones */
+section {
+  margin-top: 20px;
+}
+
+/* Textarea principal */
+.input-alarma textarea,
+#resultado textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  resize: vertical;
+  font-size: 14px;
+}
+
+/* Opciones de traducción */
+.opciones-traduccion {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.opciones-traduccion label {
+  flex: 1 0 100px;
+  font-weight: bold;
+}
+
+.opciones-traduccion select {
+  flex: 2 0 200px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* Botón principal */
+#boton-generar button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#boton-generar button:hover {
+  background-color: #0056b3;
+}
+
+/* Historial */
+#historial {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#historial ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+#btnMostrarHistorial,
+#btnLimpiarHistorial {
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#btnMostrarHistorial:hover,
+#btnLimpiarHistorial:hover {
+  background-color: #5a6268;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: #777;
+  font-size: 12px;
+}
+
+/* Responsive para celulares */
+@media (max-width: 600px) {
+  .opciones-traduccion {
+    flex-direction: column;
+  }
+}
+
   </style>
 </head>
 <body>
