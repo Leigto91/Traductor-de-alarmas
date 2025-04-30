@@ -116,6 +116,9 @@
       <label for="alarmaInput">Alarma FMC:</label>
       <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
     </div>
+    <div class="full-width" style="text-align: center; margin-top: 10px;">
+      <button class="button-principal" onclick="limpiarAlarmaInput()">🧹 Limpiar campo alarma</button>
+    </div>
     
     <div class="selectores">
       <label for="afectacion">Tipo de afectación:</label>
@@ -139,6 +142,7 @@
         <option value="NOC-TR">NOC-TR</option>
         <option value="NOC-MO">NOC-MO</option>
         <option value="NCSN-CAO">CSOT</option>
+        <option value="BACKEND">BACKEND</option>
         <option value="COMMAND CENTER">COMMAND CENTER</option>
       </select>
 
@@ -163,6 +167,9 @@
         <option value="EDC/CDC">EDC/CDC</option>
         <option value="USSD">USSD</option>        
         <option value="VOICEMAIL">VOICEMAIL</option>
+        <option value="OSS">OSS</option>
+        <option value="NTR/OTA/WSMS">NTR/OTA/WSMS</option>
+        <option value="SMSC">SMSC</option>
       </select>
     </div>
 
@@ -321,6 +328,11 @@
     const historialItem = document.createElement("li");
     historialItem.textContent = descripcion;
     document.getElementById("listaHistorial").appendChild(historialItem);
+}
+function limpiarAlarmaInput() {
+  document.getElementById("alarmaInput").value = "";
+  document.getElementById("resultado").innerText = "";
+  document.getElementById("resumenVisual").innerHTML = "";
 }
 
 function alternarHistorial() {
