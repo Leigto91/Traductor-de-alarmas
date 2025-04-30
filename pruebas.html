@@ -116,9 +116,6 @@
       <label for="alarmaInput">Alarma FMC:</label>
       <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
     </div>
-    <div class="full-width" style="text-align: center; margin-top: 10px;">
-      <button class="button-principal" onclick="limpiarAlarmaInput()">🧹 Limpiar campo alarma</button>
-    </div>
     
     <div class="selectores">
       <label for="afectacion">Tipo de afectación:</label>
@@ -175,6 +172,7 @@
 
     <div class="full-width">
       <button class="button-principal" id="btnGenerar" onclick="procesarAlarma()" disabled>Generar descripción</button>
+      <button class="button-principal" id="btnLimpiar" onclick="limpiarAlarmaInput()" disabled>🧹 Limpiar alarma</button>
     </div>
 
     <div class="full-width" style="display: flex; gap: 20px;">
@@ -293,6 +291,7 @@
     //armado de la descripción
     const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
     document.getElementById("resultado").innerText = descripcion;
+    document.getElementById("btnLimpiar").disabled = false;
 
     //armado del "ResumenVisual", se agrega del JS al HTML
     document.getElementById("resumenVisual").innerHTML = `
