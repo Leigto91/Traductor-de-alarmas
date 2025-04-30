@@ -43,7 +43,6 @@
       grid-column: span 2;
     }
     .button-principal {
-      background-color: #007BFF;
       color: white;
       border: none;
       cursor: pointer;
@@ -55,9 +54,6 @@
       width: 150px;
       display: block;
       margin: 0 auto;
-    }
-    .button-principal:hover {
-      background-color: #0056b3;
     }
     #resultado-container {
       margin: auto;
@@ -171,8 +167,8 @@
     </div>
 
     <div class="full-width">
-      <button class="button-principal" id="btnGenerar" onclick="procesarAlarma()" disabled>Generar descripción</button>
-      <button class="button-principal" id="btnLimpiar" onclick="limpiarAlarmaInput()" disabled>🧹 Limpiar alarma</button>
+      <button style=background-color:#00ff00 class="button-principal" id="btnGenerar" onclick="procesarAlarma()" disabled>✅Generar descripción</button>
+      <button style=background-color:#ff2600 class="button-principal" id="btnLimpiar" onclick="limpiarAlarmaInput()" disabled hidden>🧹 Limpiar alarma</button>
     </div>
 
     <div class="full-width" style="display: flex; gap: 20px;">
@@ -223,7 +219,7 @@
       <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.5.9.8 json chatgpt 👈</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.6.2 json chatgpt 👈</div>
   </div>
 
   <script>
@@ -292,6 +288,7 @@
     const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
     document.getElementById("resultado").innerText = descripcion;
     document.getElementById("btnLimpiar").disabled = false;
+    document.getElementById("btnLimpiar").hidden = false;
 
     //armado del "ResumenVisual", se agrega del JS al HTML
     document.getElementById("resumenVisual").innerHTML = `
