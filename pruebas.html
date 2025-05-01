@@ -177,6 +177,18 @@
         <div id="resultado" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;"></div>
         <div id="resumenVisual"style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;"></div>
       </div>
+      
+      <!-- Resumen visual por defecto -->
+      <div id="resumenVisual" class="resumen-visual">
+        <p>📍 Nodo: <span id="resumenNodo"></span></p>
+        <p>🚨 Alerta: <span id="resumenAlerta"></span></p>
+        <p>🚨 Alerta_Norm: <span id="resumenAlertaNorm"></span></p>
+        <p>⚠️ Tipo de afectación: <span id="resumenAfectacion"></span></p>
+        <p>🧩 Grupo asignado: <span id="resumenGrupo"></span></p>
+        <p>📝 Origen del reclamo: <span id="resumenOrigen"></span></p>
+        <p>📝 Info: <span id="resumenInfo"></span></p>
+        <p>📝 Info Adicional: <span id="resumenAdicional"></span></p>
+      </div>
     
       <!-- Contenedor info adicional -->
       <div id="info-adicional" style="flex: 1; font-size: 12px;">
@@ -291,21 +303,16 @@
     document.getElementById("btnLimpiar").hidden = false;
 
     //armado del "ResumenVisual", se agrega del JS al HTML
-    document.getElementById("resumenVisual").innerHTML = `
-      <span>📍 Nodo: <strong>${node}</strong></span>
-      <span>🚨 Alerta: <strong>${alarmaOriginal}</strong></span>
-      <span>🚨 Alerta_Norm: <strong>${alerta_norm}</strong></span>
-      <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
-      <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
-      <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
-      
-      <span>📝 Info: <strong>${info}</strong></span>
-      <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
-      <hr>
-      <span><strong>Traducción de alarma:</strong></span>
-      <span>📝 Título Corto: <strong>${alerta_titulo_corto_resumen}</strong></span>
-      <span>📝 Interpretación Detallada: <strong>${alerta_Interpretacion_Detallada}</strong></span>
-    `;
+    function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional) {
+  document.getElementById('resumenNodo').textContent = nodo || '';
+  document.getElementById('resumenAlerta').textContent = alerta || '';
+  document.getElementById('resumenAlertaNorm').textContent = alertaNorm || '';
+  document.getElementById('resumenAfectacion').textContent = afectacion || '';
+  document.getElementById('resumenGrupo').textContent = grupo || '';
+  document.getElementById('resumenOrigen').textContent = origen || '';
+  document.getElementById('resumenInfo').textContent = info || '';
+  document.getElementById('resumenAdicional').textContent = infoAdicional || '';
+}
   
     // Copiar al portapapeles
     navigator.clipboard.writeText(descripcion).then(() => {
@@ -348,6 +355,6 @@ function alternarHistorial() {
   <a href="index.html">Pagina de index</a>
   <a href="rutas_sip.html">Pagina de Rutas SIP</a>
   <p><a href="mailto:LITorres@teco.com.ar,ATDichiara@teco.com.ar?subject=Sugerencias%20traductor%20de%20alarmas
-    ">Sugeriencias o reclamos?</a></p>
+    ">Sugerencias o reclamos?</a></p>
 </body>
 </html>
