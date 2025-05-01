@@ -295,7 +295,7 @@
     const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : '<span style="color: red;"> ⚠️ Interpretación no disponible</span>';
     
     //armado de la descripción
-    const descripcion = NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo};
+    const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
     document.getElementById("resultado").innerText = descripcion;
     document.getElementById("btnLimpiar").disabled = false;
     document.getElementById("btnLimpiar").hidden = false;
