@@ -248,7 +248,7 @@
       };
     });
     const total_JSON = Object.keys(alarmas).length;
-    document.getElementById("contadorAlarmas").textContent = `✅ ${total_JSON} alarmas cargadas desde la DB`;
+    document.getElementById("contadorAlarmas").textContent = ✅ ${total_JSON} alarmas cargadas desde la DB;
     document.getElementById("btnGenerar").disabled = false;
     console.log("Alarmas indexadas:", total_JSON, alarmas);
   })
@@ -274,7 +274,7 @@
       alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones. Favor de copiar alarmas con la vista de FMC NOC-MO_CORE");
       return;
     }
-  }
+  
     const node = limpiarNombreNodo(campos[52]) || "Nodo vacío o erróneo";
     const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
     const info = campos[54] || "Info vacía o errónea";
@@ -295,25 +295,22 @@
     const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : '<span style="color: red;"> ⚠️ Interpretación no disponible</span>';
     
     //armado de la descripción
-    const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
+    const descripcion = NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo};
     document.getElementById("resultado").innerText = descripcion;
     document.getElementById("btnLimpiar").disabled = false;
     document.getElementById("btnLimpiar").hidden = false;
 
     //armado del "ResumenVisual", se agrega del JS al HTML
     function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional) {
-    document.getElementById("resumenNodo").innerText = nodo;
-    document.getElementById("resumenAlerta").innerText = alerta;
-    document.getElementById("resumenAlertaNorm").innerHTML = alertaNorm;
-    document.getElementById("resumenAfectacion").innerText = afectacion;
-    document.getElementById("resumenGrupo").innerText = grupo;
-    document.getElementById("resumenOrigen").innerText = origen;
-    document.getElementById("resumenInfo").innerText = info;
-    document.getElementById("resumenAdicional").innerText = infoAdicional;
+  document.getElementById('resumenNodo').textContent = nodo || '';
+  document.getElementById('resumenAlerta').textContent = alerta || '';
+  document.getElementById('resumenAlertaNorm').textContent = alertaNorm || '';
+  document.getElementById('resumenAfectacion').textContent = afectacion || '';
+  document.getElementById('resumenGrupo').textContent = grupo || '';
+  document.getElementById('resumenOrigen').textContent = origen || '';
+  document.getElementById('resumenInfo').textContent = info || '';
+  document.getElementById('resumenAdicional').textContent = infoAdicional || '';
 }
-
-{
-
   
     // Copiar al portapapeles
     navigator.clipboard.writeText(descripcion).then(() => {
@@ -332,9 +329,6 @@
     const historialItem = document.createElement("li");
     historialItem.textContent = descripcion;
     document.getElementById("listaHistorial").appendChild(historialItem);
-
-    resumenVisual(node, alerta_titulo_corto, alerta_titulo_corto_resumen, afectacion, grupo, origen, info, info_adicional_alerta);
-
 }
 function limpiarAlarmaInput() {
   document.getElementById("alarmaInput").value = "";
