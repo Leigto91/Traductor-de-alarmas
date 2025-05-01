@@ -229,7 +229,7 @@
       <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.6.2 json chatgpt 👈</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.6.3 json chatgpt 👈</div>
   </div>
 
   <script>
@@ -248,7 +248,7 @@
       };
     });
     const total_JSON = Object.keys(alarmas).length;
-    document.getElementById("contadorAlarmas").textContent = "✅ ${total_JSON} alarmas cargadas desde la DB";
+    document.getElementById("contadorAlarmas").textContent = `✅ ${total_JSON} alarmas cargadas desde la DB`;
     document.getElementById("btnGenerar").disabled = false;
     console.log("Alarmas indexadas:", total_JSON, alarmas);
   })
@@ -302,7 +302,7 @@
 
     //armado del "ResumenVisual", se agrega del JS al HTML
     function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional) {
-  document.getElementById('resumenNodo').textContent = nodo || '';
+  document.getElementById('resumenNodo').textContent = nodo || 'Vacio o en falla';
   document.getElementById('resumenAlerta').textContent = alerta || '';
   document.getElementById('resumenAlertaNorm').textContent = alertaNorm || '';
   document.getElementById('resumenAfectacion').textContent = afectacion || '';
