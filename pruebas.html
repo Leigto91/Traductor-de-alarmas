@@ -248,7 +248,7 @@
       };
     });
     const total_JSON = Object.keys(alarmas).length;
-    document.getElementById("contadorAlarmas").textContent = ✅ ${total_JSON} alarmas cargadas desde la DB;
+    document.getElementById("contadorAlarmas").textContent = "✅ ${total_JSON} alarmas cargadas desde la DB";
     document.getElementById("btnGenerar").disabled = false;
     console.log("Alarmas indexadas:", total_JSON, alarmas);
   })
