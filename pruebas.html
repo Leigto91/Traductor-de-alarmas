@@ -274,7 +274,7 @@
       alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones. Favor de copiar alarmas con la vista de FMC NOC-MO_CORE");
       return;
     }
-  
+  }
     const node = limpiarNombreNodo(campos[52]) || "Nodo vacío o erróneo";
     const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
     const info = campos[54] || "Info vacía o errónea";
@@ -302,14 +302,14 @@
 
     //armado del "ResumenVisual", se agrega del JS al HTML
     function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional) {
-  document.getElementById("resumenNodo").innerText = nodo;
-  document.getElementById("resumenAlerta").innerText = alerta;
-  document.getElementById("resumenAlertaNorm").innerHTML = alertaNorm;
-  document.getElementById("resumenAfectacion").innerText = afectacion;
-  document.getElementById("resumenGrupo").innerText = grupo;
-  document.getElementById("resumenOrigen").innerText = origen;
-  document.getElementById("resumenInfo").innerText = info;
-  document.getElementById("resumenAdicional").innerText = infoAdicional;
+    document.getElementById("resumenNodo").innerText = nodo;
+    document.getElementById("resumenAlerta").innerText = alerta;
+    document.getElementById("resumenAlertaNorm").innerHTML = alertaNorm;
+    document.getElementById("resumenAfectacion").innerText = afectacion;
+    document.getElementById("resumenGrupo").innerText = grupo;
+    document.getElementById("resumenOrigen").innerText = origen;
+    document.getElementById("resumenInfo").innerText = info;
+    document.getElementById("resumenAdicional").innerText = infoAdicional;
 }
 
 {
