@@ -302,14 +302,16 @@
 
     //armado del "ResumenVisual", se agrega del JS al HTML
     function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional) {
-  document.getElementById('resumenNodo').textContent = nodo || '';
-  document.getElementById('resumenAlerta').textContent = alerta || '';
-  document.getElementById('resumenAlertaNorm').textContent = alertaNorm || '';
-  document.getElementById('resumenAfectacion').textContent = afectacion || '';
-  document.getElementById('resumenGrupo').textContent = grupo || '';
-  document.getElementById('resumenOrigen').textContent = origen || '';
-  document.getElementById('resumenInfo').textContent = info || '';
-  document.getElementById('resumenAdicional').textContent = infoAdicional || '';
+  document.getElementById("resumenNodo").innerText = nodo;
+  document.getElementById("resumenAlerta").innerText = alerta;
+  document.getElementById("resumenAlertaNorm").innerHTML = alertaNorm;
+  document.getElementById("resumenAfectacion").innerText = afectacion;
+  document.getElementById("resumenGrupo").innerText = grupo;
+  document.getElementById("resumenOrigen").innerText = origen;
+  document.getElementById("resumenInfo").innerText = info;
+  document.getElementById("resumenAdicional").innerText = infoAdicional;
+}
+
 }
   
     // Copiar al portapapeles
@@ -329,6 +331,9 @@
     const historialItem = document.createElement("li");
     historialItem.textContent = descripcion;
     document.getElementById("listaHistorial").appendChild(historialItem);
+
+    resumenVisual(node, alerta_titulo_corto, alerta_titulo_corto_resumen, afectacion, grupo, origen, info, info_adicional_alerta);
+
 }
 function limpiarAlarmaInput() {
   document.getElementById("alarmaInput").value = "";
