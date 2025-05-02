@@ -311,7 +311,9 @@
   document.getElementById('resumenInfo').textContent = info || '';
   document.getElementById('resumenAdicional').textContent = infoAdicional || '';
 }
-  
+resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta);
+
+
     // Copiar al portapapeles
     navigator.clipboard.writeText(descripcion).then(() => {
       let mensaje = document.getElementById("mensajeCopiado");
