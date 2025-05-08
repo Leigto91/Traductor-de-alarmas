@@ -348,7 +348,7 @@ function alternarHistorial() {
       boton.textContent = visible ? "Mostrar historial" : "Ocultar historial";
     }
     
-    //Lipiar historial
+    //Limpiar historial
     function limpiarHistorial() {
       document.getElementById("listaHistorial").innerHTML = '';
   }
@@ -357,5 +357,78 @@ function alternarHistorial() {
   <a href="rutas_sip.html">Pagina de Rutas SIP</a>
   <p><a href="mailto:LITorres@teco.com.ar,ATDichiara@teco.com.ar?subject=Sugerencias%20traductor%20de%20alarmas
     ">Sugerencias o reclamos?</a></p>
+
+
+
+     // Sección NOVEDADES
+
+<section style="margin-top: 40px; max-width: 700px; margin-inline: auto;">
+  <h2 style="font-size: 24px; margin-bottom: 15px; text-align: center;">📰 Novedades</h2>
+
+  <div id="novedades-list" style="background-color: #f9f9f9; border: 1px solid #ccc; padding: 15px; border-radius: 8px; max-height: 300px; overflow-y: auto; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px;">
+    Cargando novedades...
+  </div>
+
+  <form id="novedades-form" style="display: flex; flex-direction: column; gap: 10px;">
+    <input type="text" id="usuario" placeholder="Tu nombre" required style="padding: 8px; border-radius: 5px; border: 1px solid #ccc;">
+    <textarea id="mensaje" placeholder="Escribí una novedad..." required style="padding: 8px; border-radius: 5px; border: 1px solid #ccc; height: 70px;"></textarea>
+    <button type="submit" style="background-color: #007BFF; color: white; padding: 10px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
+      ➕ Agregar novedad
+    </button>
+  </form>
+</section>
+
+<script>
+  const scriptUrl = 'https://script.google.com/macros/s/AKfycbzVyOlCOwroWBQTuMJdTlU6fHuhw38e3Fq39jMfcmBhCA1O-BQFlApvxefFXLpaEqEJDQ/exec';
+
+  function cargarNovedades() {
+    fetch(scriptUrl)
+      .then(res => res.json())
+      .then(data => {
+        const novedadesDiv = document.getElementById('novedades-list');
+        novedadesDiv.innerHTML = '';
+
+        data.reverse().forEach(item => {
+          const fecha = new Date(item.timestamp).toLocaleString('es-AR');
+          const entrada = document.createElement('div');
+          entrada.style.borderBottom = '1px solid #ddd';
+          entrada.style.padding = '8px 0';
+          entrada.innerHTML = `
+            <div style="font-size: 13px; color: #666;">[${fecha}] <strong>${item.usuario}</strong></div>
+            <div style="margin-top: 3px;">${item.mensaje}</div>
+          `;
+          novedadesDiv.appendChild(entrada);
+        });
+      })
+      .catch(err => {
+        document.getElementById('novedades-list').innerText = 'Error al cargar novedades.';
+        console.error(err);
+      });
+  }
+
+  document.getElementById('novedades-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const usuario = document.getElementById('usuario').value.trim();
+    const mensaje = document.getElementById('mensaje').value.trim();
+
+    if (!usuario || !mensaje) return;
+
+    fetch(scriptUrl, {
+      method: 'POST',
+      body: JSON.stringify({ usuario, mensaje }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(() => {
+      document.getElementById('mensaje').value = '';
+      cargarNovedades();
+    })
+    .catch(err => console.error('Error al enviar novedad', err));
+  });
+
+  // Carga inicial
+  cargarNovedades();
+</script>
+
+
 </body>
 </html>
