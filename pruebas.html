@@ -360,31 +360,29 @@ function alternarHistorial() {
 
 
    
-    
+
 
     <style>
   #notas-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 320px;
-    height: 100%;
-    background-color: #f7f7f7;
-    border-left: 1px solid #ccc;
+    width: 100%;
+    background-color: #f9f9f9;
+    border-top: 2px solid #ccc;
     padding: 16px;
-    overflow-y: auto;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
     font-family: Arial, sans-serif;
-    z-index: 999;
+    box-sizing: border-box;
   }
 
   #notas-panel h3 {
     margin-top: 0;
+    font-size: 18px;
   }
 
   #notas-container {
     margin-top: 12px;
     font-size: 14px;
+    max-height: 300px;
+    overflow-y: auto;
   }
 
   .nota {
@@ -429,6 +427,7 @@ function alternarHistorial() {
   }
 </style>
 
+<!-- Agregalo justo antes del cierre </body> -->
 <div id="notas-panel">
   <h3>Notas del día</h3>
   <input type="text" id="autor" placeholder="Tu nombre">
@@ -436,6 +435,7 @@ function alternarHistorial() {
   <button id="guardar-nota">Guardar Nota</button>
   <div id="notas-container"></div>
 </div>
+
 
 <script>
   const endpoint = 'https://script.google.com/macros/s/AKfycbygAKi-xhgOtVv_HUNuX4G9ATjsPcfEGVKX0L55Z-PIKK33vz-rEnQ1pzal3LBlnMB4/exec'; // 👈 reemplazá con tu URL real
