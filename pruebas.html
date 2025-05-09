@@ -358,54 +358,6 @@ function alternarHistorial() {
   <p><a href="mailto:LITorres@teco.com.ar,ATDichiara@teco.com.ar?subject=Sugerencias%20traductor%20de%20alarmas
     ">Sugerencias o reclamos?</a></p>
 
-
-       
-
-<!-- Agregalo justo antes del cierre </body> -->
-<div id="notas-panel">
-  <h3>Notas del día</h3>
-  <input type="text" id="autor" placeholder="Tu nombre">
-  <textarea id="nueva-nota" placeholder="Escribí una nota..."></textarea>
-  <button id="guardar-nota">Guardar Nota</button>
-  <div id="notas-container"></div>
-</div>
-
-<script>
-  const endpoint = 'https://script.google.com/macros/s/AKfycbygAKi-xhgOtVv_HUNuX4G9ATjsPcfEGVKX0L55Z-PIKK33vz-rEnQ1pzal3LBlnMB4/exec'; // 👈 reemplazá con tu URL real
-
-  async function cargarNotas() {
-    const res = await fetch(endpoint);
-    const notas = await res.json();
-    const contenedor = document.getElementById("notas-container");
-    contenedor.innerHTML = "";
-
-    notas.reverse().forEach(nota => {
-      const div = document.createElement("div");
-      div.className = "nota";
-      div.innerHTML = `<time>${new Date(nota.timestamp).toLocaleString()} - ${nota.autor}</time><div>${nota.nota}</div>`;
-      contenedor.appendChild(div);
-    });
-  }
-
-  async function guardarNota() {
-    const nota = document.getElementById("nueva-nota").value.trim();
-    const autor = document.getElementById("autor").value.trim() || "Anónimo";
-
-    if (nota === "") return;
-
-    await fetch(endpoint, {
-      method: "POST",
-      body: new URLSearchParams({ nota, autor })
-    });
-
-    document.getElementById("nueva-nota").value = "";
-    cargarNotas();
-  }
-
-  document.getElementById("guardar-nota").addEventListener("click", guardarNota);
-  window.addEventListener("load", cargarNotas);
-</script>
-
 <style>
   #notas-panel {
     width: 100%;
@@ -480,6 +432,52 @@ function alternarHistorial() {
     background: #0056b3;
   }
 </style>
+       
+
+<!-- Agregalo justo antes del cierre </body> -->
+<div id="notas-panel">
+  <h3>Notas del día</h3>
+  <input type="text" id="autor" placeholder="Tu nombre">
+  <textarea id="nueva-nota" placeholder="Escribí una nota..."></textarea>
+  <button id="guardar-nota">Guardar Nota</button>
+  <div id="notas-container"></div>
+</div>
+
+<script>
+  const endpoint = 'https://script.google.com/macros/s/AKfycbygAKi-xhgOtVv_HUNuX4G9ATjsPcfEGVKX0L55Z-PIKK33vz-rEnQ1pzal3LBlnMB4/exec'; // 👈 reemplazá con tu URL real
+
+  async function cargarNotas() {
+    const res = await fetch(endpoint);
+    const notas = await res.json();
+    const contenedor = document.getElementById("notas-container");
+    contenedor.innerHTML = "";
+
+    notas.reverse().forEach(nota => {
+      const div = document.createElement("div");
+      div.className = "nota";
+      div.innerHTML = `<time>${new Date(nota.timestamp).toLocaleString()} - ${nota.autor}</time><div>${nota.nota}</div>`;
+      contenedor.appendChild(div);
+    });
+  }
+
+  async function guardarNota() {
+    const nota = document.getElementById("nueva-nota").value.trim();
+    const autor = document.getElementById("autor").value.trim() || "Anónimo";
+
+    if (nota === "") return;
+
+    await fetch(endpoint, {
+      method: "POST",
+      body: new URLSearchParams({ nota, autor })
+    });
+
+    document.getElementById("nueva-nota").value = "";
+    cargarNotas();
+  }
+
+  document.getElementById("guardar-nota").addEventListener("click", guardarNota);
+  window.addEventListener("load", cargarNotas);
+</script>
 
 </body>
 </html>
