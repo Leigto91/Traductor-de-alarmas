@@ -359,7 +359,18 @@ function alternarHistorial() {
     ">Sugerencias o reclamos?</a></p>
 
 
-       <style>
+       
+
+<!-- Agregalo justo antes del cierre </body> -->
+<div id="notas-panel">
+  <h3>Notas del día</h3>
+  <input type="text" id="autor" placeholder="Tu nombre">
+  <textarea id="nueva-nota" placeholder="Escribí una nota..."></textarea>
+  <button id="guardar-nota">Guardar Nota</button>
+  <div id="notas-container"></div>
+</div>
+
+<style>
   #notas-panel {
     width: 100%;
     display: flex;
@@ -433,16 +444,6 @@ function alternarHistorial() {
     background: #0056b3;
   }
 </style>
-
-<!-- Agregalo justo antes del cierre </body> -->
-<div id="notas-panel">
-  <h3>Notas del día</h3>
-  <input type="text" id="autor" placeholder="Tu nombre">
-  <textarea id="nueva-nota" placeholder="Escribí una nota..."></textarea>
-  <button id="guardar-nota">Guardar Nota</button>
-  <div id="notas-container"></div>
-</div>
-
 
 <script>
   const endpoint = 'https://script.google.com/macros/s/AKfycbygAKi-xhgOtVv_HUNuX4G9ATjsPcfEGVKX0L55Z-PIKK33vz-rEnQ1pzal3LBlnMB4/exec'; // 👈 reemplazá con tu URL real
