@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Traductor de Alarmas (Prueba)</title>
+  <style>
+    body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía más moderna */
+    background-color: #f4f6f8; /* Fondo gris claro */
+    margin: 0;
+    padding: 20px; /* Aumentar el padding general */
+    line-height: 1.6; /* Mejorar la legibilidad del texto */
+}
+
+.container {
+    max-width: 90%; /* Reducir un poco el ancho máximo */
+    margin: 20px auto; /* Centrar con más margen */
+    display: grid;
+    grid-template-columns: 6fr 4fr; /* Ajustar la proporción de las columnas */
+    gap: 20px; /* Aumentar el espacio entre columnas y filas */
+    background-color: #fff; /* Fondo blanco para el contenedor principal */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+h1 {
+    text-align: left; /* Alinear el título a la izquierda para un diseño más moderno */
+    text-transform: none; /* No usar mayúsculas forzadas */
+    grid-column: span 2;
+    font-size: 24px; /* Aumentar el tamaño del título */
+    color: #333; /* Color de texto más oscuro */
+    margin-bottom: 20px; /* Más espacio debajo del título */
+}
+
+.form-control, textarea, select {
+    padding: 10px;
+    font-size: 15px;
+    width: calc(100% - 20px); /* Ajustar el ancho teniendo en cuenta el padding */
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.button-principal {
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out; /* Transición más suave */
+    border-radius: 6px;
+    padding: 10px 15px; /* Aumentar el padding del botón */
+    font-size: 15px;
+    font-weight: bold;
+    width: auto; /* Ajustar el ancho al contenido */
+    display: inline-block; /* Para que el ancho automático funcione */
+    margin-right: 10px; /* Espacio entre botones si hay varios */
+}
+
+.button-principal[id="btnGenerar"] {
+    background-color: #007bff; /* Azul más moderno */
+}
+
+.button-principal[id="btnGenerar"]:hover {
+    background-color: #0056b3;
+}
+
+.button-principal[id="btnLimpiar"] {
+    background-color: #dc3545; /* Rojo más moderno */
+}
+
+.button-principal[id="btnLimpiar"]:hover {
+    background-color: #c82333;
+}
+
+#resultado-container {
+    margin-top: 20px;
+}
+
+#resultado {
+    background-color: #e9ecef; /* Fondo grisáceo claro para el resultado */
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #212529;
+    font-weight: normal; /* Eliminar negrita por defecto */
+    white-space: pre-wrap; /* Conservar saltos de línea */
+}
+
+#resumenVisual {
+    background-color: #f8f9fa; /* Otro tono de gris claro */
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #495057;
+}
+
+#resumenVisual span {
+    display: block;
+    margin: 5px 0;
+    font-weight: bold; /* Resaltar los valores del resumen */
+}
+
+#historial-container {
+    margin-top: 30px;
+    font-size: 13px;
+    color: #6c757d;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-top: 1px solid #dee2e6; /* Línea más clara */
+    border-radius: 6px;
+    display: none; /* Se mantiene oculto por defecto */
+    text-align: left; /* Alinear el texto del historial a la izquierda */
+}
+
+#listaHistorial {
+    list-style: none;
+    padding: 0;
+}
+
+#listaHistorial li {
+    padding: 8px 0;
+    border-bottom: 1px dotted #ced4da; /* Línea punteada más clara */
+    font-size: 14px;
+}
+
+#listaHistorial li:last-child {
+    border-bottom: none; /* Eliminar la línea inferior del último elemento */
+}
+
+.toggle-historial {
+    background-color: transparent; /* Fondo transparente */
+    border: none;
+    font-size: 14px;
+    color: #007bff; /* Azul para el enlace */
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: underline;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 0; /* Añadir un poco de padding para facilitar el clic */
+}
+
+.toggle-historial:hover {
+    color: #0056b3;
+}
+
+.marca {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #adb5bd;
+}
+
+/* Estilos para los links útiles y contactos */
+#links-utiles, #contactos-pcs {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #495057;
+}
+
+#links-utiles h3, #contactos-pcs h3 {
+    font-size: 16px;
+    margin-top: 0;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+#links-utiles ul, #contactos-pcs ul {
+    padding-left: 20px;
+    margin: 0;
+    list-style-type: disc; /* Usar viñetas estándar */
+}
+
+#links-utiles li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#links-utiles li a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el panel de notas */
+#notas-panel {
+    width: 100%;
+    background-color: #e9ecef;
+    border-top: 1px solid #ced4da;
+    padding: 15px;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    margin-top: 20px;
+    border-radius: 6px;
+}
+
+#notas-panel h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+#notas-container {
+    margin-top: 10px;
+    font-size: 14px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.nota {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.nota:last-child {
+    border-bottom: none;
+}
+
+.nota time {
+    font-size: 12px;
+    color: #6c757d;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#nueva-nota {
+    width: calc(100% - 22px);
+    height: 80px;
+    margin-bottom: 10px;
+    resize: vertical;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#autor {
+    width: calc(100% - 22px);
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#guardar-nota {
+    width: 100%;
+    padding: 10px 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#guardar-nota:hover {
+    background: #1e7e34;
+}
+
+.selectores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Hacer los selectores más fluidos */
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.full-width[style*="display: flex;"] {
+    display: flex;
+    gap: 10px; /* Reducir el gap entre los botones */
+    align-items: center; /* Alinear verticalmente los botones */
+}
+
+.full-width[style*="display: flex;"] .button-principal {
+    margin: 0; /* Eliminar márgenes automáticos de los botones en esta sección */
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Traductor de Alarmas(Prueba)</h1>
+    <div id="contadorAlarmas" class="full-width" style="text-align:center; font-size:12px; color:#555;">⏳ Cargando alarmas...</div>
+
+    <div class="form-group">
+      <label for="alarmaInput">Alarma FMC:</label>
+      <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
+    </div>
+    
+    <div class="selectores">
+      <label for="afectacion">Tipo de afectación:</label>
+      <select id="afectacion" class="form-control">
+        <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
+        <option value="DEGRADACIÓN">DEGRADACIÓN</option>
+        <option value="INDISPONIBILIDAD">INDISPONIBILIDAD</option>
+        <option value="SIN AFECTACIÓN">SIN AFECTACIÓN</option>
+      </select>
+
+      <label for="grupo">Grupo asignado:</label>
+      <select id="grupo" class="form-control">
+        <option value="VOZMOVIL">PCS Voz Móvil</option>
+        <option value="VOZRESI">PCS Voz Fija</option>
+        <option value="ROAMINT">PCS Roaming Internacional</option>
+        <option value="VALORAGR">PCS Serv. Convergentes</option>
+        <option value="VIRTINFR">PCS Infra&Net</option>
+        <option value="NAVMOVIL">PCS Conectividad Afuera</option>
+        <option value="PCS-SDB">PCS Señalización y BD</option>
+        <option value="NOC-AC">NOC-AC</option>
+        <option value="NOC-TR">NOC-TR</option>
+        <option value="NOC-MO">NOC-MO</option>
+        <option value="NCSN-CAO">CSOT</option>
+        <option value="BACKEND">BACKEND</option>
+        <option value="COMMAND CENTER">COMMAND CENTER</option>
+      </select>
+
+      <label for="origen">Origen del reclamo:</label>
+      <select id="origen" class="form-control">
+        <option value="DIGITAL VIEW">DIGITAL VIEW</option>
+        <option value="GRAFANA">GRAFANA</option>
+        <option value="MAE Core">MAE Core</option>
+        <option value="OPENXPAND">OPENXPAND</option>
+        <option value="SMARTCARE">SMARTCARE</option>
+        <option value="SOLICITUD">SOLICITUD</option>
+        <option value="TEKELEC">TEKELEC</option>        
+        <option value="UIM">UIM</option>
+      </select>
+      <label for="tipo_nodo">Tipo de Nodo:</label>
+      <select id="tipo_nodo" class="form-control">
+        <option value="MSC">MSC</option>
+        <option value="MME/AMF">MME/AMF</option>
+        <option value="UGW/DGW/UPF">UGW/DGW/UPF</option>
+        <option value="DNS/DEA">DNS/DEA</option>
+        <option value="UMG">UMG</option>
+        <option value="EDC/CDC">EDC/CDC</option>
+        <option value="USSD">USSD</option>        
+        <option value="VOICEMAIL">VOICEMAIL</option>
+        <option value="OSS">OSS</option>
+        <option value="NTR/OTA/WSMS">NTR/OTA/WSMS</option>
+        <option value="SMSC">SMSC</option>
+        <option value="UDM/USCDB/HSS">UDM/USCDB/HSS</option>
+      </select>
+    </div>
+
+    <div class="full-width" style="display: flex; gap: 20px;">
+      <button style=background-color:#3700ff class="button-principal" id="btnGenerar" onclick="procesarAlarma()" disabled>✅Generar descripción</button>
+      <button style=background-color:#ff2600 class="button-principal" id="btnLimpiar" onclick="limpiarAlarmaInput()" disabled hidden>🧹 Limpiar alarma</button>
+    </div>
+
+    <div class="full-width" style="display: flex; gap: 20px;">
+      <!-- Contenedor resultado y resumen -->
+      <div id="resultado-container" style="flex: 2;">
+        <div id="resultado" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;"></div>
+              <!-- Resumen visual por defecto -->
+        <div id="resumenVisual" class="resumen-visual" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+          <p>📍 Nodo: <span id="resumenNodo"></span></p>
+          <p>🚨 Alerta: <span id="resumenAlerta"></span></p>
+          <p>🚨 Alerta_Norm: <span id="resumenAlertaNorm"></span></p>
+          <p>⚠️ Tipo de afectación: <span id="resumenAfectacion"></span></p>
+          <p>🧩 Grupo asignado: <span id="resumenGrupo"></span></p>
+          <p>📝 Origen del reclamo: <span id="resumenOrigen"></span></p>
+          <p>📝 Info: <span id="resumenInfo"></span></p>
+          <p>📝 Info Adicional: <span id="resumenAdicional"></span></p>
+        </div>
+      </div>
+    
+      <!-- Contenedor info adicional -->
+      <div id="info-adicional" style="flex: 1; font-size: 12px;">
+        <div id="links-utiles" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+          <h3 style="font-size: 14px; margin-top: 0;">🔗 Links útiles</h3>
+          <ul style="padding-left: 18px; margin: 0;">
+            <li><a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6" target="_blank">Grafana de Despliegue CORE 5GC</a></li>
+            <li><a href="http://grafana-teco.telecom.com.ar:3000/d/b5d6d2e9-3b48-4613-b1fe-56dae6eb2e82/estado-de-servicio-noc-mo?orgId=6&refresh=1m" target="_blank">Grafana de temperaturas</a></li>
+            <li><a href="https://pwin0616/consulta_por_CGI.asp" target="_blank">Búsqueda por TAC</a></li>
+            <li><a href="https://automation.telecom.com.ar" target="_blank">TAMBO</a></li>
+            <li><a href="https://pwhgmweb1/HGM/Webs/csr2_new.php" target="_blank">HGM</a></li>
+            <li><a href="http://10.24.1.150/ingenier@/#/" target="_blank">Ingenier@</a></li>
+            <li><a href="https://cablevisionfibertel.sharepoint.com/:x:/r/teams/PCS-Equipo/_layouts/15/doc2.aspx?sourcedoc=%7BEE0B7FCD-14F2-4430-955D-209270FD5AA5%7D&file=InterconexionOperadores%20VPN%20SIP_3.xlsx&fromShare=true&action=default&mobileredirect=true" target="_blank">Rutas SIP</a></li>
+            <!-- Agregá más si querés -->
+          </ul>
+        </div>
+    
+        <div id="contactos-pcs" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px;">
+          <h3 style="font-size: 14px; margin-top: 0;">📧 Mails de Contactos principales</h3>
+          <ul style="padding-left: 18px; margin: 0;">
+            <li>Conectividad Afuera: pcs_conectividad_afuera@teco.com.ar</li>
+            <li>Infra&Net: PCS_InfrayNet@teco.com.ar</li>
+            <li>Servicios Convergentes: PCSServiciosConvergentes@teco.com.ar</li>
+            <li>Servicios Internacionales: PCS_Servicios_Internacionales@teco.com.ar</li>
+            <li>Voz Adentro: PCS_Voz_Adentro@teco.com.ar</li>
+            <li>Voz Afuera: PCS_Voz_Afuera@teco.com.ar</li>
+            <li>SdB: Pcs_sdb@teco.com.ar</li>
+            <li>CSOT/CAO: csot_oyp@teco.com.ar</li>
+            <!-- Agregá más si querés -->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="full-width">
+      <button class="toggle-historial" onclick="alternarHistorial()">Mostrar/Ocultar historial</button>
+      <div id="historial-container">
+        <ul id="listaHistorial"></ul>
+      </div>
+      <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
+    </div>
+
+    <div class="marca full-width">NOC-MO · 2025 · v1.6.3 json chatgpt 👈</div>
+  </div>
+
+  <script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('alarmaInput').focus(); // Autofocus al cargar la página
+});
+
+  let alarmas = {};
+
+  // Cargar las alarmas desde el archivo JSON
+  fetch('traduccion_alarmas.json')
+  .then(response => response.json())
+  .then(data => {
+    alarmas = {};
+    data.forEach(item => {
+      alarmas[item.AlarmaOriginal] = {
+        TítuloCorto: item.TítuloCorto,
+        InterpretaciónDetallada: item.InterpretaciónDetallada
+      };
+    });
+    const total_JSON = Object.keys(alarmas).length;
+    document.getElementById("contadorAlarmas").textContent = `✅ ${total_JSON} alarmas cargadas desde la DB`;
+    document.getElementById("btnGenerar").disabled = false;
+    console.log("Alarmas indexadas:", total_JSON, alarmas);
+  })
+  .catch(error => {
+    console.error("❌ Error al cargar el archivo JSON:", error);
+    document.getElementById("contadorAlarmas").textContent = "❌ Error al cargar las alarmas. Recargue la pagina o verifique el archivo JSON.";
+  });
+    // Saca los "_esightR21 y _esightR10"
+     function limpiarNombreNodo(nodoCrudo) {
+     if (!nodoCrudo) return "Nodo vacío o erróneo";
+     if (nodoCrudo.includes("_eSightR21")) {
+     return nodoCrudo.split("_eSightR21")[0];
+  } else if (nodoCrudo.includes("_eSightR10")) {
+     return nodoCrudo.split("_eSightR10")[0];
+  }
+     return nodoCrudo;
+}
+    function procesarAlarma() {
+    document.getElementById("btnLimpiar").style.display = 'inline-block'; // Asegurar que el botón limpiar se muestre
+    const entrada = document.getElementById("alarmaInput").value;
+    const campos = entrada.split('\t');
+    
+    if (campos.length < 96) {
+      alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones. Favor de copiar alarmas con la vista de FMC NOC-MO_CORE");
+      return;
+    }
+  
+    const node = limpiarNombreNodo(campos[52]) || "Nodo vacío o erróneo";
+    const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
+    const info = campos[54] || "Info vacía o errónea";
+    const info_adicional_alerta = campos[55] || "Info vacía o errónea";
+    const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
+  
+    const afectacion = document.getElementById("afectacion").value || "Grupo Vacío o en falla";
+    const grupo = document.getElementById("grupo").value || "Grupo Vacío o en falla";
+    const origen = document.getElementById("origen").value || "Origen Vacío o en falla";
+    const tipo_nodo = document.getElementById("tipo_nodo").value || "Origen Vacío o en falla";
+  
+    // Buscar traducción en el JSON cargado
+    const alerta = alarmas[alerta_norm];
+
+    // se agrega una variable para diferenciar si la alarma se traduce o no, la descripcion se mantiene
+    const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alerta_norm;
+    const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alerta_norm +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
+    const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : '<span style="color: red;"> ⚠️ Interpretación no disponible</span>';
+    
+    //armado de la descripción
+    const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
+    document.getElementById("resultado").innerText = descripcion;
+    document.getElementById("btnLimpiar").disabled = false;
+    document.getElementById("btnLimpiar").hidden = false;
+
+    //armado del "ResumenVisual", se agrega del JS al HTML
+    function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional) {
+  document.getElementById('resumenNodo').textContent = nodo || 'Vacio o en falla';
+  document.getElementById('resumenAlerta').textContent = alerta || '';
+  document.getElementById('resumenAlertaNorm').textContent = alertaNorm || '';
+  document.getElementById('resumenAfectacion').textContent = afectacion || '';
+  document.getElementById('resumenGrupo').textContent = grupo || '';
+  document.getElementById('resumenOrigen').textContent = origen || '';
+  document.getElementById('resumenInfo').textContent = info || '';
+  document.getElementById('resumenAdicional').textContent = infoAdicional || '';
+}
+resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta);
+
+
+    // Copiar al portapapeles
+    navigator.clipboard.writeText(descripcion).then(() => {
+      let mensaje = document.getElementById("mensajeCopiado");
+      if (!mensaje) {
+        mensaje = document.createElement("div");
+        mensaje.id = "mensajeCopiado";
+        mensaje.style.color = "green";
+        mensaje.style.marginTop = "10px";
+        document.getElementById("resultado-container").appendChild(mensaje);
+      }
+      mensaje.textContent = "✅ Copiado al portapapeles";
+      setTimeout(() => mensaje.textContent = "", 10000);
+    });
+    // Añadir al historial
+    const historialItem = document.createElement("li");
+    historialItem.textContent = descripcion;
+    document.getElementById("listaHistorial").appendChild(historialItem);
+}
+function limpiarAlarmaInput() {
+    document.getElementById("alarmaInput").value = "";
+    document.getElementById("resultado").innerText = "";
+    document.getElementById("resumenVisual").innerHTML = "";
+    document.getElementById("btnLimpiar").style.display = 'none'; // Ocultar el botón limpiar si el campo está vacío
+    document.getElementById('alarmaInput').focus(); // Devolver el foco al input después de limpiar
+}
+
+function alternarHistorial() {
+
+      const contenedor = document.getElementById("historial-container");
+      const boton = document.querySelector(".toggle-historial");
+      const visible = contenedor.style.display === "block";
+  
+      contenedor.style.display = visible ? "none" : "block";
+      boton.textContent = visible ? "Mostrar historial" : "Ocultar historial";
+    }
+    
+    //Lipiar historial
+    function limpiarHistorial() {
+      document.getElementById("listaHistorial").innerHTML = '';
+
+    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('alarmaInput').focus();
+
+    // Cargar preferencias guardadas
+     const afectacionGuardada = localStorage.getItem('afectacionSeleccionada');
+    if (afectacionGuardada) {
+        document.getElementById('afectacion').value = afectacionGuardada;
+    }
+
+    const grupoGuardado = localStorage.getItem('grupoSeleccionado');
+    if (grupoGuardado) {
+        document.getElementById('grupo').value = grupoGuardado;
+    }
+
+    const origenGuardado = localStorage.getItem('origenSeleccionado');
+    if (origenGuardado) {
+        document.getElementById('origen').value = origenGuardada;
+    }
+
+    const tipoNodoGuardado = localStorage.getItem('tipoNodoSeleccionado');
+    if (tipoNodoGuardado) {
+        document.getElementById('tipo_nodo').value = tipoNodoGuardado;
+    }
+
+    // Guardar preferencias al cambiar la selección
+    document.getElementById('afectacion').addEventListener('change', function() {
+        localStorage.setItem('afectacionSeleccionada', this.value);
+    });
+
+    document.getElementById('grupo').addEventListener('change', function() {
+        localStorage.setItem('grupoSeleccionada', this.value);
+    });
+
+    document.getElementById('origen').addEventListener('change', function() {
+        localStorage.setItem('origenSeleccionada', this.value);
+    });
+
+    document.getElementById('tipo_nodo').addEventListener('change', function() {
+        localStorage.setItem('tipoNodoSeleccionada', this.value);
+    });
+});
+  }
+  </script>
+  <a href="index.html">Pagina de index</a>
+  <a href="rutas_sip.html">Pagina de Rutas SIP</a>
+  <p><a href="mailto:LITorres@teco.com.ar,ATDichiara@teco.com.ar?subject=Sugerencias%20traductor%20de%20alarmas
+    ">Sugerencias o reclamos?</a></p>
+
+    
+    <style>
+  #notas-panel {
+    width: 100%;
+    background-color: #f9f9f9;
+    border-top: 2px solid #ccc;
+    padding: 16px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+  #notas-panel h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+
+  #notas-container {
+    margin-top: 12px;
+    font-size: 14px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .nota {
+    border: 1px solid #ddd;
+    background: white;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+  }
+
+  .nota time {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  #nueva-nota {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 8px;
+    resize: vertical;
+  }
+
+  #autor {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  #guardar-nota {
+    width: 100%;
+    padding: 8px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #guardar-nota:hover {
+    background: #0056b3;
+  }
+</style>
+
+<!-- Agregalo justo antes del cierre </body> -->
+<div id="notas-panel">
+  <h3>Notas del día</h3>
+  <input type="text" id="autor" placeholder="Tu nombre">
+  <textarea id="nueva-nota" placeholder="Escribí una nota..."></textarea>
+  <button id="guardar-nota">Guardar Nota</button>
+  <div id="notas-container"></div>
+</div>
+
+
+<script>
+  const endpoint = 'https://script.google.com/macros/s/AKfycbygAKi-xhgOtVv_HUNuX4G9ATjsPcfEGVKX0L55Z-PIKK33vz-rEnQ1pzal3LBlnMB4/exec'; // 👈 reemplazá con tu URL real
+
+  async function cargarNotas() {
+    const res = await fetch(endpoint);
+    const notas = await res.json();
+    const contenedor = document.getElementById("notas-container");
+    contenedor.innerHTML = "";
+
+    notas.reverse().forEach(nota => {
+      const div = document.createElement("div");
+      div.className = "nota";
+      div.innerHTML = `<time>${new Date(nota.timestamp).toLocaleString()} - ${nota.autor}</time><div>${nota.nota}</div>`;
+      contenedor.appendChild(div);
+    });
+  }
+
+  async function guardarNota() {
+    const nota = document.getElementById("nueva-nota").value.trim();
+    const autor = document.getElementById("autor").value.trim() || "Anónimo";
+
+    if (nota === "") return;
+
+    await fetch(endpoint, {
+      method: "POST",
+      body: new URLSearchParams({ nota, autor })
+    });
+
+    document.getElementById("nueva-nota").value = "";
+    cargarNotas();
+  }
+
+  document.getElementById("guardar-nota").addEventListener("click", guardarNota);
+  window.addEventListener("load", cargarNotas);
+</script>
+
+
+</body>
+</html>
