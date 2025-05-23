@@ -114,7 +114,7 @@ function mostrarResultadosEnTabla(resultados, contenedorId) {
 
   const tabla = document.createElement('table');
   const thead = tabla.createTHead();
-  const encabezados = ['NOMBRE DE RUTA SIP', 'OPERADOR', 'AREA DE INTERCONEXION FISICA', 'AREA DE INTERCONEXION'];
+  const encabezados = ['NOMBRE DE RUTA SIP', 'OPERADOR', 'SBC TELECOM', 'DESCRIPCION', 'ASIGNACION SBC TELECOM', 'Status'];
   const filaEncabezado = thead.insertRow();
   encabezados.forEach(texto => {
     const th = document.createElement('th');
@@ -127,8 +127,10 @@ function mostrarResultadosEnTabla(resultados, contenedorId) {
     const fila = tbody.insertRow();
     fila.insertCell().textContent = resultado['NOMBRE DE RUTA SIP'] || '';
     fila.insertCell().textContent = resultado['OPERADOR'] || '';
-    fila.insertCell().textContent = resultado['AREA DE INTERCONEXION FISICA'] || '';
-    fila.insertCell().textContent = resultado['AREA DE INTERCONEXION'] || '';
+    fila.insertCell().textContent = resultado['SBC TELECOM'] || '';
+    fila.insertCell().textContent = resultado['DESCRIPCION'] || '';
+    fila.insertCell().textContent = resultado['ASIGNACION SBC TELECOM'] || '';
+    fila.insertCell().textContent = resultado['Status'] || '';
   });
 
   contenedor.innerHTML = '';
