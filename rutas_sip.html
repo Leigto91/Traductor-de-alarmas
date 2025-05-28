@@ -82,6 +82,19 @@ async function buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresRutaSIP) {
       return objeto;
     });
 
+        // --- COMIENZO DE LOS CONSOLE.LOG ADICIONALES ---
+
+    // 1. Mostrar todos los 'NOMBRE DE RUTA SIP' recibidos del CSV
+    console.log('--- NOMBRES DE RUTA SIP RECIBIDOS DEL CSV ---');
+    const todosLosNombresSIP = data.map(row => row['NOMBRE DE RUTA SIP']).filter(Boolean); // filter(Boolean) para eliminar undefined/vacíos
+    if (todosLosNombresSIP.length > 0) {
+        console.log(todosLosNombresSIP);
+    } else {
+        console.log('No se encontraron nombres de ruta SIP en el CSV (quizás la columna no existe o está vacía).');
+        console.log('Encabezados detectados:', encabezados); // Útil para depurar si el encabezado no se encuentra
+    }
+    console.log('-------------------------------------------');
+
     const nombres = Array.isArray(nombresRutaSIP) ? nombresRutaSIP : [nombresRutaSIP];
 
     const resultados = data.filter(row => {
