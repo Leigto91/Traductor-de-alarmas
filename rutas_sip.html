@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Buscador de Rutas SIP (Google Sheets)</title>
-  <style>
+  <meta charset="UTF-8">
+  <title>Buscador de Rutas SIP (Google Sheets)</title>
+<style>
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
@@ -29,11 +29,11 @@
 </head>
 <body>
 
-<h2>🔎 Buscador de Rutas SIP desde Google Sheets v0.1</h2>
+<h2>🔎 Buscador de Rutas SIP desde Google Sheets</h2>
 
 <label>URL pública del Google Sheet (en formato CSV):</label><br>
-<h4>https://docs.google.com/spreadsheets/d/1bE_Ozvob2p1hdYi9yuyi1ijkBmwsZxETdzhASQtQnoI/export?format=csv&gid=0</h4>
-<input type="text" id="urlCsv" placeholder="https://docs.google.com/spreadsheets/d/1bE_Ozvob2p1hdYi9yuyi1ijkBmwsZxETdzhASQtQnoI/export?format=csv&gid=0" size="80"><br><br>
+<h4>https://docs.google.com/spreadsheets/d/1bE_Ozvob2p1hdYi9yuyi1ijkBmwsZxETdzhASQtQnoI/gviz/tq?tqx=out:csv</h4>
+<input type="text" id="urlCsv" placeholder="https://docs.google.com/spreadsheets/d/1bE_Ozvob2p1hdYi9yuyi1ijkBmwsZxETdzhASQtQnoI/gviz/tq?tqx=out:csv" size="80"><br><br>
 
 <label>Nombre(s) de Ruta SIP (separados por coma):</label><br>
 <input type="text" id="nombresRuta" placeholder="Ruta1, Ruta2, Ruta3" size="80"><br><br>
@@ -44,45 +44,45 @@
 
 <script>
 /**
- * Función principal para buscar rutas SIP en un Google Sheets publicado como CSV.
- */
+ * Función principal para buscar rutas SIP en un Google Sheets publicado como CSV.
+ */
 async function buscar() {
-  const urlCsv = document.getElementById('urlCsv').value.trim();
-  const nombresTexto = document.getElementById('nombresRuta').value.trim();
+  const urlCsv = document.getElementById('urlCsv').value.trim();
+  const nombresTexto = document.getElementById('nombresRuta').value.trim();
 
-  if (!urlCsv || !nombresTexto) {
-    alert('Por favor, completa la URL del CSV y los nombres de las rutas.');
-    return;
-  }
+  if (!urlCsv || !nombresTexto) {
+    alert('Por favor, completa la URL del CSV y los nombres de las rutas.');
+    return;
+  }
 
-  const nombresArray = nombresTexto.split(',').map(nombre => nombre.trim()).filter(nombre => nombre !== '');
+  const nombresArray = nombresTexto.split(',').map(nombre => nombre.trim()).filter(nombre => nombre !== '');
 
-  const resultados = await buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresArray);
-  mostrarResultadosEnTabla(resultados, 'resultadoTabla');
+  const resultados = await buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresArray);
+  mostrarResultadosEnTabla(resultados, 'resultadoTabla');
 }
 
 /**
- * Descarga y busca rutas SIP en un archivo CSV de Google Sheets.
- */
+ * Descarga y busca rutas SIP en un archivo CSV de Google Sheets.
+ */
 async function buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresRutaSIP) {
-  try {
-    const response = await fetch(urlCsv);
-    if (!response.ok) throw new Error('No se pudo descargar el archivo.');
+  try {
+    const response = await fetch(urlCsv);
+    if (!response.ok) throw new Error('No se pudo descargar el archivo.');
 
-    const textoCsv = await response.text();
-    const filas = textoCsv.split('\n').map(fila => fila.split(','));
+    const textoCsv = await response.text();
+    const filas = textoCsv.split('\n').map(fila => fila.split(','));
 
-    // Limpiar encabezados y quitar comillas
-    const encabezados = filas[0].map(h => h.trim().replace(/^"|"$/g, ''));
-    const data = filas.slice(1).map(fila => {
-      const objeto = {};
-      fila.forEach((valor, idx) => {
-        objeto[encabezados[idx]] = valor.trim().replace(/^"|"$/g, '');
-      });
-      return objeto;
-    });
+    // Limpiar encabezados y quitar comillas
+    const encabezados = filas[0].map(h => h.trim().replace(/^"|"$/g, ''));
+    const data = filas.slice(1).map(fila => {
+      const objeto = {};
+      fila.forEach((valor, idx) => {
+        objeto[encabezados[idx]] = valor.trim().replace(/^"|"$/g, '');
+      });
+      return objeto;
+    });
 
-        // --- COMIENZO DE LOS CONSOLE.LOG ADICIONALES ---
+    // --- COMIENZO DE LOS CONSOLE.LOG ADICIONALES ---
 
     // 1. Mostrar todos los 'NOMBRE DE RUTA SIP' recibidos del CSV
     console.log('--- NOMBRES DE RUTA SIP RECIBIDOS DEL CSV ---');
@@ -95,59 +95,73 @@ async function buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresRutaSIP) {
     }
     console.log('-------------------------------------------');
 
-    const nombres = Array.isArray(nombresRutaSIP) ? nombresRutaSIP : [nombresRutaSIP];
 
-    const resultados = data.filter(row => {
-      const nombreRuta = (row['NOMBRE DE RUTA SIP'] || '').toLowerCase();
-      return nombres.some(nombre => nombreRuta.includes(nombre.toLowerCase()));
-    });
+    const nombres = Array.isArray(nombresRutaSIP) ? nombresRutaSIP : [nombresRutaSIP];
 
-    return resultados;
+    const resultados = data.filter(row => {
+      const nombreRuta = (row['NOMBRE DE RUTA SIP'] || '').toLowerCase();
+      return nombres.some(nombre => nombreRuta.includes(nombre.toLowerCase()));
+    });
 
-  } catch (error) {
-    console.error('Error:', error);
-    return [];
-  }
+    // 2. Mostrar los 'NOMBRE DE RUTA SIP' filtrados según la búsqueda
+    console.log('--- NOMBRES DE RUTA SIP FILTRADOS POR LA BÚSQUEDA ---');
+    if (resultados.length > 0) {
+        const nombresFiltradosSIP = resultados.map(row => row['NOMBRE DE RUTA SIP']);
+        console.log(nombresFiltradosSIP);
+    } else {
+        console.log('No se encontraron rutas SIP que coincidan con la búsqueda.');
+        console.log('Términos de búsqueda:', nombresRutaSIP); // Muestra lo que se intentó buscar
+    }
+    console.log('----------------------------------------------------');
+
+    // --- FIN DE LOS CONSOLE.LOG ADICIONALES ---
+
+    return resultados;
+
+  } catch (error) {
+    console.error('Error:', error);
+    return [];
+  }
 }
 
 /**
- * Muestra los resultados en una tabla HTML.
- */
+ * Muestra los resultados en una tabla HTML.
+ */
 function mostrarResultadosEnTabla(resultados, contenedorId) {
-  const contenedor = document.getElementById(contenedorId);
-  if (!contenedor) {
-    console.error(`Contenedor con ID "${contenedorId}" no encontrado.`);
-    return;
-  }
+  const contenedor = document.getElementById(contenedorId);
+  if (!contenedor) {
+    console.error(`Contenedor con ID "${contenedorId}" no encontrado.`);
+    return;
+  }
 
-  if (!resultados || resultados.length === 0) {
-    contenedor.innerHTML = '<p>No se encontraron resultados.</p>';
-    return;
-  }
+  if (!resultados || resultados.length === 0) {
+    contenedor.innerHTML = '<p>No se encontraron resultados.</p>';
+    return;
+  }
 
-  const tabla = document.createElement('table');
-  const thead = tabla.createTHead();
-  const encabezados = ['NOMBRE DE RUTA SIP', 'OPERADOR', 'SBC TELECOM', 'DESCRIPCION', 'ASIGNACION SBC TELECOM', 'Status'];
-  const filaEncabezado = thead.insertRow();
-  encabezados.forEach(texto => {
-    const th = document.createElement('th');
-    th.textContent = texto;
-    filaEncabezado.appendChild(th);
-  });
+  const tabla = document.createElement('table');
+  const thead = tabla.createTHead();
+  const encabezados = ['NOMBRE DE RUTA SIP', 'OPERADOR', 'SBC TELECOM', 'DESCRIPCION', 'ASIGNACION SBC TELECOM', 'Status'];
+  const filaEncabezado = thead.insertRow();
+  encabezados.forEach(texto => {
+    const th = document.createElement('th');
+    th.textContent = texto;
+    filaEncabezado.appendChild(th);
+  });
 
-  const tbody = tabla.createTBody();
-  resultados.forEach(resultado => {
-    const fila = tbody.insertRow();
-    fila.insertCell().textContent = resultado['NOMBRE DE RUTA SIP'] || '';
-    fila.insertCell().textContent = resultado['OPERADOR'] || '';
-    fila.insertCell().textContent = resultado['SBC TELECOM'] || '';
-    fila.insertCell().textContent = resultado['DESCRIPCION'] || '';
-    fila.insertCell().textContent = resultado['ASIGNACION SBC TELECOM'] || '';
-    fila.insertCell().textContent = resultado['Status'] || '';
-  });
+  const tbody = tabla.createTBody();
+  resultados.forEach(resultado => {
+    const fila = tbody.insertRow();
+    fila.insertCell().textContent = resultado['NOMBRE DE RUTA SIP'] || '';
+    fila.insertCell().textContent = resultado['OPERADOR'] || '';
+    fila.insertCell().textContent = resultado['SBC TELECOM'] || '';
+    fila.insertCell().textContent = resultado['DESCRIPCION'] || '';
+    fila.insertCell().textContent = resultado['ASIGNACION SBC TELECOM'] || '';
+    fila.insertCell().textContent = resultado['Status'] || '';
+  });
 
-  contenedor.innerHTML = '';
-  contenedor.appendChild(tabla);
+  contenedor.innerHTML = '';
+  contenedor.appendChild(tabla);
 }
 
 // Conectar el botón al evento de búsqueda
