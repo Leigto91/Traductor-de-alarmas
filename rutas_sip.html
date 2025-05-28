@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Buscador de Rutas SIP (Google Sheets)</title>
-  <style>
+<style>
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
@@ -31,10 +31,6 @@
 
 <h2>🔎 Buscador de Rutas SIP desde Google Sheets</h2>
 
-<label>URL pública del Google Sheet (en formato CSV):</label><br>
-<h4>https://docs.google.com/spreadsheets/d/1bE_Ozvob2p1hdYi9yuyi1ijkBmwsZxETdzhASQtQnoI/export?format=csv&gid=0</h4>
-<input type="text" id="urlCsv" placeholder="https://docs.google.com/spreadsheets/d/1bE_Ozvob2p1hdYi9yuyi1ijkBmwsZxETdzhASQtQnoI/export?format=csv&gid=0" size="80"><br><br>
-
 <label>Nombre(s) de Ruta SIP (separados por coma):</label><br>
 <input type="text" id="nombresRuta" placeholder="Ruta1, Ruta2, Ruta3" size="80"><br><br>
 
@@ -43,16 +39,20 @@
 <div id="resultadoTabla"></div>
 
 <script>
+// ** La URL del CSV ahora está definida aquí directamente en el código JavaScript **
+const CSV_URL = 'https://docs.google.com/spreadsheets/d/1bE_Ozvob2p1hdYi9yuyi1ijkBmwsZxETdzhASQtQnoI/export?format=csv&gid=0';
+
 /**
  * Función principal para buscar rutas SIP en un Google Sheets publicado como CSV.
  * También actualiza la URL con el término de búsqueda.
  */
-async function buscar(actualizarUrl = true) { // Añade un parámetro para controlar si se actualiza la URL
-  const urlCsv = document.getElementById('urlCsv').value.trim();
+async function buscar(actualizarUrl = true) {
+  // La URL del CSV se toma de la constante definida arriba
+  const urlCsv = CSV_URL;
   const nombresTexto = document.getElementById('nombresRuta').value.trim();
 
-  if (!urlCsv || !nombresTexto) {
-    alert('Por favor, completa la URL del CSV y los nombres de las rutas.');
+  if (!nombresTexto) { // Solo se valida que se haya ingresado el nombre de la ruta
+    alert('Por favor, completa los nombres de las rutas.');
     return;
   }
 
@@ -61,8 +61,8 @@ async function buscar(actualizarUrl = true) { // Añade un parámetro para contr
   // Actualizar la URL con el término de búsqueda
   if (actualizarUrl) {
     const nuevaUrl = new URL(window.location.href);
-    nuevaUrl.searchParams.set('q', nombresTexto); // 'q' es el parámetro para la búsqueda
-    window.history.pushState({ path: nuevaUrl.href }, '', nuevaUrl.href); // Sin recargar la página
+    nuevaUrl.searchParams.set('q', nombresTexto);
+    window.history.pushState({ path: nuevaUrl.href }, '', nuevaUrl.href);
   }
 
   const resultados = await buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresArray);
@@ -75,7 +75,7 @@ async function buscar(actualizarUrl = true) { // Añade un parámetro para contr
 async function buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresRutaSIP) {
   try {
     const response = await fetch(urlCsv);
-    if (!response.ok) throw new Error(`No se pudo descargar el archivo. Código de estado: ${response.status}`);
+    if (!response.ok) throw new Error(`No se pudo descargar el archivo CSV. Código de estado: ${response.status}. Asegúrate de que la URL es correcta y accesible públicamente.`);
 
     const textoCsv = await response.text();
     const filas = textoCsv.split('\n').map(fila => fila.split(','));
@@ -85,7 +85,7 @@ async function buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresRutaSIP) {
     const data = filas.slice(1).map(fila => {
       const objeto = {};
       fila.forEach((valor, idx) => {
-        if (encabezados[idx]) { // Asegúrate de que el encabezado exista
+        if (encabezados[idx]) {
           objeto[encabezados[idx]] = valor.trim().replace(/^"|"$/g, '');
         }
       });
@@ -99,7 +99,7 @@ async function buscarRutasSIPDesdeGoogleSheet(urlCsv, nombresRutaSIP) {
     if (todosLosNombresSIP.length > 0) {
       console.log(todosLosNombresSIP);
     } else {
-      console.log('No se encontraron nombres de ruta SIP en el CSV (quizás la columna no existe o está vacía después del parsing).');
+      console.log('No se encontraron nombres de ruta SIP en el CSV (quizás la columna "NOMBRE DE RUTA SIP" no existe o está vacía después del parsing).');
     }
     console.log('-------------------------------------------');
     // --- FIN DE LOS CONSOLE.LOG ADICIONALES ---
@@ -180,14 +180,14 @@ function getQueryParam(name) {
 }
 
 // Conectar el botón al evento de búsqueda
-document.getElementById('botonBuscar').addEventListener('click', () => buscar(true)); // Siempre actualiza la URL al hacer clic
+document.getElementById('botonBuscar').addEventListener('click', () => buscar(true));
 
 // Ejecutar la búsqueda al cargar la página si hay un término en la URL
 document.addEventListener('DOMContentLoaded', () => {
-  const searchTerm = getQueryParam('q'); // Busca el parámetro 'q'
+  const searchTerm = getQueryParam('q');
   if (searchTerm) {
-    document.getElementById('nombresRuta').value = searchTerm; // Rellena el input
-    buscar(false); // Ejecuta la búsqueda, pero NO actualiza la URL de nuevo
+    document.getElementById('nombresRuta').value = searchTerm;
+    buscar(false);
   }
 });
 </script>
