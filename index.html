@@ -2,109 +2,313 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Traductor de Alarmas</title>
+  <title>Traductor de Alarmas (Prueba)</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: white;
-      margin: 0;
-      padding: 2px;
-    }
-    .container {
-      max-width: 95%;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 7fr 3fr;
-      gap: 5px;
-    }
-    h1 {
-      text-align: center;
-      text-transform: uppercase;
-      grid-column: span 2;
-      font-size: 20px;
-    }
-    .form-control, textarea, select {
-      padding: 8px;
-      font-size: 14px;
-      width: 100%;
-      box-sizing: border-box;
-      margin-bottom: 5px;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-    }
-    .form-group {
-      margin-bottom: 5px;
-    }
-    .full-width {
-      grid-column: span 2;
-    }
-    .button-principal {
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      border-radius: 6px;
-      padding: 8px;
-      font-size: 13px;
-      font-weight: bold;
-      width: 150px;
-      display: block;
-      margin: 0 auto;
-    }
-    .button-principal:hover {
-      background-color: #0056b3;
-    }
-    #resultado-container {
-      margin: auto;
-      font-weight: bold;
-    }
-    #resumenVisual {
-      margin: auto;
-      font-size: 13px;
-      color: #333;
-    }
-    #resumenVisual span {
-      display: block;
-      margin: 3px 0;
-    }
-    #historial-container {
-      margin-top: 30px;
-      font-size: 12px;
-      color: #777;
-      background-color: #f9f9f9;
-      padding: 10px;
-      border-top: 1px dashed #ccc;
-      display:none;
-      text-align: center;
-    }
-    #listaHistorial li {
-      padding: 2px 0;
-      border-bottom: 1px dotted #ccc;
-      font-size: 12px;
-    }
-    .toggle-historial {
-      background-color: #f0f0f0;
-      border: none;
-      font-size: 12px;
-      color: #555;
-      margin-top: 20px;
-      cursor: pointer;
-      text-decoration: underline;
-      display: auto;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .marca {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 12px;
-      color: #999;
-    }
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía más moderna */
+    background-color: #f4f6f8; /* Fondo gris claro */
+    margin: 0;
+    padding: 5px; /* Aumentar el padding general */
+    line-height: 1.6; /* Mejorar la legibilidad del texto */
+}
+
+.container {
+    max-width: 95%; /* Reducir un poco el ancho máximo */
+    margin: 5px auto; /* Centrar con más margen */
+    display: grid;
+    grid-template-columns: 6fr 4fr; /* Ajustar la proporción de las columnas */
+    gap: 5px; /* Aumentar el espacio entre columnas y filas */
+    background-color: #fff; /* Fondo blanco para el contenedor principal */
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+h1 {
+    text-align: left; /* Alinear el título a la izquierda para un diseño más moderno */
+    text-transform: none; /* No usar mayúsculas forzadas */
+    grid-column: span 2;
+    font-size: 24px; /* Aumentar el tamaño del título */
+    color: #333; /* Color de texto más oscuro */
+    margin-bottom: 20px; /* Más espacio debajo del título */
+}
+
+.form-control, textarea, select {
+    padding: 10px;
+    font-size: 15px;
+    width: calc(100% - 20px); /* Ajustar el ancho teniendo en cuenta el padding */
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.button-principal {
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out; /* Transición más suave */
+    border-radius: 6px;
+    padding: 10px 15px; /* Aumentar el padding del botón */
+    font-size: 15px;
+    font-weight: bold;
+    width: auto; /* Ajustar el ancho al contenido */
+    display: inline-block; /* Para que el ancho automático funcione */
+    margin-right: 10px; /* Espacio entre botones si hay varios */
+}
+
+.button-principal[id="btnGenerar"] {
+    background-color: #007bff; /* Azul más moderno */
+}
+
+.button-principal[id="btnGenerar"]:hover {
+    background-color: #0056b3;
+}
+
+.button-principal[id="btnLimpiar"] {
+    background-color: #dc3545; /* Rojo más moderno */
+}
+
+.button-principal[id="btnLimpiar"]:hover {
+    background-color: #c82333;
+}
+
+#resultado-container {
+    margin-top: 20px;
+}
+
+#resultado {
+    background-color: #e9ecef; /* Fondo grisáceo claro para el resultado */
+    padding: 1px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #212529;
+    font-weight: bolder; /* Eliminar negrita por defecto */
+}
+#resultado p {
+    margin: 1px; /* Eliminar márgenes para un diseño más limpio */
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+#resumenVisual {
+    background-color: #f8f9fa; /* Otro tono de gris claro */
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #495057;
+}
+
+#resumenVisual span {
+    display: block;
+    margin: 5px 0;
+    font-weight: bold; /* Resaltar los valores del resumen */
+}
+
+#historial-container {
+    margin-top: 30px;
+    font-size: 13px;
+    color: #6c757d;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-top: 1px solid #dee2e6; /* Línea más clara */
+    border-radius: 6px;
+    display: none; /* Se mantiene oculto por defecto */
+    text-align: left; /* Alinear el texto del historial a la izquierda */
+}
+
+#listaHistorial {
+    list-style: none;
+    padding: 0;
+}
+
+#listaHistorial li {
+    padding: 8px 0;
+    border-bottom: 1px dotted #ced4da; /* Línea punteada más clara */
+    font-size: 14px;
+}
+
+#listaHistorial li:last-child {
+    border-bottom: none; /* Eliminar la línea inferior del último elemento */
+}
+
+.toggle-historial {
+    background-color: transparent; /* Fondo transparente */
+    border: none;
+    font-size: 14px;
+    color: #007bff; /* Azul para el enlace */
+    margin-top: 20px;
+    cursor: pointer;
+    text-decoration: underline;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 0; /* Añadir un poco de padding para facilitar el clic */
+}
+
+.toggle-historial:hover {
+    color: #0056b3;
+}
+
+.marca {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #adb5bd;
+}
+
+/* Estilos para los links útiles y contactos */
+#links-utiles, #contactos-pcs {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #495057;
+}
+
+#links-utiles h3, #contactos-pcs h3 {
+    font-size: 16px;
+    margin-top: 0;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+#links-utiles ul, #contactos-pcs ul {
+    padding-left: 20px;
+    margin: 0;
+    list-style-type: disc; /* Usar viñetas estándar */
+}
+
+#links-utiles li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+#links-utiles li a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el panel de notas */
+#notas-panel {
+    width: 100%;
+    background-color: #e9ecef;
+    border-top: 1px solid #ced4da;
+    padding: 15px;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    margin-top: 20px;
+    border-radius: 6px;
+}
+
+#notas-panel h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+#notas-container {
+    margin-top: 10px;
+    font-size: 14px;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.nota {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.nota:last-child {
+    border-bottom: none;
+}
+
+.nota time {
+    font-size: 12px;
+    color: #6c757d;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#nueva-nota {
+    width: calc(100% - 22px);
+    height: 80px;
+    margin-bottom: 10px;
+    resize: vertical;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#autor {
+    width: calc(100% - 22px);
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#guardar-nota {
+    width: 100%;
+    padding: 10px 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#guardar-nota:hover {
+    background: #1e7e34;
+}
+
+.selectores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Hacer los selectores más fluidos */
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.full-width[style*="display: flex;"] {
+    display: flex;
+    gap: 10px; /* Reducir el gap entre los botones */
+    align-items: center; /* Alinear verticalmente los botones */
+}
+
+.full-width[style*="display: flex;"] .button-principal {
+    margin: 0; /* Eliminar márgenes automáticos de los botones en esta sección */
+}
   </style>
 </head>
 <body>
@@ -145,12 +349,12 @@
 
       <label for="origen">Origen del reclamo:</label>
       <select id="origen" class="form-control">
-        <option value="MAE Core">MAE Core</option>
-        <option value="GRAFANA">GRAFANA</option>
         <option value="DIGITAL VIEW">DIGITAL VIEW</option>
+        <option value="GRAFANA">GRAFANA</option>
+        <option value="MAE Core">MAE Core</option>
         <option value="OPENXPAND">OPENXPAND</option>
         <option value="SMARTCARE">SMARTCARE</option>
-        <option value="SOLICITUD">SOLICITUD/RECLAMO/MAIL</option>
+        <option value="SOLICITUD">SOLICITUD</option>
         <option value="TEKELEC">TEKELEC</option>        
         <option value="UIM">UIM</option>
       </select>
@@ -159,8 +363,7 @@
         <option value="MSC">MSC</option>
         <option value="MME/AMF">MME/AMF</option>
         <option value="UGW/DGW/UPF">UGW/DGW/UPF</option>
-        <option value="DNS/DEA/DRA">DNS/DEA/DRA</option>
-        <option value="STP">STP</option>
+        <option value="DNS/DEA">DNS/DEA</option>
         <option value="UMG">UMG</option>
         <option value="EDC/CDC">EDC/CDC</option>
         <option value="USSD">USSD</option>        
@@ -168,20 +371,33 @@
         <option value="OSS">OSS</option>
         <option value="NTR/OTA/WSMS">NTR/OTA/WSMS</option>
         <option value="SMSC">SMSC</option>
-        <option value="NGIN">NGIN</option>
         <option value="UDM/USCDB/HSS">UDM/USCDB/HSS</option>
       </select>
     </div>
 
-    <div class="full-width">
-      <button class="button-principal" id="btnGenerar" onclick="procesarAlarma()" disabled>Generar descripción</button>
+    <div class="full-width" style="display: flex; gap: 20px;">
+      <button style=background-color:#3700ff class="button-principal" id="btnGenerar" onclick="procesarAlarma()" disabled>✅Generar descripción</button>
+      <button style=background-color:#ff2600 class="button-principal" id="btnLimpiar" onclick="limpiarAlarmaInput()" disabled hidden>🧹 Limpiar alarma</button>
     </div>
 
     <div class="full-width" style="display: flex; gap: 20px;">
       <!-- Contenedor resultado y resumen -->
       <div id="resultado-container" style="flex: 2;">
-        <div id="resultado"></div>
-        <div id="resumenVisual"></div>
+        <div id="resultado" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+          <p> NOC-MO | Nodo | Alerta_Norm | Tipo de afectación | Grupo asignado | Origen del reclamo | Tipo de Nodo</p>
+        </div>
+        
+              <!-- Resumen visual por defecto -->
+        <div id="resumenVisual" class="resumen-visual" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+          <p>📍 Nodo: <span id="resumenNodo"></span></p>
+          <p>🚨 Alerta: <span id="resumenAlerta"></span></p>
+          <p>🚨 Alerta_Norm: <span id="resumenAlertaNorm"></span></p>
+          <p>⚠️ Tipo de afectación: <span id="resumenAfectacion"></span></p>
+          <p>🧩 Grupo asignado: <span id="resumenGrupo"></span></p>
+          <p>📝 Origen del reclamo: <span id="resumenOrigen"></span></p>
+          <p>📝 Info: <span id="resumenInfo"></span></p>
+          <p>📝 Info Adicional: <span id="resumenAdicional"></span></p>
+        </div>
       </div>
     
       <!-- Contenedor info adicional -->
@@ -225,11 +441,15 @@
       <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.6 👈</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.7 json chatgpt 👈</div>
   </div>
 
   <script>
-  
+
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('alarmaInput').focus(); // Autofocus al cargar la página
+});
+
   let alarmas = {};
 
   // Cargar las alarmas desde el archivo JSON
@@ -263,6 +483,7 @@
      return nodoCrudo;
 }
     function procesarAlarma() {
+    document.getElementById("btnLimpiar").style.display = 'inline-block'; // Asegurar que el botón limpiar se muestre
     const entrada = document.getElementById("alarmaInput").value;
     const campos = entrada.split('\t');
     
@@ -293,24 +514,23 @@
     //armado de la descripción
     const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
     document.getElementById("resultado").innerText = descripcion;
+    document.getElementById("btnLimpiar").disabled = false;
+    document.getElementById("btnLimpiar").hidden = false;
 
     //armado del "ResumenVisual", se agrega del JS al HTML
-    document.getElementById("resumenVisual").innerHTML = `
-      <span>📍 Nodo: <strong>${node}</strong></span>
-      <span>🚨 Alerta: <strong>${alarmaOriginal}</strong></span>
-      <span>🚨 Alerta_Norm: <strong>${alerta_norm}</strong></span>
-      <span>⚠️ Tipo de afectación: <strong>${afectacion}</strong></span>
-      <span>🧩 Grupo asignado: <strong>${document.getElementById("grupo").selectedOptions[0].text}</strong></span>
-      <span>📝 Origen del reclamo: <strong>${document.getElementById("origen").selectedOptions[0].text}</strong></span>
-      
-      <span>📝 Info: <strong>${info}</strong></span>
-      <span>📝 Info Adicional: <strong>${info_adicional_alerta}</strong></span>
-      <hr>
-      <span><strong>Traducción de alarma:</strong></span>
-      <span>📝 Título Corto: <strong>${alerta_titulo_corto_resumen}</strong></span>
-      <span>📝 Interpretación Detallada: <strong>${alerta_Interpretacion_Detallada}</strong></span>
-    `;
-  
+    function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional) {
+  document.getElementById('resumenNodo').textContent = nodo || 'Vacio o en falla';
+  document.getElementById('resumenAlerta').textContent = alerta || '';
+  document.getElementById('resumenAlertaNorm').textContent = alertaNorm || '';
+  document.getElementById('resumenAfectacion').textContent = afectacion || '';
+  document.getElementById('resumenGrupo').textContent = grupo || '';
+  document.getElementById('resumenOrigen').textContent = origen || '';
+  document.getElementById('resumenInfo').textContent = info || '';
+  document.getElementById('resumenAdicional').textContent = infoAdicional || '';
+}
+resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta);
+
+
     // Copiar al portapapeles
     navigator.clipboard.writeText(descripcion).then(() => {
       let mensaje = document.getElementById("mensajeCopiado");
@@ -329,8 +549,27 @@
     historialItem.textContent = descripcion;
     document.getElementById("listaHistorial").appendChild(historialItem);
 }
+function limpiarAlarmaInput() {
+  document.getElementById("alarmaInput").value = "";
+  document.getElementById("resultado").innerText = "NOC-MO | Nodo | Alerta_Norm | Tipo de afectación | Grupo asignado | Origen del reclamo | Tipo de Nodo";
+  // Limpiar específicamente el contenido de los spans dentro de resumenVisual
+  document.getElementById('resumenNodo').textContent = '';
+  document.getElementById('resumenAlerta').textContent = '';
+  document.getElementById('resumenAlertaNorm').textContent = '';
+  document.getElementById('resumenAfectacion').textContent = '';
+  document.getElementById('resumenGrupo').textContent = '';
+  document.getElementById('resumenOrigen').textContent = '';
+  document.getElementById('resumenInfo').textContent = '';
+  document.getElementById('resumenAdicional').textContent = '';
+  // La siguiente línea ya no es necesaria si limpiamos los spans individualmente
+  // document.getElementById("resumenVisual").innerHTML = ""; 
+
+  document.getElementById("btnLimpiar").style.display = 'none'; // Ocultar el botón limpiar si el campo está vacío
+  document.getElementById('alarmaInput').focus(); // Devolver el foco al input después de limpiar
+}
 
 function alternarHistorial() {
+
       const contenedor = document.getElementById("historial-container");
       const boton = document.querySelector(".toggle-historial");
       const visible = contenedor.style.display === "block";
@@ -339,16 +578,170 @@ function alternarHistorial() {
       boton.textContent = visible ? "Mostrar historial" : "Ocultar historial";
     }
     
-    //Limpiar historial
+    //Lipiar historial
     function limpiarHistorial() {
       document.getElementById("listaHistorial").innerHTML = '';
+
+    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('alarmaInput').focus();
+
+    // Cargar preferencias guardadas
+     const afectacionGuardada = localStorage.getItem('afectacionSeleccionada');
+    if (afectacionGuardada) {
+        document.getElementById('afectacion').value = afectacionGuardada;
+    }
+
+    const grupoGuardado = localStorage.getItem('grupoSeleccionado');
+    if (grupoGuardado) {
+        document.getElementById('grupo').value = grupoGuardado;
+    }
+
+    const origenGuardado = localStorage.getItem('origenSeleccionado');
+    if (origenGuardado) {
+        document.getElementById('origen').value = origenGuardada;
+    }
+
+    const tipoNodoGuardado = localStorage.getItem('tipoNodoSeleccionado');
+    if (tipoNodoGuardado) {
+        document.getElementById('tipo_nodo').value = tipoNodoGuardado;
+    }
+
+    // Guardar preferencias al cambiar la selección
+    document.getElementById('afectacion').addEventListener('change', function() {
+        localStorage.setItem('afectacionSeleccionada', this.value);
+    });
+
+    document.getElementById('grupo').addEventListener('change', function() {
+        localStorage.setItem('grupoSeleccionada', this.value);
+    });
+
+    document.getElementById('origen').addEventListener('change', function() {
+        localStorage.setItem('origenSeleccionada', this.value);
+    });
+
+    document.getElementById('tipo_nodo').addEventListener('change', function() {
+        localStorage.setItem('tipoNodoSeleccionada', this.value);
+    });
+});
   }
   </script>
-  <a href="pruebas.html">Pagina de pruebas</a>
-  <a href="pruebas2.html">Pagina de pruebas2</a>
+  <a href="pruebas.html">Pagina de prueas</a>
+  <a href="rutas_sip.html">Pagina de Rutas SIP</a>
   <p><a href="mailto:LITorres@teco.com.ar,ATDichiara@teco.com.ar?subject=Sugerencias%20traductor%20de%20alarmas
-    ">Sugeriencias o reclamos?</a></p>
+    ">Sugerencias o reclamos?</a></p>
 
-  
+    
+    <style>
+  #notas-panel {
+    width: 100%;
+    background-color: #f9f9f9;
+    border-top: 2px solid #ccc;
+    padding: 16px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+  #notas-panel h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+
+  #notas-container {
+    margin-top: 12px;
+    font-size: 14px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .nota {
+    border: 1px solid #ddd;
+    background: white;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+  }
+
+  .nota time {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  #nueva-nota {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 8px;
+    resize: vertical;
+  }
+
+  #autor {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  #guardar-nota {
+    width: 100%;
+    padding: 8px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #guardar-nota:hover {
+    background: #0056b3;
+  }
+</style>
+
+<!-- Agregalo justo antes del cierre </body> -->
+<div id="notas-panel">
+  <h3>Notas del día</h3>
+  <input type="text" id="autor" placeholder="Tu nombre">
+  <textarea id="nueva-nota" placeholder="Escribí una nota..."></textarea>
+  <button id="guardar-nota">Guardar Nota</button>
+  <div id="notas-container"></div>
+</div>
+
+
+<script>
+  const endpoint = 'https://script.google.com/macros/s/AKfycbygAKi-xhgOtVv_HUNuX4G9ATjsPcfEGVKX0L55Z-PIKK33vz-rEnQ1pzal3LBlnMB4/exec'; // 👈 reemplazá con tu URL real
+
+  async function cargarNotas() {
+    const res = await fetch(endpoint);
+    const notas = await res.json();
+    const contenedor = document.getElementById("notas-container");
+    contenedor.innerHTML = "";
+
+    notas.reverse().forEach(nota => {
+      const div = document.createElement("div");
+      div.className = "nota";
+      div.innerHTML = `<time>${new Date(nota.timestamp).toLocaleString()} - ${nota.autor}</time><div>${nota.nota}</div>`;
+      contenedor.appendChild(div);
+    });
+  }
+
+  async function guardarNota() {
+    const nota = document.getElementById("nueva-nota").value.trim();
+    const autor = document.getElementById("autor").value.trim() || "Anónimo";
+
+    if (nota === "") return;
+
+    await fetch(endpoint, {
+      method: "POST",
+      body: new URLSearchParams({ nota, autor })
+    });
+
+    document.getElementById("nueva-nota").value = "";
+    cargarNotas();
+  }
+
+  document.getElementById("guardar-nota").addEventListener("click", guardarNota);
+  window.addEventListener("load", cargarNotas);
+</script>
+
+
 </body>
 </html>
