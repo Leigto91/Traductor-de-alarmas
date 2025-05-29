@@ -482,7 +482,7 @@ label {
   }
      return nodoCrudo;
 }
-    function procesarAlarma() {
+function procesarAlarma() {
     document.getElementById("btnLimpiar").style.display = 'inline-block'; // Asegurar que el botón limpiar se muestre
     const entrada = document.getElementById("alarmaInput").value;
     const campos = entrada.split('\t');
@@ -508,7 +508,9 @@ label {
 
     // se agrega una variable para diferenciar si la alarma se traduce o no, la descripcion se mantiene
     const alerta_titulo_corto = alerta ? alerta.TítuloCorto : alerta_norm;
-    const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alerta_norm +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
+    //Modificacion para que no aparezca el texto en rojo en el resumen visual
+    const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alerta_norm;
+    // const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alerta_norm +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
     const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : '<span style="color: red;"> ⚠️ Interpretación no disponible</span>';
     
     //armado de la descripción
@@ -519,17 +521,25 @@ label {
 
     //armado del "ResumenVisual", se agrega del JS al HTML
     function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional) {
-  document.getElementById('resumenNodo').textContent = nodo || 'Vacio o en falla';
-  document.getElementById('resumenAlerta').textContent = alerta || '';
-  document.getElementById('resumenAlertaNorm').textContent = alertaNorm || '';
-  document.getElementById('resumenAfectacion').textContent = afectacion || '';
-  document.getElementById('resumenGrupo').textContent = grupo || '';
-  document.getElementById('resumenOrigen').textContent = origen || '';
-  document.getElementById('resumenInfo').textContent = info || '';
-  document.getElementById('resumenAdicional').textContent = infoAdicional || '';
-}
-resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta);
+      document.getElementById('resumenNodo').textContent = nodo || 'Vacio o en falla';
+      // Se modifica para que no aparezca el texto en rojo cuando no hay traduccion en el resumen visual
+      // document.getElementById('resumenAlerta').textContent = alerta || '';
+      document.getElementById('resumenAlerta').innerHTML = alerta || ''; // Usar innerHTML para el span rojo
+      document.getElementById('resumenAlertaNorm').textContent = alertaNorm || '';
+      document.getElementById('resumenAfectacion').textContent = afectacion || '';
+      document.getElementById('resumenGrupo').textContent = grupo || '';
+      document.getElementById('resumenOrigen').textContent = origen || '';
+      document.getElementById('resumenInfo').textContent = info || '';
+      document.getElementById('resumenAdicional').textContent = infoAdicional || '';
+    }
+    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta);
 
+    // -------- NUEVA CONDICIÓN PARA ABRIR VENTANA --------
+    if (alerta_norm === "Ruta SIP Caida") {
+      const url = `rutas_sip.html?q=${encodeURIComponent(node)}`;
+      window.open(url, '_blank');
+    }
+    // -------- FIN DE LA NUEVA CONDICIÓN --------
 
     // Copiar al portapapeles
     navigator.clipboard.writeText(descripcion).then(() => {
@@ -548,7 +558,7 @@ resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo,
     const historialItem = document.createElement("li");
     historialItem.textContent = descripcion;
     document.getElementById("listaHistorial").appendChild(historialItem);
-}
+  }
 function limpiarAlarmaInput() {
   document.getElementById("alarmaInput").value = "";
   document.getElementById("resultado").innerText = "NOC-MO | Nodo | Alerta_Norm | Tipo de afectación | Grupo asignado | Origen del reclamo | Tipo de Nodo";
