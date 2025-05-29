@@ -307,7 +307,7 @@ label {
 </head>
 <body>
   <div class="container">
-    <h1>Traductor de Alarmas(Prueba)</h1>
+    <h1>Traductor de Alarmas(Prueba 1.6.6)</h1>
     <div id="contadorAlarmas" class="full-width" style="text-align:center; font-size:12px; color:#555;">⏳ Cargando alarmas...</div>
 
     <div class="form-group">
@@ -378,6 +378,7 @@ label {
       <!-- Contenedor resultado y resumen -->
       <div id="resultado-container" style="flex: 2;">
         <div id="resultado" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;"></div>
+        <p> NOC-MO | Nodo | Alerta_Norm | Tipo de afectación | Grupo asignado | Origen del reclamo | Tipo de Nodo</p>
               <!-- Resumen visual por defecto -->
         <div id="resumenVisual" class="resumen-visual" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
           <p>📍 Nodo: <span id="resumenNodo"></span></p>
@@ -541,11 +542,22 @@ resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo,
     document.getElementById("listaHistorial").appendChild(historialItem);
 }
 function limpiarAlarmaInput() {
-    document.getElementById("alarmaInput").value = "";
-    document.getElementById("resultado").innerText = "";
-    document.getElementById("resumenVisual").innerText = "";
-    document.getElementById("btnLimpiar").style.display = 'none'; // Ocultar el botón limpiar si el campo está vacío
-    document.getElementById('alarmaInput').focus(); // Devolver el foco al input después de limpiar
+  document.getElementById("alarmaInput").value = "";
+  document.getElementById("resultado").innerText = "NOC-MO | Nodo | Alerta_Norm | Tipo de afectación | Grupo asignado | Origen del reclamo | Tipo de Nodo";
+  // Limpiar específicamente el contenido de los spans dentro de resumenVisual
+  document.getElementById('resumenNodo').textContent = '';
+  document.getElementById('resumenAlerta').textContent = '';
+  document.getElementById('resumenAlertaNorm').textContent = '';
+  document.getElementById('resumenAfectacion').textContent = '';
+  document.getElementById('resumenGrupo').textContent = '';
+  document.getElementById('resumenOrigen').textContent = '';
+  document.getElementById('resumenInfo').textContent = '';
+  document.getElementById('resumenAdicional').textContent = '';
+  // La siguiente línea ya no es necesaria si limpiamos los spans individualmente
+  // document.getElementById("resumenVisual").innerHTML = ""; 
+
+  document.getElementById("btnLimpiar").style.display = 'none'; // Ocultar el botón limpiar si el campo está vacío
+  document.getElementById('alarmaInput').focus(); // Devolver el foco al input después de limpiar
 }
 
 function alternarHistorial() {
