@@ -560,9 +560,9 @@
     <script>
         // --- Constantes para índices de campos ---
         const CAMPO_NODO = 52;
-        // const CAMPO_ALARMA_ORIGINAL = 53; // No se usa directamente después de la limpieza
-        // const CAMPO_INFO = 54;
-        // const CAMPO_INFO_ADICIONAL_ALERTA = 55;
+        const CAMPO_ALARMA_ORIGINAL = 53;
+        const CAMPO_INFO = 54;
+        const CAMPO_INFO_ADICIONAL_ALERTA = 55;
         const CAMPO_ALERTA_NORM = 56;
         const MIN_CAMPOS = 96; // Número mínimo de campos esperados en la línea de alarma
 
@@ -663,11 +663,11 @@
                 return;
             }
 
-            // Extracción segura de campos
+            // Extracción segura de campos directamente por su índice
             const nodeRaw = campos[CAMPO_NODO] || "";
-            const alarmaOriginal = campos[CAMPO_ALARMA_ORIGINAL] || "";
-            const info = campos[54] || ""; // Campo 54 para Info
-            const info_adicional_alerta = campos[55] || ""; // Campo 55 para Info Adicional
+            // const alarmaOriginalTexto = campos[CAMPO_ALARMA_ORIGINAL] || ""; // Ya no se usa directamente para la traducción, pero puedes descomentar si la necesitas
+            const info = campos[CAMPO_INFO] || "";
+            const info_adicional_alerta = campos[CAMPO_INFO_ADICIONAL_ALERTA] || "";
             const alerta_norm_raw = campos[CAMPO_ALERTA_NORM] || "";
 
             const node = limpiarNombreNodo(nodeRaw);
