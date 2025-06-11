@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traductor de Alarmas</title>
+    <style>
+        /* --- Variables CSS --- */
+        :root {
+            --color-primary: #007bff; /* Azul vibrante */
+            --color-secondary: #dc3545; /* Rojo para acciones secundarias */
+            --color-success: #28a745; /* Verde para guardar */
+            --color-text-dark: #333;
+            --color-text-medium: #555;
+            --color-text-light: #6c757d;
+            --color-background-light: #f4f6f8;
+            --color-background-medium: #e9ecef;
+            --color-background-dark: #f8f9fa;
+            --color-border: #ddd;
+            --spacing-unit: 8px; /* Unidad base para espaciado */
+            --border-radius: 5px;
+            --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Estilos Generales --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-background-light);
+            margin: 0;
+            padding: calc(var(--spacing-unit) * 2);
+            line-height: 1.6;
+            color: var(--color-text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: calc(var(--spacing-unit) * 2) auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Columna principal más ancha */
+            gap: calc(var(--spacing-unit) * 3);
+            background-color: #fff;
+            padding: calc(var(--spacing-unit) * 3);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            text-align: left;
+            grid-column: span 2;
+            font-size: 28px;
+            color: var(--color-text-dark);
+            margin-bottom: calc(var(--spacing-unit) * 4);
+        }
+
+        /* --- Formularios y Controles --- */
+        .form-control, textarea, select {
+            padding: calc(var(--spacing-unit) * 1.5);
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: var(--spacing-unit);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .form-control:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: var(--spacing-unit);
+            font-size: 15px;
+            color: var(--color-text-medium);
+        }
+
+        .form-group {
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        /* --- Botones --- */
+        .button-principal {
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+            border-radius: var(--border-radius);
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            font-size: 16px;
+            font-weight: bold;
+            width: auto;
+            display: inline-block;
+            margin-right: var(--spacing-unit);
+        }
+
+        .button-principal:active {
+            transform: translateY(1px);
+        }
+
+        .button-principal:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .button-principal[id="btnGenerar"] {
+            background-color: var(--color-primary);
+        }
+
+        .button-principal[id="btnGenerar"]:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+
+        .button-principal[id="btnLimpiar"] {
+            background-color: var(--color-secondary);
+        }
+
+        .button-principal[id="btnLimpiar"]:hover:not(:disabled) {
+            background-color: #c82333;
+        }
+
+        /* --- Contenedores de Información --- */
+        #resultado-container, #info-adicional, #historial-container, #notas-panel {
+            background-color: #fff;
+            padding: calc(var(--spacing-unit) * 2.5);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        #resultado {
+            background-color: var(--color-background-medium);
+            padding: calc(var(--spacing-unit) * 1.5);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-unit);
+            font-size: 17px;
+            color: var(--color-text-dark);
+            font-weight: 600;
+        }
+
+        #resultado p {
+            margin: 0;
+        }
+
+        #resumenVisual {
+            background-color: var(--color-background-dark);
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            font-size: 15px;
+            color: var(--color-text-medium);
+        }
+
+        #resumenVisual p {
+            margin: calc(var(--spacing-unit) / 2) 0;
+        }
+
+        #resumenVisual span {
+            display: inline;
+            font-weight: bold;
+            color: var(--color-text-dark);
+        }
+
+        /* --- Historial --- */
+        #historial-container {
+            font-size: 14px;
+            color: var(--color-text-light);
+            border-top: none;
+            display: none; /* Oculto por defecto, se controla con JS */
+            text-align: left;
+            margin-top: calc(var(--spacing-unit) * 3);
+        }
+        
+        #historial-container.hidden {
+            display: none;
+        }
+
+        #listaHistorial {
+            list-style: none;
+            padding: 0;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        #listaHistorial li {
+            padding: var(--spacing-unit) 0;
+            border-bottom: 1px dotted var(--color-border);
+            font-size: 14px;
+        }
+
+        #listaHistorial li:last-child {
+            border-bottom: none;
+        }
+
+        .toggle-historial {
+            background-color: transparent;
+            border: none;
+            font-size: 15px;
+            color: var(--color-primary);
+            margin-top: calc(var(--spacing-unit) * 2);
+            cursor: pointer;
+            text-decoration: underline;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding: var(--spacing-unit);
+            text-align: center;
+        }
+
+        .toggle-historial:hover {
+            color: #0056b3;
+        }
+
+        /* --- Branding y Links Pie de Página --- */
+        .marca {
+            text-align: center;
+            margin-top: calc(var(--spacing-unit) * 4);
+            font-size: 13px;
+            color: var(--color-text-light);
+            grid-column: span 2;
+        }
+
+        .footer-links {
+            text-align: center;
+            margin-top: calc(var(--spacing-unit) * 2);
+            grid-column: span 2;
+        }
+
+        .footer-links a {
+            color: var(--color-primary);
+            text-decoration: none;
+            margin: 0 calc(var(--spacing-unit));
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Links Útiles y Contactos --- */
+        #links-utiles, #contactos-pcs {
+            background-color: var(--color-background-dark);
+            padding: calc(var(--spacing-unit) * 2);
+            border-radius: var(--border-radius);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            font-size: 14px;
+            color: var(--color-text-medium);
+        }
+
+        #links-utiles h3, #contactos-pcs h3 {
+            font-size: 16px;
+            margin-top: 0;
+            color: var(--color-text-dark);
+            margin-bottom: var(--spacing-unit) * 1.5;
+        }
+
+        #links-utiles ul, #contactos-pcs ul {
+            padding-left: calc(var(--spacing-unit) * 2.5);
+            margin: 0;
+            list-style-type: disc;
+        }
+
+        #links-utiles li a {
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        #links-utiles li a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Panel de Notas --- */
+        #notas-panel {
+            width: 100%;
+            background-color: var(--color-background-light);
+            border-top: 1px solid var(--color-border);
+            padding: calc(var(--spacing-unit) * 2.5);
+            box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+            box-sizing: border-box;
+            margin-top: calc(var(--spacing-unit) * 2.5);
+            border-radius: var(--border-radius);
+            grid-column: span 2;
+        }
+
+        #notas-panel h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: var(--color-text-dark);
+            margin-bottom: var(--spacing-unit) * 1.5;
+        }
+
+        #notas-container {
+            margin-top: var(--spacing-unit) * 1.5;
+            font-size: 14px;
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid var(--color-border);
+            background-color: white;
+            padding: var(--spacing-unit);
+            border-radius: var(--border-radius);
+        }
+
+        .nota {
+            border-bottom: 1px solid var(--color-background-medium);
+            padding-bottom: var(--spacing-unit);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .nota:last-child {
+            border-bottom: none;
+        }
+
+        .nota time {
+            font-size: 12px;
+            color: var(--color-text-light);
+            display: block;
+            margin-bottom: var(--spacing-unit) / 2;
+        }
+
+        #nueva-nota, #autor {
+            width: 100%;
+            margin-bottom: var(--spacing-unit);
+            padding: var(--spacing-unit) * 1.2;
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        #nueva-nota {
+            height: 100px;
+            resize: vertical;
+        }
+
+        #guardar-nota {
+            width: 100%;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2.5);
+            background: var(--color-success);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        #guardar-nota:hover:not(:disabled) {
+            background: #1e7e34;
+        }
+
+        #guardar-nota:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* --- Layout Específico --- */
+        .selectores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: calc(var(--spacing-unit) * 2);
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+            grid-column: span 1; /* Ocupa solo una columna en el grid principal */
+        }
+
+        .button-group { /* Nueva clase para claridad en el flex de botones */
+            display: flex;
+            gap: calc(var(--spacing-unit) * 2);
+            align-items: center;
+            margin-bottom: calc(var(--spacing-unit) * 2.5);
+        }
+
+        #mensajeCopiado {
+            margin-top: var(--spacing-unit);
+            font-size: 14px;
+            color: green;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        /* --- Media Queries para Responsive Design --- */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+                gap: var(--spacing-unit) * 2;
+                padding: var(--spacing-unit) * 2;
+            }
+
+            h1, .full-width, .selectores, #notas-panel {
+                grid-column: span 1; /* Todos ocupan una columna */
+            }
+
+            .selectores {
+                grid-template-columns: 1fr; /* Una columna para los selectores también */
+            }
+
+            .button-group {
+                flex-direction: column; /* Botones apilados en móvil */
+                gap: var(--spacing-unit);
+            }
+
+            .button-principal {
+                width: 100%; /* Botones de ancho completo */
+                margin-right: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Traductor de Alarmas</h1>
+        <div id="contadorAlarmas" class="full-width" style="text-align:center; font-size:12px; color:#555;">⏳ Cargando alarmas...</div>
+
+        <div class="form-group">
+            <label for="alarmaInput">Alarma FMC:</label>
+            <textarea id="alarmaInput" class="form-control" rows="10" placeholder="Pegue aquí la línea completa con campos separados por tabulación"></textarea>
+        </div>
+        
+        <div class="selectores">
+            <label for="afectacion">Tipo de afectación:</label>
+            <select id="afectacion" class="form-control">
+                <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
+                <option value="DEGRADACIÓN">DEGRADACIÓN</option>
+                <option value="INDISPONIBILIDAD">INDISPONIBILIDAD</option>
+                <option value="SIN AFECTACIÓN">SIN AFECTACIÓN</option>
+            </select>
+
+            <label for="grupo">Grupo asignado:</label>
+            <select id="grupo" class="form-control">
+                <option value="VOZMOVIL">PCS Voz Móvil</option>
+                <option value="VOZRESI">PCS Voz Fija</option>
+                <option value="ROAMINT">PCS Roaming Internacional</option>
+                <option value="VALORAGR">PCS Serv. Convergentes</option>
+                <option value="VIRTINFR">PCS Infra&Net</option>
+                <option value="NAVMOVIL">PCS Conectividad Afuera</option>
+                <option value="PCS-SDB">PCS Señalización y BD</option>
+                <option value="NOC-AC">NOC-AC</option>
+                <option value="NOC-TR">NOC-TR</option>
+                <option value="NOC-MO">NOC-MO</option>
+                <option value="NCSN-CAO">CSOT</option>
+                <option value="BACKEND">BACKEND</option>
+                <option value="COMMAND CENTER">COMMAND CENTER</option>
+            </select>
+
+            <label for="origen">Origen del reclamo:</label>
+            <select id="origen" class="form-control">
+                <option value="DIGITAL VIEW">DIGITAL VIEW</option>
+                <option value="GRAFANA">GRAFANA</option>
+                <option value="MAE Core">MAE Core</option>
+                <option value="OPENXPAND">OPENXPAND</option>
+                <option value="SMARTCARE">SMARTCARE</option>
+                <option value="SOLICITUD">SOLICITUD</option>
+                <option value="TEKELEC">TEKELEC</option>        
+                <option value="UIM">UIM</option>
+            </select>
+            <label for="tipo_nodo">Tipo de Nodo:</label>
+            <select id="tipo_nodo" class="form-control">
+                <option value="MSC">MSC</option>
+                <option value="MME/AMF">MME/AMF</option>
+                <option value="UGW/DGW/UPF">UGW/DGW/UPF</option>
+                <option value="DNS/DEA">DNS/DEA</option>
+                <option value="UMG">UMG</option>
+                <option value="EDC/CDC">EDC/CDC</option>
+                <option value="USSD">USSD</option>        
+                <option value="VOICEMAIL">VOICEMAIL</option>
+                <option value="OSS">OSS</option>
+                <option value="NTR/OTA/WSMS">NTR/OTA/WSMS</option>
+                <option value="SMSC">SMSC</option>
+                <option value="UDM/USCDB/HSS">UDM/USCDB/HSS</option>
+            </select>
+        </div>
+
+        <div class="full-width button-group">
+            <button class="button-principal" id="btnGenerar" disabled>✅ Generar descripción</button>
+            <button class="button-principal" id="btnLimpiar" disabled hidden>🧹 Limpiar alarma</button>
+        </div>
+
+        <div class="full-width" style="display: flex; gap: calc(var(--spacing-unit) * 2);">
+            <div id="resultado-container" style="flex: 2;">
+                <div id="resultado">
+                    <p>NOC-MO | Nodo | Alerta_Norm | Tipo de afectación | Grupo asignado | Origen del reclamo | Tipo de Nodo</p>
+                </div>
+                <div id="mensajeCopiado"></div>
+                
+                <div id="resumenVisual" class="resumen-visual">
+                    <p>📍 Nodo: <span id="resumenNodo"></span></p>
+                    <p>🚨 Alerta: <span id="resumenAlerta"></span></p>
+                    <p>🚨 Alerta_Norm: <span id="resumenAlertaNorm"></span></p>
+                    <p>⚠️ Tipo de afectación: <span id="resumenAfectacion"></span></p>
+                    <p>🧩 Grupo asignado: <span id="resumenGrupo"></span></p>
+                    <p>📝 Origen del reclamo: <span id="resumenOrigen"></span></p>
+                    <p>📝 Info: <span id="resumenInfo"></span></p>
+                    <p>📝 Info Adicional: <span id="resumenAdicional"></span></p>
+                </div>
+            </div>
+        
+            <div id="info-adicional" style="flex: 1; font-size: 12px;">
+                <div id="links-utiles">
+                    <h3>🔗 Links útiles</h3>
+                    <ul>
+                        <li><a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6" target="_blank">Grafana de Despliegue CORE 5GC</a></li>
+                        <li><a href="http://grafana-teco.telecom.com.ar:3000/d/b5d6d2e9-3b48-4613-b1fe-56dae6eb2e82/estado-de-servicio-noc-mo?orgId=6&refresh=1m" target="_blank">Grafana de temperaturas</a></li>
+                        <li><a href="https://pwin0616/consulta_por_CGI.asp" target="_blank">Búsqueda por TAC</a></li>
+                        <li><a href="https://automation.telecom.com.ar" target="_blank">TAMBO</a></li>
+                        <li><a href="https://pwhgmweb1/HGM/Webs/csr2_new.php" target="_blank">HGM</a></li>
+                        <li><a href="http://10.24.1.150/ingenier@/#/" target="_blank">Ingenier@</a></li>
+                        <li><a href="https://cablevisionfibertel.sharepoint.com/:x:/r/teams/PCS-Equipo/_layouts/15/doc2.aspx?sourcedoc=%7BEE0B7FCD-14F2-4430-955D-209270FD5AA5%7D&file=InterconexionOperadores%20VPN%20SIP_3.xlsx&fromShare=true&action=default&mobileredirect=true" target="_blank">Rutas SIP</a></li>
+                    </ul>
+                </div>
+            
+                <div id="contactos-pcs">
+                    <h3>📧 Mails de Contactos principales</h3>
+                    <ul>
+                        <li>Tech Core: pcs_tech_core@teco.com.ar</li>
+                        <li>Conectividad Afuera: pcs_conectividad_afuera@teco.com.ar</li>
+                        <li>Infra&Net: PCS_InfrayNet@teco.com.ar</li>
+                        <li>Servicios Convergentes: PCSServiciosConvergentes@teco.com.ar</li>
+                        <li>Servicios Internacionales: PCS_Servicios_Internacionales@teco.com.ar</li>
+                        <li>Voz Adentro: PCS_Voz_Adentro@teco.com.ar</li>
+                        <li>Voz Afuera: PCS_Voz_Afuera@teco.com.ar</li>
+                        <li>SdB: Pcs_sdb@teco.com.ar</li>
+                        <li>CSOT/CAO: csot_oyp@teco.com.ar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="full-width">
+            <button class="toggle-historial" onclick="alternarHistorial()">Mostrar historial</button>
+            <div id="historial-container" class="hidden">
+                <ul id="listaHistorial"></ul>
+            </div>
+            <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
+        </div>
+
+        <div class="marca full-width">NOC-MO · 2025 · v1.7 json chatgpt 👈</div>
+    </div>
+
+    <div id="notas-panel">
+        <h3>Notas del día</h3>
+        <input type="text" id="autor" placeholder="Tu nombre (opcional)">
+        <textarea id="nueva-nota" placeholder="Escribí una nota..."></textarea>
+        <button id="guardar-nota">Guardar Nota</button>
+        <div id="notas-container"></div>
+    </div>
+
+    <div class="footer-links">
+        <a href="pruebas.html">Página de pruebas</a>
+        <a href="rutas_sip.html">Página de Rutas SIP</a>
+        <a href="mailto:LITorres@teco.com.ar,ATDichiara@teco.com.ar?subject=Sugerencias%20traductor%20de%20alarmas">Sugerencias o reclamos?</a>
+    </div>
+
+    <script>
+        // --- Constantes para índices de campos ---
+        const CAMPO_NODO = 52;
+        // const CAMPO_ALARMA_ORIGINAL = 53; // No se usa directamente después de la limpieza
+        // const CAMPO_INFO = 54;
+        // const CAMPO_INFO_ADICIONAL_ALERTA = 55;
+        const CAMPO_ALERTA_NORM = 56;
+        const MIN_CAMPOS = 96; // Número mínimo de campos esperados en la línea de alarma
+
+        // --- Variables Globales ---
+        let alarmas = {}; // Almacena las traducciones de alarmas desde el JSON
+
+        // --- Referencias a elementos del DOM ---
+        const alarmaInput = document.getElementById('alarmaInput');
+        const contadorAlarmas = document.getElementById('contadorAlarmas');
+        const btnGenerar = document.getElementById('btnGenerar');
+        const btnLimpiar = document.getElementById('btnLimpiar');
+        const resultadoDisplay = document.getElementById("resultado");
+        const listaHistorial = document.getElementById("listaHistorial");
+        const mensajeCopiado = document.getElementById("mensajeCopiado");
+
+        // --- Funciones de Utilidad ---
+
+        /**
+         * Limpia el nombre del nodo eliminando sufijos como "_eSightR21" o "_eSightR10".
+         * @param {string} nodoCrudo - El nombre del nodo tal como viene en la alarma.
+         * @returns {string} El nombre del nodo limpio.
+         */
+        function limpiarNombreNodo(nodoCrudo) {
+            if (!nodoCrudo) return "Nodo vacío o erróneo";
+            return nodoCrudo.replace(/_eSightR(10|21)$/, '');
+        }
+
+        /**
+         * Actualiza los spans del resumen visual con la información proporcionada.
+         * @param {object} data - Objeto con los datos para actualizar el resumen.
+         */
+        function actualizarResumenVisual({ nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional, tipoNodo }) {
+            document.getElementById('resumenNodo').textContent = nodo || 'N/A';
+            document.getElementById('resumenAlerta').innerHTML = alerta || 'N/A'; // Usa innerHTML por si hay tags HTML (e.g., span rojo)
+            document.getElementById('resumenAlertaNorm').textContent = alertaNorm || 'N/A';
+            document.getElementById('resumenAfectacion').textContent = afectacion || 'N/A';
+            document.getElementById('resumenGrupo').textContent = grupo || 'N/A';
+            document.getElementById('resumenOrigen').textContent = origen || 'N/A';
+            document.getElementById('resumenInfo').textContent = info || 'N/A';
+            document.getElementById('resumenAdicional').textContent = infoAdicional || 'N/A';
+        }
+
+        /**
+         * Actualiza solo los campos del resumen visual que provienen de los selectores.
+         * Se llama cuando un selector cambia para dar feedback instantáneo.
+         */
+        function actualizarResumenVisualParcialmente() {
+            const afectacion = document.getElementById("afectacion").value;
+            const grupo = document.getElementById("grupo").value;
+            const origen = document.getElementById("origen").value;
+            const tipo_nodo = document.getElementById("tipo_nodo").value;
+
+            document.getElementById('resumenAfectacion').textContent = afectacion;
+            document.getElementById('resumenGrupo').textContent = grupo;
+            document.getElementById('resumenOrigen').textContent = origen;
+            // No actualizamos nodo, alerta o info de la alarma aquí, solo los selectores
+        }
+
+        // --- Lógica Principal ---
+
+        /**
+         * Carga las definiciones de alarmas desde un archivo JSON.
+         */
+        async function cargarAlarmas() {
+            try {
+                const response = await fetch('traduccion_alarmas.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                alarmas = {}; // Resetear alarmas
+                data.forEach(item => {
+                    alarmas[item.AlarmaOriginal] = {
+                        TítuloCorto: item.TítuloCorto,
+                        InterpretaciónDetallada: item.InterpretaciónDetallada
+                    };
+                });
+                const total_JSON = Object.keys(alarmas).length;
+                contadorAlarmas.textContent = `✅ ${total_JSON} alarmas cargadas desde la DB`;
+                btnGenerar.disabled = false;
+                console.log("Alarmas indexadas:", total_JSON);
+            } catch (error) {
+                console.error("❌ Error al cargar el archivo JSON:", error);
+                contadorAlarmas.textContent = "❌ Error al cargar las alarmas. Recargue la página o verifique el archivo JSON.";
+                btnGenerar.disabled = true; // Deshabilitar si hay error de carga
+            }
+        }
+
+        /**
+         * Procesa la alarma pegada en el textarea, extrae campos y genera la descripción.
+         */
+        function procesarAlarma() {
+            const entrada = alarmaInput.value.trim();
+            const campos = entrada.split('\t');
+
+            if (campos.length < MIN_CAMPOS) {
+                alert(`⚠️ La línea debe contener al menos ${MIN_CAMPOS} campos separados por tabulaciones. Favor de copiar alarmas con la vista de FMC NOC-MO_CORE.`);
+                return;
+            }
+
+            // Extracción segura de campos
+            const nodeRaw = campos[CAMPO_NODO] || "";
+            const alarmaOriginal = campos[CAMPO_ALARMA_ORIGINAL] || "";
+            const info = campos[54] || ""; // Campo 54 para Info
+            const info_adicional_alerta = campos[55] || ""; // Campo 55 para Info Adicional
+            const alerta_norm_raw = campos[CAMPO_ALERTA_NORM] || "";
+
+            const node = limpiarNombreNodo(nodeRaw);
+            const alerta_norm = alerta_norm_raw; // Mantenemos el nombre original para la búsqueda
+
+            const afectacion = document.getElementById("afectacion").value;
+            const grupo = document.getElementById("grupo").value;
+            const origen = document.getElementById("origen").value;
+            const tipo_nodo = document.getElementById("tipo_nodo").value;
+
+            // Buscar traducción en el JSON cargado
+            const alertaTraducida = alarmas[alerta_norm];
+
+            // Determinar el título corto para el resumen y la descripción
+            const alerta_titulo_corto = alertaTraducida ? alertaTraducida.TítuloCorto : 
+                `${alerta_norm} <span style="color: red;">👆Nombre original, traducción no disponible, informar</span>`;
+            // const alerta_Interpretacion_Detallada = alertaTraducida ? alertaTraducida.InterpretaciónDetallada : '<span style="color: red;"> ⚠️ Interpretación no disponible</span>';
+
+            // Armado de la descripción final
+            const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
+            resultadoDisplay.innerText = descripcion;
+
+            // Actualizar el resumen visual
+            actualizarResumenVisual({
+                nodo: node,
+                alerta: alerta_titulo_corto,
+                alertaNorm: alerta_norm,
+                afectacion: afectacion,
+                grupo: grupo,
+                origen: origen,
+                info: info,
+                infoAdicional: info_adicional_alerta,
+                tipoNodo: tipo_nodo
+            });
+
+            // Mostrar y habilitar botón de limpiar
+            btnLimpiar.hidden = false;
+            btnLimpiar.disabled = false;
+
+            // Condición para abrir ventana si la alarma es "Ruta SIP Caida"
+            if (alerta_norm === "Ruta SIP Caida") {
+                const url = `rutas_sip.html?q=${encodeURIComponent(node)}`;
+                window.open(url, '_blank');
+            }
+
+            // Copiar al portapapeles
+            navigator.clipboard.writeText(descripcion).then(() => {
+                mensajeCopiado.textContent = "✅ Copiado al portapapeles";
+                setTimeout(() => mensajeCopiado.textContent = "", 3000); // El mensaje desaparece después de 3 segundos
+            }).catch(err => {
+                console.error('Error al copiar al portapapeles:', err);
+                mensajeCopiado.textContent = "❌ Error al copiar al portapapeles.";
+                mensajeCopiado.style.color = "red";
+                setTimeout(() => mensajeCopiado.textContent = "", 5000);
+            });
+
+            // Añadir al historial (al principio de la lista)
+            const historialItem = document.createElement("li");
+            historialItem.textContent = descripcion;
+            listaHistorial.prepend(historialItem);
+        }
+
+        /**
+         * Limpia el textarea de alarma y resetea la visualización.
+         */
+        function limpiarAlarmaInput() {
+            alarmaInput.value = "";
+            resultadoDisplay.innerText = "NOC-MO | Nodo | Alerta_Norm | Tipo de afectación | Grupo asignado | Origen del reclamo | Tipo de Nodo";
+            
+            // Limpiar todos los spans del resumen visual
+            actualizarResumenVisual({
+                nodo: '', alerta: '', alertaNorm: '', afectacion: '', grupo: '', origen: '', info: '', infoAdicional: ''
+            });
+
+            btnLimpiar.hidden = true;
+            btnLimpiar.disabled = true;
+            alarmaInput.focus(); // Devolver el foco al input
+            mensajeCopiado.textContent = ""; // Limpiar el mensaje de copiado
+        }
+
+        /**
+         * Alterna la visibilidad del contenedor del historial.
+         */
+        function alternarHistorial() {
+            const contenedor = document.getElementById("historial-container");
+            const boton = document.querySelector(".toggle-historial");
+            
+            contenedor.classList.toggle('hidden'); 
+
+            const visible = !contenedor.classList.contains('hidden');
+            boton.textContent = visible ? "Ocultar historial" : "Mostrar historial";
+        }
+            
+        /**
+         * Limpia todo el historial de alarmas.
+         */
+        function limpiarHistorial() {
+            if (confirm("¿Estás seguro de que quieres limpiar todo el historial?")) {
+                listaHistorial.innerHTML = '';
+            }
+        }
+
+        // --- Panel de Notas (interacción con Google Apps Script) ---
+        const notasEndpoint = 'https://script.google.com/macros/s/AKfycbygAKi-xhgOtVv_HUNuX4G9ATjsPcfEGVKX0L55Z-PIKK33vz-rEnQ1pzal3LBlnMB4/exec'; // ¡Reemplaza con tu URL real!
+
+        /**
+         * Carga las notas existentes desde Google Apps Script.
+         */
+        async function cargarNotas() {
+            const contenedor = document.getElementById("notas-container");
+            contenedor.innerHTML = "<p style='text-align: center; color: var(--color-text-light);'>Cargando notas...</p>";
+            try {
+                const res = await fetch(notasEndpoint);
+                if (!res.ok) {
+                    throw new Error(`Error al cargar notas: ${res.statusText}`);
+                }
+                const notas = await res.json();
+                
+                contenedor.innerHTML = "";
+                if (notas.length === 0) {
+                    contenedor.innerHTML = "<p style='text-align: center; color: var(--color-text-light);'>No hay notas aún.</p>";
+                    return;
+                }
+
+                notas.reverse().forEach(nota => {
+                    const div = document.createElement("div");
+                    div.className = "nota";
+                    const timestamp = new Date(nota.timestamp).toLocaleString();
+                    const autor = nota.autor && nota.autor.trim() !== '' ? nota.autor : 'Anónimo';
+                    div.innerHTML = `<time>${timestamp} - <strong>${autor}</strong></time><div>${nota.nota}</div>`;
+                    contenedor.appendChild(div);
+                });
+            } catch (error) {
+                console.error("❌ Error al cargar las notas:", error);
+                contenedor.innerHTML = `<p style='color: var(--color-secondary); text-align: center;'>Error al cargar notas: ${error.message}</p>`;
+            }
+        }
+
+        /**
+         * Guarda una nueva nota en Google Apps Script.
+         */
+        async function guardarNota() {
+            const nuevaNotaInput = document.getElementById("nueva-nota");
+            const autorInput = document.getElementById("autor");
+            const guardarBtn = document.getElementById("guardar-nota");
+
+            const nota = nuevaNotaInput.value.trim();
+            const autor = autorInput.value.trim() || "Anónimo";
+
+            if (nota === "") {
+                alert("Por favor, escribe algo en la nota antes de guardar.");
+                return;
+            }
+
+            guardarBtn.disabled = true;
+            guardarBtn.textContent = "Guardando...";
+
+            try {
+                const response = await fetch(notasEndpoint, {
+                    method: "POST",
+                    body: new URLSearchParams({ nota, autor })
+                });
+                if (!response.ok) {
+                    throw new Error(`Error al guardar nota: ${response.statusText}`);
+                }
+                // Asumiendo que el script de Google devuelve un JSON de éxito
+                // const result = await response.json(); 
+                // console.log("Nota guardada:", result);
+
+                nuevaNotaInput.value = ""; // Limpiar textarea
+                autorInput.value = ""; // Limpiar autor
+
+                await cargarNotas(); // Recargar notas para ver la nueva
+                // alert("✅ Nota guardada correctamente!"); // Feedback al usuario
+            } catch (error) {
+                console.error("❌ Error al guardar la nota:", error);
+                alert(`❌ Error al guardar la nota: ${error.message}`);
+            } finally {
+                guardarBtn.disabled = false;
+                guardarBtn.textContent = "Guardar Nota";
+            }
+        }
+
+        // --- Inicialización al cargar el DOM ---
+        document.addEventListener('DOMContentLoaded', () => {
+            alarmaInput.focus(); // Autofocus al cargar la página
+
+            // Cargar alarmas
+            cargarAlarmas();
+
+            // Cargar preferencias guardadas y guardar al cambiar la selección
+            const selectores = ['afectacion', 'grupo', 'origen', 'tipo_nodo'];
+            selectores.forEach(id => {
+                const selectElement = document.getElementById(id);
+                const savedValue = localStorage.getItem(`${id}Seleccionada`);
+                if (savedValue) {
+                    selectElement.value = savedValue;
+                }
+                selectElement.addEventListener('change', actualizarResumenVisualParcialmente);
+            });
+
+            // Listener para el input de alarma para habilitar/deshabilitar botón de limpiar
+            alarmaInput.addEventListener('input', () => {
+                const isEmpty = alarmaInput.value.trim() === '';
+                btnLimpiar.hidden = isEmpty;
+                btnLimpiar.disabled = isEmpty;
+            });
+            // Estado inicial del botón limpiar
+            btnLimpiar.hidden = alarmaInput.value.trim() === '';
+            btnLimpiar.disabled = alarmaInput.value.trim() === '';
+
+            // Asignar event listeners a los botones
+            btnGenerar.addEventListener('click', procesarAlarma);
+            btnLimpiar.addEventListener('click', limpiarAlarmaInput);
+            document.getElementById("guardar-nota").addEventListener("click", guardarNota);
+            
+            // Cargar notas al inicio
+            cargarNotas();
+        });
+    </script>
+</body>
+</html>
