@@ -568,6 +568,12 @@
 
         // --- Variables Globales ---
         let alarmas = {}; // Almacena las traducciones de alarmas desde el JSON
+        // Variables para almacenar los datos de la alarma procesada
+        let _currentParsedNode = '';
+        let _currentParsedAlertaNorm = '';
+        let _currentParsedInfo = '';
+        let _currentParsedInfoAdicional = '';
+
 
         // --- Referencias a elementos del DOM ---
         const alarmaInput = document.getElementById('alarmaInput');
@@ -577,6 +583,12 @@
         const resultadoDisplay = document.getElementById("resultado");
         const listaHistorial = document.getElementById("listaHistorial");
         const mensajeCopiado = document.getElementById("mensajeCopiado");
+        const selectoresDOM = {
+            afectacion: document.getElementById('afectacion'),
+            grupo: document.getElementById('grupo'),
+            origen: document.getElementById('origen'),
+            tipo_nodo: document.getElementById('tipo_nodo')
+        };
 
         // --- Funciones de Utilidad ---
 
@@ -586,7 +598,7 @@
          * @returns {string} El nombre del nodo limpio.
          */
         function limpiarNombreNodo(nodoCrudo) {
-            if (!nodoCrudo) return "Nodo vacío o erróneo";
+            if (!nodoCrudo) return "Nodo"; // Cambiado de "Nodo vacío o erróneo"
             return nodoCrudo.replace(/_eSightR(10|21)$/, '');
         }
 
@@ -606,20 +618,31 @@
         }
 
         /**
-         * Actualiza solo los campos del resumen visual que provienen de los selectores.
-         * Se llama cuando un selector cambia para dar feedback instantáneo.
+         * Actualiza el texto en el div con id="resultado" basándose en los selectores
+         * y los datos de la alarma actualmente procesada.
          */
-        function actualizarResumenVisualParcialmente() {
-            const afectacion = document.getElementById("afectacion").value;
-            const grupo = document.getElementById("grupo").value;
-            const origen = document.getElementById("origen").value;
-            const tipo_nodo = document.getElementById("tipo_nodo").value;
+        function actualizarResultadoDinamico() {
+            const afectacion = selectoresDOM.afectacion.value;
+            const grupo = selectoresDOM.grupo.value;
+            const origen = selectoresDOM.origen.value;
+            const tipo_nodo = selectoresDOM.tipo_nodo.value;
 
+            // Usamos las variables globales que almacenan los datos de la última alarma procesada
+            const nodo = _currentParsedNode || 'Nodo';
+            const alertaNorm = _currentParsedAlertaNorm || 'Alerta_Norm';
+
+            const descripcion = `NOC-MO | ${nodo} | ${alertaNorm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
+            resultadoDisplay.innerText = descripcion;
+
+            // También actualizamos el resumen visual para los campos de selectores
             document.getElementById('resumenAfectacion').textContent = afectacion;
             document.getElementById('resumenGrupo').textContent = grupo;
             document.getElementById('resumenOrigen').textContent = origen;
-            // No actualizamos nodo, alerta o info de la alarma aquí, solo los selectores
+            // No es necesario actualizar resumenNodo, resumenAlerta, etc. aquí
+            // porque estos ya fueron actualizados por procesarAlarma()
+            // o se establecen a "N/A" si no hay alarma cargada.
         }
+
 
         // --- Lógica Principal ---
 
@@ -665,56 +688,58 @@
 
             // Extracción segura de campos directamente por su índice
             const nodeRaw = campos[CAMPO_NODO] || "";
-            // const alarmaOriginalTexto = campos[CAMPO_ALARMA_ORIGINAL] || ""; // Ya no se usa directamente para la traducción, pero puedes descomentar si la necesitas
+            // const alarmaOriginalTexto = campos[CAMPO_ALARMA_ORIGINAL] || ""; // No se usa directamente para la traducción, pero puedes descomentar si la necesitas
             const info = campos[CAMPO_INFO] || "";
             const info_adicional_alerta = campos[CAMPO_INFO_ADICIONAL_ALERTA] || "";
             const alerta_norm_raw = campos[CAMPO_ALERTA_NORM] || "";
 
-            const node = limpiarNombreNodo(nodeRaw);
-            const alerta_norm = alerta_norm_raw; // Mantenemos el nombre original para la búsqueda
+            // Almacenar los campos parseados en variables globales
+            _currentParsedNode = limpiarNombreNodo(nodeRaw);
+            _currentParsedAlertaNorm = alerta_norm_raw;
+            _currentParsedInfo = info;
+            _currentParsedInfoAdicional = info_adicional_alerta;
 
-            const afectacion = document.getElementById("afectacion").value;
-            const grupo = document.getElementById("grupo").value;
-            const origen = document.getElementById("origen").value;
-            const tipo_nodo = document.getElementById("tipo_nodo").value;
+            const afectacion = selectoresDOM.afectacion.value;
+            const grupo = selectoresDOM.grupo.value;
+            const origen = selectoresDOM.origen.value;
+            const tipo_nodo = selectoresDOM.tipo_nodo.value;
 
             // Buscar traducción en el JSON cargado
-            const alertaTraducida = alarmas[alerta_norm];
+            const alertaTraducida = alarmas[_currentParsedAlertaNorm];
 
-            // Determinar el título corto para el resumen y la descripción
+            // Determinar el título corto para el resumen
             const alerta_titulo_corto = alertaTraducida ? alertaTraducida.TítuloCorto : 
-                `${alerta_norm} <span style="color: red;">👆Nombre original, traducción no disponible, informar</span>`;
+                `${_currentParsedAlertaNorm} <span style="color: red;">👆Nombre original, traducción no disponible, informar</span>`;
             // const alerta_Interpretacion_Detallada = alertaTraducida ? alertaTraducida.InterpretaciónDetallada : '<span style="color: red;"> ⚠️ Interpretación no disponible</span>';
 
-            // Armado de la descripción final
-            const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;
-            resultadoDisplay.innerText = descripcion;
-
-            // Actualizar el resumen visual
+            // Actualizar el resumen visual con todos los datos
             actualizarResumenVisual({
-                nodo: node,
+                nodo: _currentParsedNode,
                 alerta: alerta_titulo_corto,
-                alertaNorm: alerta_norm,
+                alertaNorm: _currentParsedAlertaNorm,
                 afectacion: afectacion,
                 grupo: grupo,
                 origen: origen,
-                info: info,
-                infoAdicional: info_adicional_alerta,
+                info: _currentParsedInfo,
+                infoAdicional: _currentParsedInfoAdicional,
                 tipoNodo: tipo_nodo
             });
+
+            // Actualizar el resultado principal (redundante con la llamada abajo, pero asegura la primera renderización)
+            actualizarResultadoDinamico();
 
             // Mostrar y habilitar botón de limpiar
             btnLimpiar.hidden = false;
             btnLimpiar.disabled = false;
 
             // Condición para abrir ventana si la alarma es "Ruta SIP Caida"
-            if (alerta_norm === "Ruta SIP Caida") {
-                const url = `rutas_sip.html?q=${encodeURIComponent(node)}`;
+            if (_currentParsedAlertaNorm === "Ruta SIP Caida") {
+                const url = `rutas_sip.html?q=${encodeURIComponent(_currentParsedNode)}`;
                 window.open(url, '_blank');
             }
 
             // Copiar al portapapeles
-            navigator.clipboard.writeText(descripcion).then(() => {
+            navigator.clipboard.writeText(resultadoDisplay.innerText).then(() => {
                 mensajeCopiado.textContent = "✅ Copiado al portapapeles";
                 setTimeout(() => mensajeCopiado.textContent = "", 3000); // El mensaje desaparece después de 3 segundos
             }).catch(err => {
@@ -726,7 +751,7 @@
 
             // Añadir al historial (al principio de la lista)
             const historialItem = document.createElement("li");
-            historialItem.textContent = descripcion;
+            historialItem.textContent = resultadoDisplay.innerText; // Usa el texto del resultado actual
             listaHistorial.prepend(historialItem);
         }
 
@@ -735,6 +760,13 @@
          */
         function limpiarAlarmaInput() {
             alarmaInput.value = "";
+            
+            // Restablecer las variables globales de la alarma
+            _currentParsedNode = '';
+            _currentParsedAlertaNorm = '';
+            _currentParsedInfo = '';
+            _currentParsedInfoAdicional = '';
+
             resultadoDisplay.innerText = "NOC-MO | Nodo | Alerta_Norm | Tipo de afectación | Grupo asignado | Origen del reclamo | Tipo de Nodo";
             
             // Limpiar todos los spans del resumen visual
@@ -742,10 +774,17 @@
                 nodo: '', alerta: '', alertaNorm: '', afectacion: '', grupo: '', origen: '', info: '', infoAdicional: ''
             });
 
+            // Re-establecer los selectores a sus valores por defecto si se desea, o a los guardados
+            // No lo haremos automáticamente aquí para mantener las selecciones, pero se puede añadir
+            // selectoresDOM.afectacion.value = 'AFECTACIÓN POTENCIAL'; etc.
+
             btnLimpiar.hidden = true;
             btnLimpiar.disabled = true;
             alarmaInput.focus(); // Devolver el foco al input
             mensajeCopiado.textContent = ""; // Limpiar el mensaje de copiado
+
+            // Asegurarse de que el resultado se actualice después de limpiar
+            actualizarResultadoDinamico();
         }
 
         /**
@@ -859,21 +898,39 @@
             cargarAlarmas();
 
             // Cargar preferencias guardadas y guardar al cambiar la selección
-            const selectores = ['afectacion', 'grupo', 'origen', 'tipo_nodo'];
-            selectores.forEach(id => {
-                const selectElement = document.getElementById(id);
+            for (const id in selectoresDOM) {
+                const selectElement = selectoresDOM[id];
                 const savedValue = localStorage.getItem(`${id}Seleccionada`);
                 if (savedValue) {
                     selectElement.value = savedValue;
                 }
-                selectElement.addEventListener('change', actualizarResumenVisualParcialmente);
-            });
+                // Añadir el event listener para actualizar el resultado dinámicamente
+                selectElement.addEventListener('change', () => {
+                    localStorage.setItem(`${id}Seleccionada`, selectElement.value); // Guardar preferencia
+                    actualizarResultadoDinamico(); // Actualizar resultado principal
+                    actualizarResumenVisualParcialmente(); // Actualizar resumen visual (afectación, grupo, origen)
+                });
+            }
 
             // Listener para el input de alarma para habilitar/deshabilitar botón de limpiar
+            // y también para limpiar el resultado si el input se vacía
             alarmaInput.addEventListener('input', () => {
                 const isEmpty = alarmaInput.value.trim() === '';
                 btnLimpiar.hidden = isEmpty;
                 btnLimpiar.disabled = isEmpty;
+                if (isEmpty) {
+                    // Si el input está vacío, limpiar las variables globales de la alarma
+                    _currentParsedNode = '';
+                    _currentParsedAlertaNorm = '';
+                    _currentParsedInfo = '';
+                    _currentParsedInfoAdicional = '';
+                    // Y luego actualizar el resultado a su estado por defecto
+                    actualizarResultadoDinamico();
+                    // Y también limpiar el resumen visual de los campos de alarma
+                    actualizarResumenVisual({
+                        nodo: '', alerta: '', alertaNorm: '', info: '', infoAdicional: ''
+                    });
+                }
             });
             // Estado inicial del botón limpiar
             btnLimpiar.hidden = alarmaInput.value.trim() === '';
@@ -886,6 +943,11 @@
             
             // Cargar notas al inicio
             cargarNotas();
+
+            // Inicializar el resultado principal al cargar la página con los valores por defecto de los selectores
+            actualizarResultadoDinamico();
+            // Inicializar el resumen visual con los valores de los selectores al cargar
+            actualizarResumenVisualParcialmente();
         });
     </script>
 </body>
