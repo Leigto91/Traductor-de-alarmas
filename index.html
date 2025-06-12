@@ -461,6 +461,12 @@ label {
           <p>📝 Origen del reclamo: <span id="resumenOrigen"></span></p>
           <p>📝 Info: <span id="resumenInfo"></span></p>
           <p>📝 Info Adicional: <span id="resumenAdicional"></span></p>
+          <p>⏰ Horario FMC: <span id="resumenHorarioFMC"></span></p>
+          <hr>
+          <hr>
+          <span><strong>Traducción de alarma:</strong></span>
+          <p>📝 Título Traducido: <span id="alerta_titulo_corto_resumen"></span></p>
+          <p>📝 Interpretación Detallada: <span id="alerta_Interpretacion_Detallada"></span></p>
         </div>
       </div>
     
@@ -506,7 +512,7 @@ label {
       <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.7 json chatgpt 👈</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.7.1 json chatgpt 👈</div>
   </div>
 
   <script>
@@ -562,6 +568,7 @@ function procesarAlarma() {
     const info = campos[54] || "Info vacía o errónea";
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
+    const horarioFMC = campos[60] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
   
     const afectacion = document.getElementById("afectacion").value || "Grupo Vacío o en falla";
     const grupo = document.getElementById("grupo").value || "Grupo Vacío o en falla";
@@ -585,7 +592,7 @@ function procesarAlarma() {
     document.getElementById("btnLimpiar").hidden = false;
 
     //armado del "ResumenVisual", se agrega del JS al HTML
-    function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional) {
+    function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional, horarioFMC, alerta_titulo_corto_resumen, alerta_Interpretacion_Detallada) {
       document.getElementById('resumenNodo').textContent = nodo || 'Vacio o en falla';
       // Se modifica para que no aparezca el texto en rojo cuando no hay traduccion en el resumen visual
       // document.getElementById('resumenAlerta').textContent = alerta || '';
@@ -596,15 +603,17 @@ function procesarAlarma() {
       document.getElementById('resumenOrigen').textContent = origen || '';
       document.getElementById('resumenInfo').textContent = info || '';
       document.getElementById('resumenAdicional').textContent = infoAdicional || '';
+      document.getElementById('resumenHorarioFMC').textContent = horarioFMC || 'Vacio o en falla'; // Asignar el valor de Horario FMC
+      document.getElementById('alerta_titulo_corto_resumen').textContent = alerta_titulo_corto_resumen || '';
+      document.getElementById('alerta_Interpretacion_Detallada').textContent = alerta_Interpretacion_Detallada || '';
     }
-    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta);
+    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta, horarioFMC, alerta_titulo_corto_resumen, alerta_Interpretacion_Detallada);
 
-    // -------- NUEVA CONDICIÓN PARA ABRIR VENTANA --------
+    // -------- ABRIR VENTANA para rutas SIP --------
     if (alerta_norm === "Ruta SIP Caida") {
       const url = `rutas_sip.html?q=${encodeURIComponent(node)}`;
       window.open(url, '_blank');
     }
-    // -------- FIN DE LA NUEVA CONDICIÓN --------
 
     // Copiar al portapapeles
     navigator.clipboard.writeText(descripcion).then(() => {
@@ -636,6 +645,9 @@ function limpiarAlarmaInput() {
   document.getElementById('resumenOrigen').textContent = '';
   document.getElementById('resumenInfo').textContent = '';
   document.getElementById('resumenAdicional').textContent = '';
+  document.getElementById('resumenHorarioFMC').textContent = '';
+  document.getElementById('alerta_titulo_corto_resumen').textContent = '';
+  document.getElementById('alerta_Interpretacion_Detallada').textContent = '';
   // La siguiente línea ya no es necesaria si limpiamos los spans individualmente
   // document.getElementById("resumenVisual").innerHTML = ""; 
 
