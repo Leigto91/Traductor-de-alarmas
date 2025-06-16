@@ -572,7 +572,7 @@ function procesarAlarma() {
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
     const horarioFMC = campos[60] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
-    const hedex = campos[61] || "Campo de AlarmID(Hedex) Vacio o erróneo"
+    let hedex = campos[61] || "Campo de AlarmID(Hedex) Vacio o erróneo"
     const gestorFmc = campos[62] || "Campo Gestor en el FMC Vacio o erróneo"
 
     // --- NUEVA LÓGICA PARA RELLENAR HEDEX CON CEROS A LA IZQUIERDA ---
