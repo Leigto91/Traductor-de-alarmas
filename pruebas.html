@@ -617,7 +617,6 @@ function procesarAlarma() {
       document.getElementById('alerta_titulo_corto_resumen').textContent = alerta_titulo_corto_resumen || '';
       document.getElementById('alerta_Interpretacion_Detallada').textContent = alerta_Interpretacion_Detallada || '';
     }
-    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta, horarioFMC, alerta_titulo_corto_resumen, alerta_Interpretacion_Detallada, linkHedexContainer, hedexLink);
 
         // --- Nueva lógica para el link de Hedex ---
     const linkHedexContainer = document.getElementById("linkHedexContainer");
@@ -633,6 +632,7 @@ function procesarAlarma() {
         hedexLink.href = "#"; // Restablecer el href por si acaso
         hedexLink.textContent = ""; // Limpiar el texto
     }
+    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta, horarioFMC, alerta_titulo_corto_resumen, alerta_Interpretacion_Detallada, linkHedexContainer, hedexLink);
 
     // -------- ABRIR VENTANA para rutas SIP --------
     if (alerta_norm === "Ruta SIP Caida") {
