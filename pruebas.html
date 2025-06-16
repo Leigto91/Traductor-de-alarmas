@@ -467,6 +467,9 @@ label {
           <span><strong>Traducción de alarma:</strong></span>
           <p>📝 Título Traducido: <span id="alerta_titulo_corto_resumen"></span></p>
           <p>📝 Interpretación Detallada: <span id="alerta_Interpretacion_Detallada"></span></p>
+          <div id="linkHedexContainer" style="background-color: #d1ecf1; color: #0c5460; padding: 10px; border-radius: 8px; margin-top: 10px; display: none;">
+            <p>🔗 Link Hedex: <a id="hedexLink" href="#" target="_blank"></a></p>
+          </div>
         </div>
       </div>
     
@@ -614,7 +617,7 @@ function procesarAlarma() {
       document.getElementById('alerta_titulo_corto_resumen').textContent = alerta_titulo_corto_resumen || '';
       document.getElementById('alerta_Interpretacion_Detallada').textContent = alerta_Interpretacion_Detallada || '';
     }
-    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta, horarioFMC, alerta_titulo_corto_resumen, alerta_Interpretacion_Detallada);
+    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta, horarioFMC, alerta_titulo_corto_resumen, alerta_Interpretacion_Detallada, linkHedexContainer, hedexLink);
 
         // --- Nueva lógica para el link de Hedex ---
     const linkHedexContainer = document.getElementById("linkHedexContainer");
