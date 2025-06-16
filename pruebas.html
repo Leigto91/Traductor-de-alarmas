@@ -571,14 +571,22 @@ function procesarAlarma() {
     const info = campos[54] || "Info vacía o errónea";
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
-    const horarioFMC = campos[60] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
-    let hedex = campos[61] || "Campo de AlarmID(Hedex) Vacio o erróneo"
-    const gestorFmc = campos[62] || "Campo Gestor en el FMC Vacio o erróneo"
+   // **************** INICIO DE LA SECCIÓN CRÍTICA ****************
+    // Asegúrate de que esta es la única declaración de 'hedex' que afecta esta parte
+    let hedex = campos[61] || "Campo de AlarmID(Hedex) Vacio o erróneo"; // <<-- DEBE SER 'let' aquí
+    const gestorFmc = campos[62] || "Campo Gestor en el FMC Vacio o erróneo";
 
-    // --- NUEVA LÓGICA PARA RELLENAR HEDEX CON CEROS A LA IZQUIERDA ---
-       if (hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo") {
+    // --- NUEVA LÓGICA: Limpiar y rellenar HEDEX ---
+    if (hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo") {
+        // Log para verificar qué valor tiene 'hedex' ANTES de la asignación fallida
+        console.log("Tipo de hedex antes de replace:", typeof hedex);
+        console.log("Valor de hedex antes de replace:", hedex);
+
         // 1. Eliminar caracteres no numéricos
-        hedex = hedex.replace(/\D/g, ''); // Elimina cualquier carácter que NO sea un dígito (0-9)
+        hedex = hedex.replace(/\D/g, ''); // <<-- Esta es la línea 581 que da error
+
+        // Log para verificar qué valor tiene 'hedex' DESPUÉS de la asignación
+        console.log("Valor de hedex después de replace:", hedex);
 
         // 2. Rellenar con ceros a la izquierda si la longitud es menor a 4
         if (hedex.length < 4) {
