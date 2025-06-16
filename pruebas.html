@@ -468,7 +468,7 @@ label {
           <p>📝 Título Traducido: <span id="alerta_titulo_corto_resumen"></span></p>
           <p>📝 Interpretación Detallada: <span id="alerta_Interpretacion_Detallada"></span></p>
           <div id="linkHedexContainer" style="background-color: #d1ecf1; color: #0c5460; padding: 10px; border-radius: 8px; margin-top: 10px; display: none;">
-            <p>🔗 Link Hedex: <a id="hedexLink" href="#" target="_blank"></a></p>
+            <p>🔗 Link Hedex: <a id="hedexLink" href="#" target="_blank"></a> (Copiar el link en el mediador)</p>
           </div>
         </div>
       </div>
@@ -576,8 +576,14 @@ function procesarAlarma() {
     const gestorFmc = campos[62] || "Campo Gestor en el FMC Vacio o erróneo"
 
     // --- NUEVA LÓGICA PARA RELLENAR HEDEX CON CEROS A LA IZQUIERDA ---
-      if (hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo" && hedex.length < 4) {
-        hedex = hedex.padStart(4, '0'); // Rellena con '0' a la izquierda hasta tener 4 caracteres
+       if (hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo") {
+        // 1. Eliminar caracteres no numéricos
+        hedex = hedex.replace(/\D/g, ''); // Elimina cualquier carácter que NO sea un dígito (0-9)
+
+        // 2. Rellenar con ceros a la izquierda si la longitud es menor a 4
+        if (hedex.length < 4) {
+            hedex = hedex.padStart(4, '0');
+        }
     }
 
     const afectacion = document.getElementById("afectacion").value || "Grupo Vacío o en falla";
@@ -622,10 +628,10 @@ function procesarAlarma() {
     const linkHedexContainer = document.getElementById("linkHedexContainer");
     const hedexLink = document.getElementById("hedexLink");
 
-    if (gestorFmc === "MC_HUAWEI_U2000_CORE" && hedex && hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo") {
+    if (gestorFmc === "MC_HUAWEI_U2000_CORE" && hedex && hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo" && hedex.length > 0) {
         const urlHedex = `https://10.75.99.169:31943/hedex/search/search.do?q=ALM-${encodeURIComponent(hedex)}`; // Cambia 'https://your-hedex-base-url.com' por la URL real
         hedexLink.href = urlHedex;
-        hedexLink.textContent = `Buscar AlarmID: ${hedex}`;
+        hedexLink.textContent = `${urlHedex}`;
         linkHedexContainer.style.display = 'block'; // Mostrar el contenedor del link
     } else {
         linkHedexContainer.style.display = 'none'; // Ocultar si no cumple la condición
