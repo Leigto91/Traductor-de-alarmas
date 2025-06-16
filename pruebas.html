@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Traductor de Alarmas (Prueba)</title>
+  <title>Traductor de Alarmas</title>
   <style>
     body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía más moderna */
@@ -303,17 +303,81 @@ label {
 .full-width[style*="display: flex;"] {
     display: flex;
     gap: 10px; /* Reducir el gap entre los botones */
-    align-items: center; /* Alinear verticalmente los botones */
+    align-items:flex-start; /* Alinear verticalmente los botones */
 }
 
 .full-width[style*="display: flex;"] .button-principal {
     margin: 0; /* Eliminar márgenes automáticos de los botones en esta sección */
 }
+
+  #notas-panel {
+    width: 100%;
+    background-color: #f9f9f9;
+    border-top: 2px solid #ccc;
+    padding: 16px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+  #notas-panel h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+
+  #notas-container {
+    margin-top: 12px;
+    font-size: 14px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .nota {
+    border: 1px solid #ddd;
+    background: white;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+  }
+
+  .nota time {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  #nueva-nota {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 8px;
+    resize: vertical;
+  }
+
+  #autor {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  #guardar-nota {
+    width: 100%;
+    padding: 8px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  #guardar-nota:hover {
+    background: #0056b3;
+  }
   </style>
+  
 </head>
 <body>
   <div class="container">
-    <h1>Traductor de Alarmas(Prueba 1.6.7)</h1>
+    <h1>Traductor de Alarmas</h1>
     <div id="contadorAlarmas" class="full-width" style="text-align:center; font-size:12px; color:#555;">⏳ Cargando alarmas...</div>
 
     <div class="form-group">
@@ -381,12 +445,14 @@ label {
     </div>
 
     <div class="full-width" style="display: flex; gap: 20px;">
+      <!-- Contenedor resultado y resumen -->
       <div id="resultado-container" style="flex: 2;">
         <div id="resultado" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
           <p> NOC-MO | Nodo | Alerta_Norm | Tipo de afectación | Grupo asignado | Origen del reclamo | Tipo de Nodo</p>
         </div>
         
-              <div id="resumenVisual" class="resumen-visual" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+              <!-- Resumen visual por defecto -->
+        <div id="resumenVisual" class="resumen-visual" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
           <p>📍 Nodo: <span id="resumenNodo"></span></p>
           <p>🚨 Alerta: <span id="resumenAlerta"></span></p>
           <p>🚨 Alerta_Norm: <span id="resumenAlertaNorm"></span></p>
@@ -396,9 +462,15 @@ label {
           <p>📝 Info: <span id="resumenInfo"></span></p>
           <p>📝 Info Adicional: <span id="resumenAdicional"></span></p>
           <p>⏰ Horario FMC: <span id="resumenHorarioFMC"></span></p>
+          <hr>
+          <hr>
+          <span><strong>Traducción de alarma:</strong></span>
+          <p>📝 Título Traducido: <span id="alerta_titulo_corto_resumen"></span></p>
+          <p>📝 Interpretación Detallada: <span id="alerta_Interpretacion_Detallada"></span></p>
         </div>
       </div>
     
+      <!-- Contenedor info adicional -->
       <div id="info-adicional" style="flex: 1; font-size: 12px;">
         <div id="links-utiles" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
           <h3 style="font-size: 14px; margin-top: 0;">🔗 Links útiles</h3>
@@ -410,12 +482,14 @@ label {
             <li><a href="https://pwhgmweb1/HGM/Webs/csr2_new.php" target="_blank">HGM</a></li>
             <li><a href="http://10.24.1.150/ingenier@/#/" target="_blank">Ingenier@</a></li>
             <li><a href="https://cablevisionfibertel.sharepoint.com/:x:/r/teams/PCS-Equipo/_layouts/15/doc2.aspx?sourcedoc=%7BEE0B7FCD-14F2-4430-955D-209270FD5AA5%7D&file=InterconexionOperadores%20VPN%20SIP_3.xlsx&fromShare=true&action=default&mobileredirect=true" target="_blank">Rutas SIP</a></li>
-            </ul>
+            <!-- Agregá más si querés -->
+          </ul>
         </div>
     
         <div id="contactos-pcs" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px;">
           <h3 style="font-size: 14px; margin-top: 0;">📧 Mails de Contactos principales</h3>
           <ul style="padding-left: 18px; margin: 0;">
+            <li>Tech Core: pcs_tech_core@teco.com.ar</li>
             <li>Conectividad Afuera: pcs_conectividad_afuera@teco.com.ar</li>
             <li>Infra&Net: PCS_InfrayNet@teco.com.ar</li>
             <li>Servicios Convergentes: PCSServiciosConvergentes@teco.com.ar</li>
@@ -424,7 +498,8 @@ label {
             <li>Voz Afuera: PCS_Voz_Afuera@teco.com.ar</li>
             <li>SdB: Pcs_sdb@teco.com.ar</li>
             <li>CSOT/CAO: csot_oyp@teco.com.ar</li>
-            </ul>
+                        <!-- Agregá más si querés -->
+          </ul>
         </div>
       </div>
     </div>
@@ -437,7 +512,7 @@ label {
       <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.6.3 json chatgpt 👈</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.8 json chatgpt 👈</div>
   </div>
 
   <script>
@@ -469,14 +544,14 @@ label {
     document.getElementById("contadorAlarmas").textContent = "❌ Error al cargar las alarmas. Recargue la pagina o verifique el archivo JSON.";
   });
     // Saca los "_esightR21 y _esightR10"
-      function limpiarNombreNodo(nodoCrudo) {
-      if (!nodoCrudo) return "Nodo vacío o erróneo";
-      if (nodoCrudo.includes("_eSightR21")) {
-      return nodoCrudo.split("_eSightR21")[0];
+     function limpiarNombreNodo(nodoCrudo) {
+     if (!nodoCrudo) return "Nodo vacío o erróneo";
+     if (nodoCrudo.includes("_eSightR21")) {
+     return nodoCrudo.split("_eSightR21")[0];
   } else if (nodoCrudo.includes("_eSightR10")) {
-      return nodoCrudo.split("_eSightR10")[0];
+     return nodoCrudo.split("_eSightR10")[0];
   }
-      return nodoCrudo;
+     return nodoCrudo;
 }
 function procesarAlarma() {
     document.getElementById("btnLimpiar").style.display = 'inline-block'; // Asegurar que el botón limpiar se muestre
@@ -494,7 +569,14 @@ function procesarAlarma() {
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
     const horarioFMC = campos[60] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
-  
+    const hedex = campos[61] || "Campo de AlarmID(Hedex) Vacio o erróneo"
+    const gestorFmc = campos[62] || "Campo Gestor en el FMC Vacio o erróneo"
+
+    // --- NUEVA LÓGICA PARA RELLENAR HEDEX CON CEROS A LA IZQUIERDA ---
+      if (hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo" && hedex.length < 4) {
+        hedex = hedex.padStart(4, '0'); // Rellena con '0' a la izquierda hasta tener 4 caracteres
+    }
+
     const afectacion = document.getElementById("afectacion").value || "Grupo Vacío o en falla";
     const grupo = document.getElementById("grupo").value || "Grupo Vacío o en falla";
     const origen = document.getElementById("origen").value || "Origen Vacío o en falla";
@@ -517,7 +599,7 @@ function procesarAlarma() {
     document.getElementById("btnLimpiar").hidden = false;
 
     //armado del "ResumenVisual", se agrega del JS al HTML
-    function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional, horarioFMC) {
+    function resumenVisual(nodo, alerta, alertaNorm, afectacion, grupo, origen, info, infoAdicional, horarioFMC, alerta_titulo_corto_resumen, alerta_Interpretacion_Detallada) {
       document.getElementById('resumenNodo').textContent = nodo || 'Vacio o en falla';
       // Se modifica para que no aparezca el texto en rojo cuando no hay traduccion en el resumen visual
       // document.getElementById('resumenAlerta').textContent = alerta || '';
@@ -529,15 +611,31 @@ function procesarAlarma() {
       document.getElementById('resumenInfo').textContent = info || '';
       document.getElementById('resumenAdicional').textContent = infoAdicional || '';
       document.getElementById('resumenHorarioFMC').textContent = horarioFMC || 'Vacio o en falla'; // Asignar el valor de Horario FMC
+      document.getElementById('alerta_titulo_corto_resumen').textContent = alerta_titulo_corto_resumen || '';
+      document.getElementById('alerta_Interpretacion_Detallada').textContent = alerta_Interpretacion_Detallada || '';
     }
-    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta, horarioFMC);
+    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta, horarioFMC, alerta_titulo_corto_resumen, alerta_Interpretacion_Detallada);
 
-    // -------- NUEVA CONDICIÓN PARA ABRIR VENTANA --------
+        // --- Nueva lógica para el link de Hedex ---
+    const linkHedexContainer = document.getElementById("linkHedexContainer");
+    const hedexLink = document.getElementById("hedexLink");
+
+    if (gestorFmc === "MC_HUAWEI_U2000_CORE" && hedex && hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo") {
+        const urlHedex = `https://10.75.99.169:31943/hedex/search/search.do?q=ALM-${encodeURIComponent(hedex)}`; // Cambia 'https://your-hedex-base-url.com' por la URL real
+        hedexLink.href = urlHedex;
+        hedexLink.textContent = `Buscar AlarmID: ${hedex}`;
+        linkHedexContainer.style.display = 'block'; // Mostrar el contenedor del link
+    } else {
+        linkHedexContainer.style.display = 'none'; // Ocultar si no cumple la condición
+        hedexLink.href = "#"; // Restablecer el href por si acaso
+        hedexLink.textContent = ""; // Limpiar el texto
+    }
+
+    // -------- ABRIR VENTANA para rutas SIP --------
     if (alerta_norm === "Ruta SIP Caida") {
       const url = `rutas_sip.html?q=${encodeURIComponent(node)}`;
       window.open(url, '_blank');
     }
-    // -------- FIN DE LA NUEVA CONDICIÓN --------
 
     // Copiar al portapapeles
     navigator.clipboard.writeText(descripcion).then(() => {
@@ -569,9 +667,12 @@ function limpiarAlarmaInput() {
   document.getElementById('resumenOrigen').textContent = '';
   document.getElementById('resumenInfo').textContent = '';
   document.getElementById('resumenAdicional').textContent = '';
-  document.getElementById('resumenHorarioFMC').textContent = ''; // Limpiar el campo Horario FMC
-  // La siguiente línea ya no es necesaria si limpiamos los spans individualmente
-  // document.getElementById("resumenVisual").innerHTML = ""; 
+  document.getElementById('resumenHorarioFMC').textContent = '';
+  document.getElementById('alerta_titulo_corto_resumen').textContent = '';
+  document.getElementById('alerta_Interpretacion_Detallada').textContent = '';
+  document.getElementById('linkHedexContainer').style.display = 'none';
+  document.getElementById('hedexLink').href = "#";
+  document.getElementById('hedexLink').textContent = "";
 
   document.getElementById("btnLimpiar").style.display = 'none'; // Ocultar el botón limpiar si el campo está vacío
   document.getElementById('alarmaInput').focus(); // Devolver el foco al input después de limpiar
@@ -595,116 +696,51 @@ function alternarHistorial() {
     document.getElementById('alarmaInput').focus();
 
     // Cargar preferencias guardadas
-      const afectacionGuardada = localStorage.getItem('afectacionSeleccionada');
+     const afectacionGuardada = localStorage.getItem('afectacionSeleccionada');
     if (afectacionGuardada) {
-      document.getElementById('afectacion').value = afectacionGuardada;
+        document.getElementById('afectacion').value = afectacionGuardada;
     }
 
     const grupoGuardado = localStorage.getItem('grupoSeleccionado');
     if (grupoGuardado) {
-      document.getElementById('grupo').value = grupoGuardado;
+        document.getElementById('grupo').value = grupoGuardado;
     }
 
     const origenGuardado = localStorage.getItem('origenSeleccionado');
     if (origenGuardado) {
-      document.getElementById('origen').value = origenGuardada;
+        document.getElementById('origen').value = origenGuardada;
     }
 
     const tipoNodoGuardado = localStorage.getItem('tipoNodoSeleccionado');
     if (tipoNodoGuardado) {
-      document.getElementById('tipo_nodo').value = tipoNodoGuardado;
+        document.getElementById('tipo_nodo').value = tipoNodoGuardado;
     }
 
     // Guardar preferencias al cambiar la selección
     document.getElementById('afectacion').addEventListener('change', function() {
-      localStorage.setItem('afectacionSeleccionada', this.value);
+        localStorage.setItem('afectacionSeleccionada', this.value);
     });
 
     document.getElementById('grupo').addEventListener('change', function() {
-      localStorage.setItem('grupoSeleccionada', this.value);
+        localStorage.setItem('grupoSeleccionada', this.value);
     });
 
     document.getElementById('origen').addEventListener('change', function() {
-      localStorage.setItem('origenSeleccionada', this.value);
+        localStorage.setItem('origenSeleccionada', this.value);
     });
 
     document.getElementById('tipo_nodo').addEventListener('change', function() {
-      localStorage.setItem('tipoNodoSeleccionada', this.value);
+        localStorage.setItem('tipoNodoSeleccionada', this.value);
     });
 });
   }
   </script>
-  <a href="index.html">Pagina de index</a>
+  <a href="pruebas.html">Pagina de prueas</a>
   <a href="rutas_sip.html">Pagina de Rutas SIP</a>
   <p><a href="mailto:LITorres@teco.com.ar,ATDichiara@teco.com.ar?subject=Sugerencias%20traductor%20de%20alarmas
     ">Sugerencias o reclamos?</a></p>
 
-    
-    <style>
-  #notas-panel {
-    width: 100%;
-    background-color: #f9f9f9;
-    border-top: 2px solid #ccc;
-    padding: 16px;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-  }
-
-  #notas-panel h3 {
-    margin-top: 0;
-    font-size: 18px;
-  }
-
-  #notas-container {
-    margin-top: 12px;
-    font-size: 14px;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-
-  .nota {
-    border: 1px solid #ddd;
-    background: white;
-    padding: 8px;
-    margin-bottom: 8px;
-    border-radius: 4px;
-  }
-
-  .nota time {
-    font-size: 12px;
-    color: #666;
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  #nueva-nota {
-    width: 100%;
-    height: 60px;
-    margin-bottom: 8px;
-    resize: vertical;
-  }
-
-  #autor {
-    width: 100%;
-    margin-bottom: 8px;
-  }
-
-  #guardar-nota {
-    width: 100%;
-    padding: 8px;
-    background: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  #guardar-nota:hover {
-    background: #0056b3;
-  }
-</style>
-
+<!-- Agregalo justo antes del cierre </body> -->
 <div id="notas-panel">
   <h3>Notas del día</h3>
   <input type="text" id="autor" placeholder="Tu nombre">
