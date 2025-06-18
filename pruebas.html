@@ -372,6 +372,12 @@ label {
   #guardar-nota:hover {
     background: #0056b3;
   }
+
+  #alerta_Interpretacion_Detallada {
+    font-weight: bold;
+    color: #ff0101;
+  }
+
   </style>
   
 </head>
@@ -608,7 +614,7 @@ function procesarAlarma() {
     //Modificacion para que no aparezca el texto en rojo en el resumen visual
     const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alerta_norm;
     // const alerta_titulo_corto_resumen = alerta ? alerta.TítuloCorto : alerta_norm +'<span style="color: red;"> 👆Nombre original, traducción no disponible, informar</span>';
-    const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : '<span style="color: red;"> ⚠️ Interpretación no disponible</span>';
+    const alerta_Interpretacion_Detallada = alerta ? alerta.InterpretaciónDetallada : '⚠️ Interpretación no disponible';
     
     //armado de la descripción
     const descripcion = `NOC-MO | ${node} | ${alerta_norm} | ${afectacion} | ${grupo} | ${origen} | ${tipo_nodo}`;

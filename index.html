@@ -372,6 +372,11 @@ label {
   #guardar-nota:hover {
     background: #0056b3;
   }
+
+  #alerta_Interpretacion_Detallada {
+    font-weight: bold;
+    color: #ff0101;
+  }
   </style>
   
 </head>
@@ -413,18 +418,18 @@ label {
 
       <label for="origen">Origen del reclamo:</label>
       <select id="origen" class="form-control">
-        <option value="DIGITAL VIEW">DIGITAL VIEW</option>
         <option value="GRAFANA">GRAFANA</option>
         <option value="MAE Core">MAE Core</option>
         <option value="OPENXPAND">OPENXPAND</option>
         <option value="SMARTCARE">SMARTCARE</option>
+        <option value="DIGITAL VIEW">DIGITAL VIEW</option>
         <option value="SOLICITUD">SOLICITUD</option>
         <option value="TEKELEC">TEKELEC</option>        
         <option value="UIM">UIM</option>
       </select>
       <label for="tipo_nodo">Tipo de Nodo:</label>
       <select id="tipo_nodo" class="form-control">
-        <option value="MSC">MSC</option>
+        <option value="MSC/UMG">MSC/UMG</option>
         <option value="MME/AMF">MME/AMF</option>
         <option value="UGW/DGW/UPF">UGW/DGW/UPF</option>
         <option value="DNS/DEA">DNS/DEA</option>
