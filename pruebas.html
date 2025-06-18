@@ -565,14 +565,15 @@ function procesarAlarma() {
       alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones. Favor de copiar alarmas con la vista de FMC NOC-MO_CORE");
       return;
     }
-  
+    // Variables
+
     const node = limpiarNombreNodo(campos[52]) || "Nodo vacío o erróneo";
     const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
     const info = campos[54] || "Info vacía o errónea";
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
-   // **************** INICIO DE LA SECCIÓN CRÍTICA ****************
-    // Asegúrate de que esta es la única declaración de 'hedex' que afecta esta parte
+    const horarioFMC = campos[60] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
+
     let hedex = campos[61] || "Campo de AlarmID(Hedex) Vacio o erróneo"; // <<-- DEBE SER 'let' aquí
     const gestorFmc = campos[62] || "Campo Gestor en el FMC Vacio o erróneo";
 
@@ -632,7 +633,8 @@ function procesarAlarma() {
       document.getElementById('alerta_Interpretacion_Detallada').textContent = alerta_Interpretacion_Detallada || '';
     }
 
-        // --- Nueva lógica para el link de Hedex ---
+        // --- Lógica para el link de Hedex ---
+
     const linkHedexContainer = document.getElementById("linkHedexContainer");
     const hedexLink = document.getElementById("hedexLink");
 
@@ -687,7 +689,7 @@ function limpiarAlarmaInput() {
   document.getElementById('resumenHorarioFMC').textContent = '';
   document.getElementById('alerta_titulo_corto_resumen').textContent = '';
   document.getElementById('alerta_Interpretacion_Detallada').textContent = '';
-  document.getElementById('linkHedexContainer').style.display = 'none';
+  document.getElementById('linkHedexContainer').style.display = 'none'; // Hace invisible el container de Hedex si se limpia la alarma
   document.getElementById('hedexLink').href = "#";
   document.getElementById('hedexLink').textContent = "";
 
@@ -757,7 +759,7 @@ function alternarHistorial() {
   <p><a href="mailto:LITorres@teco.com.ar,ATDichiara@teco.com.ar?subject=Sugerencias%20traductor%20de%20alarmas
     ">Sugerencias o reclamos?</a></p>
 
-<!-- Agregalo justo antes del cierre </body> -->
+<!-- Panel de notas </body> -->
 <div id="notas-panel">
   <h3>Notas del día</h3>
   <input type="text" id="autor" placeholder="Tu nombre">
