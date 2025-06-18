@@ -467,6 +467,9 @@ label {
           <span><strong>Traducción de alarma:</strong></span>
           <p>📝 Título Traducido: <span id="alerta_titulo_corto_resumen"></span></p>
           <p>📝 Interpretación Detallada: <span id="alerta_Interpretacion_Detallada"></span></p>
+          <div id="linkHedexContainer" style="background-color: #d1ecf1; color: #0c5460; padding: 10px; border-radius: 8px; margin-top: 10px; display: none;">
+            <p>🔗 Link Hedex: <a id="hedexLink" href="#" target="_blank"></a> (Copiar el link en el mediador)</p>
+          </div>
         </div>
       </div>
     
@@ -512,7 +515,7 @@ label {
       <button class="toggle-historial" onclick="limpiarHistorial()">🧹 Limpiar historial</button>
     </div>
 
-    <div class="marca full-width">NOC-MO · 2025 · v1.7.1 json chatgpt 👈</div>
+    <div class="marca full-width">NOC-MO · 2025 · v1.8 json chatgpt 👈</div>
   </div>
 
   <script>
@@ -562,14 +565,36 @@ function procesarAlarma() {
       alert("⚠️ La línea debe contener al menos 96 campos separados por tabulaciones. Favor de copiar alarmas con la vista de FMC NOC-MO_CORE");
       return;
     }
-  
+    // Variables
+
     const node = limpiarNombreNodo(campos[52]) || "Nodo vacío o erróneo";
     const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
     const info = campos[54] || "Info vacía o errónea";
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
-    const horarioFMC = campos[60] || "Horario FMC vacío o erróneo";
-  
+    const horarioFMC = campos[60] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
+
+    let hedex = campos[61] || "Campo de AlarmID(Hedex) Vacio o erróneo"; // <<-- DEBE SER 'let' aquí
+    const gestorFmc = campos[62] || "Campo Gestor en el FMC Vacio o erróneo";
+
+    // --- NUEVA LÓGICA: Limpiar y rellenar HEDEX ---
+    if (hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo") {
+        // Log para verificar qué valor tiene 'hedex' ANTES de la asignación fallida
+        console.log("Tipo de hedex antes de replace:", typeof hedex);
+        console.log("Valor de hedex antes de replace:", hedex);
+
+        // 1. Eliminar caracteres no numéricos
+        hedex = hedex.replace(/\D/g, ''); // <<-- Esta es la línea 581 que da error
+
+        // Log para verificar qué valor tiene 'hedex' DESPUÉS de la asignación
+        console.log("Valor de hedex después de replace:", hedex);
+
+        // 2. Rellenar con ceros a la izquierda si la longitud es menor a 4
+        if (hedex.length < 4) {
+            hedex = hedex.padStart(4, '0');
+        }
+    }
+
     const afectacion = document.getElementById("afectacion").value || "Grupo Vacío o en falla";
     const grupo = document.getElementById("grupo").value || "Grupo Vacío o en falla";
     const origen = document.getElementById("origen").value || "Origen Vacío o en falla";
@@ -607,7 +632,23 @@ function procesarAlarma() {
       document.getElementById('alerta_titulo_corto_resumen').textContent = alerta_titulo_corto_resumen || '';
       document.getElementById('alerta_Interpretacion_Detallada').textContent = alerta_Interpretacion_Detallada || '';
     }
-    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta, horarioFMC, alerta_titulo_corto_resumen, alerta_Interpretacion_Detallada);
+
+        // --- Lógica para el link de Hedex ---
+
+    const linkHedexContainer = document.getElementById("linkHedexContainer");
+    const hedexLink = document.getElementById("hedexLink");
+
+    if (gestorFmc === "MC_HUAWEI_U2000_CORE" && hedex && hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo" && hedex.length > 0) {
+        const urlHedex = `https://10.75.99.169:31943/hedex/search/search.do?q=ALM-${encodeURIComponent(hedex)}`; // Cambia 'https://your-hedex-base-url.com' por la URL real
+        hedexLink.href = urlHedex;
+        hedexLink.textContent = `${urlHedex}`;
+        linkHedexContainer.style.display = 'block'; // Mostrar el contenedor del link
+    } else {
+        linkHedexContainer.style.display = 'none'; // Ocultar si no cumple la condición
+        hedexLink.href = "#"; // Restablecer el href por si acaso
+        hedexLink.textContent = ""; // Limpiar el texto
+    }
+    resumenVisual(node, alerta_titulo_corto_resumen, alerta_norm, afectacion, grupo, origen, info, info_adicional_alerta, horarioFMC, alerta_titulo_corto_resumen, alerta_Interpretacion_Detallada, linkHedexContainer, hedexLink);
 
     // -------- ABRIR VENTANA para rutas SIP --------
     if (alerta_norm === "Ruta SIP Caida") {
@@ -648,8 +689,9 @@ function limpiarAlarmaInput() {
   document.getElementById('resumenHorarioFMC').textContent = '';
   document.getElementById('alerta_titulo_corto_resumen').textContent = '';
   document.getElementById('alerta_Interpretacion_Detallada').textContent = '';
-  // La siguiente línea ya no es necesaria si limpiamos los spans individualmente
-  // document.getElementById("resumenVisual").innerHTML = ""; 
+  document.getElementById('linkHedexContainer').style.display = 'none'; // Hace invisible el container de Hedex si se limpia la alarma
+  document.getElementById('hedexLink').href = "#";
+  document.getElementById('hedexLink').textContent = "";
 
   document.getElementById("btnLimpiar").style.display = 'none'; // Ocultar el botón limpiar si el campo está vacío
   document.getElementById('alarmaInput').focus(); // Devolver el foco al input después de limpiar
@@ -717,7 +759,7 @@ function alternarHistorial() {
   <p><a href="mailto:LITorres@teco.com.ar,ATDichiara@teco.com.ar?subject=Sugerencias%20traductor%20de%20alarmas
     ">Sugerencias o reclamos?</a></p>
 
-<!-- Agregalo justo antes del cierre </body> -->
+<!-- Panel de notas </body> -->
 <div id="notas-panel">
   <h3>Notas del día</h3>
   <input type="text" id="autor" placeholder="Tu nombre">
