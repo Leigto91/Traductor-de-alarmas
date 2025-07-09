@@ -377,6 +377,7 @@ label {
     font-weight: bold;
     color: #ff0101;
   }
+
   </style>
   
 </head>
@@ -418,18 +419,18 @@ label {
 
       <label for="origen">Origen del reclamo:</label>
       <select id="origen" class="form-control">
+        <option value="DIGITAL VIEW">DIGITAL VIEW</option>
         <option value="GRAFANA">GRAFANA</option>
         <option value="MAE Core">MAE Core</option>
         <option value="OPENXPAND">OPENXPAND</option>
         <option value="SMARTCARE">SMARTCARE</option>
-        <option value="DIGITAL VIEW">DIGITAL VIEW</option>
         <option value="SOLICITUD">SOLICITUD</option>
         <option value="TEKELEC">TEKELEC</option>        
         <option value="UIM">UIM</option>
       </select>
       <label for="tipo_nodo">Tipo de Nodo:</label>
       <select id="tipo_nodo" class="form-control">
-        <option value="MSC/UMG">MSC/UMG</option>
+        <option value="MSC">MSC</option>
         <option value="MME/AMF">MME/AMF</option>
         <option value="UGW/DGW/UPF">UGW/DGW/UPF</option>
         <option value="DNS/DEA">DNS/DEA</option>
@@ -575,6 +576,15 @@ function procesarAlarma() {
     const node = limpiarNombreNodo(campos[52]) || "Nodo vacío o erróneo";
     const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
     const info = campos[54] || "Info vacía o errónea";
+    // Buscar patrón tipo AABBCCC-DEF123 en el campo "info"
+  const regexElementoRed = /[A-Z]{7}-[A-Z]{3}\d{3}/;
+  const matchElementoRed = info.match(regexElementoRed);
+
+  if (matchElementoRed) {
+    const elementoRed = matchElementoRed[0];
+    const urlElementoRed = `NomenclaturaInfra.html?q=${encodeURIComponent(elementoRed)}`;
+    window.open(urlElementoRed, '_blank');
+  }
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
     const horarioFMC = campos[60] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
