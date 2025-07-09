@@ -14,7 +14,7 @@
   </style>
 </head>
 <body>
-  <h2>Interpretador de Códigos de Nomenclatura v3</h2>
+  <h2>Interpretador de Códigos de Nomenclatura</h2>
   <textarea id="inputCodigos" placeholder="Pegá aquí los códigos, uno por línea..."></textarea>
   <button onclick="interpretarMultiples()">Interpretar</button>
 
@@ -90,15 +90,9 @@
 
     function obtenerLinkTodos(sitioCodigo) {
       const sitioNombre = sitios[sitioCodigo];
-      if (!sitioNombre) {
-        console.warn(`⚠️ Sitio no reconocido: ${sitioCodigo}`);
-        return "<span class='error'>Sin topología disponible</span>";
-      }
+      if (!sitioNombre) return "<span class='error'>Sin topología disponible</span>";
       const enlaces = grafanaLinks[sitioNombre];
-      if (!enlaces) {
-        console.warn(`⚠️ No hay enlaces configurados para sitio: ${sitioNombre}`);
-        return "<span class='error'>Sin topología disponible</span>";
-      }
+      if (!enlaces) return "<span class='error'>Sin topología disponible</span>";
 
       const resultados = [];
       for (const tipo in enlaces) {
@@ -144,8 +138,6 @@
       }
 
       const link = obtenerLinkTodos(codSitio);
-      console.log(`→ Código: ${codigo} → codSitio: ${codSitio} → dcTipoCodigo: ${dcTipoCodigo} → Link:`, link);
-
       return {
         codigo,
         pais: pais || `⚠️ ERROR (${codPais})`,
@@ -159,9 +151,14 @@
       };
     }
 
-    function interpretarMultiples() {
-      const input = document.getElementById("inputCodigos").value;
-      const codigos = input.split("\n").map(c => c.trim()).filter(c => c);
+    function interpretarMultiples(codigosExternos = null) {
+      const input = codigosExternos || document.getElementById("inputCodigos").value;
+      const codigos = input.split("\n").flatMap(c => c.split(",")).map(c => c.trim()).filter(c => c);
+
+      // Actualizar la URL con los códigos
+      const nuevaURL = `${location.pathname}?q=${encodeURIComponent(codigos.join(","))}`;
+      history.replaceState(null, "", nuevaURL);
+
       const tbody = document.querySelector("#tablaResultados tbody");
       tbody.innerHTML = "";
 
@@ -176,6 +173,16 @@
         tbody.appendChild(fila);
       });
     }
+
+    // Si hay parámetros ?q=... en la URL, cargarlos al iniciar
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get("q");
+      if (query) {
+        document.getElementById("inputCodigos").value = query.split(",").join("\n");
+        interpretarMultiples(query);
+      }
+    });
   </script>
 </body>
 </html>
