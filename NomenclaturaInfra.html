@@ -14,7 +14,7 @@
   </style>
 </head>
 <body>
-  <h2>Interpretador de Códigos de Nomenclatura</h2>
+  <h2>Interpretador de Códigos de Nomenclatura v2</h2>
   <textarea id="inputCodigos" placeholder="Pegá aquí los códigos, uno por línea..."></textarea>
   <button onclick="interpretarMultiples()">Interpretar</button>
 
@@ -47,9 +47,7 @@
       "RES": "Resistencia", "IRD": "Rosario"
     };
     const tipoDC = {
-      "C": "CDC", "E": "EDC", "DEF": "Router de Frontera (DEF)",
-      "DGM": "Router de Frontera (DGM)", "001": "EDC", "002": "EDC",
-      "003": "CDC", "004": "CDC"
+      "C": "CDC", "E": "EDC"
     };
     const equipos = { "E": "EOR (Spine)", "T": "TOR (Leaf)" };
     const tipoEquipo = { "S": "Service", "M": "Management", "D": "Dual" };
@@ -90,10 +88,22 @@
       }
     };
 
-    function obtenerLink(sitio, tipoDC) {
-      const links = grafanaLinks[sitio];
-      if (!links || !links[tipoDC]) return "";
-      const l = links[tipoDC];
+    function obtenerLink(sitioCodigo, tipoDCCodigo) {
+      const sitioNombre = sitios[sitioCodigo];
+      const tipoNombre = tipoDC[tipoDCCodigo];
+      console.log("→ Sitio cod:", sitioCodigo, "→ tipoDCCod:", tipoDCCodigo);
+      console.log("→ Sitio nombre:", sitioNombre, "→ Tipo nombre:", tipoNombre);
+
+      if (!sitioNombre) console.warn(`⚠️ Sitio no reconocido: ${sitioCodigo}`);
+      if (!tipoNombre) console.warn(`⚠️ Tipo de DC no reconocido: ${tipoDCCodigo}`);
+
+      if (!sitioNombre || !tipoNombre) return "<span class='error'>Sin topología disponible</span>";
+      const enlaces = grafanaLinks[sitioNombre];
+      if (!enlaces || !enlaces[tipoNombre]) {
+        console.warn(`⚠️ No hay enlace configurado para ${sitioNombre} (${sitioCodigo}) con tipo ${tipoNombre} (${tipoDCCodigo})`);
+        return "<span class='error'>Sin topología disponible</span>";
+      }
+      const l = enlaces[tipoNombre];
       if (Array.isArray(l)) return l.map((url, i) => `<a href='${url}' target='_blank'>Link ${i + 1}</a>`).join("<br>");
       return `<a href='${l}' target='_blank'>Ver topología</a>`;
     }
@@ -108,15 +118,15 @@
       let provincia = provincias[codProvincia];
       let sitio = sitios[codSitio];
 
-      let dataCenter, equipo, tipo, numero;
+      let dataCenter, equipo, tipo, numero, dcTipoCodigo;
       const isFrontera = parte2?.startsWith("DEF") || parte2?.startsWith("DGM");
 
       if (isFrontera) {
-        const fronteraKey = parte2.slice(0,3);
-        dataCenter = tipoDC[fronteraKey];
+        dataCenter = parte2?.startsWith("DEF") ? "Router de Frontera (DEF)" : "Router de Frontera (DGM)";
         equipo = "Router de Frontera";
         tipo = "N/A";
-        numero = parte2.slice(3);
+        numero = parte2?.slice(3);
+        dcTipoCodigo = "";
       } else {
         const codDC = parte2?.slice(0,1);
         const codEquipo = parte2?.slice(1,2);
@@ -126,9 +136,11 @@
         dataCenter = tipoDC[codDC];
         equipo = equipos[codEquipo];
         tipo = tipoEquipo[codTipo];
+        dcTipoCodigo = codDC;
       }
 
-      const link = (sitio && dataCenter) ? obtenerLink(sitio, dataCenter) : "";
+      const link = obtenerLink(codSitio, dcTipoCodigo);
+      console.log(`→ Código: ${codigo} → codSitio: ${codSitio} → dcTipoCodigo: ${dcTipoCodigo} → Link:`, link);
 
       return {
         codigo,
