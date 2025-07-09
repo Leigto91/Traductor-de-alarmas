@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Interpretador de Nomenclaturas</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    textarea { width: 100%; height: 120px; margin-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background-color: #f0f0f0; }
+    .error { color: red; font-weight: bold; }
+    a { text-decoration: none; color: #0056b3; }
+  </style>
+</head>
+<body>
+  <h2>Interpretador de Códigos de Nomenclatura</h2>
+  <textarea id="inputCodigos" placeholder="Pegá aquí los códigos, uno por línea..."></textarea>
+  <button onclick="interpretarMultiples()">Interpretar</button>
+
+  <table id="tablaResultados">
+    <thead>
+      <tr>
+        <th>Código</th>
+        <th>País</th>
+        <th>Provincia</th>
+        <th>Sitio</th>
+        <th>Data Center</th>
+        <th>Equipo</th>
+        <th>Tipo</th>
+        <th>Número</th>
+        <th>Link Grafana</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const paises = { "AR": "Argentina" };
+    const provincias = {
+      "CC": "Capital Federal", "BB": "Buenos Aires", "HH": "Chaco",
+      "XX": "Córdoba", "SS": "Santa Fe", "TT": "Tucumán"
+    };
+    const sitios = {
+      "SLO": "San Lorenzo", "HOR": "Hornos", "BEL": "Belgrano",
+      "CEN": "Córdoba Centro", "GLF": "Golf", "MUS": "Muñecas",
+      "RES": "Resistencia", "IRD": "Rosario"
+    };
+    const tipoDC = {
+      "C": "CDC", "E": "EDC", "DEF": "Router de Frontera (DEF)",
+      "DGM": "Router de Frontera (DGM)", "001": "EDC", "002": "EDC",
+      "003": "CDC", "004": "CDC"
+    };
+    const equipos = { "E": "EOR (Spine)", "T": "TOR (Leaf)" };
+    const tipoEquipo = { "S": "Service", "M": "Management", "D": "Dual" };
+
+    const grafanaLinks = {
+      "Belgrano": {
+        "CDC": "http://grafana-teco.telecom.com.ar:3000/d/jja8s9Fzp/topologia-cdc-belgrano-5gc?orgId=6&refresh=1m"
+      },
+      "Hornos": {
+        "CDC": "http://grafana-teco.telecom.com.ar:3000/d/jja8s9FIw/topologia-cdc-hornos-5gc?orgId=6&refresh=1m",
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzw/topologia-hornos-edc-5gc?orgId=6&refresh=1m"
+      },
+      "San Lorenzo": {
+        "CDC": "http://grafana-teco.telecom.com.ar:3000/d/jja8s9Fes/topologia-cdc-san-lorenzo-5gc?orgId=6&refresh=1m",
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSze/topologia-san-lorenzo-edc-5gc?orgId=6&refresh=1m"
+      },
+      "Golf": {
+        "CDC": [
+          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9eds/topologia-cdc1-golf-5gc?orgId=6&refresh=1m",
+          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9etx/topologia-cdc2-golf-5gc?orgId=6&refresh=1m"
+        ],
+        "EDC": [
+          "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzo/topologia-edc1-golf-5gc?orgId=6&refresh=1m",
+          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9etx/topologia-cdc2-golf-5gc?orgId=6&refresh=1m"
+        ]
+      },
+      "Córdoba Centro": {
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89Ksddf/topologia-cordoba-edc-5gc?orgId=6&refresh=1m"
+      },
+      "Resistencia": {
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSsf/topologia-resistencia-edc-5gc?orgId=6&refresh=1m"
+      },
+      "Rosario": {
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzdf/topologia-rosario-edc-5gc?orgId=6&refresh=1m"
+      },
+      "Tucumán": {
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KStg/topologia-tucuman-edc-5gc?orgId=6&refresh=1m"
+      }
+    };
+
+    function obtenerLink(sitio, tipoDC) {
+      const links = grafanaLinks[sitio];
+      if (!links || !links[tipoDC]) return "";
+      const l = links[tipoDC];
+      if (Array.isArray(l)) return l.map((url, i) => `<a href='${url}' target='_blank'>Link ${i + 1}</a>`).join("<br>");
+      return `<a href='${l}' target='_blank'>Ver topología</a>`;
+    }
+
+    function interpretar(codigo) {
+      const [parte1, parte2] = codigo.split("-");
+      const codPais = parte1?.slice(0,2);
+      const codProvincia = parte1?.slice(2,4);
+      const codSitio = parte1?.slice(4,7);
+
+      let pais = paises[codPais];
+      let provincia = provincias[codProvincia];
+      let sitio = sitios[codSitio];
+
+      let dataCenter, equipo, tipo, numero;
+      const isFrontera = parte2?.startsWith("DEF") || parte2?.startsWith("DGM");
+
+      if (isFrontera) {
+        const fronteraKey = parte2.slice(0,3);
+        dataCenter = tipoDC[fronteraKey];
+        equipo = "Router de Frontera";
+        tipo = "N/A";
+        numero = parte2.slice(3);
+      } else {
+        const codDC = parte2?.slice(0,1);
+        const codEquipo = parte2?.slice(1,2);
+        const codTipo = parte2?.slice(2,3);
+        numero = parte2?.slice(3);
+
+        dataCenter = tipoDC[codDC];
+        equipo = equipos[codEquipo];
+        tipo = tipoEquipo[codTipo];
+      }
+
+      const link = (sitio && dataCenter) ? obtenerLink(sitio, dataCenter) : "";
+
+      return {
+        codigo,
+        pais: pais || `⚠️ ERROR (${codPais})`,
+        provincia: provincia || `⚠️ ERROR (${codProvincia})`,
+        sitio: sitio || `⚠️ ERROR (${codSitio})`,
+        dataCenter: dataCenter || `⚠️ ERROR (${parte2?.slice(0,3)})`,
+        equipo: equipo || `⚠️ ERROR (${parte2?.slice(1,2)})`,
+        tipo: tipo || `⚠️ ERROR (${parte2?.slice(2,3)})`,
+        numero: numero || "-",
+        link
+      };
+    }
+
+    function interpretarMultiples() {
+      const input = document.getElementById("inputCodigos").value;
+      const codigos = input.split("\n").map(c => c.trim()).filter(c => c);
+      const tbody = document.querySelector("#tablaResultados tbody");
+      tbody.innerHTML = "";
+
+      codigos.forEach(codigo => {
+        const res = interpretar(codigo);
+        const fila = document.createElement("tr");
+        Object.values(res).forEach(valor => {
+          const td = document.createElement("td");
+          td.innerHTML = valor.includes("ERROR") ? `<span class='error'>${valor}</span>` : valor;
+          fila.appendChild(td);
+        });
+        tbody.appendChild(fila);
+      });
+    }
+  </script>
+</body>
+</html>
