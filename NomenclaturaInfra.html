@@ -1,432 +1,362 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Interpretador de Nomenclaturas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <style>
-    /* Paleta de colores profesionales y modernos */
-    :root {
-      --color-primary: #0056b3; /* Azul oscuro para elementos principales */
-      --color-secondary: #007bff; /* Azul más vibrante para enlaces */
-      --color-accent: #28a745; /* Verde para acciones de éxito */
-      --color-text-dark: #343a40; /* Texto oscuro para títulos */
-      --color-text-medium: #495057; /* Texto de cuerpo */
-      --color-background-light: #f8f9fa; /* Fondo muy claro */
-      --color-background-medium: #e9ecef; /* Fondo gris claro para contenedores secundarios */
-      --color-border: #ced4da; /* Borde suave */
-      --color-white: #ffffff; /* Este color ahora se usará menos para fondos grandes */
-      --color-shadow: rgba(0, 0, 0, 0.08); /* Sombra sutil */
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif; /* Tipografía principal */
-      background-color: var(--color-background-light); /* Fondo suave */
-      margin: 0;
-      padding: 20px;
-      line-height: 1.6; /* Mejorar legibilidad */
-      color: var(--color-text-medium);
-      display: flex;
-      justify-content: center; /* Centrar el contenido horizontalmente */
-      align-items: flex-start; /* Alinear el contenido al inicio verticalmente */
-      min-height: 100vh; /* Ocupar al menos el alto de la ventana */
-    }
-
-    .container {
-      /* Ahora el contenedor principal tiene el mismo color de fondo que el body */
-      background-color: var(--color-background-light); 
-      padding: 30px; /* Padding ligeramente reducido */
-      border-radius: 10px; /* Bordes más redondeados */
-      /* Sombra más pronunciada para diferenciar el contenedor, ya que el fondo es el mismo */
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1); 
-      max-width: 900px; /* Ancho máximo para el contenido */
-      width: 100%; /* Asegurar que ocupe el ancho disponible */
-      margin: 20px 0; /* Margen superior e inferior */
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 28px; /* Tamaño del título principal */
-      color: var(--color-primary); /* Color del título */
-      margin-bottom: 25px; /* Espacio debajo del título */
-      font-weight: 500; /* Peso de fuente para un aspecto más moderno */
-    }
-
-    textarea {
-      width: 100%;
-      height: 110px; /* Altura ligeramente reducida */
-      margin-bottom: 15px; /* Espacio debajo del textarea */
-      padding: 10px; /* Padding ligeramente reducido */
-      font-size: 16px;
-      border: 1px solid var(--color-border);
-      border-radius: 6px; /* Bordes redondeados */
-      box-sizing: border-box; /* Incluir padding y borde en el ancho */
-      resize: vertical; /* Permitir redimensionar verticalmente */
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
-      background-color: var(--color-white); /* Mantener blanco para el input */
-    }
-
-    textarea:focus {
-      border-color: var(--color-secondary);
-      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-      outline: none;
-    }
-
-    /* Estilos del botón */
-    button {
-      background-color: var(--color-primary); /* Color principal para el botón */
-      color: var(--color-white);
-      border: none;
-      padding: 10px 20px; /* Padding ligeramente reducido */
-      font-size: 16px;
-      font-weight: 500;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      /* margin-bottom: 20px; */ /* Eliminamos el margen de aquí para moverlo al contenedor */
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para el botón */
-    }
-
-    button:hover {
-      background-color: #004085; /* Tono más oscuro al pasar el mouse */
-      transform: translateY(-2px); /* Pequeño efecto de elevación */
-    }
-
-    /* --- ESTILO PARA CENTRAR EL BOTÓN --- */
-    .button-container {
-      text-align: center; /* Centra el contenido en línea (el botón) */
-      margin-bottom: 20px; /* Mantiene el espacio debajo del botón */
+  <meta charset="UTF-8">
+  <title>Interpretador de Nomenclaturas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Paleta de colores profesionales y modernos */
+    :root {
+      --color-primary: #0056b3; /* Azul oscuro para elementos principales */
+      --color-secondary: #007bff; /* Azul más vibrante para enlaces */
+      --color-accent: #28a745; /* Verde para acciones de éxito */
+      --color-text-dark: #343a40; /* Texto oscuro para títulos */
+      --color-text-medium: #495057; /* Texto de cuerpo */
+      --color-background-light: #f8f9fa; /* Fondo muy claro */
+      --color-background-medium: #e9ecef; /* Fondo gris claro para contenedores secundarios */
+      --color-border: #ced4da; /* Borde suave */
+      --color-white: #ffffff; /* Este color ahora se usará menos para fondos grandes */
+      --color-shadow: rgba(0, 0, 0, 0.08); /* Sombra sutil */
     }
-    /* --- FIN ESTILO BOTÓN --- */
 
+    body {
+      font-family: 'Roboto', sans-serif; /* Tipografía principal */
+      background-color: var(--color-background-light); /* Fondo suave */
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6; /* Mejorar legibilidad */
+      color: var(--color-text-medium);
+      display: flex;
+      justify-content: center; /* Centrar el contenido horizontalmente */
+      align-items: flex-start; /* Alinear el contenido al inicio verticalmente */
+      min-height: 100vh; /* Ocupar al menos el alto de la ventana */
+    }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px; /* Espacio sobre la tabla */
-      background-color: var(--color-white); /* La tabla sigue siendo blanca para destacar */
-      box-shadow: 0 2px 8px var(--color-shadow); /* Sombra para la tabla */
-      border-radius: 8px; /* Bordes redondeados para la tabla */
-      overflow: hidden; /* Asegura que los bordes redondeados se apliquen al contenido */
-    }
+    .container {
+      /* Ahora el contenedor principal tiene el mismo color de fondo que el body */
+      background-color: var(--color-background-light); 
+      padding: 30px; /* Padding ligeramente reducido */
+      border-radius: 10px; /* Bordes más redondeados */
+      /* Sombra más pronunciada para diferenciar el contenedor, ya que el fondo es el mismo */
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1); 
+      max-width: 900px; /* Ancho máximo para el contenido */
+      width: 100%; /* Asegurar que ocupe el ancho disponible */
+      margin: 20px 0; /* Margen superior e inferior */
+    }
 
-    th, td {
-      border: 1px solid var(--color-border); /* Bordes más suaves */
-      padding: 10px 12px; /* Padding ligeramente reducido en celdas */
-      text-align: left;
-      font-size: 14px; /* Tamaño de fuente ligeramente menor en tabla */
-    }
+    h2 {
+      text-align: center;
+      font-size: 28px; /* Tamaño del título principal */
+      color: var(--color-primary); /* Color del título */
+      margin-bottom: 25px; /* Espacio debajo del título */
+      font-weight: 500; /* Peso de fuente para un aspecto más moderno */
+    }
 
-    th {
-      background-color: var(--color-background-medium); /* Fondo gris claro para encabezados */
-      color: var(--color-text-dark); /* Color de texto para encabezados */
-      font-weight: 600; /* Más negrita para encabezados */
-    }
+    textarea {
+      width: 100%;
+      height: 110px; /* Altura ligeramente reducida */
+      margin-bottom: 15px; /* Espacio debajo del textarea */
+      padding: 10px; /* Padding ligeramente reducido */
+      font-size: 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 6px; /* Bordes redondeados */
+      box-sizing: border-box; /* Incluir padding y borde en el ancho */
+      resize: vertical; /* Permitir redimensionar verticalmente */
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      background-color: var(--color-white); /* Mantener blanco para el input */
+    }
 
-    tr:nth-child(even) {
-      background-color: #f2f2f2; /* Cebra suave para filas pares */
-    }
+    textarea:focus {
+      border-color: var(--color-secondary);
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      outline: none;
+    }
 
-    tr:hover {
-      background-color: #e6f2ff; /* Resaltado suave al pasar el mouse por la fila */
-    }
+    button {
+      background-color: var(--color-primary); /* Color principal para el botón */
+      color: var(--color-white);
+      border: none;
+      padding: 10px 20px; /* Padding ligeramente reducido */
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin-bottom: 20px; /* Espacio debajo del botón */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para el botón */
+    }
 
-    .error {
-      color: #dc3545; /* Rojo de peligro */
-      font-weight: 600;
-    }
+    button:hover {
+      background-color: #004085; /* Tono más oscuro al pasar el mouse */
+      transform: translateY(-2px); /* Pequeño efecto de elevación */
+    }
 
-    a {
-      text-decoration: none;
-      color: var(--color-secondary); /* Azul para enlaces */
-      transition: color 0.2s ease;
-    }
-
-    a:hover {
-      color: var(--color-primary); /* Tono más oscuro al pasar el mouse */
-      text-decoration: underline;
-    }
-
-    .links-adicionales {
-      margin-top: 30px; /* Espacio sobre la sección de enlaces */
-      padding: 20px; /* Padding ligeramente reducido */
-      border: 1px solid var(--color-border);
-      /* Ahora el fondo es el mismo que el body y container */
-      background-color: var(--color-background-light); 
-      border-radius: 8px;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03); /* Sombra interna más sutil */
-    }
-
-    .links-adicionales h3 {
-      margin-top: 0;
-      color: var(--color-text-dark);
-      font-size: 17px; /* Tamaño ligeramente menor para subtítulo */
-      margin-bottom: 12px; /* Espacio debajo del subtítulo */
-      border-bottom: 1px solid var(--color-border); /* Línea bajo el subtítulo */
-      padding-bottom: 6px;
-    }
-
-    .links-adicionales ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .links-adicionales li {
-      margin-bottom: 8px; /* Espacio entre ítems de lista */
-      font-size: 14px; /* Tamaño de fuente ligeramente menor en la lista */
-    }
-
-    .links-adicionales li:last-child {
-      margin-bottom: 0;
-    }
-
-    ---
-    /* Estilos para la tabla informativa */
-    .info-table {
+    table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 15px; /* Espacio superior para separarla de los enlaces */
-      background-color: var(--color-white);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); /* Sombra más sutil para tablas de información */
-      border-radius: 6px; /* Bordes ligeramente más suaves */
-      overflow: hidden;
-      font-size: 13px; /* Fuente un poco más pequeña */
+      margin-top: 20px; /* Espacio sobre la tabla */
+      background-color: var(--color-white); /* La tabla sigue siendo blanca para destacar */
+      box-shadow: 0 2px 8px var(--color-shadow); /* Sombra para la tabla */
+      border-radius: 8px; /* Bordes redondeados para la tabla */
+      overflow: hidden; /* Asegura que los bordes redondeados se apliquen al contenido */
     }
 
-    .info-table th, .info-table td {
-      border: 1px solid var(--color-border);
-      padding: 8px 10px; /* Padding reducido */
+    th, td {
+      border: 1px solid var(--color-border); /* Bordes más suaves */
+      padding: 10px 12px; /* Padding ligeramente reducido en celdas */
       text-align: left;
+      font-size: 14px; /* Tamaño de fuente ligeramente menor en tabla */
     }
 
-    .info-table th {
-      background-color: var(--color-background-medium);
-      color: var(--color-text-dark);
+    th {
+      background-color: var(--color-background-medium); /* Fondo gris claro para encabezados */
+      color: var(--color-text-dark); /* Color de texto para encabezados */
+      font-weight: 600; /* Más negrita para encabezados */
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2; /* Cebra suave para filas pares */
+    }
+
+    tr:hover {
+      background-color: #e6f2ff; /* Resaltado suave al pasar el mouse por la fila */
+    }
+
+    .error {
+      color: #dc3545; /* Rojo de peligro */
       font-weight: 600;
     }
 
-    .info-table tr:nth-child(even) {
-      background-color: #f7f7f7; /* Cebra aún más suave */
+    a {
+      text-decoration: none;
+      color: var(--color-secondary); /* Azul para enlaces */
+      transition: color 0.2s ease;
     }
 
-    .info-table tr:hover {
-      background-color: #eef8ff; /* Resaltado suave al pasar el mouse */
+    a:hover {
+      color: var(--color-primary); /* Tono más oscuro al pasar el mouse */
+      text-decoration: underline;
     }
-    ---
 
-  </style>
+    .links-adicionales {
+      margin-top: 30px; /* Espacio sobre la sección de enlaces */
+      padding: 20px; /* Padding ligeramente reducido */
+      border: 1px solid var(--color-border);
+      /* Ahora el fondo es el mismo que el body y container */
+      background-color: var(--color-background-light); 
+      border-radius: 8px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03); /* Sombra interna más sutil */
+    }
+
+    .links-adicionales h3 {
+      margin-top: 0;
+      color: var(--color-text-dark);
+      font-size: 17px; /* Tamaño ligeramente menor para subtítulo */
+      margin-bottom: 12px; /* Espacio debajo del subtítulo */
+      border-bottom: 1px solid var(--color-border); /* Línea bajo el subtítulo */
+      padding-bottom: 6px;
+    }
+
+    .links-adicionales ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .links-adicionales li {
+      margin-bottom: 8px; /* Espacio entre ítems de lista */
+      font-size: 14px; /* Tamaño de fuente ligeramente menor en la lista */
+    }
+
+    .links-adicionales li:last-child {
+      margin-bottom: 0;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Interpretador de Códigos de Nomenclatura</h2>
+  <div class="container">
+    <h2>Interpretador de Códigos de Nomenclatura</h2>
 
-    <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
-    
-        <div class="button-container">
-      <button id="interpretarBtn" onclick="interpretarMultiples()">Interpretar</button>
+    <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
+    <button onclick="interpretarMultiples()">Interpretar</button>
+
+    <table id="tablaResultados">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>País</th>
+          <th>Provincia</th>
+          <th>Sitio</th>
+          <th>Data Center</th>
+          <th>Equipo</th>
+          <th>Tipo</th>
+          <th>Número</th>
+          <th>Link Grafana</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="links-adicionales">
+      <h3>Enlaces de Interés</h3>
+      <ul>
+        <li>
+          <a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6&viewPanel=1" target="_blank">
+            CORE 5G Infra (Estado de Despliegue)
+          </a>
+        </li>
+      </ul>
     </div>
+  </div>
 
-    <table id="tablaResultados">
-      <thead>
-        <tr>
-          <th>Código</th>
-          <th>País</th>
-          <th>Provincia</th>
-          <th>Sitio</th>
-          <th>Data Center</th>
-          <th>Equipo</th>
-          <th>Tipo</th>
-          <th>Número</th>
-          <th>Link Grafana</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+  <script>
+    const paises = { "AR": "Argentina" };
+    const provincias = {
+      "CC": "Capital Federal", "BB": "Buenos Aires", "HH": "Chaco",
+      "XX": "Córdoba", "SS": "Santa Fe", "TT": "Tucumán"
+    };
+    const sitios = {
+      "SLO": "San Lorenzo", "HOR": "Hornos", "BEL": "Belgrano",
+      "CEN": "Córdoba Centro", "GLF": "Golf", "MUS": "Muñecas",
+      "RES": "Resistencia", "IRD": "Rosario"
+    };
+    const tipoDC = {
+      "C": "CDC", "E": "EDC"
+    };
+    const equipos = { "E": "EOR (Spine)", "T": "TOR (Leaf)" };
+    const tipoEquipo = { "S": "Service", "M": "Management", "D": "Dual" };
 
-    <div class="links-adicionales">
-      <h3>Enlaces de Interés</h3>
-      <ul>
-        <li>
-          <a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6&viewPanel=1" target="_blank">
-            CORE 5G Infra (Estado de Despliegue)
-          </a>
-        </li>
-      </ul>
+    const grafanaLinks = {
+      "Belgrano": {
+        "CDC": "http://grafana-teco.telecom.com.ar:3000/d/jja8s9Fzp/topologia-cdc-belgrano-5gc?orgId=6&refresh=1m"
+      },
+      "Hornos": {
+        "CDC": "http://grafana-teco.telecom.com.ar:3000/d/jja8s9FIw/topologia-cdc-hornos-5gc?orgId=6&refresh=1m",
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzw/topologia-hornos-edc-5gc?orgId=6&refresh=1m"
+      },
+      "San Lorenzo": {
+        "CDC": "http://grafana-teco.telecom.com.ar:3000/d/jja8s9Fes/topologia-cdc-san-lorenzo-5gc?orgId=6&refresh=1m",
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSze/topologia-san-lorenzo-edc-5gc?orgId=6&refresh=1m"
+      },
+      "Golf": {
+        "CDC": [
+          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9eds/topologia-cdc1-golf-5gc?orgId=6&refresh=1m",
+          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9etx/topologia-cdc2-golf-5gc?orgId=6&refresh=1m"
+        ],
+        "EDC": [
+          "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzo/topologia-edc1-golf-5gc?orgId=6&refresh=1m",
+          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9etx/topologia-cdc2-golf-5gc?orgId=6&refresh=1m"
+        ]
+      },
+      "Córdoba Centro": {
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89Ksddf/topologia-cordoba-edc-5gc?orgId=6&refresh=1m"
+      },
+      "Resistencia": {
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSsf/topologia-resistencia-edc-5gc?orgId=6&refresh=1m"
+      },
+      "Rosario": {
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzdf/topologia-rosario-edc-5gc?orgId=6&refresh=1m"
+      },
+      //Tucumán
+      "Muñecas": {
+        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KStg/topologia-tucuman-edc-5gc?orgId=6&refresh=1m"
+      }
+    };
 
-      ---
-      <h3>CDC/EDC por Sitio</h3>
-      <table class="info-table">
-        <thead>
-          <tr>
-            <th>Sitio</th>
-            <th>EDC/CDC</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Belgrano</td><td>CDC</td></tr>
-          <tr><td>Munro</td><td>CDC (No Productivo)</td></tr>
-          <tr><td>Hornos</td><td>CDC - EDC</td></tr>
-          <tr><td>San Lorenzo</td><td>CDC - EDC</td></tr>
-          <tr><td>Resistencia</td><td>EDC</td></tr>
-          <tr><td>Rosario</td><td>EDC</td></tr>
-          <tr><td>Tucumán</td><td>EDC</td></tr>
-          <tr><td>Córdoba</td><td>EDC</td></tr>
-        </tbody>
-      </table>
-      ---
+    function obtenerLinkTodos(sitioCodigo) {
+      const sitioNombre = sitios[sitioCodigo];
+      if (!sitioNombre) return "<span class='error'>Sin topología disponible</span>";
+      const enlaces = grafanaLinks[sitioNombre];
+      if (!enlaces) return "<span class='error'>Sin topología disponible</span>";
 
-    </div>
-  </div>
+      const resultados = [];
+      for (const tipo in enlaces) {
+        const data = enlaces[tipo];
+        if (Array.isArray(data)) {
+          data.forEach((url, i) => resultados.push(`<a href='${url}' target='_blank'>${tipo} Link ${i + 1}</a>`));
+        } else {
+          resultados.push(`<a href='${data}' target='_blank'>${tipo}</a>`);
+        }
+      }
+      return resultados.join("<br>");
+    }
 
-  <script>
-    const paises = { "AR": "Argentina" };
-    const provincias = {
-      "CC": "Capital Federal", "BB": "Buenos Aires", "HH": "Chaco",
-      "XX": "Córdoba", "SS": "Santa Fe", "TT": "Tucumán"
-    };
-    const sitios = {
-      "SLO": "San Lorenzo", "HOR": "Hornos", "BEL": "Belgrano",
-      "CEN": "Córdoba Centro", "GLF": "Golf", "MUS": "Muñecas",
-      "RES": "Resistencia", "IRD": "Rosario"
-    };
-    const tipoDC = {
-      "C": "CDC", "E": "EDC"
-    };
-    const equipos = { "E": "EOR (Spine)", "T": "TOR (Leaf)" };
-    const tipoEquipo = { "S": "Service", "M": "Management", "D": "Dual" };
+    function interpretar(codigo) {
+      const [parte1, parte2] = codigo.split("-");
+      const codPais = parte1?.slice(0,2);
+      const codProvincia = parte1?.slice(2,4);
+      const codSitio = parte1?.slice(4,7);
 
-    const grafanaLinks = {
-      "Belgrano": {
-        "CDC": "http://grafana-teco.telecom.com.ar:3000/d/jja8s9Fzp/topologia-cdc-belgrano-5gc?orgId=6&refresh=1m"
-      },
-      "Hornos": {
-        "CDC": "http://grafana-teco.telecom.com.ar:3000/d/jja8s9FIw/topologia-cdc-hornos-5gc?orgId=6&refresh=1m",
-        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzw/topologia-hornos-edc-5gc?orgId=6&refresh=1m"
-      },
-      "San Lorenzo": {
-        "CDC": "http://grafana-teco.telecom.com.ar:3000/d/jja8s9Fes/topologia-cdc-san-lorenzo-5gc?orgId=6&refresh=1m",
-        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSze/topologia-san-lorenzo-edc-5gc?orgId=6&refresh=1m"
-      },
-      "Golf": {
-        "CDC": [
-          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9eds/topologia-cdc1-golf-5gc?orgId=6&refresh=1m",
-          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9etx/topologia-cdc2-golf-5gc?orgId=6&refresh=1m"
-        ],
-        "EDC": [
-          "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzo/topologia-edc1-golf-5gc?orgId=6&refresh=1m",
-          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9etx/topologia-cdc2-golf-5gc?orgId=6&refresh=1m"
-        ]
-      },
-      "Córdoba Centro": {
-        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89Ksddf/topologia-cordoba-edc-5gc?orgId=6&refresh=1m"
-      },
-      "Resistencia": {
-        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSsf/topologia-resistencia-edc-5gc?orgId=6&refresh=1m"
-      },
-      "Rosario": {
-        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzdf/topologia-rosario-edc-5gc?orgId=6&refresh=1m"
-      },
-      //Tucumán
-      "Muñecas": {
-        "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KStg/topologia-tucuman-edc-5gc?orgId=6&refresh=1m"
-      }
-    };
+      let pais = paises[codPais];
+      let provincia = provincias[codProvincia];
+      let sitio = sitios[codSitio];
 
-    function obtenerLinkTodos(sitioCodigo) {
-      const sitioNombre = sitios[sitioCodigo];
-      if (!sitioNombre) return "<span class='error'>Sin topología disponible</span>";
-      const enlaces = grafanaLinks[sitioNombre];
-      if (!enlaces) return "<span class='error'>Sin topología disponible</span>";
+      let dataCenter, equipo, tipo, numero, dcTipoCodigo;
+      const isFrontera = parte2?.startsWith("DEF") || parte2?.startsWith("DGM");
 
-      const resultados = [];
-      for (const tipo in enlaces) {
-        const data = enlaces[tipo];
-        if (Array.isArray(data)) {
-          data.forEach((url, i) => resultados.push(`<a href='${url}' target='_blank'>${tipo} Link ${i + 1}</a>`));
-        } else {
-          resultados.push(`<a href='${data}' target='_blank'>${tipo}</a>`);
-        }
-      }
-      return resultados.join("<br>");
-    }
+      if (isFrontera) {
+        dataCenter = parte2?.startsWith("DEF") ? "Router de Frontera (DEF)" : "Router de Frontera (DGM)";
+        equipo = "Router de Frontera";
+        tipo = "N/A";
+        numero = parte2?.slice(3);
+        dcTipoCodigo = "";
+      } else {
+        const codDC = parte2?.slice(0,1);
+        const codEquipo = parte2?.slice(1,2);
+        const codTipo = parte2?.slice(2,3);
+        numero = parte2?.slice(3);
 
-    function interpretar(codigo) {
-      const [parte1, parte2] = codigo.split("-");
-      const codPais = parte1?.slice(0,2);
-      const codProvincia = parte1?.slice(2,4);
-      const codSitio = parte1?.slice(4,7);
+        dataCenter = tipoDC[codDC];
+        equipo = equipos[codEquipo];
+        tipo = tipoEquipo[codTipo];
+        dcTipoCodigo = codDC;
+      }
 
-      let pais = paises[codPais];
-      let provincia = provincias[codProvincia];
-      let sitio = sitios[codSitio];
+      const link = obtenerLinkTodos(codSitio);
+      return {
+        codigo,
+        pais: pais || `⚠️ ERROR (${codPais})`,
+        provincia: provincia || `⚠️ ERROR (${codProvincia})`,
+        sitio: sitio || `⚠️ ERROR (${codSitio})`,
+        dataCenter: dataCenter || `⚠️ ERROR (${parte2?.slice(0,3)})`,
+        equipo: equipo || `⚠️ ERROR (${parte2?.slice(1,2)})`,
+        tipo: tipo || `⚠️ ERROR (${parte2?.slice(2,3)})`,
+        numero: numero || "-",
+        link
+      };
+    }
 
-      let dataCenter, equipo, tipo, numero, dcTipoCodigo;
-      const isFrontera = parte2?.startsWith("DEF") || parte2?.startsWith("DGM");
+    function interpretarMultiples(codigosExternos = null) {
+      const input = codigosExternos || document.getElementById("inputCodigos").value;
+      const codigos = input.split("\n").flatMap(c => c.split(",")).map(c => c.trim()).filter(c => c);
 
-      if (isFrontera) {
-        dataCenter = parte2?.startsWith("DEF") ? "Router de Frontera (DEF)" : "Router de Frontera (DGM)";
-        equipo = "Router de Frontera";
-        tipo = "N/A";
-        numero = parte2?.slice(3);
-        dcTipoCodigo = "";
-      } else {
-        const codDC = parte2?.slice(0,1);
-        const codEquipo = parte2?.slice(1,2);
-        const codTipo = parte2?.slice(2,3);
-        numero = parte2?.slice(3);
+      // Actualizar la URL con los códigos
+      const nuevaURL = `${location.pathname}?q=${encodeURIComponent(codigos.join(","))}`;
+      history.replaceState(null, "", nuevaURL);
 
-        dataCenter = tipoDC[codDC];
-        equipo = equipos[codEquipo];
-        tipo = tipoEquipo[codTipo];
-        dcTipoCodigo = codDC;
-      }
+      const tbody = document.querySelector("#tablaResultados tbody");
+      tbody.innerHTML = "";
 
-      const link = obtenerLinkTodos(codSitio);
-      return {
-        codigo,
-        pais: pais || `⚠️ ERROR (${codPais})`,
-        provincia: provincia || `⚠️ ERROR (${codProvincia})`,
-        sitio: sitio || `⚠️ ERROR (${codSitio})`,
-        dataCenter: dataCenter || `⚠️ ERROR (${parte2?.slice(0,3)})`,
-        equipo: equipo || `⚠️ ERROR (${parte2?.slice(1,2)})`,
-        tipo: tipo || `⚠️ ERROR (${parte2?.slice(2,3)})`,
-        numero: numero || "-",
-        link
-      };
-    }
+      codigos.forEach(codigo => {
+        const res = interpretar(codigo);
+        const fila = document.createElement("tr");
+        Object.values(res).forEach(valor => {
+          const td = document.createElement("td");
+          td.innerHTML = valor.includes("ERROR") ? `<span class='error'>${valor}</span>` : valor;
+          fila.appendChild(td);
+        });
+        tbody.appendChild(fila);
+      });
+    }
 
-    function interpretarMultiples(codigosExternos = null) {
-      const input = codigosExternos || document.getElementById("inputCodigos").value;
-      const codigos = input.split("\n").flatMap(c => c.split(",")).map(c => c.trim()).filter(c => c);
-
-      // Actualizar la URL con los códigos
-      const nuevaURL = `${location.pathname}?q=${encodeURIComponent(codigos.join(","))}`;
-      history.replaceState(null, "", nuevaURL);
-
-      const tbody = document.querySelector("#tablaResultados tbody");
-      tbody.innerHTML = "";
-
-      codigos.forEach(codigo => {
-        const res = interpretar(codigo);
-        const fila = document.createElement("tr");
-        Object.values(res).forEach(valor => {
-          const td = document.createElement("td");
-          td.innerHTML = valor.includes("ERROR") ? `<span class='error'>${valor}</span>` : valor;
-          fila.appendChild(td);
-        });
-        tbody.appendChild(fila);
-      });
-    }
-
-    // Si hay parámetros ?q=... en la URL, cargarlos al iniciar
-    window.addEventListener("DOMContentLoaded", () => {
-      const params = new URLSearchParams(window.location.search);
-      const query = params.get("q");
-      if (query) {
-        document.getElementById("inputCodigos").value = query.split(",").join("\n");
-        interpretarMultiples(query);
-      }
-    });
-  </script>
+    // Si hay parámetros ?q=... en la URL, cargarlos al iniciar
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get("q");
+      if (query) {
+        document.getElementById("inputCodigos").value = query.split(",").join("\n");
+        interpretarMultiples(query);
+      }
+    });
+  </script>
 </body>
 </html>
