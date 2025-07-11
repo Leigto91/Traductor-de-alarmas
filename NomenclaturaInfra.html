@@ -70,7 +70,18 @@
       border-color: var(--color-secondary);
       box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
       outline: none;
+      
     }
+    /* Nuevo estilo para el contenedor del botón */
+    .button-container {
+      text-align: center; /* Centra el contenido (el botón) horizontalmente */
+      margin-bottom: 20px; /* Mantiene el espacio inferior del botón */
+    }
+
+    button {
+      background-color: var(--color-primary); /* Color principal para el botón */
+      /* ... el resto de tus estilos para el botón ... */
+    }
 
     button {
       background-color: var(--color-primary); /* Color principal para el botón */
@@ -82,7 +93,7 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.2s ease;
-      margin-bottom: 20px; /* Espacio debajo del botón */
+      /*margin-bottom: 20px; /* Espacio debajo del botón */*/
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para el botón */
     }
 
@@ -185,7 +196,10 @@
     <h2>Interpretador de Códigos de Nomenclatura 5G</h2>
 
     <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
-    <button onclick="interpretarMultiples()">Interpretar</button>
+    
+    <div class="button-container">
+      <button onclick="interpretarMultiples()">Interpretar</button>
+    </div>
 
     <table id="tablaResultados">
       <thead>
