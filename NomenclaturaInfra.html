@@ -264,27 +264,38 @@
       "Rosario": {
         "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzdf/topologia-rosario-edc-5gc?orgId=6&refresh=1m"
       },
-      "Tucumán": {
+      "Tucumán": { // Esta entrada ya existía y es la que usaremos para el fallback provincial
         "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KStg/topologia-tucuman-edc-5gc?orgId=6&refresh=1m"
       }
     };
 
-    function obtenerLinkTodos(sitioCodigo) {
-      const sitioNombre = sitios[sitioCodigo];
-      if (!sitioNombre) return "<span class='error'>Sin topología disponible</span>";
-      const enlaces = grafanaLinks[sitioNombre];
-      if (!enlaces) return "<span class='error'>Sin topología disponible</span>";
-
-      const resultados = [];
-      for (const tipo in enlaces) {
-        const data = enlaces[tipo];
+    function obtenerLinkTodos(sitioNombre, dcTipoCodigo, provinciaNombre, isFrontera) {
+      // 1. Intentar encontrar un link directo por Sitio y Tipo de Data Center
+      if (sitioNombre && grafanaLinks[sitioNombre] && grafanaLinks[sitioNombre][dcTipoCodigo]) {
+        const data = grafanaLinks[sitioNombre][dcTipoCodigo];
         if (Array.isArray(data)) {
-          data.forEach((url, i) => resultados.push(`<a href='${url}' target='_blank'>${tipo} Link ${i + 1}</a>`));
+          return data.map((url, i) => `<a href='${url}' target='_blank'>${dcTipoCodigo} Link ${i + 1}</a>`).join("<br>");
         } else {
-          resultados.push(`<a href='${data}' target='_blank'>${tipo}</a>`);
+          return `<a href='${data}' target='_blank'>${dcTipoCodigo}</a>`;
         }
       }
-      return resultados.join("<br>");
+
+      // 2. Si es un Router de Frontera O no se encontró un link específico por sitio/DC,
+      //    intentar buscar un link basado en la Provincia (como fallback)
+      if (isFrontera || !grafanaLinks[sitioNombre] || !grafanaLinks[sitioNombre][dcTipoCodigo]) {
+          // Asumimos que el fallback provincial es para el tipo "EDC" como en tu ejemplo
+          if (provinciaNombre && grafanaLinks[provinciaNombre] && grafanaLinks[provinciaNombre]["EDC"]) {
+              const data = grafanaLinks[provinciaNombre]["EDC"];
+              if (Array.isArray(data)) {
+                  return data.map((url, i) => `<a href='${url}' target='_blank'>${provinciaNombre} EDC Link ${i + 1}</a>`).join("<br>");
+              } else {
+                  return `<a href='${data}' target='_blank'>${provinciaNombre} EDC</a>`;
+              }
+          }
+      }
+
+      // Si no se encontró ningún link después de todos los intentos
+      return "<span class='error'>Sin topología disponible</span>";
     }
 
     function interpretar(codigo) {
@@ -310,7 +321,7 @@
         equipo = "Router de Frontera";
         tipo = "N/A";
         numero = parte2?.slice(3);
-        dcTipoCodigo = "";
+        dcTipoCodigo = ""; // No hay un tipo de DC específico para routers de frontera
       } else {
         const codDC = parte2?.slice(0,1);
         const codEquipo = parte2?.slice(1,2);
@@ -320,9 +331,12 @@
         dataCenter = tipoDC[codDC] || `Data Center no reconocido: ${codDC}`;
         equipo = equipos[codEquipo] || `Equipo no reconocido: ${codEquipo}`;
         tipo = tipoEquipo[codTipo] || `Tipo no reconocido: ${codTipo}`;
+        dcTipoCodigo = codDC;
       }
 
-      const link = obtenerLinkTodos(codSitio);
+      // Pasar más contexto a obtenerLinkTodos
+      const link = obtenerLinkTodos(sitio, dcTipoCodigo, provincia, isFrontera);
+      
       return {
         codigo,
         pais: pais,
