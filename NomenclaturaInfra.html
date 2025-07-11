@@ -3,55 +3,204 @@
 <head>
   <meta charset="UTF-8">
   <title>Interpretador de Nomenclaturas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    textarea { width: 100%; height: 120px; margin-bottom: 10px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background-color: #f0f0f0; }
-    .error { color: red; font-weight: bold; }
-    a { text-decoration: none; color: #0056b3; }
-    .links-adicionales { margin-top: 20px; padding: 15px; border: 1px solid #eee; background-color: #f9f9f9; border-radius: 5px; }
-    .links-adicionales h3 { margin-top: 0; color: #333; }
-    .links-adicionales ul { list-style: none; padding: 0; }
-    .links-adicionales li { margin-bottom: 8px; }
-    /* Nueva regla para centrar el título H2 */
+    /* Paleta de colores profesionales y modernos */
+    :root {
+      --color-primary: #0056b3; /* Azul oscuro para elementos principales */
+      --color-secondary: #007bff; /* Azul más vibrante para enlaces */
+      --color-accent: #28a745; /* Verde para acciones de éxito */
+      --color-text-dark: #343a40; /* Texto oscuro para títulos */
+      --color-text-medium: #495057; /* Texto de cuerpo */
+      --color-background-light: #f8f9fa; /* Fondo muy claro */
+      --color-background-medium: #e9ecef; /* Fondo gris claro para contenedores secundarios */
+      --color-border: #ced4da; /* Borde suave */
+      --color-white: #ffffff;
+      --color-shadow: rgba(0, 0, 0, 0.08); /* Sombra sutil */
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif; /* Tipografía principal */
+      background-color: var(--color-background-light); /* Fondo suave */
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6; /* Mejorar legibilidad */
+      color: var(--color-text-medium);
+      display: flex;
+      justify-content: center; /* Centrar el contenido horizontalmente */
+      align-items: flex-start; /* Alinear el contenido al inicio verticalmente */
+      min-height: 100vh; /* Ocupar al menos el alto de la ventana */
+    }
+
+    .container {
+      background-color: var(--color-white); /* Fondo blanco para el contenedor principal */
+      padding: 35px; /* Más padding interno */
+      border-radius: 10px; /* Bordes más redondeados */
+      box-shadow: 0 4px 20px var(--color-shadow); /* Sombra más pronunciada pero sutil */
+      max-width: 900px; /* Ancho máximo para el contenido */
+      width: 100%; /* Asegurar que ocupe el ancho disponible */
+      margin: 20px 0; /* Margen superior e inferior */
+    }
+
     h2 {
       text-align: center;
+      font-size: 28px; /* Tamaño del título principal */
+      color: var(--color-primary); /* Color del título */
+      margin-bottom: 30px; /* Más espacio debajo del título */
+      font-weight: 500; /* Peso de fuente para un aspecto más moderno */
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      margin-bottom: 15px; /* Espacio debajo del textarea */
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid var(--color-border);
+      border-radius: 6px; /* Bordes redondeados */
+      box-sizing: border-box; /* Incluir padding y borde en el ancho */
+      resize: vertical; /* Permitir redimensionar verticalmente */
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    textarea:focus {
+      border-color: var(--color-secondary);
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      outline: none;
+    }
+
+    button {
+      background-color: var(--color-primary); /* Color principal para el botón */
+      color: var(--color-white);
+      border: none;
+      padding: 12px 25px; /* Más padding para el botón */
+      font-size: 17px;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      margin-bottom: 25px; /* Espacio debajo del botón */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para el botón */
+    }
+
+    button:hover {
+      background-color: #004085; /* Tono más oscuro al pasar el mouse */
+      transform: translateY(-2px); /* Pequeño efecto de elevación */
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 25px; /* Más espacio sobre la tabla */
+      box-shadow: 0 2px 8px var(--color-shadow); /* Sombra para la tabla */
+      border-radius: 8px; /* Bordes redondeados para la tabla */
+      overflow: hidden; /* Asegura que los bordes redondeados se apliquen al contenido */
+    }
+
+    th, td {
+      border: 1px solid var(--color-border); /* Bordes más suaves */
+      padding: 12px 15px; /* Más padding en celdas */
+      text-align: left;
+      font-size: 15px;
+    }
+
+    th {
+      background-color: var(--color-background-medium); /* Fondo gris claro para encabezados */
+      color: var(--color-text-dark); /* Color de texto para encabezados */
+      font-weight: 600; /* Más negrita para encabezados */
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2; /* Cebra suave para filas pares */
+    }
+
+    tr:hover {
+      background-color: #e6f2ff; /* Resaltado suave al pasar el mouse por la fila */
+    }
+
+    .error {
+      color: #dc3545; /* Rojo de peligro */
+      font-weight: 600;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--color-secondary); /* Azul para enlaces */
+      transition: color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--color-primary); /* Tono más oscuro al pasar el mouse */
+      text-decoration: underline;
+    }
+
+    .links-adicionales {
+      margin-top: 40px; /* Más espacio sobre la sección de enlaces */
+      padding: 25px;
+      border: 1px solid var(--color-border);
+      background-color: var(--color-background-medium);
+      border-radius: 8px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra interna sutil */
+    }
+
+    .links-adicionales h3 {
+      margin-top: 0;
+      color: var(--color-text-dark);
+      font-size: 18px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--color-border); /* Línea bajo el subtítulo */
+      padding-bottom: 8px;
+    }
+
+    .links-adicionales ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .links-adicionales li {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .links-adicionales li:last-child {
+      margin-bottom: 0;
     }
   </style>
 </head>
 <body>
-  <h2>Interpretador de Códigos de Nomenclatura</h2>
-  <textarea id="inputCodigos" placeholder="Pegá aquí los códigos, uno por línea..."></textarea>
-  <button onclick="interpretarMultiples()">Interpretar</button>
+  <div class="container">
+    <h2>Interpretador de Códigos de Nomenclatura</h2>
 
-  <table id="tablaResultados">
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>País</th>
-        <th>Provincia</th>
-        <th>Sitio</th>
-        <th>Data Center</th>
-        <th>Equipo</th>
-        <th>Tipo</th>
-        <th>Número</th>
-        <th>Link Grafana</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
+    <button onclick="interpretarMultiples()">Interpretar</button>
 
-  <div class="links-adicionales">
-    <h3>Enlaces de Interés</h3>
-    <ul>
-      <li>
-        <a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6&viewPanel=1" target="_blank">
-          CORE 5G Infra (Estado de Despliegue)
-        </a>
-      </li>
-    </ul>
+    <table id="tablaResultados">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>País</th>
+          <th>Provincia</th>
+          <th>Sitio</th>
+          <th>Data Center</th>
+          <th>Equipo</th>
+          <th>Tipo</th>
+          <th>Número</th>
+          <th>Link Grafana</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="links-adicionales">
+      <h3>Enlaces de Interés</h3>
+      <ul>
+        <li>
+          <a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6&viewPanel=1" target="_blank">
+            CORE 5G Infra (Estado de Despliegue)
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <script>
