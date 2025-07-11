@@ -86,15 +86,9 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil para el botón */
     }
 
-    button:hover:not(:disabled) { /* Agregado :not(:disabled) para que no haya efecto hover cuando esté deshabilitado */
+    button:hover {
       background-color: #004085; /* Tono más oscuro al pasar el mouse */
       transform: translateY(-2px); /* Pequeño efecto de elevación */
-    }
-
-    button:disabled { /* Estilo para botón deshabilitado */
-        background-color: #a0c2e0; /* Color más claro para indicar inactividad */
-        cursor: not-allowed; /* Cursor de "prohibido" */
-        transform: translateY(0); /* Sin efecto de elevación */
     }
 
     table {
@@ -131,8 +125,6 @@
     .error {
       color: #dc3545; /* Rojo de peligro */
       font-weight: 600;
-      /* Opcional: fondo sutil para la celda con error para mayor claridad */
-      /* background-color: #ffeaea; */ 
     }
 
     a {
@@ -182,10 +174,10 @@
 </head>
 <body>
   <div class="container">
-    <h2>Interpretador de Códigos de Nomenclatura 1</h2>
+    <h2>Interpretador de Códigos de Nomenclatura</h2>
 
     <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
-    <button id="interpretarBtn" onclick="interpretarMultiples()">Interpretar</button>
+    <button onclick="interpretarMultiples()">Interpretar</button>
 
     <table id="tablaResultados">
       <thead>
@@ -252,7 +244,7 @@
         ],
         "EDC": [
           "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzo/topologia-edc1-golf-5gc?orgId=6&refresh=1m",
-          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9etx/topologia-cdc2-golf-5gc?orgId=6&refresh=1m" // Este era el link duplicado del CDC2
+          "http://grafana-teco.telecom.com.ar:3000/d/jja8s9etx/topologia-cdc2-golf-5gc?orgId=6&refresh=1m"
         ]
       },
       "Córdoba Centro": {
@@ -264,40 +256,27 @@
       "Rosario": {
         "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KSzdf/topologia-rosario-edc-5gc?orgId=6&refresh=1m"
       },
-      "Tucumán": { 
+      "Tucumán": {
         "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KStg/topologia-tucuman-edc-5gc?orgId=6&refresh=1m"
       }
     };
 
-    function obtenerLinkTodos(sitioNombre, dcTipoCodigo, provinciaNombre, isFrontera) {
-      let linkFound = null;
+    function obtenerLinkTodos(sitioCodigo) {
+      const sitioNombre = sitios[sitioCodigo];
+      if (!sitioNombre) return "<span class='error'>Sin topología disponible</span>";
+      const enlaces = grafanaLinks[sitioNombre];
+      if (!enlaces) return "<span class='error'>Sin topología disponible</span>";
 
-      // 1. Intentar encontrar un link directo por Sitio y Tipo de Data Center
-      if (sitioNombre && grafanaLinks[sitioNombre] && grafanaLinks[sitioNombre][dcTipoCodigo]) {
-        const data = grafanaLinks[sitioNombre][dcTipoCodigo];
+      const resultados = [];
+      for (const tipo in enlaces) {
+        const data = enlaces[tipo];
         if (Array.isArray(data)) {
-          linkFound = data.map((url, i) => `<a href='${url}' target='_blank'>${dcTipoCodigo} Link ${i + 1}</a>`).join("<br>");
+          data.forEach((url, i) => resultados.push(`<a href='${url}' target='_blank'>${tipo} Link ${i + 1}</a>`));
         } else {
-          linkFound = `<a href='${data}' target='_blank'>${dcTipoCodigo}</a>`;
+          resultados.push(`<a href='${data}' target='_blank'>${tipo}</a>`);
         }
       }
-
-      // 2. Si no se encontró un link directo O si es un Router de Frontera,
-      //    intentar buscar un link basado en la Provincia (como fallback)
-      if (!linkFound && (isFrontera || !dcTipoCodigo || !grafanaLinks[sitioNombre] || !grafanaLinks[sitioNombre][dcTipoCodigo])) {
-          // Asumimos que el fallback provincial es para el tipo "EDC" como en tu ejemplo anterior
-          if (provinciaNombre && grafanaLinks[provinciaNombre] && grafanaLinks[provinciaNombre]["EDC"]) {
-              const data = grafanaLinks[provinciaNombre]["EDC"];
-              if (Array.isArray(data)) {
-                  linkFound = data.map((url, i) => `<a href='${url}' target='_blank'>${provinciaNombre} EDC Link ${i + 1}</a>`).join("<br>");
-              } else {
-                  linkFound = `<a href='${data}' target='_blank'>${provinciaNombre} EDC</a>`;
-              }
-          }
-      }
-      
-      // Devolver el link encontrado o el mensaje de error
-      return linkFound || "<span class='error'>Sin topología disponible</span>";
+      return resultados.join("<br>");
     }
 
     function interpretar(codigo) {
@@ -313,80 +292,59 @@
       let dataCenter, equipo, tipo, numero, dcTipoCodigo;
       const isFrontera = parte2?.startsWith("DEF") || parte2?.startsWith("DGM");
 
-      // Mensajes de error mejorados
-      if (!pais && codPais) pais = `País no reconocido: ${codPais}`;
-      if (!provincia && codProvincia) provincia = `Provincia no reconocida: ${codProvincia}`;
-      if (!sitio && codSitio) sitio = `Sitio no reconocido: ${codSitio}`;
-
       if (isFrontera) {
         dataCenter = parte2?.startsWith("DEF") ? "Router de Frontera (DEF)" : "Router de Frontera (DGM)";
         equipo = "Router de Frontera";
         tipo = "N/A";
         numero = parte2?.slice(3);
-        dcTipoCodigo = ""; // No hay un tipo de DC específico para routers de frontera, se maneja como caso especial
+        dcTipoCodigo = "";
       } else {
         const codDC = parte2?.slice(0,1);
         const codEquipo = parte2?.slice(1,2);
         const codTipo = parte2?.slice(2,3);
         numero = parte2?.slice(3);
 
-        dataCenter = tipoDC[codDC] || `Data Center no reconocido: ${codDC}`;
-        equipo = equipos[codEquipo] || `Equipo no reconocido: ${codEquipo}`;
-        tipo = tipoEquipo[codTipo] || `Tipo no reconocido: ${codTipo}`;
+        dataCenter = tipoDC[codDC];
+        equipo = equipos[codEquipo];
+        tipo = tipoEquipo[codTipo];
         dcTipoCodigo = codDC;
       }
 
-      // Pasar más contexto a obtenerLinkTodos
-      const link = obtenerLinkTodos(sitio, dcTipoCodigo, provincia, isFrontera);
-      
+      const link = obtenerLinkTodos(codSitio);
       return {
         codigo,
-        pais: pais,
-        provincia: provincia,
-        sitio: sitio,
-        dataCenter: dataCenter,
-        equipo: equipo,
-        tipo: tipo,
+        pais: pais || `⚠️ ERROR (${codPais})`,
+        provincia: provincia || `⚠️ ERROR (${codProvincia})`,
+        sitio: sitio || `⚠️ ERROR (${codSitio})`,
+        dataCenter: dataCenter || `⚠️ ERROR (${parte2?.slice(0,3)})`,
+        equipo: equipo || `⚠️ ERROR (${parte2?.slice(1,2)})`,
+        tipo: tipo || `⚠️ ERROR (${parte2?.slice(2,3)})`,
         numero: numero || "-",
         link
       };
     }
 
     function interpretarMultiples(codigosExternos = null) {
-      const interpretarBtn = document.getElementById("interpretarBtn");
-      interpretarBtn.textContent = "Procesando..."; // Cambiar texto del botón
-      interpretarBtn.disabled = true; // Deshabilitar el botón
+      const input = codigosExternos || document.getElementById("inputCodigos").value;
+      const codigos = input.split("\n").flatMap(c => c.split(",")).map(c => c.trim()).filter(c => c);
 
-      setTimeout(() => { // Pequeño delay para que el usuario vea el cambio en el botón
-        const input = codigosExternos || document.getElementById("inputCodigos").value;
-        const codigos = input.split("\n").flatMap(c => c.split(",")).map(c => c.trim()).filter(c => c);
+      // Actualizar la URL con los códigos
+      const nuevaURL = `${location.pathname}?q=${encodeURIComponent(codigos.join(","))}`;
+      history.replaceState(null, "", nuevaURL);
 
-        // Actualizar la URL con los códigos
-        const nuevaURL = `${location.pathname}?q=${encodeURIComponent(codigos.join(","))}`;
-        history.replaceState(null, "", nuevaURL);
+      const tbody = document.querySelector("#tablaResultados tbody");
+      tbody.innerHTML = "";
 
-        const tbody = document.querySelector("#tablaResultados tbody");
-        tbody.innerHTML = "";
-
-        codigos.forEach(codigo => {
-          const res = interpretar(codigo);
-          const fila = document.createElement("tr");
-          Object.entries(res).forEach(([key, valor]) => { // Usar Object.entries para verificar si es un error
-            const td = document.createElement("td");
-            // Marcar como error si el valor contiene "no reconocido"
-            if (typeof valor === 'string' && valor.includes("no reconocido")) {
-                td.innerHTML = `<span class='error'>${valor}</span>`;
-            } else {
-                td.innerHTML = valor;
-            }
-            fila.appendChild(td);
-          });
-          tbody.appendChild(fila);
+      codigos.forEach(codigo => {
+        const res = interpretar(codigo);
+        const fila = document.createElement("tr");
+        Object.values(res).forEach(valor => {
+          const td = document.createElement("td");
+          td.innerHTML = valor.includes("ERROR") ? `<span class='error'>${valor}</span>` : valor;
+          fila.appendChild(td);
         });
-
-        interpretarBtn.textContent = "Interpretar"; // Restaurar texto del botón
-        interpretarBtn.disabled = false; // Habilitar el botón
-      }, 200); // Pequeño delay de 200ms para feedback visual
+        tbody.appendChild(fila);
+      });
     }
 
     // Si hay parámetros ?q=... en la URL, cargarlos al iniciar
