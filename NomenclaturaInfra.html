@@ -11,6 +11,14 @@
     th { background-color: #f0f0f0; }
     .error { color: red; font-weight: bold; }
     a { text-decoration: none; color: #0056b3; }
+    .links-adicionales { margin-top: 20px; padding: 15px; border: 1px solid #eee; background-color: #f9f9f9; border-radius: 5px; }
+    .links-adicionales h3 { margin-top: 0; color: #333; }
+    .links-adicionales ul { list-style: none; padding: 0; }
+    .links-adicionales li { margin-bottom: 8px; }
+    /* Nueva regla para centrar el título H2 */
+    h2 {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -34,6 +42,17 @@
     </thead>
     <tbody></tbody>
   </table>
+
+  <div class="links-adicionales">
+    <h3>Enlaces de Interés</h3>
+    <ul>
+      <li>
+        <a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6&viewPanel=1" target="_blank">
+          CORE 5G Infra (Estado de Despliegue)
+        </a>
+      </li>
+    </ul>
+  </div>
 
   <script>
     const paises = { "AR": "Argentina" };
