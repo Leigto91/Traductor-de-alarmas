@@ -189,6 +189,37 @@
   color: var(--color-text-medium); /* Color de texto más suave */
   opacity: 0.7; /* Ligeramente transparente */
 }
+/* Estilos para la tabla informativa */
+.info-table {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  border-collapse: collapse; /* Bordes unidos */
+  margin-top: 15px; /* Espacio superior para separarla del contenido anterior */
+  background-color: var(--color-white); /* Fondo blanco */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); /* Sombra más sutil */
+  border-radius: 6px; /* Bordes redondeados */
+  overflow: hidden; /* Asegura que la sombra y borde redondeado se apliquen bien */
+  font-size: 13px; /* Fuente un poco más pequeña que la tabla de resultados */
+}
+
+.info-table th, .info-table td {
+  border: 1px solid var(--color-border); /* Bordes suaves */
+  padding: 8px 10px; /* Padding reducido */
+  text-align: left;
+}
+
+.info-table th {
+  background-color: var(--color-background-medium); /* Fondo gris claro para encabezados */
+  color: var(--color-text-dark); /* Texto oscuro */
+  font-weight: 600; /* Negrita */
+}
+
+.info-table tr:nth-child(even) {
+  background-color: #f7f7f7; /* Cebra aún más suave para filas pares */
+}
+
+.info-table tr:hover {
+  background-color: #eef8ff; /* Resaltado suave al pasar el mouse */
+}
   </style>
 </head>
 <body>
@@ -219,15 +250,34 @@
     </table>
 
     <div class="links-adicionales">
-      <h3>Enlaces de Interés</h3>
-      <ul>
-        <li>
-          <a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6&viewPanel=1" target="_blank">
-            CORE 5G Infra (Estado de Despliegue)
-          </a>
-        </li>
-      </ul>
-    </div>
+      <h3>Enlaces de Interés</h3>
+      <ul>
+        <li>
+          <a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6&viewPanel=1" target="_blank">
+            CORE 5G Infra (Estado de Despliegue)
+          </a>
+        </li>
+      </ul>
+
+      <h3>CDC/EDC por Sitio</h3> <table class="info-table">
+        <thead>
+          <tr>
+            <th>Sitio</th>
+            <th>EDC/CDC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Belgrano</td><td>CDC</td></tr>
+          <tr><td>Munro</td><td>CDC (No Productivo)</td></tr>
+          <tr><td>Hornos</td><td>CDC - EDC</td></tr>
+          <tr><td>San Lorenzo</td><td>CDC - EDC</td></tr>
+          <tr><td>Resistencia</td><td>EDC</td></tr>
+          <tr><td>Rosario</td><td>EDC</td></tr>
+          <tr><td>Tucumán</td><td>EDC</td></tr>
+          <tr><td>Córdoba</td><td>EDC</td></tr>
+        </tbody>
+      </table>
+    </div>
     <div class="footer-signature">
    · NOC-MO · 2025 ·  
            đ♜
