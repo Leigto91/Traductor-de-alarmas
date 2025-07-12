@@ -268,7 +268,7 @@
 </head>
 <body>
   <div class="container">
-    <span class="signature-line">NOC-MO</span> <h2>Interpretador de Códigos de Nomenclatura 5G</h2>
+    <span class="signature-line">NOC-MO</span> <h2>**Interpretador de Códigos de Nomenclatura 5G</h2>
 
     <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
     
@@ -487,51 +487,68 @@
       let provincia = provincias[codProvincia];
       let sitio = sitios[codSitio];
 
-      let dataCenter, equipo, tipo, numero, dcTipoCodigo;
-    const isFrontera = parte2?.startsWith("DEF") || parte2?.startsWith("DGM");
+      let dataCenter = "N/A"; // Inicializar con valores por defecto
+      let equipo = "N/A";
+      let tipo = "N/A";
+      let numero = "-";
+      let dcTipoCodigo = "";
 
-    if (isFrontera) {
-        equipo = "Router de Frontera";
-        tipo = "N/A";
-        numero = parte2?.slice(3); // Esto debería ser '001', '002', '003', '004'
+      const isFrontera = parte2?.startsWith("DEF") || parte2?.startsWith("DGM");
 
-        if (parte2?.startsWith("DEF")) {
-            dataCenter = "Router de Frontera (DEF)";
-            dcTipoCodigo = ""; // No aplica CDC/EDC directamente a DEF
-        } else if (parte2?.startsWith("DGM")) {
-            // Lógica para DGM según los números finales
-            const numDGM = parseInt(numero, 10); // Convertir el número a entero
-            if (numDGM === 1 || numDGM === 2) {
-                dataCenter = "Router de Frontera (DGM - EDC)";
-                dcTipoCodigo = "E"; // Indicar que es un EDC
-            } else if (numDGM === 3 || numDGM === 4) {
-                dataCenter = "Router de Frontera (DGM - CDC)";
-                dcTipoCodigo = "C"; // Indicar que es un CDC
-            } else {
-                dataCenter = "Router de Frontera (DGM - Desconocido)"; // Para otros números
-                dcTipoCodigo = "";
-            }
-        } else { // Caso de respaldo si no es DEF ni DGM pero se detectó como frontera
-            dataCenter = "Router de Frontera";
-            dcTipoCodigo = "";
-        }
-    } else {
-         
+      if (isFrontera) {
+          equipo = "Router de Frontera";
+          tipo = "N/A"; // No aplica 'Tipo' para routers de frontera
+          numero = parte2?.slice(3);
 
+          if (parte2?.startsWith("DEF")) {
+              dataCenter = "Router de Frontera (DEF)";
+              dcTipoCodigo = ""; // No aplica CDC/EDC directamente a DEF
+          } else if (parte2?.startsWith("DGM")) {
+              const numDGM = parseInt(numero, 10);
+              if (numDGM === 1 || numDGM === 2) {
+                  dataCenter = "Router de Frontera (DGM - EDC)";
+                  dcTipoCodigo = "E"; // Indicar que es un EDC
+              } else if (numDGM === 3 || numDGM === 4) {
+                  dataCenter = "Router de Frontera (DGM - CDC)";
+                  dcTipoCodigo = "C"; // Indicar que es un CDC
+              } else {
+                  dataCenter = `Router de Frontera (DGM - Desconocido: ${numero})`;
+                  dcTipoCodigo = "";
+              }
+          } else {
+              dataCenter = `Router de Frontera (ERROR: ${parte2})`; // Fallback para frontera desconocida
+          }
+      } else if (parte2) { // Solo intentar interpretar parte2 si existe y no es de frontera
+          const codDC = parte2.slice(0,1);
+          const codEquipo = parte2.slice(1,2);
+          const codTipo = parte2.slice(2,3);
+          numero = parte2.slice(3);
+
+          dataCenter = tipoDC[codDC];
+          equipo = equipos[codEquipo];
+          tipo = tipoEquipo[codTipo];
+          dcTipoCodigo = codDC; // Asignar el código DC (C o E)
+      } else {
+          // Si no hay parte2, dataCenter, equipo, tipo y numero se quedan en sus valores por defecto "N/A", "-"
+          // Esto es para códigos como "ARCCBEL" que no tienen segunda parte.
+      }
+
+      // Se ejecuta siempre al final, después de que todas las variables estén asignadas
       const link = obtenerLinkTodos(codSitio);
+
       return {
-        codigo,
-        pais: pais || `⚠️ ERROR (${codPais})`,
-        provincia: provincia || `⚠️ ERROR (${codProvincia})`,
-        sitio: sitio || `⚠️ ERROR (${codSitio})`,
-        dataCenter: dataCenter || `⚠️ ERROR (${parte2?.slice(0,3)})`,
-        equipo: equipo || `⚠️ ERROR (${parte2?.slice(1,2)})`,
-        tipo: tipo || `⚠️ ERROR (${parte2?.slice(2,3)})`,
-        numero: numero || "-",
-        link
+          codigo,
+          pais: pais || `⚠️ ERROR (${codPais})`,
+          provincia: provincia || `⚠️ ERROR (${codProvincia})`,
+          sitio: sitio || `⚠️ ERROR (${codSitio})`,
+          dataCenter: dataCenter || `⚠️ ERROR (${parte2 ? parte2.slice(0,1) : 'N/A'})`, // Más robusto
+          equipo: equipo || `⚠️ ERROR (${parte2 ? parte2.slice(1,2) : 'N/A'})`,
+          tipo: tipo || `⚠️ ERROR (${parte2 ? parte2.slice(2,3) : 'N/A'})`,
+          numero: numero || "-",
+          link
       };
     }
-  }
+  
 
     function interpretarMultiples(codigosExternos = null) {
       const input = codigosExternos || document.getElementById("inputCodigos").value;
