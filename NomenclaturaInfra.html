@@ -51,6 +51,19 @@
       margin-bottom: 25px; /* Espacio debajo del título */
       font-weight: 500; /* Peso de fuente para un aspecto más moderno */
     }
+    /* --- */
+/* Nuevo estilo para la línea de firma debajo del título principal */
+.signature-line {
+  display: block; /* Para que ocupe su propia línea y se pueda centrar */
+  text-align: center; /* Centra el texto */
+  font-size: 14px; /* Tamaño de fuente más pequeño */
+  color: var(--color-text-medium); /* Color de texto más suave */
+  margin-top: -15px; /* Ajusta este valor para subirlo un poco y acercarlo al título */
+  margin-bottom: 25px; /* Espacio debajo de la firma para separar del textarea */
+  opacity: 0.7; /* Lo hace ligeramente menos llamativo */
+  font-weight: 400; /* Peso de fuente normal */
+}
+/* --- */
 
     textarea {
       width: 100%;
@@ -79,8 +92,8 @@
     }
 
     button {
-      background-color: var(--color-primary); /* Color principal para el botón */
-      /* ... el resto de tus estilos para el botón ... */
+      background-color: var(--color-primary); /* Color principal para el botón */
+      
     }
 
     button {
@@ -152,16 +165,9 @@
     /* Estilos para la sección de enlaces adicionales */
 .links-adicionales {
   margin-top: 30px; /* Espacio sobre la sección de enlaces */
-  /* padding: 20px; Eliminamos el padding del contenedor principal */
-  /* border: 1px solid var(--color-border); Eliminamos el borde */
-  /* background-color: var(--color-background-light); Ya es el mismo que el body */
-  /* border-radius: 8px; No necesario sin borde visible */
-  /* box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03); Eliminamos la sombra interna */
-  /* No necesitamos padding si queremos que se ajuste automáticamente por su contenido */
 }
 
-/* ... tus estilos existentes ... */
-
+ 
 /* Estilos para los títulos dentro de links-adicionales */
 .links-adicionales h3 {
   margin-top: 0; /* Mantenemos este en 0 para el primer h3 */
@@ -254,6 +260,7 @@
 <body>
   <div class="container">
     <h2>Interpretador de Códigos de Nomenclatura 5G</h2>
+    <span class="signature-line">NOC-MO</span> ```
 
     <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
     
