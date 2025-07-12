@@ -488,25 +488,35 @@
       let sitio = sitios[codSitio];
 
       let dataCenter, equipo, tipo, numero, dcTipoCodigo;
-      const isFrontera = parte2?.startsWith("DEF") || parte2?.startsWith("DGM");
+    const isFrontera = parte2?.startsWith("DEF") || parte2?.startsWith("DGM");
 
-      if (isFrontera) {
-        dataCenter = parte2?.startsWith("DEF") ? "Router de Frontera (DEF)" : "Router de Frontera (DGM)";
+    if (isFrontera) {
         equipo = "Router de Frontera";
         tipo = "N/A";
-        numero = parte2?.slice(3);
-        dcTipoCodigo = "";
-      } else {
-        const codDC = parte2?.slice(0,1);
-        const codEquipo = parte2?.slice(1,2);
-        const codTipo = parte2?.slice(2,3);
-        numero = parte2?.slice(3);
+        numero = parte2?.slice(3); // Esto debería ser '001', '002', '003', '004'
 
-        dataCenter = tipoDC[codDC];
-        equipo = equipos[codEquipo];
-        tipo = tipoEquipo[codTipo];
-        dcTipoCodigo = codDC;
-      }
+        if (parte2?.startsWith("DEF")) {
+            dataCenter = "Router de Frontera (DEF)";
+            dcTipoCodigo = ""; // No aplica CDC/EDC directamente a DEF
+        } else if (parte2?.startsWith("DGM")) {
+            // Lógica para DGM según los números finales
+            const numDGM = parseInt(numero, 10); // Convertir el número a entero
+            if (numDGM === 1 || numDGM === 2) {
+                dataCenter = "Router de Frontera (DGM - EDC)";
+                dcTipoCodigo = "E"; // Indicar que es un EDC
+            } else if (numDGM === 3 || numDGM === 4) {
+                dataCenter = "Router de Frontera (DGM - CDC)";
+                dcTipoCodigo = "C"; // Indicar que es un CDC
+            } else {
+                dataCenter = "Router de Frontera (DGM - Desconocido)"; // Para otros números
+                dcTipoCodigo = "";
+            }
+        } else { // Caso de respaldo si no es DEF ni DGM pero se detectó como frontera
+            dataCenter = "Router de Frontera";
+            dcTipoCodigo = "";
+        }
+    } else {
+         
 
       const link = obtenerLinkTodos(codSitio);
       return {
