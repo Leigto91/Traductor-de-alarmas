@@ -24,26 +24,28 @@
     }
 
      
-</style>
+ 
 </head>
     body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía más moderna */
-    background-color: #f4f6f8; /* Fondo gris claro */
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; /* PEQUEÑO AJUSTE EN LA FUENTE */
+    font-size: 15px; /* NUEVO: Tamaño de fuente base */
+    color: var(--color-text-dark); /* NUEVO: Usar variable para el color de texto general */
+    background-color: var(--color-background-light); /* USANDO VARIABLE */
     margin: 0;
-    padding: 5px; /* Aumentar el padding general */
-    line-height: 1.6; /* Mejorar la legibilidad del texto */
+    padding: 5px;
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 95%; /* Reducir un poco el ancho máximo */
-    margin: 5px auto; /* Centrar con más margen */
+    max-width: 95%;
+    margin: 5px auto;
     display: grid;
-    grid-template-columns: 6fr 4fr; /* Ajustar la proporción de las columnas */
-    gap: 5px; /* Aumentar el espacio entre columnas y filas */
-    background-color: #fff; /* Fondo blanco para el contenedor principal */
-    padding: 5px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    grid-template-columns: 6fr 4fr;
+    gap: 20px; /* AJUSTADO: Más espacio entre columnas y filas */
+    background-color: var(--color-white); /* USANDO VARIABLE */
+    padding: 20px; /* AJUSTADO: Más padding interno */
+    border-radius: 8px; /* AJUSTADO: Bordes más suaves */
+    box-shadow: 0 4px 12px var(--color-shadow); /* AJUSTADO: Sombra más pronunciada y suave */
 }
 
 /* --- Estilos para la firma y el h1 principal --- */
@@ -59,37 +61,43 @@
 }
 
 h1 {
-    text-align: center; /* Aseguramos que el texto del h1 también esté centrado */
+    text-align: center;
     text-transform: none;
     /* grid-column: span 2; Ya no es necesario aquí porque el contenedor padre es full-width */
     font-size: 28px;
-    color: #007bff;
-    margin-top: 0;
+    color: var(--color-primary); /* USANDO VARIABLE */
     margin-bottom: 25px;
     font-weight: 500;
 }
 /* --- Fin de estilos --- */
 
 .form-control, textarea, select {
-    padding: 10px;
+    padding: 12px; /* AJUSTADO: Más padding */
     font-size: 15px;
-    width: calc(100% - 20px); /* Ajustar el ancho teniendo en cuenta el padding */
+    width: 100%; /* AJUSTADO: Elimina calc(100% - 20px) si ya tienes box-sizing: border-box; */
     box-sizing: border-box;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    margin-bottom: 15px; /* AJUSTADO: Más espacio entre ellos */
+    border: 1px solid var(--color-border); /* USANDO VARIABLE */
+    border-radius: 6px; /* AJUSTADO: Bordes un poco más redondeados */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* NUEVO: Transición suave al focus */
+}
+/* NUEVO: Estilos para el focus de inputs */
+.form-control:focus, textarea:focus, select:focus {
+    outline: none; /* Eliminar el contorno por defecto del navegador */
+    border-color: var(--color-primary); /* Borde azul al enfocar */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Sombra suave azul al enfocar */
 }
 
 label {
-    font-weight: bold;
+    font-weight: 600; /* AJUSTADO: Un poco más bold */
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px; /* AJUSTADO: Más espacio debajo de la label */
     font-size: 14px;
-    color: #555;
+    color: var(--color-text-medium); /* USANDO VARIABLE */
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* AJUSTADO: Más espacio entre grupos de formularios */
 }
 
 .full-width {
@@ -97,33 +105,32 @@ label {
 }
 
 .button-principal {
-    color: white;
+    color: var(--color-white); /* USANDO VARIABLE */
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out; /* Transición más suave */
-    border-radius: 6px;
-    padding: 10px 15px; /* Aumentar el padding del botón */
-    font-size: 15px;
-    font-weight: bold;
-    width: auto; /* Ajustar el ancho al contenido */
-    display: inline-block; /* Para que el ancho automático funcione */
-    margin-right: 10px; /* Espacio entre botones si hay varios */
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 8px; /* AJUSTADO: Bordes más redondeados */
+    padding: 12px 20px; /* AJUSTADO: Más padding */
+    font-size: 16px; /* AJUSTADO: Un poco más grande */
+    font-weight: 600; /* AJUSTADO: Seminegrita */
+    width: auto;
+    display: inline-block;
+    margin-right: 10px;
+    box-shadow: 0 2px 4px var(--color-shadow-light); /* NUEVO: Sombra suave */
 }
 
 .button-principal[id="btnGenerar"] {
-    background-color: #007bff; /* Azul más moderno */
+    background-color: var(--color-primary); /* USANDO VARIABLE */
 }
-
 .button-principal[id="btnGenerar"]:hover {
-    background-color: #0056b3;
+    background-color: var(--color-primary-dark); /* USANDO VARIABLE */
 }
 
 .button-principal[id="btnLimpiar"] {
-    background-color: #dc3545; /* Rojo más moderno */
+    background-color: var(--color-secondary); /* USANDO VARIABLE */
 }
-
 .button-principal[id="btnLimpiar"]:hover {
-    background-color: #c82333;
+    background-color: var(--color-secondary-dark); /* USANDO VARIABLE */
 }
 
 #resultado-container {
@@ -131,13 +138,13 @@ label {
 }
 
 #resultado {
-    background-color: #e9ecef; /* Fondo grisáceo claro para el resultado */
-    padding: 1px;
-    border-radius: 6px;
-    margin-bottom: 5px;
-    font-size: 16px;
-    color: #212529;
-    font-weight: bolder; /* Eliminar negrita por defecto */
+    background-color: var(--color-background-medium); /* USANDO VARIABLE */
+    padding: 15px; /* AJUSTADO: Más padding */
+    border-radius: 8px; /* AJUSTADO: Más redondeado */
+    margin-bottom: 10px; /* AJUSTADO: Más espacio */
+    font-size: 18px; /* AJUSTADO: Un poco más grande */
+    color: var(--color-text-dark); /* USANDO VARIABLE */
+    font-weight: bold; /* AJUSTADO: Cambiar de 'bolder' a 'bold' */
 }
 #resultado p {
     margin: 1px; /* Eliminar márgenes para un diseño más limpio */
@@ -146,14 +153,21 @@ label {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
+#mensajeCopiado {
+    color: var(--color-success); /* USANDO VARIABLE */
+    font-weight: 600; /* Negrita para que se vea bien */
+    margin-top: 15px;
+    text-align: center; /* NUEVO: Para centrar el mensaje de copiado */
+}
 
 #resumenVisual {
-    background-color: #f8f9fa; /* Otro tono de gris claro */
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 15px;
+    background-color: var(--color-background-dark); /* USANDO VARIABLE */
+    padding: 20px; /* AJUSTADO: Más padding */
+    border-radius: 8px; /* AJUSTADO: Más redondeado */
+    margin-bottom: 20px; /* AJUSTADO: Más espacio */
     font-size: 14px;
-    color: #495057;
+    color: var(--color-text-medium); /* USANDO VARIABLE */
+    box-shadow: 0 2px 8px var(--color-shadow-light); /* NUEVO: Sombra suave */
 }
 
 #resumenVisual span {
@@ -165,13 +179,14 @@ label {
 #historial-container {
     margin-top: 30px;
     font-size: 13px;
-    color: #6c757d;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-top: 1px solid #dee2e6; /* Línea más clara */
-    border-radius: 6px;
-    display: none; /* Se mantiene oculto por defecto */
-    text-align: left; /* Alinear el texto del historial a la izquierda */
+    color: var(--color-text-light); /* USANDO VARIABLE */
+    background-color: var(--color-background-dark); /* USANDO VARIABLE */
+    padding: 20px; /* AJUSTADO: Más padding */
+    border-top: none; /* ELIMINADO: Ya no necesitamos este borde si ponemos sombra */
+    border-radius: 8px; /* AJUSTADO: Más redondeado */
+    display: none;
+    text-align: left;
+    box-shadow: 0 2px 8px var(--color-shadow-light); /* NUEVO: Sombra suave */
 }
 
 #listaHistorial {
@@ -181,7 +196,7 @@ label {
 
 #listaHistorial li {
     padding: 8px 0;
-    border-bottom: 1px dotted #ced4da; /* Línea punteada más clara */
+    border-bottom: 1px dotted var(--color-border); /* USANDO VARIABLE */
     font-size: 14px;
 }
 
@@ -190,21 +205,21 @@ label {
 }
 
 .toggle-historial {
-    background-color: transparent; /* Fondo transparente */
+    background-color: transparent;
     border: none;
     font-size: 14px;
-    color: #007bff; /* Azul para el enlace */
+    color: var(--color-primary); /* USANDO VARIABLE */
     margin-top: 20px;
     cursor: pointer;
     text-decoration: underline;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 5px 0; /* Añadir un poco de padding para facilitar el clic */
+    padding: 5px 0;
+    font-weight: 600; /* NUEVO: Seminegrita */
 }
-
 .toggle-historial:hover {
-    color: #0056b3;
+    color: var(--color-primary-dark); /* USANDO VARIABLE */
 }
 
 .marca {
@@ -216,19 +231,20 @@ label {
 
 /* Estilos para los links útiles y contactos */
 #links-utiles, #contactos-pcs {
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 6px;
-    margin-bottom: 15px;
+    background-color: var(--color-background-dark); /* USANDO VARIABLE */
+    padding: 20px; /* AJUSTADO: Más padding */
+    border-radius: 8px; /* AJUSTADO: Más redondeado */
+    margin-bottom: 20px; /* AJUSTADO: Más espacio */
     font-size: 14px;
-    color: #495057;
+    color: var(--color-text-medium); /* USANDO VARIABLE */
+    box-shadow: 0 2px 8px var(--color-shadow-light); /* NUEVO: Sombra suave */
 }
 
 #links-utiles h3, #contactos-pcs h3 {
-    font-size: 16px;
+    font-size: 18px; /* AJUSTADO: Un poco más grande */
     margin-top: 0;
-    color: #343a40;
-    margin-bottom: 10px;
+    color: var(--color-text-dark); /* USANDO VARIABLE */
+    margin-bottom: 15px; /* AJUSTADO: Más espacio */
 }
 
 #links-utiles ul, #contactos-pcs ul {
@@ -238,32 +254,32 @@ label {
 }
 
 #links-utiles li a {
-    color: #007bff;
+    color: var(--color-primary); /* USANDO VARIABLE */
     text-decoration: none;
 }
-
 #links-utiles li a:hover {
     text-decoration: underline;
+    color: var(--color-primary-dark); /* USANDO VARIABLE */
 }
 
 /* Estilos para el panel de notas */
 #notas-panel {
     width: 100%;
-    background-color: #e9ecef;
-    border-top: 1px solid #ced4da;
-    padding: 15px;
-    box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-background-dark); /* USANDO VARIABLE */
+    border-top: none; /* ELIMINADO: Ya no necesitamos este borde */
+    padding: 20px; /* AJUSTADO: Más padding */
+    box-shadow: 0 2px 8px var(--color-shadow); /* AJUSTADO: Sombra más pronunciada */
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; /* AJUSTADO: Fuente */
     box-sizing: border-box;
-    margin-top: 20px;
-    border-radius: 6px;
+    margin-top: 30px; /* AJUSTADO: Más margen superior */
+    border-radius: 8px; /* AJUSTADO: Más redondeado */
 }
 
 #notas-panel h3 {
     margin-top: 0;
     font-size: 18px;
-    color: #343a40;
-    margin-bottom: 10px;
+    color: var(--color-text-dark); /* USANDO VARIABLE */
+    margin-bottom: 15px; /* AJUSTADO: Más espacio */
 }
 
 #notas-container {
@@ -271,59 +287,69 @@ label {
     font-size: 14px;
     max-height: 200px;
     overflow-y: auto;
-    border: 1px solid #ced4da;
-    background-color: white;
-    padding: 10px;
-    border-radius: 4px;
+    border: 1px solid var(--color-border); /* USANDO VARIABLE */
+    background-color: var(--color-white); /* USANDO VARIABLE */
+    padding: 15px; /* AJUSTADO: Más padding */
+    border-radius: 6px; /* AJUSTADO: Más redondeado */
 }
 
 .nota {
-    border-bottom: 1px solid #dee2e6;
-    padding-bottom: 8px;
-    margin-bottom: 8px;
+    border-bottom: 1px solid var(--color-border); /* USANDO VARIABLE */
+    padding-bottom: 10px; /* AJUSTADO */
+    margin-bottom: 10px; /* AJUSTADO */
+    background: var(--color-white); /* NUEVO: Fondo blanco */
+    padding: 10px; /* NUEVO: Padding interno */
+    border-radius: 4px; /* NUEVO: Bordes suaves */
+    box-shadow: 0 1px 3px var(--color-shadow-light); /* NUEVO: Sombra muy suave */
 }
-
 .nota:last-child {
     border-bottom: none;
 }
 
 .nota time {
     font-size: 12px;
-    color: #6c757d;
+    color: var(--color-text-light); /* USANDO VARIABLE */
     display: block;
     margin-bottom: 5px;
 }
 
 #nueva-nota {
-    width: calc(100% - 22px);
+    width: 100%; /* AJUSTADO: Ya con box-sizing es 100% */
     height: 80px;
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* AJUSTADO */
     resize: vertical;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
+    padding: 12px; /* AJUSTADO */
+    border: 1px solid var(--color-border); /* USANDO VARIABLE */
+    border-radius: 6px; /* AJUSTADO */
     font-size: 14px;
+    box-sizing: border-box; /* Asegurar */
 }
 
 #autor {
-    width: calc(100% - 22px);
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
+    width: 100%; /* AJUSTADO: Ya con box-sizing es 100% */
+    margin-bottom: 15px; /* AJUSTADO */
+    padding: 12px; /* AJUSTADO */
+    border: 1px solid var(--color-border); /* USANDO VARIABLE */
+    border-radius: 6px; /* AJUSTADO */
     font-size: 14px;
+    box-sizing: border-box; /* Asegurar */
 }
 
 #guardar-nota {
     width: 100%;
-    padding: 10px 15px;
-    background: #28a745;
-    color: white;
+    padding: 12px 20px; /* AJUSTADO */
+    background: var(--color-success); /* USANDO VARIABLE */
+    color: var(--color-white); /* USANDO VARIABLE */
     border: none;
-    border-radius: 4px;
+    border-radius: 8px; /* AJUSTADO */
     cursor: pointer;
-    font-size: 15px;
+    font-size: 16px; /* AJUSTADO */
+    font-weight: 600; /* NUEVO */
     transition: background-color 0.2s ease-in-out;
+    box-shadow: 0 2px 4px var(--color-shadow-light); /* NUEVO */
+}
+#guardar-nota:hover {
+    background: var(--color-success-dark); /* USANDO VARIABLE */
 }
 
 #guardar-nota:hover {
@@ -347,64 +373,10 @@ label {
     margin: 0; /* Eliminar márgenes automáticos de los botones en esta sección */
 }
 
-  #notas-panel {
-    width: 100%;
-    background-color: #f9f9f9;
-    border-top: 2px solid #ccc;
-    padding: 16px;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
-    font-family: Arial, sans-serif;
-    box-sizing: border-box;
-  }
 
-  #notas-panel h3 {
-    margin-top: 0;
-    font-size: 18px;
-  }
+  
 
-  #notas-container {
-    margin-top: 12px;
-    font-size: 14px;
-    max-height: 300px;
-    overflow-y: auto;
-  }
-
-  .nota {
-    border: 1px solid #ddd;
-    background: white;
-    padding: 8px;
-    margin-bottom: 8px;
-    border-radius: 4px;
-  }
-
-  .nota time {
-    font-size: 12px;
-    color: #666;
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  #nueva-nota {
-    width: 100%;
-    height: 60px;
-    margin-bottom: 8px;
-    resize: vertical;
-  }
-
-  #autor {
-    width: 100%;
-    margin-bottom: 8px;
-  }
-
-  #guardar-nota {
-    width: 100%;
-    padding: 8px;
-    background: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+   
 
   #guardar-nota:hover {
     background: #0056b3;
