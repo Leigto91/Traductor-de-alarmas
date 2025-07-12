@@ -457,14 +457,18 @@
     }
 
     // Si hay parámetros ?q=... en la URL, cargarlos al iniciar
-    window.addEventListener("DOMContentLoaded", () => {
-      const params = new URLSearchParams(window.location.search);
-      const query = params.get("q");
-      if (query) {
+window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q");
+    if (query) {
         document.getElementById("inputCodigos").value = query.split(",").join("\n");
         interpretarMultiples(query);
-      }
-    });
+    }
+    
+    // ¡Añade estas dos líneas aquí para que las tablas informativas se generen al cargar!
+    generarTablaSitiosDC();
+    generarTablaControlPlane(); // ¡Corregido a ControlPlane!
+});
 
 
 function generarTablaSitiosDC() {
