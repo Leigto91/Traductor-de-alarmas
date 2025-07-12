@@ -226,7 +226,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>Interpretador de Códigos de Nomenclatura 5G v2</h2>
+    <h2>Interpretador de Códigos de Nomenclatura 5G v3</h2>
 
     <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
     
@@ -351,7 +351,7 @@
     const sitios = {
       "SLO": "San Lorenzo", "HOR": "Hornos", "BEL": "Belgrano",
       "CEN": "Córdoba Centro", "GLF": "Golf", "MUS": "Muñecas",
-      "RES": "Resistencia", "IRD": "Rosario", "MUN": "Munro"
+      "RES": "Resistencia", "IRD": "Rosario", "MUN": "Munro",
     };
     const tipoDC = {
       "C": "CDC", "E": "EDC"
@@ -393,6 +393,9 @@
       //Tucumán
       "Muñecas": {
         "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KStg/topologia-tucuman-edc-5gc?orgId=6&refresh=1m"
+      }
+      "Muro": {
+        "EDC": "http://10.172.4.22:3000/d/jja8s9Fws/topologia-munro-cdc-5gc?orgId=6&refresh=1m"
       }
       
 
