@@ -141,12 +141,14 @@
     }
 
     tr:nth-child(even) {
-      background-color: #f2f2f2; /* Cebra suave para filas pares */
-    }
+  background-color: var(--color-background-light); /* Usar una variable para un gris claro */
+  /* Opcional: Si quieres un blanco puro para impar y este para par, usa var(--color-white) para impar */
+     }
 
     tr:hover {
-      background-color: #e6f2ff; /* Resaltado suave al pasar el mouse por la fila */
-    }
+  background-color: #e6f2ff; /* Resaltado suave al pasar el mouse por la fila */
+  /* Opcional: Podrías definir una nueva variable como --color-highlight-row si esto se usa mucho */
+     }
 
     .error {
       color: #dc3545; /* Rojo de peligro */
