@@ -126,7 +126,12 @@
       border-radius: 8px; /* Bordes redondeados para la tabla */
       overflow: hidden; /* Asegura que los bordes redondeados se apliquen al contenido */
     }
-
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Permite el desplazamiento horizontal si el contenido es muy ancho */
+    -webkit-overflow-scrolling: touch; /* Mejora el scroll en dispositivos iOS */
+    }
+    
     th, td {
       border: 1px solid var(--color-border); /* Bordes más suaves */
       padding: 10px 12px; /* Padding ligeramente reducido en celdas */
@@ -271,6 +276,7 @@
       <button onclick="interpretarMultiples()">Interpretar</button>
     </div>
 
+ <div class="table-responsive">
     <table id="tablaResultados">
       <thead>
         <tr>
@@ -287,6 +293,7 @@
       </thead>
       <tbody></tbody>
     </table>
+  </div>
 
     <div class="links-adicionales">
       <h3>Enlaces de Interés</h3>
