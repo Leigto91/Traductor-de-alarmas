@@ -24,14 +24,29 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
-h1 {
-    text-align: left; /* Alinear el título a la izquierda para un diseño más moderno */
-    text-transform: none; /* No usar mayúsculas forzadas */
-    grid-column: span 2;
-    font-size: 24px; /* Aumentar el tamaño del título */
-    color: #333; /* Color de texto más oscuro */
-    margin-bottom: 20px; /* Más espacio debajo del título */
+/* --- Nuevos estilos para la firma y el h1 principal --- */
+.signature-line {
+  display: block;
+  text-align: center; /* Centrar la firma */
+  font-size: 16px; /* Tamaño de la fuente de la firma */
+  color: #495057; /* Color similar a --color-text-medium en tu otra web */
+  margin-top: 0;
+  margin-bottom: 5px; /* Espacio entre la firma y el título */
+  opacity: 0.7;
+  font-weight: 600; /* Negrita */
 }
+
+h1 {
+    text-align: center; /* ¡IMPORTANTE! Lo cambiamos a 'center' para que coincida con la firma */
+    text-transform: none;
+    grid-column: span 2;
+    font-size: 28px; /* Un poco más grande para que se destaque bien */
+    color: #007bff; /* Usamos el azul principal de tus botones como color primario */
+    margin-top: 0; /* Lo pegamos a la firma */
+    margin-bottom: 25px; /* Espacio debajo del h1 para el resto del contenido */
+    font-weight: 500;
+}
+/* --- Fin de nuevos estilos --- */
 
 .form-control, textarea, select {
     padding: 10px;
@@ -383,7 +398,7 @@ label {
 </head>
 <body>
   <div class="container">
-    <h1 style="text-align: center;">Traductor de Alarmas FMC</h1>
+<span class="signature-line">NOC-MO</span> <h1 style="text-align: center;">Traductor de Alarmas FMC</h1> ```
 
     <!-- Sección de herramientas -->
 <div id="herramientas" style="margin-bottom: 20px;">
