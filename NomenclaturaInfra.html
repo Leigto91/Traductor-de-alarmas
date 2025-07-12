@@ -273,8 +273,8 @@
     <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
     
     <div class="button-container">
-      <button onclick="interpretarMultiples()">Interpretar</button>
-    </div>
+
+        <button id="btnInterpretar">Interpretar</button>    </div>
 
  <div class="table-responsive">
     <table id="tablaResultados">
@@ -619,6 +619,12 @@
         document.getElementById("inputCodigos").value = query.split(",").join("\n");
         interpretarMultiples(query);
       }
+      
+      const btnInterpretar = document.getElementById("btnInterpretar");
+  if (btnInterpretar) { // Verificar si el botón existe antes de añadir el listener
+      btnInterpretar.addEventListener("click", () => interpretarMultiples());
+  }
+      
     // Llamada a la función para generar la tabla "CDC/EDC por Sitio"
       generarTablaSitiosDC() ; 
     });
