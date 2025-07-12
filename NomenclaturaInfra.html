@@ -115,7 +115,7 @@
     th, td {
       border: 1px solid var(--color-border); /* Bordes más suaves */
       padding: 10px 12px; /* Padding ligeramente reducido en celdas */
-      text-align: left;
+      text-align: center;
       font-size: 14px; /* Tamaño de fuente ligeramente menor en tabla */
     }
 
@@ -166,6 +166,8 @@
       margin-bottom: 12px; /* Espacio debajo del subtítulo */
       border-bottom: 1px solid var(--color-border); /* Línea bajo el subtítulo */
       padding-bottom: 6px;
+      text-align: center;
+
     }
 
     .links-adicionales ul {
@@ -204,7 +206,7 @@
 .info-table th, .info-table td {
   border: 1px solid var(--color-border); /* Bordes suaves */
   padding: 8px 10px; /* Padding reducido */
-  text-align: left;
+  text-align: center;
 }
 
 .info-table th {
@@ -224,7 +226,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>Interpretador de Códigos de Nomenclatura 5G</h2>
+    <h2>Interpretador de Códigos de Nomenclatura 5G prueba</h2>
 
     <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
     
@@ -259,24 +261,18 @@
         </li>
       </ul>
 
-      <h3>CDC/EDC por Sitio</h3> <table class="info-table">
-        <thead>
+            <h3>CDC/EDC por Sitio</h3> 
+               <table class="info-table">
+                 <thead>
           <tr>
             <th>Sitio</th>
             <th>EDC/CDC</th>
           </tr>
-        </thead>
-        <tbody>
-          <tr><td>Belgrano</td><td>CDC</td></tr>
-          <tr><td>Munro</td><td>CDC (No Productivo)</td></tr>
-          <tr><td>Hornos</td><td>CDC - EDC</td></tr>
-          <tr><td>San Lorenzo</td><td>CDC - EDC</td></tr>
-          <tr><td>Resistencia</td><td>EDC</td></tr>
-          <tr><td>Rosario</td><td>EDC</td></tr>
-          <tr><td>Tucumán</td><td>EDC</td></tr>
-          <tr><td>Córdoba</td><td>EDC</td></tr>
-        </tbody>
-      </table>
+                 </thead>
+              <tbody id="tbodySitiosDC">
+              </tbody>
+            </table>
+
             <h3>Control Plane 5GC</h3> <table class="info-table"> <thead>
           <tr>
             <th>Nodo</th>
@@ -355,7 +351,7 @@
     const sitios = {
       "SLO": "San Lorenzo", "HOR": "Hornos", "BEL": "Belgrano",
       "CEN": "Córdoba Centro", "GLF": "Golf", "MUS": "Muñecas",
-      "RES": "Resistencia", "IRD": "Rosario"
+      "RES": "Resistencia", "IRD": "Rosario", "MUN": "Munro"
     };
     const tipoDC = {
       "C": "CDC", "E": "EDC"
@@ -398,6 +394,20 @@
       "Muñecas": {
         "EDC": "http://grafana-teco.telecom.com.ar:3000/d/2_8Q89KStg/topologia-tucuman-edc-5gc?orgId=6&refresh=1m"
       }
+      
+
+// Datos para la tabla CDC/EDC por Sitio
+   const datosSitiosDC = [
+    { sitio: "Belgrano", tipoDC: "CDC" },
+    { sitio: "Munro", tipoDC: "CDC (No Productivo)" }, 
+    { sitio: "Hornos", tipoDC: "CDC - EDC" }, 
+    { sitio: "San Lorenzo", tipoDC: "CDC - EDC" },
+    { sitio: "Resistencia", tipoDC: "EDC" },
+    { sitio: "Rosario", tipoDC: "EDC" },
+    { sitio: "Tucumán", tipoDC: "EDC" }, // Asumo "Muñecas" o el nombre que uses en grafanaLinks
+    { sitio: "Córdoba", tipoDC: "EDC" } // Asumo "Córdoba Centro" o el nombre que uses en grafanaLinks
+   ];
+
     };
 
     function obtenerLinkTodos(sitioCodigo) {
@@ -485,7 +495,45 @@
         tbody.appendChild(fila);
       });
     }
+ 
+  function generarTablaSitiosDC() {
+    const tbody = document.getElementById("tbodySitiosDC");
+    if (!tbody) return; // Asegúrate de que el tbody exista
 
+    tbody.innerHTML = ""; // Limpiar antes de llenar
+
+    datosSitiosDC.forEach(item => {
+        const fila = document.createElement("tr");
+
+        const tdSitio = document.createElement("td");
+        tdSitio.textContent = item.sitio;
+        fila.appendChild(tdSitio);
+
+        const tdTipoDC = document.createElement("td");
+        let linkContent = "";
+
+        // Buscar el código del sitio (ej. BEL, HOR) a partir del nombre del sitio (ej. Belgrano, Hornos)
+        const sitioCodigo = Object.keys(sitios).find(key => sitios[key] === item.sitio);
+
+        // Si encontramos el código del sitio y NO es un caso de "No Productivo"
+        if (sitioCodigo && !item.tipoDC.includes("No Productivo")) {
+            // Usamos la función existente 'obtenerLinkTodos' para generar los enlaces
+            linkContent = obtenerLinkTodos(sitioCodigo);
+        } else if (item.tipoDC.includes("No Productivo")) {
+            // Si es "No Productivo", simplemente mostramos el texto sin link
+            linkContent = item.tipoDC;
+        } else {
+            // Si el sitio no se encuentra en nuestro mapa 'sitios' o 'grafanaLinks', o algún otro error
+            linkContent = `<span class='error'>${item.tipoDC} (Sitio/Link no disponible)</span>`;
+        }
+
+        tdTipoDC.innerHTML = linkContent;
+        fila.appendChild(tdTipoDC);
+        tbody.appendChild(fila);
+    });
+}
+
+ 
     // Si hay parámetros ?q=... en la URL, cargarlos al iniciar
     window.addEventListener("DOMContentLoaded", () => {
       const params = new URLSearchParams(window.location.search);
@@ -494,6 +542,8 @@
         document.getElementById("inputCodigos").value = query.split(",").join("\n");
         interpretarMultiples(query);
       }
+    // Llamada a la función para generar la tabla "CDC/EDC por Sitio"
+      generarTablaSitiosDC() ; 
     });
   </script>
  
