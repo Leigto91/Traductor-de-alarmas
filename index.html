@@ -1,51 +1,29 @@
+Traductor de alarmas - index 12/07
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Traductor de Alarmas</title>
   <style>
-    :root {
-        --color-primary: #007bff; /* Azul vibrante para elementos principales */
-        --color-primary-dark: #0056b3; /* Azul más oscuro para hover */
-        --color-secondary: #dc3545; /* Rojo para limpiar */
-        --color-secondary-dark: #c82333; /* Rojo más oscuro para hover */
-        --color-success: #28a745; /* Verde para guardar nota */
-        --color-success-dark: #1e7e34; /* Verde más oscuro para hover */
-        --color-background-light: #f4f6f8; /* Gris claro de fondo general */
-        --color-background-medium: #e9ecef; /* Gris medio para contenedores */
-        --color-background-dark: #f8f9fa; /* Otro gris claro para secciones */
-        --color-text-dark: #212529; /* Texto muy oscuro (casi negro) */
-        --color-text-medium: #495057; /* Texto medio (gris oscuro) */
-        --color-text-light: #6c757d; /* Texto más claro */
-        --color-border: #ddd; /* Color de bordes suaves */
-        --color-shadow: rgba(0, 0, 0, 0.1); /* Sombra estándar */
-        --color-shadow-light: rgba(0, 0, 0, 0.05); /* Sombra más suave */
-        --color-white: #fff; /* Blanco puro */
-    }
-
-     
- 
-</head>
     body {
-    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; /* PEQUEÑO AJUSTE EN LA FUENTE */
-    font-size: 15px; /* NUEVO: Tamaño de fuente base */
-    color: var(--color-text-dark); /* NUEVO: Usar variable para el color de texto general */
-    background-color: var(--color-background-light); /* USANDO VARIABLE */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Tipografía más moderna */
+    background-color: #f4f6f8; /* Fondo gris claro */
     margin: 0;
-    padding: 5px;
-    line-height: 1.6;
+    padding: 5px; /* Aumentar el padding general */
+    line-height: 1.6; /* Mejorar la legibilidad del texto */
 }
 
 .container {
-    max-width: 95%;
-    margin: 5px auto;
+    max-width: 95%; /* Reducir un poco el ancho máximo */
+    margin: 5px auto; /* Centrar con más margen */
     display: grid;
-    grid-template-columns: 6fr 4fr;
-    gap: 20px; /* AJUSTADO: Más espacio entre columnas y filas */
-    background-color: var(--color-white); /* USANDO VARIABLE */
-    padding: 20px; /* AJUSTADO: Más padding interno */
-    border-radius: 8px; /* AJUSTADO: Bordes más suaves */
-    box-shadow: 0 4px 12px var(--color-shadow); /* AJUSTADO: Sombra más pronunciada y suave */
+    grid-template-columns: 6fr 4fr; /* Ajustar la proporción de las columnas */
+    gap: 5px; /* Aumentar el espacio entre columnas y filas */
+    background-color: #fff; /* Fondo blanco para el contenedor principal */
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 /* --- Estilos para la firma y el h1 principal --- */
@@ -61,43 +39,37 @@
 }
 
 h1 {
-    text-align: center;
+    text-align: center; /* Aseguramos que el texto del h1 también esté centrado */
     text-transform: none;
     /* grid-column: span 2; Ya no es necesario aquí porque el contenedor padre es full-width */
     font-size: 28px;
-    color: var(--color-primary); /* USANDO VARIABLE */
+    color: #007bff;
+    margin-top: 0;
     margin-bottom: 25px;
     font-weight: 500;
 }
 /* --- Fin de estilos --- */
 
 .form-control, textarea, select {
-    padding: 12px; /* AJUSTADO: Más padding */
+    padding: 10px;
     font-size: 15px;
-    width: 100%; /* AJUSTADO: Elimina calc(100% - 20px) si ya tienes box-sizing: border-box; */
+    width: calc(100% - 20px); /* Ajustar el ancho teniendo en cuenta el padding */
     box-sizing: border-box;
-    margin-bottom: 15px; /* AJUSTADO: Más espacio entre ellos */
-    border: 1px solid var(--color-border); /* USANDO VARIABLE */
-    border-radius: 6px; /* AJUSTADO: Bordes un poco más redondeados */
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* NUEVO: Transición suave al focus */
-}
-/* NUEVO: Estilos para el focus de inputs */
-.form-control:focus, textarea:focus, select:focus {
-    outline: none; /* Eliminar el contorno por defecto del navegador */
-    border-color: var(--color-primary); /* Borde azul al enfocar */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Sombra suave azul al enfocar */
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
 label {
-    font-weight: 600; /* AJUSTADO: Un poco más bold */
+    font-weight: bold;
     display: block;
-    margin-bottom: 10px; /* AJUSTADO: Más espacio debajo de la label */
+    margin-bottom: 8px;
     font-size: 14px;
-    color: var(--color-text-medium); /* USANDO VARIABLE */
+    color: #555;
 }
 
 .form-group {
-    margin-bottom: 20px; /* AJUSTADO: Más espacio entre grupos de formularios */
+    margin-bottom: 15px;
 }
 
 .full-width {
@@ -105,32 +77,33 @@ label {
 }
 
 .button-principal {
-    color: var(--color-white); /* USANDO VARIABLE */
+    color: white;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    border-radius: 8px; /* AJUSTADO: Bordes más redondeados */
-    padding: 12px 20px; /* AJUSTADO: Más padding */
-    font-size: 16px; /* AJUSTADO: Un poco más grande */
-    font-weight: 600; /* AJUSTADO: Seminegrita */
-    width: auto;
-    display: inline-block;
-    margin-right: 10px;
-    box-shadow: 0 2px 4px var(--color-shadow-light); /* NUEVO: Sombra suave */
+    transition: background-color 0.2s ease-in-out; /* Transición más suave */
+    border-radius: 6px;
+    padding: 10px 15px; /* Aumentar el padding del botón */
+    font-size: 15px;
+    font-weight: bold;
+    width: auto; /* Ajustar el ancho al contenido */
+    display: inline-block; /* Para que el ancho automático funcione */
+    margin-right: 10px; /* Espacio entre botones si hay varios */
 }
 
 .button-principal[id="btnGenerar"] {
-    background-color: var(--color-primary); /* USANDO VARIABLE */
+    background-color: #007bff; /* Azul más moderno */
 }
+
 .button-principal[id="btnGenerar"]:hover {
-    background-color: var(--color-primary-dark); /* USANDO VARIABLE */
+    background-color: #0056b3;
 }
 
 .button-principal[id="btnLimpiar"] {
-    background-color: var(--color-secondary); /* USANDO VARIABLE */
+    background-color: #dc3545; /* Rojo más moderno */
 }
+
 .button-principal[id="btnLimpiar"]:hover {
-    background-color: var(--color-secondary-dark); /* USANDO VARIABLE */
+    background-color: #c82333;
 }
 
 #resultado-container {
@@ -138,13 +111,13 @@ label {
 }
 
 #resultado {
-    background-color: var(--color-background-medium); /* USANDO VARIABLE */
-    padding: 15px; /* AJUSTADO: Más padding */
-    border-radius: 8px; /* AJUSTADO: Más redondeado */
-    margin-bottom: 10px; /* AJUSTADO: Más espacio */
-    font-size: 18px; /* AJUSTADO: Un poco más grande */
-    color: var(--color-text-dark); /* USANDO VARIABLE */
-    font-weight: bold; /* AJUSTADO: Cambiar de 'bolder' a 'bold' */
+    background-color: #e9ecef; /* Fondo grisáceo claro para el resultado */
+    padding: 1px;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #212529;
+    font-weight: bolder; /* Eliminar negrita por defecto */
 }
 #resultado p {
     margin: 1px; /* Eliminar márgenes para un diseño más limpio */
@@ -153,21 +126,14 @@ label {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
-#mensajeCopiado {
-    color: var(--color-success); /* USANDO VARIABLE */
-    font-weight: 600; /* Negrita para que se vea bien */
-    margin-top: 15px;
-    text-align: center; /* NUEVO: Para centrar el mensaje de copiado */
-}
 
 #resumenVisual {
-    background-color: var(--color-background-dark); /* USANDO VARIABLE */
-    padding: 20px; /* AJUSTADO: Más padding */
-    border-radius: 8px; /* AJUSTADO: Más redondeado */
-    margin-bottom: 20px; /* AJUSTADO: Más espacio */
+    background-color: #f8f9fa; /* Otro tono de gris claro */
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
     font-size: 14px;
-    color: var(--color-text-medium); /* USANDO VARIABLE */
-    box-shadow: 0 2px 8px var(--color-shadow-light); /* NUEVO: Sombra suave */
+    color: #495057;
 }
 
 #resumenVisual span {
@@ -179,14 +145,13 @@ label {
 #historial-container {
     margin-top: 30px;
     font-size: 13px;
-    color: var(--color-text-light); /* USANDO VARIABLE */
-    background-color: var(--color-background-dark); /* USANDO VARIABLE */
-    padding: 20px; /* AJUSTADO: Más padding */
-    border-top: none; /* ELIMINADO: Ya no necesitamos este borde si ponemos sombra */
-    border-radius: 8px; /* AJUSTADO: Más redondeado */
-    display: none;
-    text-align: left;
-    box-shadow: 0 2px 8px var(--color-shadow-light); /* NUEVO: Sombra suave */
+    color: #6c757d;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-top: 1px solid #dee2e6; /* Línea más clara */
+    border-radius: 6px;
+    display: none; /* Se mantiene oculto por defecto */
+    text-align: left; /* Alinear el texto del historial a la izquierda */
 }
 
 #listaHistorial {
@@ -196,7 +161,7 @@ label {
 
 #listaHistorial li {
     padding: 8px 0;
-    border-bottom: 1px dotted var(--color-border); /* USANDO VARIABLE */
+    border-bottom: 1px dotted #ced4da; /* Línea punteada más clara */
     font-size: 14px;
 }
 
@@ -205,21 +170,21 @@ label {
 }
 
 .toggle-historial {
-    background-color: transparent;
+    background-color: transparent; /* Fondo transparente */
     border: none;
     font-size: 14px;
-    color: var(--color-primary); /* USANDO VARIABLE */
+    color: #007bff; /* Azul para el enlace */
     margin-top: 20px;
     cursor: pointer;
     text-decoration: underline;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 5px 0;
-    font-weight: 600; /* NUEVO: Seminegrita */
+    padding: 5px 0; /* Añadir un poco de padding para facilitar el clic */
 }
+
 .toggle-historial:hover {
-    color: var(--color-primary-dark); /* USANDO VARIABLE */
+    color: #0056b3;
 }
 
 .marca {
@@ -231,20 +196,19 @@ label {
 
 /* Estilos para los links útiles y contactos */
 #links-utiles, #contactos-pcs {
-    background-color: var(--color-background-dark); /* USANDO VARIABLE */
-    padding: 20px; /* AJUSTADO: Más padding */
-    border-radius: 8px; /* AJUSTADO: Más redondeado */
-    margin-bottom: 20px; /* AJUSTADO: Más espacio */
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
     font-size: 14px;
-    color: var(--color-text-medium); /* USANDO VARIABLE */
-    box-shadow: 0 2px 8px var(--color-shadow-light); /* NUEVO: Sombra suave */
+    color: #495057;
 }
 
 #links-utiles h3, #contactos-pcs h3 {
-    font-size: 18px; /* AJUSTADO: Un poco más grande */
+    font-size: 16px;
     margin-top: 0;
-    color: var(--color-text-dark); /* USANDO VARIABLE */
-    margin-bottom: 15px; /* AJUSTADO: Más espacio */
+    color: #343a40;
+    margin-bottom: 10px;
 }
 
 #links-utiles ul, #contactos-pcs ul {
@@ -254,32 +218,32 @@ label {
 }
 
 #links-utiles li a {
-    color: var(--color-primary); /* USANDO VARIABLE */
+    color: #007bff;
     text-decoration: none;
 }
+
 #links-utiles li a:hover {
     text-decoration: underline;
-    color: var(--color-primary-dark); /* USANDO VARIABLE */
 }
 
 /* Estilos para el panel de notas */
 #notas-panel {
     width: 100%;
-    background-color: var(--color-background-dark); /* USANDO VARIABLE */
-    border-top: none; /* ELIMINADO: Ya no necesitamos este borde */
-    padding: 20px; /* AJUSTADO: Más padding */
-    box-shadow: 0 2px 8px var(--color-shadow); /* AJUSTADO: Sombra más pronunciada */
-    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; /* AJUSTADO: Fuente */
+    background-color: #e9ecef;
+    border-top: 1px solid #ced4da;
+    padding: 15px;
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-sizing: border-box;
-    margin-top: 30px; /* AJUSTADO: Más margen superior */
-    border-radius: 8px; /* AJUSTADO: Más redondeado */
+    margin-top: 20px;
+    border-radius: 6px;
 }
 
 #notas-panel h3 {
     margin-top: 0;
     font-size: 18px;
-    color: var(--color-text-dark); /* USANDO VARIABLE */
-    margin-bottom: 15px; /* AJUSTADO: Más espacio */
+    color: #343a40;
+    margin-bottom: 10px;
 }
 
 #notas-container {
@@ -287,69 +251,59 @@ label {
     font-size: 14px;
     max-height: 200px;
     overflow-y: auto;
-    border: 1px solid var(--color-border); /* USANDO VARIABLE */
-    background-color: var(--color-white); /* USANDO VARIABLE */
-    padding: 15px; /* AJUSTADO: Más padding */
-    border-radius: 6px; /* AJUSTADO: Más redondeado */
+    border: 1px solid #ced4da;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
 }
 
 .nota {
-    border-bottom: 1px solid var(--color-border); /* USANDO VARIABLE */
-    padding-bottom: 10px; /* AJUSTADO */
-    margin-bottom: 10px; /* AJUSTADO */
-    background: var(--color-white); /* NUEVO: Fondo blanco */
-    padding: 10px; /* NUEVO: Padding interno */
-    border-radius: 4px; /* NUEVO: Bordes suaves */
-    box-shadow: 0 1px 3px var(--color-shadow-light); /* NUEVO: Sombra muy suave */
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
 }
+
 .nota:last-child {
     border-bottom: none;
 }
 
 .nota time {
     font-size: 12px;
-    color: var(--color-text-light); /* USANDO VARIABLE */
+    color: #6c757d;
     display: block;
     margin-bottom: 5px;
 }
 
 #nueva-nota {
-    width: 100%; /* AJUSTADO: Ya con box-sizing es 100% */
+    width: calc(100% - 22px);
     height: 80px;
-    margin-bottom: 15px; /* AJUSTADO */
+    margin-bottom: 10px;
     resize: vertical;
-    padding: 12px; /* AJUSTADO */
-    border: 1px solid var(--color-border); /* USANDO VARIABLE */
-    border-radius: 6px; /* AJUSTADO */
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
     font-size: 14px;
-    box-sizing: border-box; /* Asegurar */
 }
 
 #autor {
-    width: 100%; /* AJUSTADO: Ya con box-sizing es 100% */
-    margin-bottom: 15px; /* AJUSTADO */
-    padding: 12px; /* AJUSTADO */
-    border: 1px solid var(--color-border); /* USANDO VARIABLE */
-    border-radius: 6px; /* AJUSTADO */
+    width: calc(100% - 22px);
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
     font-size: 14px;
-    box-sizing: border-box; /* Asegurar */
 }
 
 #guardar-nota {
     width: 100%;
-    padding: 12px 20px; /* AJUSTADO */
-    background: var(--color-success); /* USANDO VARIABLE */
-    color: var(--color-white); /* USANDO VARIABLE */
+    padding: 10px 15px;
+    background: #28a745;
+    color: white;
     border: none;
-    border-radius: 8px; /* AJUSTADO */
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 16px; /* AJUSTADO */
-    font-weight: 600; /* NUEVO */
+    font-size: 15px;
     transition: background-color 0.2s ease-in-out;
-    box-shadow: 0 2px 4px var(--color-shadow-light); /* NUEVO */
-}
-#guardar-nota:hover {
-    background: var(--color-success-dark); /* USANDO VARIABLE */
 }
 
 #guardar-nota:hover {
@@ -373,10 +327,64 @@ label {
     margin: 0; /* Eliminar márgenes automáticos de los botones en esta sección */
 }
 
+  #notas-panel {
+    width: 100%;
+    background-color: #f9f9f9;
+    border-top: 2px solid #ccc;
+    padding: 16px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
 
-  
+  #notas-panel h3 {
+    margin-top: 0;
+    font-size: 18px;
+  }
 
-   
+  #notas-container {
+    margin-top: 12px;
+    font-size: 14px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .nota {
+    border: 1px solid #ddd;
+    background: white;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+  }
+
+  .nota time {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  #nueva-nota {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 8px;
+    resize: vertical;
+  }
+
+  #autor {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  #guardar-nota {
+    width: 100%;
+    padding: 8px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
   #guardar-nota:hover {
     background: #0056b3;
