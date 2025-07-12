@@ -266,8 +266,16 @@
             <th>EDC/CDC</th>
           </tr>
         </thead>
-            <tbody id="tbodySitiosDC"></tbody>      
-         
+        <tbody>
+          <tr><td>Belgrano</td><td>CDC</td></tr>
+          <tr><td>Munro</td><td>CDC (No Productivo)</td></tr>
+          <tr><td>Hornos</td><td>CDC - EDC</td></tr>
+          <tr><td>San Lorenzo</td><td>CDC - EDC</td></tr>
+          <tr><td>Resistencia</td><td>EDC</td></tr>
+          <tr><td>Rosario</td><td>EDC</td></tr>
+          <tr><td>Tucumán</td><td>EDC</td></tr>
+          <tr><td>Córdoba</td><td>EDC</td></tr>
+        </tbody>
       </table>
             <h3>Control Plane 5GC</h3> <table class="info-table"> <thead>
           <tr>
@@ -275,16 +283,59 @@
             <th>Ubicación Topológica</th>
           </tr>
         </thead>
-        <tbody id="tbodyControlPlane"> </tbody>
+        <tbody>
+          <tr>
+            <td>SMF1MUN</td>
+            <td>ARBBMUN-DGM003/4 / UNC / HA 5GC / MUN01CDC (No Productivo)</td>
+          </tr>
+          <tr>
+            <td>SMF1BEL</td>
+            <td>ARCCBEL-DGM003/4 / UNC / HA 5GC / BEL01CDC</td>
+            
+          </tr>
+          <tr>
+            <td>SMF1HOR</td>
+            <td>ARCCHOR-DGM003/4 / UNC / HA 5GC / HOR01DC</td>
+          </tr>
+          <tr>
+            <td>SMF1SLO</td>
+            <td>ARBBSLO-DGM003/4 / UNC / HA 5GC / SLO01DC</td> 
+          </tr>
+        </tbody>
       </table>
       <h3>User Plane 5GC</h3> <table class="info-table"> <thead>
           <tr>
             <th>Nodo</th>
             <th>Ubicación Topológica</th>
+          
           </tr>
-          <tbody id="tbodyUserPlane"> </tbody>
         </thead>
-               
+        <tbody>
+          <tr>
+            <td>UPF1COR</td>
+            <td>ARXXCEN-DGM001/2 / UDG / HA 5GC / COR01EDC</td>
+          </tr>
+          <tr>
+            <td>UPF1HOR</td>
+            <td>ARCCHOR-DGM001/2 / UDG / HA 5GC / HOR01EDC</td>
+            
+          </tr>
+          <tr>
+            <td>UPF1RES</td>
+            <td>ARHHRES-DGM001/2 / UDG / HA 5GC / RES01EDC</td>
+          </tr>
+          <tr>
+            <td>UPF1ROS</td>
+            <td>ARSSIRD-DGM001/2 / UDG / HA 5GC / ROS01EDC</td> 
+          </tr>
+          <tr>
+            <td>UPF1SLO</td>
+            <td>ARBBSLO-DGM001/2 / UDG / HA 5GC / SLO01EDC</td>
+          </tr>
+          <tr>
+            <td>UPF1TUC</td>
+            <td>ARTTMUS-DGM001/2 / UDG / HA 5GC / TUC01EDC</td> 
+          </tr>
         </tbody>
       </table>
     </div>
@@ -296,27 +347,6 @@
   </div>
 
   <script>
-
-    // Datos para tablas informativas.  
-   const datosSitiosDC = [
-    { sitio: "Belgrano", tipoDC: "CDC" },
-    { sitio: "Munro", tipoDC: "CDC (No Productivo)" }, // Nota: Munro no tiene link de Grafana en tu mapa
-    { sitio: "Hornos", tipoDC: "CDC - EDC" },  
-    { sitio: "San Lorenzo", tipoDC: "CDC - EDC" },
-    { sitio: "Resistencia", tipoDC: "EDC" },
-    { sitio: "Rosario", tipoDC: "EDC" },
-    { sitio: "Muñecas", tipoDC: "EDC" }, // Se asume "Muñecas" por Tucumán
-    { sitio: "Córdoba Centro", tipoDC: "EDC" }
-     ];
-
-    const datosControlPlane = [
-    { nodo: "SMF1", ubicacion: "MUNARBBMUN-DGM003/4 / UNC / HA 5GC / MUN01", dc: "CDC (No Productivo)" },
-    { nodo: "SMF1", ubicacion: "BELARCCBEL-DGM003/4 / UNC / HA 5GC / BEL01", dc: "CDC" },
-    { nodo: "SMF1", ubicacion: "HORARCCHOR-DGM003/4 / UNC / HA 5GC / HOR01", dc: "CDC" },
-    { nodo: "SMF1", ubicacion: "SLOARBBSLO-DGM003/4 / UNC / HA 5GC / SLO01", dc: "CDC" }
-     ];
-     
-     //
     const paises = { "AR": "Argentina" };
     const provincias = {
       "CC": "Capital Federal", "BB": "Buenos Aires", "HH": "Chaco",
@@ -457,112 +487,14 @@
     }
 
     // Si hay parámetros ?q=... en la URL, cargarlos al iniciar
-window.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const query = params.get("q");
-    if (query) {
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get("q");
+      if (query) {
         document.getElementById("inputCodigos").value = query.split(",").join("\n");
         interpretarMultiples(query);
-    }
-    
-    // ¡Añade estas dos líneas aquí para que las tablas informativas se generen al cargar!
-    generarTablaSitiosDC();
-    generarTablaControlPlane(); // ¡Corregido a ControlPlane!
-});
-
-
-function generarTablaSitiosDC() {
-    const tbody = document.getElementById("tbodySitiosDC");
-    tbody.innerHTML = ""; // Limpiar antes de llenar
-
-    datosSitiosDC.forEach(item => {
-        const fila = document.createElement("tr");
-
-        const tdSitio = document.createElement("td");
-        tdSitio.textContent = item.sitio;
-        fila.appendChild(tdSitio);
-
-        const tdTipoDC = document.createElement("td");
-        let linkContent = "";
-
-        // Primero, encontrar el código del sitio a partir del nombre del sitio en nuestros 'sitios' mapeados
-        const sitioCodigo = Object.keys(sitios).find(key => sitios[key] === item.sitio);
-
-        // Si encontramos el código del sitio y NO es un caso de "No Productivo"
-        if (sitioCodigo && !item.tipoDC.includes("No Productivo")) {
-            // Usamos la función existente 'obtenerLinkTodos' que ya sabe cómo manejar
-            // múltiples links (CDC, EDC, o arrays de links) para un sitio.
-            linkContent = obtenerLinkTodos(sitioCodigo);
-        } else if (item.tipoDC.includes("No Productivo")) {
-            // Si es "No Productivo", simplemente mostramos el texto sin link
-            linkContent = item.tipoDC;
-        } else {
-            // Si el sitio no se encuentra en nuestro mapa, o algún otro error
-            linkContent = `<span class='error'>${item.tipoDC} (Sitio/Link no disponible)</span>`;
-        }
-        
-        tdTipoDC.innerHTML = linkContent;
-        fila.appendChild(tdTipoDC);
-        tbody.appendChild(fila);
+      }
     });
-}
-
-        function generarTablaControlPlane() {
-         const tbody = document.getElementById("tbodyControlPlane");
-         tbody.innerHTML = ""; // Limpiar antes de llenar
-
-        datosControlPlane.forEach(item => {
-        const fila = document.createElement("tr");
-
-        const tdNodo = document.createElement("td");
-        tdNodo.textContent = item.nodo;
-        fila.appendChild(tdNodo);
-
-        const tdUbicacion = document.createElement("td");
-        tdUbicacion.textContent = item.ubicacion;
-        fila.appendChild(tdUbicacion);
-
-        const tdDC = document.createElement("td");
-        let linkContent = "";
-
-        // Extraer el nombre del sitio de la ubicación topológica para buscar el link
-        // Esto es una simplificación; podrías necesitar una lógica más robusta
-        // si los nombres de sitio en "ubicacion" no coinciden exactamente con tus claves de grafanaLinks
-        const partesUbicacion = item.ubicacion.split('/');
-        const codSitioUbicacion = partesUbicacion[0].slice(4,7); // Ej: MUNARBBMUN -> MUN
-        const nombreSitioUbicacion = sitios[codSitioUbicacion]; // Convierte MUN a Munro
-
-        // Asumiendo que el tipo de DC (CDC/EDC) está en item.dc
-        const tipoDCEnTabla = item.dc.includes("CDC") ? "CDC" : (item.dc.includes("EDC") ? "EDC" : "");
-
-        if (nombreSitioUbicacion && grafanaLinks[nombreSitioUbicacion] && grafanaLinks[nombreSitioUbicacion][tipoDCEnTabla]) {
-            const link = grafanaLinks[nombreSitioUbicacion][tipoDCEnTabla];
-            if (Array.isArray(link)) {
-                // Si hay múltiples links para ese DC (ej. Golf CDC)
-                link.forEach((url, i) => linkContent += `<a href='${url}' target='_blank'>${item.dc}${link.length > 1 ? ` ${i+1}` : ''}</a><br>`);
-                linkContent = linkContent.slice(0, -4); // Quitar el último <br>
-            } else {
-                linkContent = `<a href='${link}' target='_blank'>${item.dc}</a>`;
-            }
-        } else if (item.dc.includes("No Productivo")) {
-             linkContent = item.dc; // No generar link si es "No Productivo"
-        } else {
-            linkContent = `<span class='error'>${item.dc} (Sin Link)</span>`;
-        }
-
-        tdDC.innerHTML = linkContent;
-        fila.appendChild(tdDC);
-        tbody.appendChild(fila);
-       });
-     }
-
-// Llamar a estas funciones cuando la página cargue para llenar las tablas
-window.addEventListener("DOMContentLoaded", () => {
-    // ... tu código existente para interpretar múltiples códigos si hay query params ...
-    
-    generarTablaSitiosDC();
-    generarTablaControlPlane();
-});
   </script>
  
 </body>
