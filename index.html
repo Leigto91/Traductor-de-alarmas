@@ -24,29 +24,29 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
-/* --- Nuevos estilos para la firma y el h1 principal --- */
+/* --- Estilos para la firma y el h1 principal --- */
 .signature-line {
-  display: block;
-  text-align: center; /* Centrar la firma */
-  font-size: 16px; /* Tamaño de la fuente de la firma */
-  color: #495057; /* Color similar a --color-text-medium en tu otra web */
+  display: block; /* Para que ocupe su propia línea dentro del div */
+  text-align: center; /* Centra la firma dentro del div full-width */
+  font-size: 16px;
+  color: #495057;
   margin-top: 0;
-  margin-bottom: 5px; /* Espacio entre la firma y el título */
+  margin-bottom: 5px;
   opacity: 0.7;
-  font-weight: 600; /* Negrita */
+  font-weight: 600;
 }
 
 h1 {
-    text-align: center; /* ¡IMPORTANTE! Lo cambiamos a 'center' para que coincida con la firma */
+    text-align: center; /* Aseguramos que el texto del h1 también esté centrado */
     text-transform: none;
-    grid-column: span 2;
-    font-size: 28px; /* Un poco más grande para que se destaque bien */
-    color: #007bff; /* Usamos el azul principal de tus botones como color primario */
-    margin-top: 0; /* Lo pegamos a la firma */
-    margin-bottom: 25px; /* Espacio debajo del h1 para el resto del contenido */
+    /* grid-column: span 2; Ya no es necesario aquí porque el contenedor padre es full-width */
+    font-size: 28px;
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 25px;
     font-weight: 500;
 }
-/* --- Fin de nuevos estilos --- */
+/* --- Fin de estilos --- */
 
 .form-control, textarea, select {
     padding: 10px;
@@ -398,14 +398,16 @@ label {
 </head>
 <body>
   <div class="container">
-<span class="signature-line">NOC-MO</span> <h1 style="text-align: center;">Traductor de Alarmas FMC</h1> ```
+<div class="full-width" style="text-align: center;">
+    <span class="signature-line">NOC-MO</span>
+    <h1>Traductor de Alarmas FMC</h1>
+</div>
 
-    <!-- Sección de herramientas -->
 <div id="herramientas" style="margin-bottom: 20px;">
-  <strong>🔧 Herramientas:</strong>
-  <a href="https://leigto91.github.io/Traductor-de-alarmas/NomenclaturaInfra.html" target="_blank">
-    Nomenclatura de Infraestructura
-  </a>
+    <strong>🔧 Herramientas:</strong>
+    <a href="https://leigto91.github.io/Traductor-de-alarmas/NomenclaturaInfra.html" target="_blank">
+        Nomenclatura de Infraestructura
+    </a>
 </div>
     <div id="contadorAlarmas" class="full-width" style="text-align:center; font-size:12px; color:#555;">⏳ Cargando alarmas...</div>
 
