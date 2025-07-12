@@ -149,40 +149,57 @@
       text-decoration: underline;
     }
 
-    .links-adicionales {
-      margin-top: 30px; /* Espacio sobre la sección de enlaces */
-      padding: 20px; /* Padding ligeramente reducido */
-      border: 1px solid var(--color-border);
-      /* Ahora el fondo es el mismo que el body y container */
-      background-color: var(--color-background-light); 
-      border-radius: 8px;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03); /* Sombra interna más sutil */
-    }
+    /* Estilos para la sección de enlaces adicionales */
+.links-adicionales {
+  margin-top: 30px; /* Espacio sobre la sección de enlaces */
+  /* padding: 20px; Eliminamos el padding del contenedor principal */
+  /* border: 1px solid var(--color-border); Eliminamos el borde */
+  /* background-color: var(--color-background-light); Ya es el mismo que el body */
+  /* border-radius: 8px; No necesario sin borde visible */
+  /* box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03); Eliminamos la sombra interna */
+  /* No necesitamos padding si queremos que se ajuste automáticamente por su contenido */
+}
 
-    .links-adicionales h3 {
-      margin-top: 0;
-      color: var(--color-text-dark);
-      font-size: 17px; /* Tamaño ligeramente menor para subtítulo */
-      margin-bottom: 12px; /* Espacio debajo del subtítulo */
-      border-bottom: 1px solid var(--color-border); /* Línea bajo el subtítulo */
-      padding-bottom: 6px;
-      text-align: left;
+/* Nuevos o modificados estilos para los títulos dentro de links-adicionales */
+.links-adicionales h3 {
+  margin-top: 0;
+  color: var(--color-text-dark);
+  font-size: 17px;
+  margin-bottom: 12px;
+  /* border-bottom: 1px solid var(--color-border); Ya lo tienes, es bueno para separar */
+  padding-bottom: 6px;
+  text-align: left;
+  /* Considera agregar un padding-top para el primer h3 si el margin-top del contenedor se reduce mucho */
+  padding-top: 15px; /* Pequeño padding superior para los títulos dentro de esta sección */
+  /* Opcional: Agregar un fondo sutil a cada sección de h3 para agrupar visualmente */
+  background-color: var(--color-background-medium); /* Un gris muy suave */
+  padding-left: 15px; /* Para que el texto no esté pegado al borde */
+  padding-right: 15px;
+  border-top-left-radius: 6px; /* Bordes redondeados en la parte superior de cada sub-sección */
+  border-top-right-radius: 6px;
+  border-bottom: 1px solid var(--color-border); /* Línea debajo del título */
+}
 
-    }
+/* Estilos para las listas de enlaces dentro de links-adicionales */
+.links-adicionales ul {
+  list-style: none;
+  padding: 0 15px 15px; /* Ajusta el padding de la lista para que coincida con el h3 */
+  margin: 0; /* Elimina margen por defecto del ul */
+  background-color: var(--color-white); /* Fondo blanco para las listas */
+  box-shadow: 0 2px 8px var(--color-shadow); /* Sombra para cada bloque de lista */
+  border-bottom-left-radius: 6px; /* Bordes redondeados en la parte inferior */
+  border-bottom-right-radius: 6px;
+  margin-bottom: 20px; /* Espacio entre bloques de enlaces */
+}
 
-    .links-adicionales ul {
-      list-style: none;
-      padding: 0;
-    }
+.links-adicionales li {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
 
-    .links-adicionales li {
-      margin-bottom: 8px; /* Espacio entre ítems de lista */
-      font-size: 14px; /* Tamaño de fuente ligeramente menor en la lista */
-    }
-
-    .links-adicionales li:last-child {
-      margin-bottom: 0;
-    }
+.links-adicionales li:last-child {
+  margin-bottom: 0;
+}
     /* Estilos para la firma */
 .footer-signature {
   text-align: center;
