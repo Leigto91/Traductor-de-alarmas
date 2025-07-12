@@ -160,26 +160,36 @@
   /* No necesitamos padding si queremos que se ajuste automáticamente por su contenido */
 }
 
-/* Nuevos o modificados estilos para los títulos dentro de links-adicionales */
+/* ... tus estilos existentes ... */
+
+/* Estilos para los títulos dentro de links-adicionales */
 .links-adicionales h3 {
-  margin-top: 0;
+  margin-top: 0; /* Mantenemos este en 0 para el primer h3 */
   color: var(--color-text-dark);
   font-size: 17px;
   margin-bottom: 12px;
-  /* border-bottom: 1px solid var(--color-border); Ya lo tienes, es bueno para separar */
   padding-bottom: 6px;
   text-align: left;
-  /* Considera agregar un padding-top para el primer h3 si el margin-top del contenedor se reduce mucho */
-  padding-top: 15px; /* Pequeño padding superior para los títulos dentro de esta sección */
-  /* Opcional: Agregar un fondo sutil a cada sección de h3 para agrupar visualmente */
-  background-color: var(--color-background-medium); /* Un gris muy suave */
-  padding-left: 15px; /* Para que el texto no esté pegado al borde */
+  padding-top: 15px;
+  background-color: var(--color-background-medium);
+  padding-left: 15px;
   padding-right: 15px;
-  border-top-left-radius: 6px; /* Bordes redondeados en la parte superior de cada sub-sección */
+  border-top-left-radius: 6px;
   border-top-right-radius: 6px;
-  border-bottom: 1px solid var(--color-border); /* Línea debajo del título */
+  border-bottom: 1px solid var(--color-border);
 }
 
+/* NUEVA REGLA: Añadir un margen superior a los h3 que no son el primer hijo */
+.links-adicionales h3 + .info-table {
+    margin-top: 5px; /* Pequeño ajuste para que la tabla no se pegue al título */
+}
+
+.links-adicionales h3:not(:first-child) {
+    margin-top: 25px; /* Ajusta este valor para dar más o menos espacio */
+    /* Este margen se aplicará a "CDC/EDC por Sitio", "Control Plane 5GC" y "User Plane 5GC" */
+}
+
+ 
 /* Estilos para las listas de enlaces dentro de links-adicionales */
 .links-adicionales ul {
   list-style: none;
