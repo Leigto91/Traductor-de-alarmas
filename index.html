@@ -421,6 +421,7 @@ label {
     <div class="selectores">
       <label for="afectacion">Tipo de afectación:</label>
       <select id="afectacion" class="form-control">
+        <option value="-">-</option>
         <option value="AFECTACIÓN POTENCIAL">AFECTACIÓN POTENCIAL</option>
         <option value="DEGRADACIÓN">DEGRADACIÓN</option>
         <option value="INDISPONIBILIDAD">INDISPONIBILIDAD</option>
@@ -429,6 +430,7 @@ label {
 
       <label for="grupo">Grupo asignado:</label>
       <select id="grupo" class="form-control">
+        <option value="-">-</option>
         <option value="VOZMOVIL">PCS Voz Móvil</option>
         <option value="VOZRESI">PCS Voz Fija</option>
         <option value="ROAMINT">PCS Roaming Internacional</option>
@@ -446,6 +448,7 @@ label {
 
       <label for="origen">Origen del reclamo:</label>
       <select id="origen" class="form-control">
+        <option value="-">-</option>
         <option value="DIGITAL VIEW">DIGITAL VIEW</option>
         <option value="GRAFANA">GRAFANA</option>
         <option value="MAE Core">MAE Core</option>
@@ -457,18 +460,21 @@ label {
       </select>
       <label for="tipo_nodo">Tipo de Nodo:</label>
       <select id="tipo_nodo" class="form-control">
-        <option value="MSC">MSC</option>
+        <option value="-">-</option>
+        <option value="EDC/CDC">EDC/CDC</option>
         <option value="MME/AMF">MME/AMF</option>
         <option value="UGW/DGW/UPF">UGW/DGW/UPF</option>
+        <option value="UDM/USCDB/HSS">UDM/USCDB/HSS</option>
         <option value="DNS/DEA">DNS/DEA</option>
         <option value="UMG">UMG</option>
-        <option value="EDC/CDC">EDC/CDC</option>
-        <option value="USSD">USSD</option>        
+        <option value="MSC">MSC</option>
         <option value="VOICEMAIL">VOICEMAIL</option>
         <option value="OSS">OSS</option>
+        <option value="USSD">USSD</option>
         <option value="NTR/OTA/WSMS">NTR/OTA/WSMS</option>
         <option value="SMSC">SMSC</option>
-        <option value="UDM/USCDB/HSS">UDM/USCDB/HSS</option>
+        <option value="NGIN">NGIN</option>
+        
       </select>
     </div>
 
