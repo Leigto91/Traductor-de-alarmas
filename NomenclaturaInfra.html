@@ -309,7 +309,7 @@
     { sitio: "Córdoba Centro", tipoDC: "EDC" }
      ];
 
-    const datosControlPlan = [
+    const datosControlPlane = [
     { nodo: "SMF1", ubicacion: "MUNARBBMUN-DGM003/4 / UNC / HA 5GC / MUN01", dc: "CDC (No Productivo)" },
     { nodo: "SMF1", ubicacion: "BELARCCBEL-DGM003/4 / UNC / HA 5GC / BEL01", dc: "CDC" },
     { nodo: "SMF1", ubicacion: "HORARCCHOR-DGM003/4 / UNC / HA 5GC / HOR01", dc: "CDC" },
@@ -503,11 +503,11 @@ function generarTablaSitiosDC() {
     });
 }
 
-        function generarTablaControlPlan() {
-         const tbody = document.getElementById("tbodyControlPlan");
+        function generarTablaControlPlane() {
+         const tbody = document.getElementById("tbodyControlPlane");
          tbody.innerHTML = ""; // Limpiar antes de llenar
 
-        datosControlPlan.forEach(item => {
+        datosControlPlane.forEach(item => {
         const fila = document.createElement("tr");
 
         const tdNodo = document.createElement("td");
@@ -557,7 +557,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // ... tu código existente para interpretar múltiples códigos si hay query params ...
     
     generarTablaSitiosDC();
-    generarTablaControlPlan();
+    generarTablaControlPlane();
 });
   </script>
  
