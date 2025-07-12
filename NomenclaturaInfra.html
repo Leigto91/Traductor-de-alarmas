@@ -268,7 +268,7 @@
 </head>
 <body>
   <div class="container">
-    <span class="signature-line">NOC-MO</span> <h2>**Interpretador de Códigos de Nomenclatura 5G</h2>
+    <span class="signature-line">NOC-MO</span> <h2> v6Interpretador de Códigos de Nomenclatura 5G</h2>
 
     <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
     
@@ -626,9 +626,15 @@
   }
       
     // Llamada a la función para generar la tabla "CDC/EDC por Sitio"
-      generarTablaSitiosDC() ; 
-    });
+      generarTablaSitiosDC();
+
+      // Código para la funcionalidad de Agregar Sitio (si la quieres activar)
+      // const btnAgregarSitio = document.getElementById("btnAgregarSitio");
+      // if (btnAgregarSitio) {
+      //     btnAgregarSitio.addEventListener("click", agregarNuevoSitio);
+      // }
+    }); // ESTA ES LA LLAVE Y PARÉNTESIS DE CIERRE DE window.addEventListener y su función anónima.
+  
   </script>
- 
-</body>
+ </body>
 </html>
