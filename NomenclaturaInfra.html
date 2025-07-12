@@ -45,23 +45,25 @@
     }
 
     h2 {
-      text-align: center;
-      font-size: 28px; /* Tamaño del título principal */
-      color: var(--color-primary); /* Color del título */
-      margin-bottom: 25px; /* Espacio debajo del título */
-      font-weight: 500; /* Peso de fuente para un aspecto más moderno */
-    }
+  text-align: center;
+  font-size: 28px;
+  color: var(--color-primary);
+  margin-top: 0; /* Lo reseteamos o lo pones en 0 para pegarse a la firma */
+  margin-bottom: 25px; /* Mantenemos este para separar del textarea */
+  font-weight: 500;
+}
     /* --- */
 /* Nuevo estilo para la línea de firma debajo del título principal */
 .signature-line {
   display: block;
   text-align: center;
-  font-size: 16px; /* CAMBIADO: Un poco más grande */
+  font-size: 16px;
   color: var(--color-text-medium);
-  margin-top: -15px;
-  margin-bottom: 25px;
+  /* margin-top: -15px; ELIMINAMOS ESTE MARGEN NEGATIVO */
+  margin-top: 0; /* Lo reseteamos o lo pones en 0, ya que es el primero ahora */
+  margin-bottom: 5px; /* Ajusta este valor para que se acerque al h2 */
   opacity: 0.7;
-  font-weight: 600; /* CAMBIADO: Más negrita (seminegrita) */
+  font-weight: 600;
 }
 /* --- */
 
@@ -259,8 +261,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>Interpretador de Códigos de Nomenclatura 5G</h2>
-    <span class="signature-line">NOC-MO</span>
+    <span class="signature-line">NOC-MO</span> <h2>Interpretador de Códigos de Nomenclatura 5G v3</h2>
 
     <textarea id="inputCodigos" placeholder="Pegue aquí los códigos, uno por línea o separados por coma..."></textarea>
     
