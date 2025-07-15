@@ -595,6 +595,27 @@ label {
   }
      return nodoCrudo;
 }
+
+// --- INICIO: NUEVA FUNCIÓN openLinkInBackground ---
+    function openLinkInBackground(url) {
+        const link = document.createElement('a');
+        link.href = url;
+        link.target = '_blank'; // Abre en una nueva pestaña
+        link.style.display = 'none'; // Oculta el enlace
+        document.body.appendChild(link);
+
+        const clickEvent = new MouseEvent('click', {
+            'view': window,
+            'bubbles': true,
+            'cancelable': true,
+            'ctrlKey': true // Para abrir en segundo plano en algunos navegadores
+        });
+
+        link.dispatchEvent(clickEvent);
+        document.body.removeChild(link);
+    }
+    // --- FIN: NUEVA FUNCIÓN openLinkInBackground ---
+
 function procesarAlarma() {
     document.getElementById("btnLimpiar").style.display = 'inline-block'; // Asegurar que el botón limpiar se muestre
     const entrada = document.getElementById("alarmaInput").value;
@@ -610,14 +631,17 @@ function procesarAlarma() {
     const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
     const info = campos[54] || "Info vacía o errónea";
     // Buscar patrón tipo AABBCCC-DEF123 en el campo "info"
-  const regexElementoRed = /[A-Z]{7}-[A-Z]{3}\d{3}/;
-  const matchElementoRed = info.match(regexElementoRed);
+const regexElementoRed = /[A-Z]{7}-[A-Z]{3}\d{3}/;
+const matchElementoRed = info.match(regexElementoRed);
 
-  if (matchElementoRed) {
-    const elementoRed = matchElementoRed[0];
-    const urlElementoRed = `NomenclaturaInfra.html?q=${encodeURIComponent(elementoRed)}`;
-    window.open(urlElementoRed, '_parent');
-  }
+if (matchElementoRed) {
+  const elementoRed = matchElementoRed[0];
+  const urlElementoRed = `NomenclaturaInfra.html?q=${encodeURIComponent(elementoRed)}`;
+  // **********************************************
+  // ¡CAMBIO AQUÍ! Usamos la nueva función
+  // **********************************************
+  openLinkInBackground(urlElementoRed); 
+}
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
     const horarioFMC = campos[60] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
