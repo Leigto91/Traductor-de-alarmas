@@ -616,7 +616,7 @@ function procesarAlarma() {
   if (matchElementoRed) {
     const elementoRed = matchElementoRed[0];
     const urlElementoRed = `NomenclaturaInfra.html?q=${encodeURIComponent(elementoRed)}`;
-    window.open(urlElementoRed);
+    window.open(urlElementoRed, '_parent');
   }
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
