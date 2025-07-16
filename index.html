@@ -90,21 +90,23 @@ label {
     margin-right: 10px; /* Espacio entre botones si hay varios */
 }
 
-.button-principal[id="btnGenerar"] {
-    background-color: #007bff; /* Azul más moderno */
-}
+/* --- COLORES MÁS SUAVES --- */
+    .button-principal[id="btnGenerar"] {
+        background-color: #4CAF50; /* Un verde suave */
+    }
 
-.button-principal[id="btnGenerar"]:hover {
-    background-color: #0056b3;
-}
+    .button-principal[id="btnGenerar"]:hover {
+        background-color: #45a049; /* Un verde un poco más oscuro al pasar el cursor */
+    }
 
-.button-principal[id="btnLimpiar"] {
-    background-color: #dc3545; /* Rojo más moderno */
-}
+    .button-principal[id="btnLimpiar"] {
+        background-color: #f44336; /* Un rojo suave */
+    }
 
-.button-principal[id="btnLimpiar"]:hover {
-    background-color: #c82333;
-}
+    .button-principal[id="btnLimpiar"]:hover {
+        background-color: #da190b; /* Un rojo un poco más oscuro al pasar el cursor */
+    }
+    /* --- FIN COLORES MÁS SUAVES --- */
 
 #resultado-container {
     margin-top: 20px;
@@ -319,6 +321,8 @@ label {
 
 .full-width[style*="display: flex;"] {
     display: flex;
+    justify-content: center;
+    width: 100%;
     gap: 10px; /* Reducir el gap entre los botones */
     align-items:flex-start; /* Alinear verticalmente los botones */
 }
@@ -479,8 +483,8 @@ label {
     </div>
 
     <div class="full-width" style="display: flex; gap: 20px;">
-      <button style=background-color:#3700ff class="button-principal" id="btnGenerar" onclick="procesarAlarma()" disabled>✅Generar descripción</button>
-      <button style=background-color:#ff2600 class="button-principal" id="btnLimpiar" onclick="limpiarAlarmaInput()" disabled hidden>🧹 Limpiar alarma</button>
+      <button class="button-principal" id="btnGenerar" onclick="procesarAlarma()" disabled>✅Generar descripción</button>
+      <button class="button-principal" id="btnLimpiar" onclick="limpiarAlarmaInput()" disabled hidden>🧹 Limpiar alarma</button>
     </div>
 
     <div class="full-width" style="display: flex; gap: 20px;">
