@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Interpretador de Nomenclaturas 5G</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="icon" type="image/png" href="NOCMOfavicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
   <style>
     /* Paleta de colores profesionales y modernos */
     :root {
@@ -265,6 +267,15 @@
 .info-table tr:hover {
   background-color: #eef8ff; /* Resaltado suave al pasar el mouse */
 }
+/* Estilo para el icono de ayuda */
+        .help-icon {
+            font-size: 0.8em; /* Un poco más pequeño que el texto de la cabecera */
+            color: #007bff; /* Color azul para que destaque */
+            cursor: help; /* El cursor cambia a un signo de pregunta */
+            margin-left: 5px; /* Pequeño espacio a la izquierda */
+            vertical-align: middle; /* Alinea el icono verticalmente */
+        }
+
   </style>
 </head>
 <body>
@@ -289,7 +300,10 @@
           <th>Equipo</th>
           <th>Tipo</th>
           <th>Número</th>
-          <th>Link Grafana</th>
+          <th>
+            Link Grafana
+            <i class="fas fa-question-circle help-icon" title="Indica si el sitio tiene CDC, EDC o ambos."></i>
+          </th>
         </tr>
       </thead>
       <tbody></tbody>
