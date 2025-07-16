@@ -188,6 +188,34 @@ label {
 .toggle-historial:hover {
     color: #0056b3;
 }
+/* Estilos para el botón de Links/Contactos */
+.toggle-links-contactos {
+    background-color: #6c757d; /* Un gris oscuro, puedes cambiarlo */
+    color: white;
+    border: none;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    display: block; /* Para que ocupe todo el ancho disponible en su flex item */
+    width: 100%; /* Asegura que el botón ocupe el 100% del espacio asignado por flexbox */
+    margin-bottom: 10px; /* Espacio entre el botón y el contenido que expande */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.toggle-links-contactos:hover {
+    background-color: #5a6268; /* Un gris un poco más oscuro al pasar el cursor */
+}
+
+/* Estilos para el contenedor de links/contactos cuando está expandido */
+#linksContactosContainer {
+    /* Por defecto ya tiene display: none; en el HTML */
+    padding: 1px; /* Añade un pequeño padding si lo deseas */
+    border-radius: 6px;
+    background-color: #f8f9fa; /* Fondo ligeramente diferente al resto */
+    border: 1px solid #e9ecef; /* Borde suave */
+}
 
 .marca {
     text-align: center;
@@ -517,37 +545,43 @@ label {
       </div>
     
       <!-- Contenedor info adicional -->
-      <div id="info-adicional" style="flex: 1; font-size: 12px;">
-        <div id="links-utiles" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
-          <h3 style="font-size: 14px; margin-top: 0;">🔗 Links útiles</h3>
-          <ul style="padding-left: 18px; margin: 0;">
-            <li><a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6" target="_blank">Grafana de Despliegue CORE 5GC</a></li>
-            <li><a href="http://grafana-teco.telecom.com.ar:3000/d/b5d6d2e9-3b48-4613-b1fe-56dae6eb2e82/estado-de-servicio-noc-mo?orgId=6&refresh=1m" target="_blank">Grafana de temperaturas</a></li>
-            <li><a href="https://pwin0616/consulta_por_CGI.asp" target="_blank">Búsqueda por TAC</a></li>
-            <li><a href="https://automation.telecom.com.ar" target="_blank">TAMBO</a></li>
-            <li><a href="https://pwhgmweb1/HGM/Webs/csr2_new.php" target="_blank">HGM</a></li>
-            <li><a href="http://10.24.1.150/ingenier@/#/" target="_blank">Ingenier@</a></li>
-            <li><a href="https://cablevisionfibertel.sharepoint.com/:x:/r/teams/PCS-Equipo/_layouts/15/doc2.aspx?sourcedoc=%7BEE0B7FCD-14F2-4430-955D-209270FD5AA5%7D&file=InterconexionOperadores%20VPN%20SIP_3.xlsx&fromShare=true&action=default&mobileredirect=true" target="_blank">Rutas SIP</a></li>
-            <!-- Agregá más si querés -->
-          </ul>
+      <div class="full-width" style="display: flex; gap: 20px;">
+    <div id="resultado-container" style="flex: 2;">
         </div>
-    
-        <div id="contactos-pcs" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px;">
-          <h3 style="font-size: 14px; margin-top: 0;">📧 Mails de Contactos principales</h3>
-          <ul style="padding-left: 18px; margin: 0;">
-            <li>Tech Core: pcs_tech_core@teco.com.ar</li>
-            <li>Conectividad Afuera: pcs_conectividad_afuera@teco.com.ar</li>
-            <li>Infra&Net: PCS_InfrayNet@teco.com.ar</li>
-            <li>Servicios Convergentes: PCSServiciosConvergentes@teco.com.ar</li>
-            <li>Servicios Internacionales: PCS_Servicios_Internacionales@teco.com.ar</li>
-            <li>Voz Adentro: PCS_Voz_Adentro@teco.com.ar</li>
-            <li>Voz Afuera: PCS_Voz_Afuera@teco.com.ar</li>
-            <li>SdB: Pcs_sdb@teco.com.ar</li>
-            <li>CSOT/CAO: csot_oyp@teco.com.ar</li>
-                        <!-- Agregá más si querés -->
-          </ul>
+
+    <div id="linksContactosPanel" style="flex: 1; font-size: 12px;">
+        <button class="toggle-links-contactos" onclick="alternarLinksContactos()">
+            🔗 Mails - Links
+        </button>
+        <div id="linksContactosContainer" style="display: none;">
+            <div id="links-utiles" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                <h3 style="font-size: 14px; margin-top: 0;">🔗 Links útiles</h3>
+                <ul style="padding-left: 18px; margin: 0;">
+                    <li><a href="http://grafana-teco.telecom.com.ar:3000/d/c0239a12-c598-4291-a18b-01fa48bfc030/estado-de-despliegue-core-5gc?orgId=6" target="_blank">Grafana de Despliegue CORE 5GC</a></li>
+                    <li><a href="http://grafana-teco.telecom.com.ar:3000/d/b5d6d2e9-3b48-4613-b1fe-56dae6eb2e82/estado-de-servicio-noc-mo?orgId=6&refresh=1m" target="_blank">Grafana de temperaturas</a></li>
+                    <li><a href="https://pwin0616/consulta_por_CGI.asp" target="_blank">Búsqueda por TAC</a></li>
+                    <li><a href="https://automation.telecom.com.ar" target="_blank">TAMBO</a></li>
+                    <li><a href="https://pwhgmweb1/HGM/Webs/csr2_new.php" target="_blank">HGM</a></li>
+                    <li><a href="http://10.24.1.150/ingenier@/#/" target="_blank">Ingenier@</a></li>
+                    <li><a href="https://cablevisionfibertel.sharepoint.com/:x:/r/teams/PCS-Equipo/_layouts/15/doc2.aspx?sourcedoc=%7BEE0B7FCD-14F2-4430-955D-209270FD5AA5%7D&file=InterconexionOperadores%20VPN%20SIP_3.xlsx&fromShare=true&action=default&mobileredirect=true" target="_blank">Rutas SIP</a></li>
+                </ul>
+            </div>
+            <div id="contactos-pcs" style="background-color: #f1f1f1; padding: 10px; border-radius: 8px;">
+                <h3 style="font-size: 14px; margin-top: 0;">📧 Mails de Contactos principales</h3>
+                <ul style="padding-left: 18px; margin: 0;">
+                    <li>Tech Core: pcs_tech_core@teco.com.ar</li>
+                    <li>Conectividad Afuera: pcs_conectividad_afuera@teco.com.ar</li>
+                    <li>Infra&Net: PCS_InfrayNet@teco.com.ar</li>
+                    <li>Servicios Convergentes: PCSServiciosConvergentes@teco.com.ar</li>
+                    <li>Servicios Internacionales: PCS_Servicios_Internacionales@teco.com.ar</li>
+                    <li>Voz Adentro: PCS_Voz_Adentro@teco.com.ar</li>
+                    <li>Voz Afuera: PCS_Voz_Afuera@teco.com.ar</li>
+                    <li>SdB: Pcs_sdb@teco.com.ar</li>
+                    <li>CSOT/CAO: csot_oyp@teco.com.ar</li>
+                </ul>
+            </div>
         </div>
-      </div>
+     </div>
     </div>
 
     <div class="full-width">
@@ -784,8 +818,15 @@ function alternarHistorial() {
       contenedor.style.display = visible ? "none" : "block";
       boton.textContent = visible ? "Mostrar historial" : "Ocultar historial";
     }
-    
-    //Lipiar historial
+    function alternarLinksContactos() {
+    const contenedor = document.getElementById("linksContactosContainer");
+    const boton = document.querySelector(".toggle-links-contactos");
+    const visible = contenedor.style.display === "block";
+
+    contenedor.style.display = visible ? "none" : "block";
+    boton.textContent = visible ? "🔗 Mails - Links" : "Shrink 🔗 Mails - Links"; // Cambia el texto del botón
+}
+    //Limpiar historial
     function limpiarHistorial() {
       document.getElementById("listaHistorial").innerHTML = '';
 
