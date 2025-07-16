@@ -635,13 +635,15 @@ const regexElementoRed = /[A-Z]{7}-[A-Z]{3}\d{3}/;
 const matchElementoRed = info.match(regexElementoRed);
 
 if (matchElementoRed) {
-  const elementoRed = matchElementoRed[0];
+    const elementoRed = matchElementoRed[0];
+    // ¡Esta es la URL que quieres abrir!
     const urlElementoRed = `https://leigto91.github.io/Traductor-de-alarmas/NomenclaturaInfra.html?q=${encodeURIComponent(elementoRed)}`; 
-  // **********************************************
-  // ¡CAMBIO AQUÍ! Usamos la nueva función
-  // **********************************************
-  openLinkInBackground('https://leigto91.github.io/Traductor-de-alarmas/NomenclaturaInfra.html?q=${encodeURIComponent(elementoRed)'); 
-}
+    
+    // **********************************************
+    // ¡CAMBIO AQUÍ! Le pasamos la URL dinámica a la función
+    // **********************************************
+    openLinkInBackground(urlElementoRed); 
+  }
     const info_adicional_alerta = campos[55] || "Info vacía o errónea";
     const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
     const horarioFMC = campos[60] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
