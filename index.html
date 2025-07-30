@@ -674,16 +674,15 @@ function procesarAlarma() {
     }
     // Variables
 
-    const node = limpiarNombreNodo(campos[52]) || "Nodo vacío o erróneo";
-    const alarmaOriginal = campos[53] || "Alerta vacía o errónea";
-    const info = campos[54] || "Info vacía o errónea";
+    const node = limpiarNombreNodo(campos[53]) || "Nodo vacío o erróneo";
+    const alarmaOriginal = campos[54] || "Alerta vacía o errónea";
+    const info = campos[55] || "Info vacía o errónea";
     // Buscar patrón tipo AABBCCC-DEF123 en el campo "info"
 const regexElementoRed = /[A-Z]{7}-[A-Z]{3}\d{3}/;
 const matchElementoRed = info.match(regexElementoRed);
 
 if (matchElementoRed) {
     const elementoRed = matchElementoRed[0];
-    // ¡Esta es la URL que quieres abrir!
     const urlElementoRed = `https://leigto91.github.io/Traductor-de-alarmas/NomenclaturaInfra.html?q=${encodeURIComponent(elementoRed)}`; 
     
     // **********************************************
@@ -691,12 +690,12 @@ if (matchElementoRed) {
     // **********************************************
     openLinkInBackground(urlElementoRed); 
   }
-    const info_adicional_alerta = campos[55] || "Info vacía o errónea";
-    const alerta_norm = campos[56] || "Alerta_Norm vacía o errónea";
-    const horarioFMC = campos[60] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
+    const info_adicional_alerta = campos[56] || "Info vacía o errónea";
+    const alerta_norm = campos[57] || "Alerta_Norm vacía o errónea";
+    const horarioFMC = campos[61] || "Horario FMC vacío o erróneo"; // Nueva variable para First_FMC (índice 60)
 
-    let hedex = campos[61] || "Campo de AlarmID(Hedex) Vacio o erróneo"; // <<-- DEBE SER 'let' aquí
-    const gestorFmc = campos[62] || "Campo Gestor en el FMC Vacio o erróneo";
+    let hedex = campos[62] || "Campo de AlarmID(Hedex) Vacio o erróneo";
+    const gestorFmc = campos[63] || "Campo Gestor en el FMC Vacio o erróneo";
 
     // --- NUEVA LÓGICA: Limpiar y rellenar HEDEX ---
     if (hedex !== "Campo de AlarmID(Hedex) Vacio o erróneo") {
